@@ -1,0 +1,314 @@
+[
+  {
+    "source": "output/xe_4k/xe_01_4K.png",
+    "asset": "assets/images/view-01.webp",
+    "crop": {
+      "left": 12,
+      "top": 1388,
+      "width": 2148,
+      "height": 1482
+    },
+    "width": 1200,
+    "height": 828,
+    "bytes": 127820
+  },
+  {
+    "source": "output/xe_4k/xe_02_4K.png",
+    "asset": "assets/images/view-02.webp",
+    "crop": {
+      "left": 0,
+      "top": 1375,
+      "width": 2160,
+      "height": 1546
+    },
+    "width": 1200,
+    "height": 859,
+    "bytes": 125010
+  },
+  {
+    "source": "output/xe_4k/xe_03_4K.png",
+    "asset": "assets/images/view-03.webp",
+    "crop": {
+      "left": 0,
+      "top": 1322,
+      "width": 2160,
+      "height": 1574
+    },
+    "width": 1200,
+    "height": 874,
+    "bytes": 114508
+  },
+  {
+    "source": "output/xe_4k/xe_04_4K.png",
+    "asset": "assets/images/view-04.webp",
+    "crop": {
+      "left": 0,
+      "top": 1608,
+      "width": 2160,
+      "height": 1057
+    },
+    "width": 1200,
+    "height": 587,
+    "bytes": 99218
+  },
+  {
+    "source": "output/xe_4k/xe_05_4K.png",
+    "asset": "assets/images/view-05.webp",
+    "crop": {
+      "left": 38,
+      "top": 1925,
+      "width": 2122,
+      "height": 1023
+    },
+    "width": 1200,
+    "height": 579,
+    "bytes": 84670
+  },
+  {
+    "source": "output/xe_4k/xe_06_4K.png",
+    "asset": "assets/images/view-06.webp",
+    "crop": {
+      "left": 0,
+      "top": 1665,
+      "width": 2160,
+      "height": 1065
+    },
+    "width": 1200,
+    "height": 592,
+    "bytes": 90438
+  },
+  {
+    "source": "output/xe_4k/xe_07_4K.png",
+    "asset": "assets/images/view-07.webp",
+    "crop": {
+      "left": 18,
+      "top": 1234,
+      "width": 2142,
+      "height": 1629
+    },
+    "width": 1200,
+    "height": 913,
+    "bytes": 127314
+  },
+  {
+    "source": "output/xe_4k/xe_08_4K.png",
+    "asset": "assets/images/view-08.webp",
+    "crop": {
+      "left": 1,
+      "top": 1185,
+      "width": 2159,
+      "height": 1699
+    },
+    "width": 1200,
+    "height": 944,
+    "bytes": 134406
+  },
+  {
+    "source": "output/xe_4k/xe_09_4K.png",
+    "asset": "assets/images/view-09.webp",
+    "crop": {
+      "left": 0,
+      "top": 477,
+      "width": 2136,
+      "height": 3363
+    },
+    "width": 1200,
+    "height": 1889,
+    "bytes": 194984
+  },
+  {
+    "source": "output/xe_4k/xe_10_4K.png",
+    "asset": "assets/images/view-10.webp",
+    "crop": {
+      "left": 0,
+      "top": 1863,
+      "width": 2160,
+      "height": 1136
+    },
+    "width": 1200,
+    "height": 631,
+    "bytes": 86518
+  },
+  {
+    "source": "output/xe_4k/xe_11_4K.png",
+    "asset": "assets/images/view-11.webp",
+    "crop": {
+      "left": 3,
+      "top": 1692,
+      "width": 2157,
+      "height": 1134
+    },
+    "width": 1200,
+    "height": 631,
+    "bytes": 90572
+  },
+  {
+    "source": "output/xe_4k/xe_12_4K.png",
+    "asset": "assets/images/view-12.webp",
+    "crop": {
+      "left": 72,
+      "top": 1836,
+      "width": 2088,
+      "height": 1119
+    },
+    "width": 1200,
+    "height": 643,
+    "bytes": 91048
+  },
+  {
+    "source": "output/xe_4k/xe_13_4K.png",
+    "asset": "assets/images/view-13.webp",
+    "crop": {
+      "left": 0,
+      "top": 1074,
+      "width": 1739,
+      "height": 2715
+    },
+    "width": 1200,
+    "height": 1873,
+    "bytes": 184824
+  },
+  {
+    "source": "output/xe_4k/xe_14_4K.png",
+    "asset": "assets/images/view-14.webp",
+    "crop": {
+      "left": 0,
+      "top": 1111,
+      "width": 1710,
+      "height": 2584
+    },
+    "width": 1200,
+    "height": 1813,
+    "bytes": 167144
+  },
+  {
+    "source": "output/xe_4k/xe_15_4K.png",
+    "asset": "assets/images/view-15.webp",
+    "crop": {
+      "left": 87,
+      "top": 1721,
+      "width": 2073,
+      "height": 1675
+    },
+    "width": 1200,
+    "height": 970,
+    "bytes": 95014
+  },
+  {
+    "source": "output/xe_4k/xe_16_4K.png",
+    "asset": "assets/images/view-16.webp",
+    "crop": {
+      "left": 21,
+      "top": 1577,
+      "width": 2139,
+      "height": 1536
+    },
+    "width": 1200,
+    "height": 862,
+    "bytes": 93526
+  },
+  {
+    "source": "output/xe_4k/xe_17_4K.png",
+    "asset": "assets/images/view-17.webp",
+    "crop": {
+      "left": 0,
+      "top": 981,
+      "width": 2160,
+      "height": 2355
+    },
+    "width": 1200,
+    "height": 1308,
+    "bytes": 163860
+  },
+  {
+    "source": "output/xe_4k/xe_18_4K.png",
+    "asset": "assets/images/view-18.webp",
+    "crop": {
+      "left": 12,
+      "top": 983,
+      "width": 2148,
+      "height": 2149
+    },
+    "width": 1200,
+    "height": 1201,
+    "bytes": 130488
+  },
+  {
+    "source": "output/xe_4k/xe_05_4K.png",
+    "asset": "assets/images/hero.webp",
+    "crop": {
+      "left": 38,
+      "top": 1925,
+      "width": 2122,
+      "height": 1023
+    },
+    "width": 1600,
+    "height": 771,
+    "bytes": 145056
+  },
+  {
+    "source": "output/xe_4k/xe_07_4K.png",
+    "asset": "assets/images/front.webp",
+    "crop": {
+      "left": 18,
+      "top": 1234,
+      "width": 2142,
+      "height": 1629
+    },
+    "width": 1200,
+    "height": 913,
+    "bytes": 137044
+  },
+  {
+    "source": "output/xe_4k/xe_10_4K.png",
+    "asset": "assets/images/rear.webp",
+    "crop": {
+      "left": 0,
+      "top": 1863,
+      "width": 2160,
+      "height": 1136
+    },
+    "width": 1200,
+    "height": 631,
+    "bytes": 93242
+  },
+  {
+    "source": "output/xe_4k/xe_15_4K.png",
+    "asset": "assets/images/side.webp",
+    "crop": {
+      "left": 87,
+      "top": 1721,
+      "width": 2073,
+      "height": 1675
+    },
+    "width": 1200,
+    "height": 970,
+    "bytes": 103464
+  },
+  {
+    "source": "output/xe_4k/xe_17_4K.png",
+    "asset": "assets/images/detail-wheel.webp",
+    "crop": {
+      "left": 0,
+      "top": 981,
+      "width": 2160,
+      "height": 2355
+    },
+    "width": 1200,
+    "height": 1308,
+    "bytes": 178664
+  },
+  {
+    "source": "output/xe_4k/xe_13_4K.png",
+    "asset": "assets/images/detail-tail.webp",
+    "crop": {
+      "left": 0,
+      "top": 1074,
+      "width": 1739,
+      "height": 2715
+    },
+    "width": 1200,
+    "height": 1873,
+    "bytes": 201082
+  }
+]

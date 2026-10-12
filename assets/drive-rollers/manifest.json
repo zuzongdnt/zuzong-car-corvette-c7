@@ -1,0 +1,49 @@
+{
+  "sourceArchive": "D:/tải xuống/Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0001.zip",
+  "sourceSHA256": "de5868d6028942cc18d06026482c703b6e1a9f745d53b001051c3871fdf8e068",
+  "sourceVideo": "https://www.youtube.com/watch?v=7t9o9bHjoYw",
+  "sourceImageCount": 49,
+  "frameCount": 6,
+  "desktop": [
+    1920,
+    1080
+  ],
+  "mobile": [
+    1280,
+    720
+  ],
+  "aspectRatio": "16:9",
+  "playbackFrames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "selectedSourceNumbers": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "sourceFiles": [
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0044.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0045.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0046.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0047.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0048.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0049.jpg"
+  ],
+  "alignment": "alignment.json",
+  "selection": "Last continuous front-facing driving shot, 44–49. Parked scenes, departing rear view and changes of camera angle omitted.",
+  "processing": "Original user-provided photos. WebP conversion and proportional mobile resize only; no AI-generated detail or new frames.",
+  "framing": {
+    "desktopCarWidth": 0.16,
+    "tabletCarWidth": 0.24,
+    "mobileCarWidth": 0.3,
+    "maximumCarWidth": 260
+  }
+}

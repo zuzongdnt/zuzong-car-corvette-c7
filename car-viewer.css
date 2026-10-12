@@ -1,0 +1,32 @@
+.car-studio{margin-top:38px;background:#0b0d10;border:1px solid #ffffff12}
+.car-stage{height:clamp(440px,45vw,680px);position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 65%,#30333b66,transparent 66%)}
+.car-stage-word{position:absolute;top:63px;left:4%;z-index:-1;font:800 clamp(70px,12vw,178px)/.8 var(--font-display);letter-spacing:-2px;color:#ffffff06;pointer-events:none}
+.car-stage-word span{display:block;font:600 11px/1.5 var(--font-body);letter-spacing:5px;margin-top:22px;color:#ffffff25}
+.car-stage-heading{position:absolute;inset:24px 28px auto;z-index:2;display:flex;justify-content:space-between;gap:16px;pointer-events:none;font-size:9px;letter-spacing:1.8px;color:#b6b9c2}
+.car-stage-heading span:first-child{display:flex;align-items:center;gap:9px}.car-stage-heading i{width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px #f03a3e88}
+#corvette-viewer{display:block;width:100%;height:100%;--poster-color:transparent;--progress-bar-color:var(--accent);--progress-bar-height:2px;--progress-mask:transparent;outline-offset:-4px}
+#corvette-viewer:focus-visible{outline:2px solid var(--accent)}
+.car-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;background:#0b0d10;color:#ddd;font-size:12px;text-align:center}
+.car-loading img{width:85%;max-height:65%;object-fit:contain;opacity:.6}.car-loading button{min-height:44px;padding:8px 18px;background:#211519;border:1px solid #f03a3e77;border-radius:99px;cursor:pointer}.car-loading [hidden]{display:none}
+.car-gesture{position:absolute;bottom:19px;left:28px;margin:0;font-size:10px;color:#b6b9c2;pointer-events:none;display:flex;align-items:center;gap:10px}.car-gesture>span{font-size:20px;color:#eee}
+.car-studio fieldset{border:0;margin:0;min-width:0;padding:0}.car-studio button{cursor:pointer}.car-studio fieldset:disabled{opacity:.4}.car-studio fieldset:disabled button{cursor:wait}
+.car-studio .car-zoom{position:absolute;bottom:17px;right:24px;display:flex;gap:6px}.car-zoom button{width:44px;height:44px;border:1px solid #ffffff24;background:#14171dbd;backdrop-filter:blur(12px);font-size:22px;border-radius:50%;line-height:1}
+.car-toolbar{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:23px 28px;border-top:1px solid #ffffff10;background:#11131880}
+.car-toolbar legend{font-size:9px;color:#a9acb5;letter-spacing:1.6px;margin-bottom:10px}.car-toolbar legend span{color:#eee;letter-spacing:.2px;padding-left:15px;font-size:11px}
+.car-swatches{display:flex;gap:7px}.car-swatches button{height:44px;width:44px;border-radius:50%;padding:5px;background:transparent;border:1px solid transparent;position:relative;transition:border-color .2s}
+.car-swatches button>span{display:block;width:100%;height:100%;border-radius:50%;background:linear-gradient(145deg,#ffffff38,transparent 58%),var(--swatch);box-shadow:inset 0 0 0 1px #ffffff25}
+.car-swatches button[aria-pressed=true]{border-color:#f4f4f4}.car-swatches button[aria-pressed=true]:after{content:'✓';position:absolute;inset:0;display:grid;place-items:center;font-size:16px;color:white;text-shadow:0 1px 3px #000,0 0 3px #000}
+.car-views>div{display:flex;gap:4px;flex-wrap:wrap}.car-views button{border:1px solid transparent;border-radius:4px;background:transparent;padding:11px 14px;min-height:44px;font-size:11px;color:#b9bdc5}.car-views button[aria-pressed=true]{border-color:#ffffff20;background:#ffffff09;color:white}.car-views button[data-car-spin]{margin-left:8px;border-left:1px solid #ffffff20;border-radius:0}.car-views button[data-car-spin][aria-pressed=true]{color:var(--accent)}.car-views button span{margin-left:8px;font-size:15px}.car-zoom button:hover,.car-views button:hover{background:#ffffff14;color:white}
+.car-credit{margin:20px 0 0;font-size:10px;line-height:1.8;color:#858995}.car-credit a{text-decoration:underline;text-underline-offset:3px}.car-studio+.collection-bottom{margin-top:28px}
+@media(max-width:1000px){.car-toolbar{flex-wrap:wrap}.car-views{flex:1}.car-views button{padding:11px 10px}.car-views button[data-car-spin]{margin-left:0}.car-stage{height:490px}}
+@media(max-width:760px){.car-studio{margin:28px calc(-1 * var(--gutter)) 0;border-left:0;border-right:0}.car-stage{height:400px}.car-stage-heading{inset:20px 22px auto;font-size:8px;letter-spacing:1px}.car-stage-word{top:70px;left:22px;font-size:20vw}.car-stage-word span{font-size:8px;letter-spacing:3px;margin-top:15px}.car-toolbar{padding:21px 22px;gap:22px;display:grid;grid-template-columns:1fr}.car-gesture{left:22px;bottom:22px;max-width:calc(100% - 132px);font-size:9px;line-height:1.6;gap:8px}.car-studio .car-zoom{right:18px;bottom:21px;gap:5px}.car-zoom button{width:40px;min-height:44px}.car-views>div{justify-content:space-between;gap:2px}.car-views button{padding:10px 8px;font-size:10px}.car-toolbar legend{margin-bottom:10px}.car-swatches{gap:12px}.car-credit{font-size:9px}.car-stage-heading span:last-child{font-size:7px}}
+@media(prefers-reduced-motion:reduce){.car-swatches button{transition:none}}
+/* A dedicated pinned chapter. The extra scroll distance sets the rotation pace. */
+.car-scroll{--car-pin-top:100px;--car-pin-bottom:16px;--car-travel:440svh;margin-top:38px;height:calc(100svh - var(--car-pin-top) - var(--car-pin-bottom) + var(--car-travel));position:relative}
+.car-scroll .car-studio{position:sticky;top:var(--car-pin-top);margin:0;height:calc(100svh - var(--car-pin-top) - var(--car-pin-bottom));display:grid;grid-template-rows:minmax(0,1fr) auto}
+.car-scroll .car-stage{height:auto;min-height:0}
+.car-scroll-progress{position:absolute;inset:auto 0 0;height:2px;background:#ffffff10;pointer-events:none}
+.car-scroll-progress span{display:block;height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.car-scroll+.collection-bottom{margin-top:28px}
+@media(max-width:760px){.car-scroll{--car-pin-top:86px;--car-pin-bottom:calc(var(--bottom-nav-height,64px) + 12px);margin:28px calc(-1 * var(--gutter)) 0}.car-scroll .car-toolbar{padding:16px 22px;gap:14px}.car-scroll .car-stage-word{top:58px}}
+@media(prefers-reduced-motion:reduce){.car-scroll{height:auto}.car-scroll .car-studio{position:relative;top:auto;height:auto}.car-scroll .car-stage{height:clamp(400px,45vw,680px)}.car-scroll-progress{display:none}}

@@ -1,0 +1,43 @@
+const {chromium}=require('C:/Users/zuzong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('node:fs');
+let browser;
+(async()=>{
+ browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-unsafe-swiftshader']});
+ const results=[];
+ for(const width of (process.argv[2]?process.argv[2].split(',').map(Number):[1440,967,390])){
+  const page=await browser.newPage({viewport:{width,height:1000}}),errors=[],requests=[];
+  page.on('pageerror',e=>errors.push(e.message));page.on('requestfailed',r=>requests.push({url:r.url(),error:r.failure()?.errorText}));
+  await page.goto('http://localhost:4173/index.html',{waitUntil:'networkidle'});
+  await page.locator('.campaign-video-toggle').click();
+  await page.evaluate(()=>{document.querySelector('.campaign-video').currentTime=28.78});await page.waitForTimeout(250);
+  const intro=await page.evaluate(()=>({background:getComputedStyle(document.querySelector('.site-header')).backgroundColor,blur:getComputedStyle(document.querySelector('.site-header')).backdropFilter}));
+  await page.screenshot({path:`output/playwright/model-header-${width}.png`});
+  await page.locator('.car-studio').scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>document.querySelector('#corvette-viewer').dataset.ready==='true',{},{timeout:60000});
+  await page.evaluate(()=>{document.querySelector('.car-stage').scrollIntoView({block:'start',behavior:'instant'})});await page.waitForTimeout(1200);
+  const before=await page.evaluate(()=>{const v=document.querySelector('#corvette-viewer');return {orbit:v.getCameraOrbit().toString(),dimensions:v.getDimensions(),body:v.model.materials.find(m=>m.name==='Car Paint').pbrMetallicRoughness.baseColorFactor,windows:v.model.materials.find(m=>m.name==='Windows').pbrMetallicRoughness.baseColorFactor,overflow:document.documentElement.scrollWidth>innerWidth,header:getComputedStyle(document.querySelector('.site-header')).backgroundColor}});
+  await page.screenshot({path:`output/playwright/model-black-${width}.png`});
+  await page.getByRole('button',{name:'Sơn màu đỏ Racing',exact:true}).click();await page.waitForTimeout(500);
+  const red=await page.evaluate(()=>{const v=document.querySelector('#corvette-viewer');return {body:v.model.materials.find(m=>m.name==='Car Paint').pbrMetallicRoughness.baseColorFactor,windows:v.model.materials.find(m=>m.name==='Windows').pbrMetallicRoughness.baseColorFactor,label:document.querySelector('[data-paint-name]').textContent}});
+  await page.screenshot({path:`output/playwright/model-red-${width}.png`});
+  await page.getByRole('button',{name:'Phía sau',exact:true}).click();await page.waitForTimeout(800);
+  const rear=await page.evaluate(()=>document.querySelector('#corvette-viewer').getCameraOrbit().toString());
+  await page.screenshot({path:`output/playwright/model-rear-${width}.png`});
+  await page.getByRole('button',{name:'Góc nghiêng',exact:true}).click();await page.waitForTimeout(650);
+  const rect=await page.locator('#corvette-viewer').boundingBox();
+  await page.mouse.move(rect.x+rect.width*.5,rect.y+rect.height*.5);await page.mouse.down();await page.mouse.move(rect.x+rect.width*.68,rect.y+rect.height*.54,{steps:15});await page.mouse.up();await page.waitForTimeout(500);
+  const drag=await page.evaluate(()=>document.querySelector('#corvette-viewer').getCameraOrbit().toString());
+  const r1=await page.evaluate(()=>document.querySelector('#corvette-viewer').getCameraOrbit().radius);
+  await page.getByRole('button',{name:'Phóng to xe',exact:true}).click();await page.waitForTimeout(700);
+  const r2=await page.evaluate(()=>document.querySelector('#corvette-viewer').getCameraOrbit().radius);
+  await page.getByRole('button',{name:'Tự xoay',exact:false}).click();await page.waitForTimeout(500);
+  const spinning=await page.evaluate(()=>document.querySelector('#corvette-viewer').autoRotate);
+  await page.emulateMedia({reducedMotion:'reduce'});await page.waitForTimeout(150);
+  const reduced=await page.evaluate(()=>!document.querySelector('#corvette-viewer').autoRotate);
+  results.push({width,errors,requests,intro,before,red,rear,drag,zoom:r2<r1,spinning,reduced});
+  console.log(JSON.stringify(results.at(-1)));await page.close();
+ }
+ await browser.close();
+ const pass=results.every(r=>!r.errors.length&&!r.before.overflow&&r.intro.background==='rgba(0, 0, 0, 0)'&&r.intro.blur==='none'&&r.red.body[0]>r.before.body[0]&&JSON.stringify(r.red.windows)===JSON.stringify(r.before.windows)&&r.before.orbit!==r.rear&&r.before.orbit!==r.drag&&r.zoom&&r.spinning&&r.reduced);
+ fs.writeFileSync('output/playwright/model-qa.json',JSON.stringify({pass,results},null,2));if(!pass)process.exitCode=1;
+})().catch(async e=>{console.error(e);await browser?.close();process.exitCode=1});

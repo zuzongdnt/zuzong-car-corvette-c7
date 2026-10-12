@@ -1,0 +1,107 @@
+{
+  "sourceArchive": "D:/tải xuống/Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0001.zip",
+  "sourceSHA256": "de5868d6028942cc18d06026482c703b6e1a9f745d53b001051c3871fdf8e068",
+  "sourceVideo": "https://www.youtube.com/watch?v=7t9o9bHjoYw",
+  "sourceImageCount": 49,
+  "frameCount": 6,
+  "desktop": [
+    1920,
+    1080
+  ],
+  "mobile": [
+    1280,
+    720
+  ],
+  "aspectRatio": "16:9",
+  "playbackFrames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "selectedSourceNumbers": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "sourceFiles": [
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0044.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0045.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0046.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0047.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0048.jpg",
+    "Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0049.jpg"
+  ],
+  "alignment": "alignment.json",
+  "selection": "Last continuous front-facing driving shot, 44–49. Parked scenes, departing rear view and changes of camera angle omitted.",
+  "processing": "Built-in imagegen restoration. Six road plates restored and source vehicle removed; one restored transparent C7 foreground held constant. AI infers missing fine detail. Original ZIP and extracted photos retained.",
+  "framing": {
+    "desktopCarWidth": 0.36,
+    "tabletCarWidth": 0.4,
+    "mobileCarWidth": 0.58,
+    "maximumCarWidth": 500,
+    "fitBelowTitle": true
+  },
+  "foreground": "car.webp",
+  "restoration": {
+    "tool": "built-in image_gen",
+    "date": "2026-10-09",
+    "sourceNumbers": [
+      44,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "carSource": "E:\\du_dan_cuoi_ky_tkdh\\output\\drive-roller-source\\Corvette C7 Z06 #3 _ 4k Roller Cinematic_1080p60_0044.jpg",
+    "assets": [
+      {
+        "key": "car_clean",
+        "file": "car.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-d3353fba-5f69-41b6-bba0-c911af9e5694.png"
+      },
+      {
+        "key": "car",
+        "file": "car-before-alpha-cleanup.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-24e2d4e8-c3b8-448f-8576-87b548d868c3.png"
+      },
+      {
+        "key": "bg0",
+        "file": "frame-000.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-c61177d5-da12-4350-b95c-1b3eb8fb2518.png"
+      },
+      {
+        "key": "bg1",
+        "file": "frame-001.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-c040479c-0229-4575-8083-ad8418a2486b.png"
+      },
+      {
+        "key": "bg2",
+        "file": "frame-002.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-030f1613-1745-4881-afa4-25e4361be36e.png"
+      },
+      {
+        "key": "bg3",
+        "file": "frame-003.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-7ba2de51-0ecf-4072-a704-52b17f35230f.png"
+      },
+      {
+        "key": "bg4",
+        "file": "frame-004.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-bfc6a06a-5d6f-4327-a38f-3cd5cfdd5c7b.png"
+      },
+      {
+        "key": "bg5",
+        "file": "frame-005.png",
+        "generatedPath": "C:\\Users\\zuzong\\.codex\\generated_images\\01a11c4a-f239-7382-a6b2-5f37dcb5c0b0\\exec-126fa0c5-1534-4d90-a907-aed96926af71.png"
+      }
+    ],
+    "note": "AI restoration infers missing fine detail. A shared restored car layer replaces the blurred source car, held fixed while six restored background plates transition."
+  }
+}

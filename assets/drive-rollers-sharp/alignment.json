@@ -1,0 +1,104 @@
+{
+  "referenceSize": [
+    1920,
+    1080
+  ],
+  "frames": [
+    {
+      "frame": 0,
+      "sourceNumber": 44,
+      "bbox": [
+        908,
+        542,
+        1052,
+        625
+      ],
+      "centerX": 980,
+      "width": 144,
+      "baseline": 625
+    },
+    {
+      "frame": 1,
+      "sourceNumber": 45,
+      "bbox": [
+        938,
+        542,
+        1085,
+        624
+      ],
+      "centerX": 1011.5,
+      "width": 147,
+      "baseline": 624
+    },
+    {
+      "frame": 2,
+      "sourceNumber": 46,
+      "bbox": [
+        956,
+        541,
+        1093,
+        621
+      ],
+      "centerX": 1024.5,
+      "width": 137,
+      "baseline": 621
+    },
+    {
+      "frame": 3,
+      "sourceNumber": 47,
+      "bbox": [
+        954,
+        539,
+        1088,
+        618
+      ],
+      "centerX": 1021,
+      "width": 134,
+      "baseline": 618
+    },
+    {
+      "frame": 4,
+      "sourceNumber": 48,
+      "bbox": [
+        961,
+        542,
+        1088,
+        617
+      ],
+      "centerX": 1024.5,
+      "width": 127,
+      "baseline": 617
+    },
+    {
+      "frame": 5,
+      "sourceNumber": 49,
+      "bbox": [
+        968,
+        544,
+        1088,
+        613
+      ],
+      "centerX": 1028,
+      "width": 120,
+      "baseline": 613
+    }
+  ],
+  "method": "One restored transparent car layer: horizontal center, scale and tire baseline stay fixed across all six road plates. Road-camera scale remains constant; original shot anchors stabilize its vanishing point.",
+  "car": {
+    "referenceSize": [
+      1672,
+      941
+    ],
+    "bbox": [
+      99,
+      77,
+      1572,
+      875
+    ],
+    "centerX": 835.5,
+    "width": 1473,
+    "baseline": 875,
+    "method": "Largest connected opaque alpha silhouette, threshold 245; includes tires and mirrors, excludes detached specks and contact-shadow transparency.",
+    "file": "car.webp"
+  }
+}
