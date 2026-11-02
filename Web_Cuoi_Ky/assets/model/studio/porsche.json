@@ -1,0 +1,29 @@
+{
+  "key": "porsche",
+  "groups": {
+    "body": [
+      "ZUZONG_body | Obsidian Black | Porsche_911GT3_2022Paint_Materia",
+      "ZUZONG_body | Obsidian Black | Porsche_911GT3_2022Paint_Materi"
+    ],
+    "rims": [
+      "ZUZONG_rims | Porsche_911GT3_2022_Wheel1A_3D_3DWheel1A_Material"
+    ],
+    "calipers": [
+      "ZUZONG_calipers | Porsche_911GT3_2022_CallipersCalliperA_Zone_M"
+    ]
+  },
+  "sourceBounds": [
+    [
+      -2.3302340507507324,
+      -1.1146997213363647,
+      -0.04344618692994118
+    ],
+    [
+      2.3256876468658447,
+      1.1125974655151367,
+      1.2447121143341064
+    ]
+  ],
+  "bytes": 10426552,
+  "polygons": 238533
+}
