@@ -1,25 +1,31 @@
-<section id="performance" class="performance drive-scroll drive-drift" data-drive-frames="60" data-drive-src="assets/drive-drift-v7" aria-labelledby="performance-title">
-  <div class="drive-stage">
-    <div class="drive-media">
-      <canvas class="drive-ambient" aria-hidden="true"></canvas>
-      <picture class="drive-poster"><source media="(max-width:760px)" srcset="assets/drive-drift-v7/mobile/frame-000.webp"><img src="assets/drive-drift-v7/frame-000.webp" width="1600" height="900" loading="lazy" alt="Corvette C7 màu đen drift trên phố ban ngày"></picture>
-      <canvas class="drive-canvas" role="img" aria-label="Corvette C7 màu đen drift trên phố. Cuộn xuống để xem xe chuyển động, cuộn lên để xem ngược lại."></canvas>
-      <h2 id="performance-title" class="drive-title">CORVETTE</h2>
+<section id="performance" class="performance studio-sequence" data-sequence-src="assets/studio-scroll-v2" aria-labelledby="performance-title">
+  <div class="studio-sequence-stage">
+    <div class="studio-sequence-media">
+      <img class="studio-sequence-poster" src="assets/studio-scroll-v2/frame-000.webp" width="1440" height="810" loading="lazy" alt="Corvette C7 trên sàn studio xám phản chiếu">
+      <canvas class="studio-sequence-canvas" role="img" aria-label="Năm xe trên sàn studio phản chiếu. Cuộn xuống để xem chuyển động, cuộn lên để xem ngược lại."></canvas>
     </div>
-    <div class="drive-shade" aria-hidden="true"></div>
-    <div class="drive-topline"><p>THE AMERICAN ICON <span> / CORVETTE C7</span></p><a href="#details">NHÌN GẦN HƠN <span aria-hidden="true">↗</span></a></div>
-    <p class="drive-side drive-side--left">ZEPHYRON / THE STINGRAY COLLECTION</p>
-    <p class="drive-side drive-side--right">CUỘN ĐỂ CẢM NHẬN</p>
-    <div class="drive-bottom">
-      <p class="drive-statement">DÁNG THẤP. VAI RỘNG.<br><span>MỘT TRÁI TIM V8.</span></p>
-      <dl class="drive-specs">
-        <div><dt>ĐỘNG CƠ V8 LT1</dt><dd>6.2 <small>L</small></dd><p>Trái tim của Stingray. <br>Mạnh mẽ từ từng vòng tua.</p></div>
-        <div><dt>CÔNG SUẤT</dt><dd>455 <small>HP</small></dd><p>Một biểu tượng Mỹ. <br>Không thỏa hiệp.</p></div>
-        <div><dt>TRUYỀN ĐỘNG</dt><dd>7 <small>CẤP</small></dd><p>Số sàn. Dẫn động cầu sau. <br>Cảm giác lái đậm chất C7.</p></div>
-      </dl>
-      <div class="drive-footer"><p>Thông số tham khảo Corvette C7 Stingray tiêu chuẩn.</p><a href="#details">KHÁM PHÁ CHI TIẾT <span aria-hidden="true">↗</span></a></div>
-    </div>
-    <div class="drive-progress" aria-hidden="true"><span></span></div>
+    <header class="studio-sequence-header">
+      <div><h2 id="performance-title" data-sequence-title>Chevrolet Corvette C7</h2><p data-sequence-engine>V8 LT1 hút khí tự nhiên</p></div>
+      <a href="product.html?car=corvette" data-sequence-detail><span class="studio-sequence-link-text">Khám phá xe</span><svg class="studio-sequence-link-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14" stroke="currentColor" stroke-width="1.4"/></svg></a>
+    </header>
+    <svg class="studio-sequence-lines" aria-hidden="true"><path/><path/><path/><circle r="3"/><circle r="3"/><circle r="3"/></svg>
+    <dl class="studio-sequence-callouts">
+      <div class="studio-sequence-callout"><dt>Dung tích động cơ</dt><dd><span data-value>6,2</span><small>L</small></dd><p>V8 LT1 hút khí tự nhiên</p></div>
+      <div class="studio-sequence-callout"><dt>Công suất</dt><dd><span data-value>455</span><small>hp</small></dd><p>339 kW</p></div>
+      <div class="studio-sequence-callout"><dt>Mô-men xoắn</dt><dd><span data-value>624</span><small>Nm</small></dd><p>Mô-men xoắn cực đại</p></div>
+    </dl>
+    <footer class="studio-sequence-footer">
+      <p class="studio-sequence-note"><span data-sequence-variant>Corvette C7 Stingray tiêu chuẩn / 2019</span><br><a data-sequence-source href="https://www.corvsport.com/wp-content/uploads/2019/09/2019-Corvette-Sales-Brochure_compressed.pdf" target="_blank" rel="noopener">Nguồn thông số</a></p>
+      <nav class="studio-sequence-choices" aria-label="Chuyển tới xe trong thước phim">
+        <button type="button" data-sequence-car="corvette" aria-current="true">Corvette</button>
+        <button type="button" data-sequence-car="bmw" aria-current="false">BMW</button>
+        <button type="button" data-sequence-car="porsche" aria-current="false">Porsche</button>
+        <button type="button" data-sequence-car="mercedes" aria-current="false">Mercedes</button>
+        <button type="button" data-sequence-car="lamborghini" aria-current="false">Lamborghini</button>
+      </nav>
+    </footer>
+    <p class="sr-only" data-sequence-status role="status" aria-live="polite"></p>
+    <div class="studio-sequence-progress" aria-hidden="true"><span></span></div>
   </div>
 </section>
 

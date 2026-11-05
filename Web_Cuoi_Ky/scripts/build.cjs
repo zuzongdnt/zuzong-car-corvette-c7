@@ -4,12 +4,15 @@ fs.copyFileSync(path.join(root,'unveil-five.js'),path.join(out,'unveil-five.js')
 fs.copyFileSync(path.join(root,'unveil-five.css'),path.join(out,'unveil-five.css'));
 fs.copyFileSync(path.join(root,'monochrome.css'),path.join(out,'monochrome.css'));
 fs.copyFileSync(path.join(root,'studio-specs.js'),path.join(out,'studio-specs.js'));
+fs.copyFileSync(path.join(root,'car-doors.js'),path.join(out,'car-doors.js'));
 fs.cpSync(path.join(root,'assets','brand-monochrome'),path.join(out,'assets','brand-monochrome'),{recursive:true});
 for(const file of ['index.html','experience.html','films.html','gallery.html','hero.html','sections.html','styles.css','hero.css','sections.css','journal.css','editorial.css','app.js','sections.js','reveal-sequence.js','editorial.js','server.cjs','README.md','package.json'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.mkdirSync(path.join(out,'scripts'),{recursive:true});
 for(const file of ['campaign.html','campaign.css','campaign.js','campaign-config.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 for(const file of ['bottom-nav.css','bottom-nav.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 for(const file of ['drive-scroll.css','drive-scroll.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
+for(const file of ['studio-scroll.css','studio-scroll.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
+fs.cpSync(path.join(root,'assets','studio-scroll-v2'),path.join(out,'assets','studio-scroll-v2'),{recursive:true});
 fs.cpSync(path.join(root,'assets','drive'),path.join(out,'assets','drive'),{recursive:true});
 fs.cpSync(path.join(root,'assets','drive-snaptik'),path.join(out,'assets','drive-snaptik'),{recursive:true});
 fs.cpSync(path.join(root,'assets','drive-rollers'),path.join(out,'assets','drive-rollers'),{recursive:true});
@@ -44,5 +47,6 @@ for(const file of ['Mo_Web_ZUZONG.cmd'])fs.copyFileSync(path.join(root,file),pat
 fs.copyFileSync(path.join(root,'docs','STUDIO_3D_20261102.md'),path.join(out,'docs','STUDIO_3D_20261102.md'));
 fs.copyFileSync(path.join(root,'docs','MODEL_FINISH_20261102.md'),path.join(out,'docs','MODEL_FINISH_20261102.md'));
 fs.copyFileSync(path.join(root,'docs','CAR_LIGHTS_20261102.md'),path.join(out,'docs','CAR_LIGHTS_20261102.md'));
+fs.copyFileSync(path.join(root,'docs','STUDIO_SCROLL_20261105.md'),path.join(out,'docs','STUDIO_SCROLL_20261105.md'));
 for(const page of ['index.html','experience.html','films.html','gallery.html','products.html','product.html','about.html','contact.html','explore.html','news.html','article.html','cart.html','account.html','sources.html','policies.html']){const html=fs.readFileSync(path.join(out,page),'utf8');for(const match of html.matchAll(/(?:src|href|poster|data-src)="([^"#]+)"/g)){if(/^(https?:|data:|mailto:)/.test(match[1]))continue;const target=match[1].split('#')[0].split('?')[0];if(target&&!fs.existsSync(path.join(out,target)))throw Error(page+': Missing asset '+target);}}
 console.log('Static build OK: dist/ — 15 pages, studio models and gallery');

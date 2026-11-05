@@ -27,3 +27,9 @@ File Blender nguồn vẫn giữ nguyên. Bản GLB trước chỉnh và JS trư
 Đây là model tương tác thời gian thực. Chất lượng chi tiết vẫn phụ thuộc lưới và texture của tài nguyên gốc; không tương đương bản render Cycles. Model khoảng 10–31 MB mỗi xe; việc khôi phục lưới thân làm tăng dung lượng BMW và Corvette so với bản giảm lưới. Chưa đo hiệu năng trên điện thoại vật lý hoặc iOS/Safari.
 
 Hồ sơ nguồn và giấy phép tiếp tục ở `sources.html` và `docs/STUDIO_MODEL_SOURCES.md`.
+
+## Sửa màu nóc BMW – 05/11/2026
+
+Vật liệu `BMW | Mai carbon` trong GLB thiếu `baseColorFactor`, khiến nóc mặc định thành trắng. Đã đặt riêng màu graphite `#17191c` và thêm vào script hoàn thiện vật liệu để không tái phát khi xuất lại. Không sửa hình học, ảnh nhúng hoặc các vật liệu còn lại. Bản gốc được giữ tại `output/backup-bmw-roof-20261105/bmw.glb`.
+
+`node scripts/qa-bmw-roof.cjs` đã kiểm tra đủ năm màu sơn, nóc giữ màu graphite, các vật liệu ngoài thân sơn giữ nguyên và không tràn ngang ở 1500/390/320 px. Ảnh tại `output/playwright/bmw-roof/`; kiểm tra binary và vật liệu tại `output/bmw-roof-fix.json`. Build 15 trang đã đạt. Chưa kiểm tra điện thoại thật/Safari.

@@ -1,0 +1,27 @@
+{
+  "frameCount": 320,
+  "fps": 30,
+  "framesPerCar": 64,
+  "cars": [
+    "corvette",
+    "bmw",
+    "porsche",
+    "mercedes",
+    "lamborghini"
+  ],
+  "desktop": [
+    1440,
+    810
+  ],
+  "mobile": [
+    854,
+    480
+  ],
+  "preview": [
+    256,
+    144
+  ],
+  "source": "E:\\du_dan_cuoi_ky_tkdh\\output\\Blender_5_Xe_Theo_Mau_V2_20261105\\Final_1080p",
+  "sourceVideo": "ZEPHYRON_5_Xe_Studio_V2_1080p_KhongChu_KhongNhac.mp4",
+  "allSourceFramesPreserved": true
+}

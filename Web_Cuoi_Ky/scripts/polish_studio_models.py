@@ -83,6 +83,9 @@ def finish_model(key):
         elif name=='Gloss-black':
             values(m,'#17191c',.12,.22);coat(m,.8,.11)
         elif 'carbon' in lower or 'mai carbon' in lower:
+            # The BMW procedural carbon shader exported without a base color (glTF defaults to white).
+            if key=='bmw' and name=='BMW | Mai carbon':
+                values(m,'#17191c')
             values(m,metal=.12,rough=.32);coat(m,.45,.16)
             if 'normalTexture' in m:m['normalTexture']['scale']=.22
         elif key=='lamborghini' and name=='Anisotropic Metal':
