@@ -1,4 +1,4 @@
-import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,readStore,writeStore,brandLogo} from './studio-data.js';
+import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,configurationPrice,readStore,writeStore,brandLogo} from './studio-data.js';
 import {mountStudioSpecs} from './studio-specs.js';
 
 export async function mountStudio(host,initial={}) {
@@ -12,7 +12,7 @@ export async function mountStudio(host,initial={}) {
   <div class="z-config"><p class="z-series" data-series></p><h3 data-model-title></h3><fieldset class="z-options" disabled><legend class="sr-only">Tùy chỉnh màu xe</legend><div class="z-part-tabs" role="group" aria-label="Bộ phận đổi màu">${Object.entries(labels).map(([id,label])=>`<button type="button" data-part="${id}" aria-pressed="${id==='body'}">${label}</button>`).join('')}</div><div class="z-color-heading"><span data-part-label>Màu sơn</span><span data-color-name aria-live="polite"></span></div><div class="z-colors" data-swatches></div></fieldset>
   <button type="button" class="z-lights-toggle" data-car-lights disabled aria-pressed="false" aria-label="Bật đèn xe"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M14 3c7 0 10 3 10 8s-3 8-10 8V3ZM3 4l7 2M2 9l8 1M2 14l8-1M3 19l7-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-lights-label>Bật đèn xe</span><i aria-hidden="true"></i></button><p class="sr-only" data-light-status role="status"></p>
   <button type="button" class="z-lights-toggle z-doors-toggle" data-car-doors hidden disabled aria-pressed="false" aria-label="Mở hai cửa xe"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M5 18V7l5-4h11v15H5ZM8 8h10V5h-7L8 8ZM16 11h3M3 20h21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-doors-label>Mở cửa xe</span><i aria-hidden="true"></i></button><p class="sr-only" data-door-status role="status"></p>
-  <div class="z-price"><p>GIÁ MINH HỌA</p><strong data-price></strong><span>Số liệu giả lập cho đồ án. Các màu cùng giá.</span></div><a class="z-button z-button-red" data-order href="cart.html">Đặt trước <span aria-hidden="true">↗</span></a><button class="z-button" data-save type="button">Lưu cấu hình <span aria-hidden="true">↗</span></button><a class="z-detail-link" data-detail href="product.html">Xem chi tiết xe <span aria-hidden="true">↗</span></a><p class="z-save-status" data-save-status role="status"></p></div></div>`;
+  <div class="z-price"><div class="z-price-heading"><p>GIÁ MINH HỌA</p><span class="z-limited-badge" data-limited-badge hidden>Màu giới hạn</span></div><strong data-price aria-live="polite"></strong><span data-price-note></span></div><a class="z-button z-button-red" data-order href="cart.html">Đặt trước <span aria-hidden="true">↗</span></a><button class="z-button" data-save type="button">Lưu cấu hình <span aria-hidden="true">↗</span></button><a class="z-detail-link" data-detail href="product.html">Xem chi tiết xe <span aria-hidden="true">↗</span></a><p class="z-save-status" data-save-status role="status"></p></div></div>`;
   const viewer=host.querySelector('model-viewer');
   const stage=host.querySelector('.z-viewer-stage');
   const status=host.querySelector('[data-load-text]');
@@ -30,7 +30,10 @@ export async function mountStudio(host,initial={}) {
   function swatches(){
     host.querySelector('[data-part-label]').textContent=labels[part];
     host.querySelector('[data-color-name]').textContent=colorOf(config,part).name;
-    host.querySelector('[data-swatches]').innerHTML=palettes[part].map(color=>`<button type="button" style="--swatch:${color.hex}" data-color="${color.id}" aria-label="${labels[part]}: ${color.name}" aria-pressed="${config[part]===color.id}" title="${color.name}"><span>${config[part]===color.id?'✓':''}</span></button>`).join('');
+    host.querySelector('[data-swatches]').innerHTML=palettes[part].map(color=>{
+      const paintDetail=part==='body'?`, ${money(configurationPrice({...config,body:color.id}))}${color.limited?', màu giới hạn':''}`:'';
+      return `<button type="button" style="--swatch:${color.hex}" data-color="${color.id}" aria-label="${labels[part]}: ${color.name}${paintDetail}" aria-pressed="${config[part]===color.id}" title="${color.name}${color.limited?' · Màu giới hạn':''}"><span>${config[part]===color.id?'✓':''}</span></button>`;
+    }).join('');
     host.querySelectorAll('[data-part]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.part===part)));
   }
   function applyPart(target){
@@ -46,12 +49,16 @@ export async function mountStudio(host,initial={}) {
   }
   function update(){
     const car=getCar(config.car);
+    const paint=colorOf(config,'body');
     specs.update(car.id);
     host.querySelector('[data-car-caption]').textContent=car.brand+' / '+car.name;
-    host.querySelector('[data-paint-caption]').textContent=colorOf(config,'body').name;
+    host.querySelector('[data-paint-caption]').textContent=paint.name;
     host.querySelector('[data-series]').textContent=car.series;
     host.querySelector('[data-model-title]').textContent=car.name;
-    host.querySelector('[data-price]').textContent=money(car.price);
+    host.querySelector('[data-price]').textContent=money(configurationPrice(config));
+    const badge=host.querySelector('[data-limited-badge]');
+    badge.hidden=!paint.limited;
+    host.querySelector('[data-price-note]').textContent=paint.surcharge?`${paint.name} · Phụ phí ${money(paint.surcharge)}.`:`${paint.name} · Giá tiêu chuẩn.`;
     host.querySelector('[data-detail]').href=`product.html?car=${car.id}`;
     viewer.alt=`${car.brand} ${car.name}, ${colorOf(config,'body').name}, heo phanh ${colorOf(config,'calipers').name}, mâm ${colorOf(config,'rims').name}. Kéo để xoay và dùng phím mũi tên để đổi góc nhìn.`;
     host.querySelectorAll('[data-brand]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.brand===car.id)));
