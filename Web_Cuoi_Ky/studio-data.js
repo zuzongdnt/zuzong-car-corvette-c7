@@ -33,5 +33,5 @@ export function configurationPrice(raw={}) {
 export function readStore(key, fallback=[]) {try {const v=JSON.parse(localStorage.getItem('zuzong.'+key));return v??fallback;}catch{return fallback;}}
 export function writeStore(key,value) {try{localStorage.setItem('zuzong.'+key,JSON.stringify(value));return true;}catch{return false;}}
 export function configText(config){return Object.keys(labels).map(part=>{const color=colorOf(config,part);return `${labels[part]}: ${color.name}${part==='body'&&color.limited?' (giới hạn)':''}`;}).join(' · ');}
-export const poster = (car,angle='hero') => `assets/studio/${car}-${angle}.webp`;
+export const poster = (car,angle='hero') => `assets/gallery-real-v1/${car}-${angle}-real-v1.webp`;
 export const brandLogo = id => 'assets/brands/'+({corvette:'chevrolet.svg',bmw:'bmw.svg',porsche:'porsche.svg',mercedes:'mercedes.svg',lamborghini:'lamborghini-shield.png'}[id]||'chevrolet.svg');
