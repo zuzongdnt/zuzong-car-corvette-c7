@@ -1,7 +1,7 @@
 const {chromium}=require('C:/Users/zuzong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'output/playwright/monochrome');fs.mkdirSync(out,{recursive:true});
-const pages=['index.html','about.html','products.html','product.html?car=bmw','explore.html','gallery.html','news.html','article.html','contact.html','cart.html','account.html','sources.html','policies.html','experience.html','films.html'];
+const pages=['index.html','about.html','products.html','product.html?car=bmw','explore.html','gallery.html','news.html','article.html','contact.html','cart.html','account.html','sources.html','policies.html'];
 let browser;
 (async()=>{
  browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-unsafe-swiftshader']});

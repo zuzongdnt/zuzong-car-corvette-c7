@@ -17,7 +17,7 @@ const html=`<!doctype html>
 <link rel="stylesheet" href="drive-scroll.css"><script src="drive-scroll.js" defer></script>
 <link rel="stylesheet" href="car-viewer.css"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="site.css"><script type="module" src="studio.js"></script><script type="module" src="site.js"></script>
 <link rel="stylesheet" href="unveil-five.css">
-<link rel="stylesheet" href="monochrome.css">
+<link rel="stylesheet" href="monochrome.css"><link rel="stylesheet" href="navigation.css">
 <link rel="stylesheet" href="studio-scroll.css"><script type="module" src="studio-scroll.js"></script>
 </head><body>
 ${hero.replace('<!--CAMPAIGN-->',campaign).replace('<!--SHOWCASE-->',showcase)}

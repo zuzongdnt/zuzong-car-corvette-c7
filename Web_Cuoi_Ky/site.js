@@ -1,10 +1,9 @@
+import {mountNavigation} from './navigation.js';
 import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,readStore,writeStore,configText,poster} from './studio-data.js';
 const filename=location.pathname.split('/').pop()||'index.html';
 const params=new URLSearchParams(location.search);
 const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const list=key=>{const value=readStore(key,[]);return Array.isArray(value)?value:[];};
-const navItems=[['index.html','Trang chủ'],['about.html','Giới thiệu'],['products.html','Sản phẩm'],['explore.html','Khám phá'],['gallery.html','Bộ sưu tập']];
-const navHTML=()=>navItems.map(([href,label])=>`<a href="${href}"${filename===href?' aria-current="page"':''}>${label}</a>`).join('');
 const brandRightsHTML=()=>`<section class="brand-rights" aria-labelledby="brand-rights-title">
   <h2 id="brand-rights-title">Bản quyền thương hiệu</h2>
   <p>Tên thương hiệu, biểu trưng và tên các dòng xe xuất hiện trên website thuộc quyền của các chủ sở hữu tương ứng.</p>
@@ -18,34 +17,22 @@ const brandRightsHTML=()=>`<section class="brand-rights" aria-labelledby="brand-
   <p>ZEPHYRON là đồ án thiết kế độc lập, không phải website chính thức và không thể hiện quan hệ đại diện, tài trợ hoặc hợp tác với các hãng xe. <a href="sources.html">Xem nguồn hình ảnh, model 3D và giấy phép sử dụng.</a></p>
 </section>`;
 function navigation(){
-  const target=document.querySelector('[data-site-header]');
-  if(target)target.innerHTML=`<header class="z-header"><a class="z-brand" href="index.html"><img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="1634" height="804"></a><nav class="z-main-nav" id="z-main-nav" aria-label="Điều hướng chính">${navHTML()}</nav><div class="z-header-tools"><a href="account.html">Tài khoản</a><a href="cart.html" aria-label="Giỏ đặt trước">Giỏ <span class="z-cart-count" data-cart-count>0</span></a></div><button type="button" class="z-menu" aria-expanded="false" aria-controls="z-main-nav" aria-label="Mở menu">☰</button></header>`;
-  const old=document.querySelector('.site-header');
-  if(old){
-    const desktop=old.querySelector('.desktop-nav');if(desktop)desktop.innerHTML=navHTML();
-    const mobile=old.querySelector('.mobile-nav');if(mobile)mobile.innerHTML=navHTML()+'<a href="account.html">Tài khoản</a><a href="cart.html">Giỏ đặt trước</a>';
-    const cta=old.querySelector('.header-cta');if(cta){cta.href='cart.html';cta.innerHTML='GIỎ ĐẶT TRƯỚC <span data-cart-count>0</span>';}
-    if(!old.querySelector('.z-legacy-account')){const account=document.createElement('a');account.className='z-legacy-account';account.href='account.html';account.textContent='Tài khoản';old.insertBefore(account,old.querySelector('.menu-toggle'));}
-  }
+  mountNavigation([
+    ...cars.map(car=>[`product.html?car=${car.id}`,`${car.brand} ${car.name}`,'Mẫu xe',car.series]),
+    ...articles.map(article=>[`article.html?id=${article.id}`,article.title,'Bài viết',`${article.category} ${article.intro}`])
+  ]);
   const oldFooter=document.querySelector('.site-footer .footer-navigation');
   if(oldFooter&&!oldFooter.querySelector('[href="contact.html"]'))oldFooter.insertAdjacentHTML('beforeend','<a href="contact.html">Liên hệ / Showroom ↗</a><a href="policies.html">Bảo mật & điều kiện ↗</a><a href="sources.html">Nguồn hình & model ↗</a>');
   const footer=document.querySelector('[data-site-footer]');
   if(footer)footer.innerHTML=`<footer class="z-footer"><div class="z-container"><div class="z-footer-top"><div><a class="z-footer-word" href="index.html"><img src="assets/brand-monochrome/zephyron-black.svg" alt="ZEPHYRON" width="1634" height="804" loading="lazy"></a><p>Năm cá tính. Một dấu ấn riêng.</p></div><div class="z-footer-links"><div><a href="products.html">Studio xe</a><a href="about.html">Thương hiệu ZEPHYRON</a><a href="contact.html">Liên hệ / Showroom</a></div><div><a href="news.html">Tin tức / Bài viết</a><a href="sources.html">Nguồn hình & model</a><a href="policies.html">Bảo mật & điều kiện đặt trước</a></div></div></div><div class="z-footer-bottom"><span>© 2026 ZEPHYRON / ĐỒ ÁN THIẾT KẾ ĐỒ HỌA</span><span>Giá giả lập. Yêu cầu và tài khoản được mô phỏng trên trình duyệt.</span></div></div></footer>`;
-  const toggle=document.querySelector('.z-menu');
   document.querySelectorAll('.site-footer,.ed-footer,.z-footer').forEach(element=>{
     const bottom=element.querySelector('.footer-bottom,.ed-footer-bottom,.z-footer-bottom');
     if(bottom&&!element.querySelector('.brand-rights'))bottom.insertAdjacentHTML('beforebegin',brandRightsHTML());
   });
-  const close=()=>{toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Mở menu');document.querySelector('.z-main-nav')?.classList.remove('is-open');};
-  toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Đóng menu':'Mở menu');document.querySelector('.z-main-nav').classList.toggle('is-open',open);});
-  document.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
-  document.addEventListener('click',event=>{if(!event.target.closest('.z-header'))close();});
-  addEventListener('resize',()=>{if(innerWidth>760)close();});
   updateCount();
 }
 function updateCount(){document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=list('cart').length);}
 addEventListener('zuzong-cart',updateCount);addEventListener('storage',updateCount);
-navigation();
 // Displace the backdrop only; navigation text stays sharp above the glass.
 if(!document.getElementById('zephyron-liquid-filter')){
  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -62,6 +49,7 @@ const articles=[
   {id:'nam-ngon-ngu-thiet-ke',title:'Năm hãng xe, năm ngôn ngữ thiết kế.',car:'lamborghini',category:'Bộ sưu tập',intro:'Một studio chung đặt năm cá tính cạnh nhau: Corvette, M4, 911 GT3, SL63 và Revuelto.',body:[['Nhìn từ hình dáng','Corvette và Revuelto có dáng xe thấp với các đường cắt mạnh. M4 mang tỉ lệ coupé quen thuộc. 911 giữ đường mái cong, còn SL63 tạo cảm giác thoáng với thiết kế mui trần.'],['Nhìn từ chi tiết','Lưới tản nhiệt, đèn xe, mâm và cánh gió giúp mỗi chiếc xe có dấu hiệu nhận diện riêng. Hãy dùng góc đầu, ngang và đuôi xe trong studio để khám phá.'],['Dấu ấn của bạn','Cùng một chiếc xe có thể gợi cảm xúc khác nhau khi thay màu sơn và chi tiết. Lưu những cấu hình yêu thích để xem lại trong tài khoản mô phỏng.']]},
   {id:'trai-nghiem-studio-3d',title:'Khám phá chiếc xe bằng chính góc nhìn của bạn.',car:'porsche',category:'Trải nghiệm',intro:'Kéo để xoay, phóng to một chi tiết và thử một bảng màu mới. Studio mở ra cách khám phá chủ động hơn.',body:[['Không gian nằm trong tay bạn','Trên máy tính, kéo chuột để xoay và cuộn để thu phóng. Trên điện thoại, kéo một ngón để xoay và chụm hai ngón để phóng to. Các nút góc nhìn giúp quay lại vị trí cố định.'],['Ba lựa chọn độc lập','Màu sơn, heo phanh và mâm xe có bảng màu riêng. Thay mâm không thay lốp; đổi màu heo phanh không đổi đĩa phanh. Bạn có thể giữ màu thân và thử từng chi tiết.'],['Từ khám phá đến lưu cấu hình','Chọn Lưu cấu hình để xem lại, hoặc Đặt trước để mở giỏ và nhập thông tin. Đồ án lưu các trạng thái trong trình duyệt, không tạo đơn hàng thực tế.']]}
 ];
+navigation();
 function articleCards(exclude=''){return articles.filter(a=>a.id!==exclude).map(a=>`<article class="z-card"><a href="article.html?id=${a.id}"><img src="${poster(a.car)}" alt="${getCar(a.car).name}" loading="lazy"><div class="z-card-body"><small>${a.category}</small><h2>${a.title}</h2><p>${a.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`).join('');}
 if(main){
   const page=main.dataset.page;
@@ -81,7 +69,6 @@ if(main){
     main.querySelector('[data-contact]').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;const data=Object.fromEntries(new FormData(form));if(!data.name.trim()){form.elements.name.setCustomValidity('Vui lòng nhập họ tên.');form.elements.name.reportValidity();return;}const ok=writeStore('consultations',[{...data,id:'ZZ-T-'+Date.now().toString(36).toUpperCase(),created:new Date().toISOString(),status:'Chờ tư vấn'},...list('consultations')]);form.querySelector('.z-status').textContent=ok?'Đã lưu yêu cầu mẫu trên trình duyệt. Chưa gửi đến showroom.':'Không lưu được. Hãy kiểm tra quyền lưu trữ.';if(ok)form.reset();});
     main.querySelector('[name=name]').addEventListener('input',event=>event.target.setCustomValidity(''));
   }
-  if(page==='explore')main.innerHTML=heading('Khám phá <em>thế giới ZEPHYRON.</em>','Từ studio tương tác đến những câu chuyện về màu sắc và đường nét.')+`<div class="z-grid">${modelCards()}</div><div class="z-link-tiles"><a href="films.html">Thước phim ↗<small>Những thước phim Corvette trong bộ sưu tập cũ</small></a><a href="experience.html">Hành trình ↗<small>Khám phá không gian và cảm xúc sau tay lái</small></a><a href="news.html">Tin tức / Bài viết ↗<small>Góc nhìn thiết kế và trải nghiệm studio</small></a></div>`;
   if(page==='gallery'){
     let filter=cars.some(car=>car.id===params.get('car'))?params.get('car'):'all';let current=0;
     const items=cars.flatMap(car=>['hero','side','rear'].map((angle,i)=>({car:car.id,name:car.name,src:poster(car.id,angle),label:['Góc nghiêng','Ngang thân xe','Phía sau'][i]})));

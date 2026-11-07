@@ -10,7 +10,6 @@
  .bottom-nav a[aria-current="page"]:before{content:'';position:absolute;top:0;width:18px;height:2px;border-radius:2px;background:var(--accent)}
  .bottom-nav a[aria-current="page"] svg{stroke-width:1.9}
  .bottom-nav a:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;border-radius:6px}
- body.has-bottom-nav .site-header .menu-toggle,body.has-bottom-nav .site-header .mobile-nav{display:none!important}
  body.has-bottom-nav .hero-stage{height:calc(100svh - var(--bottom-nav-height));min-height:0}
  body.has-bottom-nav .campaign,body.has-bottom-nav .campaign-content{min-height:calc(100svh - var(--bottom-nav-height))}
 }
