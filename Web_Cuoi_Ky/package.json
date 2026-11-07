@@ -6,6 +6,6 @@
   "scripts": {
     "start": "node server.cjs",
     "build": "node scripts/build.cjs",
-    "check": "node --check app.js && node --check unveil-five.js && node --check sections.js && node --check reveal-sequence.js && node --check editorial.js && node --check server.cjs && node --check studio.js && node --check studio-data.js && node --check site.js && node --check studio-scroll.js && node --check navigation.js && node --check bottom-nav.js"
+    "check": "node --check app.js && node --check unveil-five.js && node --check sections.js && node --check reveal-sequence.js && node --check editorial.js && node --check server.cjs && node --check studio.js && node --check studio-page.js && node --check car-lights-page.js && node --check studio-data.js && node --check site.js && node --check studio-scroll.js && node --check navigation.js && node --check bottom-nav.js"
   }
 }

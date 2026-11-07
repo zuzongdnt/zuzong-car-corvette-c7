@@ -5,7 +5,7 @@ fs.copyFileSync(path.join(root,'unveil-five.css'),path.join(out,'unveil-five.css
 fs.copyFileSync(path.join(root,'monochrome.css'),path.join(out,'monochrome.css'));
 fs.copyFileSync(path.join(root,'studio-specs.js'),path.join(out,'studio-specs.js'));
 fs.copyFileSync(path.join(root,'car-doors.js'),path.join(out,'car-doors.js'));
-for(const file of ['navigation.js','navigation.css'])fs.copyFileSync(path.join(root,file),path.join(out,file));
+for(const file of ['navigation.js','navigation.css','page-updates.css','studio-page.js','car-lights-page.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.cpSync(path.join(root,'assets','brand-monochrome'),path.join(out,'assets','brand-monochrome'),{recursive:true});
 for(const file of ['index.html','experience.html','films.html','gallery.html','hero.html','sections.html','styles.css','hero.css','sections.css','journal.css','editorial.css','app.js','sections.js','reveal-sequence.js','editorial.js','server.cjs','README.md','package.json'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.mkdirSync(path.join(out,'scripts'),{recursive:true});

@@ -6,7 +6,13 @@ export const cars = [
   {id:'lamborghini', brand:'Lamborghini', name:'Revuelto', series:'REVUELTO / V12', price:44000000000, text:'Đường nét góc cạnh, dáng nêm thấp và chữ ký ánh sáng khác biệt. Một hình dung táo bạo về tốc độ.', engine:'V12 hybrid 6.5L', layout:'Siêu xe hybrid', character:'Tương lai · Quyết liệt'}
 ];
 export const palettes = {
-  body:[{id:'obsidian',name:'Đen Obsidian',hex:'#111216'},{id:'pearl',name:'Trắng Pearl',hex:'#e7e7e2'},{id:'racing',name:'Đỏ Racing',hex:'#ad101c'},{id:'velocity',name:'Xanh Velocity',hex:'#164ea1'},{id:'satin',name:'Bạc Satin',hex:'#9298a1'}],
+  body:[
+    {id:'obsidian',name:'Đen Obsidian',hex:'#111216',surcharge:0},
+    {id:'pearl',name:'Trắng Pearl',hex:'#e7e7e2',surcharge:180000000},
+    {id:'racing',name:'Đỏ Racing',hex:'#ad101c',surcharge:280000000},
+    {id:'velocity',name:'Xanh Velocity',hex:'#164ea1',surcharge:650000000,limited:true},
+    {id:'satin',name:'Bạc Satin',hex:'#9298a1',surcharge:420000000}
+  ],
   calipers:[{id:'red',name:'Đỏ Racing',hex:'#cc1826'},{id:'yellow',name:'Vàng Sport',hex:'#f3b718'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'}],
   rims:[{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'bronze',name:'Đồng Bronze',hex:'#a47d4b'},{id:'white',name:'Trắng Ceramic',hex:'#e7e7e2'}]
 };
@@ -20,8 +26,12 @@ export function cleanConfig(raw={}) {
   return value;
 }
 export const colorOf = (config,part) => palettes[part].find(p=>p.id===config[part]) || palettes[part][0];
+export function configurationPrice(raw={}) {
+  const config=cleanConfig(raw),paint=colorOf(config,'body');
+  return getCar(config.car).price+(paint.surcharge||0);
+}
 export function readStore(key, fallback=[]) {try {const v=JSON.parse(localStorage.getItem('zuzong.'+key));return v??fallback;}catch{return fallback;}}
 export function writeStore(key,value) {try{localStorage.setItem('zuzong.'+key,JSON.stringify(value));return true;}catch{return false;}}
-export function configText(config){return Object.keys(labels).map(part=>`${labels[part]}: ${colorOf(config,part).name}`).join(' · ');}
+export function configText(config){return Object.keys(labels).map(part=>{const color=colorOf(config,part);return `${labels[part]}: ${color.name}${part==='body'&&color.limited?' (giới hạn)':''}`;}).join(' · ');}
 export const poster = (car,angle='hero') => `assets/studio/${car}-${angle}.webp`;
 export const brandLogo = id => 'assets/brands/'+({corvette:'chevrolet.svg',bmw:'bmw.svg',porsche:'porsche.svg',mercedes:'mercedes.svg',lamborghini:'lamborghini-shield.png'}[id]||'chevrolet.svg');
