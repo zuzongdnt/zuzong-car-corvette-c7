@@ -57,6 +57,14 @@ const main=document.querySelector('[data-page]');
 const heading=(title,text='',kicker='ZEPHYRON')=>`<div class="z-page-heading"><p class="z-kicker">${kicker}</p><h1>${title}</h1>${text?`<p>${text}</p>`:''}</div>`;
 const button=(href,label,red=false)=>`<a class="z-button ${red?'z-button-red':''}" href="${href}">${label} <span aria-hidden="true">↗</span></a>`;
 const modelCards=()=>cars.map(car=>`<article class="z-card"><a href="product.html?car=${car.id}"><img src="${poster(car.id)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"><div class="z-card-body"><small>${car.brand}</small><h2>${car.name}</h2><p>${car.text}</p><span class="z-card-link">Khám phá mẫu xe ↗</span></div></a></article>`).join('');
+const catalogImage=car=>({
+  corvette:'assets/editorial/corvette-c7-large-catalog-v1.png',
+  bmw:'assets/editorial/bmw-m4-g82-large-catalog-v1.png',
+  porsche:'assets/editorial/porsche-911-gt3-large-catalog-v1.png',
+  mercedes:'assets/editorial/mercedes-amg-sl63-large-catalog-v1.png',
+  lamborghini:'assets/editorial/lamborghini-revuelto-large-catalog-v1.png'
+}[car.id]||poster(car.id));
+const productCatalogCards=()=>cars.map((car,index)=>`<article class="z-product-tile"><a href="product.html?car=${car.id}"><div class="z-product-tile-visual"><span class="z-product-tag">${index===4?'Mới':index===2?'Nổi bật':'Có sẵn'}</span><img src="${catalogImage(car)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"></div><div class="z-product-tile-body"><small>${car.brand}</small><h3>${car.name}</h3><p>${car.series} · ${car.layout}</p><strong>Từ ${money(car.price)}</strong><span>Giá minh họa ↗</span></div></a></article>`).join('');
 const articles=[
   {id:'dau-an-mau-sac',title:'Một màu sơn. Một cá tính.',car:'bmw',category:'Góc nhìn thiết kế',intro:'Từ sắc đen trầm đến xanh nổi bật, màu sắc thay đổi cách chúng ta cảm nhận đường nét của một chiếc xe.',body:[['Bắt đầu từ cảm giác','Đen Obsidian nhấn vào hình khối và độ phản chiếu. Trắng Pearl giúp bề mặt trở nên sáng rõ. Đỏ Racing tạo điểm nhìn mạnh, trong khi xanh Velocity mang lại cảm giác hiện đại.'],['Để chi tiết lên tiếng','Thử giữ màu thân xe trung tính rồi chọn heo phanh đỏ hoặc vàng. Mâm bạc làm rõ cấu trúc nan; mâm đen tạo cảm giác liền khối với lốp. Studio cho phép thay từng phần để bạn tự so sánh.'],['Chọn bằng trải nghiệm','Đổi màu, xoay xe về cùng một góc và quan sát dưới cùng ánh sáng. Đây là cách đơn giản để so sánh các cấu hình công bằng trước khi lưu lựa chọn.']]},
   {id:'nam-ngon-ngu-thiet-ke',title:'Năm hãng xe, năm ngôn ngữ thiết kế.',car:'lamborghini',category:'Bộ sưu tập',intro:'Một studio chung đặt năm cá tính cạnh nhau: Corvette, M4, 911 GT3, SL63 và Revuelto.',body:[['Nhìn từ hình dáng','Corvette và Revuelto có dáng xe thấp với các đường cắt mạnh. M4 mang tỉ lệ coupé quen thuộc. 911 giữ đường mái cong, còn SL63 tạo cảm giác thoáng với thiết kế mui trần.'],['Nhìn từ chi tiết','Lưới tản nhiệt, đèn xe, mâm và cánh gió giúp mỗi chiếc xe có dấu hiệu nhận diện riêng. Hãy dùng góc đầu, ngang và đuôi xe trong studio để khám phá.'],['Dấu ấn của bạn','Cùng một chiếc xe có thể gợi cảm xúc khác nhau khi thay màu sơn và chi tiết. Lưu những cấu hình yêu thích để xem lại trong tài khoản mô phỏng.']]},
@@ -66,35 +74,43 @@ function articleCards(exclude=''){return articles.filter(a=>a.id!==exclude).map(
 if(main){
   const page=main.dataset.page;
   if(page==='products'){
-    main.innerHTML=`<section class="z-products-campaign" aria-labelledby="products-campaign-title" aria-describedby="products-campaign-copy" tabindex="0">
-      <img class="z-products-campaign-image" src="assets/editorial/products-lamborghini-hero-v1.jpg" alt="Lamborghini màu đen trong không gian thành phố về đêm" width="2172" height="724" loading="eager" fetchpriority="high" decoding="async" draggable="false">
-      <div class="z-products-campaign-inner">
-        <article class="z-products-campaign-card">
-          <p class="z-kicker">ZEPHYRON</p>
-          <h1 id="products-campaign-title">Không có <em>góc nhìn thường.</em></h1>
-          <p class="z-products-campaign-copy" id="products-campaign-copy">Năm hãng xe. Kéo nhẹ để dịch chuyển góc nhìn, phối màu thân xe, heo phanh và mâm ngay trong studio.</p>
-        </article>
+    main.innerHTML=`<section class="z-products-campaign" aria-label="Không chỉ chọn xe. Chọn cách bạn xuất hiện.">
+      <video class="z-products-campaign-image" src="assets/editorial/products-hero-video-crisp-v11.mp4" poster="assets/editorial/products-hero-video-final-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Thước phim hình thành chiếc xe từ logo đến mẫu xe hoàn chỉnh">Trình duyệt của bạn không hỗ trợ phát video.</video>
+      <div class="z-products-fixed-copy"><span>ZEPHYRON / STUDIO 360°</span><h1>Không chỉ chọn xe.<br>Chọn cách bạn xuất hiện.</h1><p>Tốc độ dẫn lối. Công nghệ định hình. Bứt phá mọi giới hạn.</p></div>
+      <span class="z-products-edge-cleaner" aria-hidden="true"></span>
+      <div class="z-products-arrival" aria-label="Mercedes-AMG G 63 sắp về showroom"><span>Sắp về showroom</span><strong>Mercedes-AMG G 63</strong></div>
+    </section>
+    <section class="z-digital-showroom" id="products-experience" aria-labelledby="products-experience-title">
+      <div class="z-digital-shell">
+        <header class="z-digital-head">
+          <h2 id="products-experience-title">Trải nghiệm mua xe,<br>được thiết kế lại.</h2>
+          <p class="z-digital-lead">Quan sát chiếc xe trước khi quyết định. Mỗi lựa chọn đều hiển thị rõ ràng, từ màu sơn đến mức giá minh họa.</p>
+        </header>
+        <div class="z-digital-grid">
+          <a class="z-digital-stage" href="#products-studio" aria-label="Mở Studio 360 độ">
+            <img src="assets/unveil-five/lamborghini-still.webp" alt="Lamborghini màu trắng trong showroom kỹ thuật số" loading="lazy">
+            <div class="z-digital-stage-copy"><h3>Không bỏ sót một đường nét.</h3><span>Kéo, xoay và thu phóng <b aria-hidden="true">↗</b></span></div>
+          </a>
+          <aside class="z-build-sheet" aria-label="Cấu hình xe đang xem">
+            <header><div><span>Xe đang xem</span><h3>Lamborghini Revuelto</h3><p>V12 hybrid · Siêu xe coupé</p></div><img src="assets/brands/lamborghini-shield.png" alt="" aria-hidden="true"></header>
+            <div class="z-build-options">
+              <div><span>Ngoại thất</span><strong><i class="z-build-paint" aria-hidden="true"></i>Nero Noctis</strong></div>
+              <div><span>Chi tiết</span><strong>Heo phanh đỏ · Mâm bạc</strong></div>
+              <div class="z-build-price"><span>Giá khởi điểm minh họa</span><strong>${money(getCar('lamborghini').price)}</strong><small>Giá thay đổi khi chọn màu giới hạn.</small></div>
+            </div>
+            <div class="z-build-actions"><a href="#products-studio">Tự cấu hình xe <b aria-hidden="true">↗</b></a><a href="#products-catalog">Xem tất cả mẫu xe</a></div>
+          </aside>
+        </div>
       </div>
-    </section><div id="products-studio" data-studio-mount></div><div class="z-page-heading"><h2 class="z-display">Năm cá tính. <em>Một bộ sưu tập.</em></h2></div><div class="z-grid">${modelCards()}</div>`;
-    const campaign=main.querySelector('.z-products-campaign');
-    let pan=0,startPan=0,startX=0,activePointer=null;
-    const moveCampaign=value=>{
-      pan=Math.max(-28,Math.min(28,value));
-      campaign.style.setProperty('--campaign-pan-x',`${pan}px`);
-      campaign.style.setProperty('--campaign-tilt',`${pan/12}deg`);
-    };
-    campaign.addEventListener('pointerdown',event=>{
-      if(event.pointerType==='mouse'&&event.button!==0)return;
-      activePointer=event.pointerId;startX=event.clientX;startPan=pan;
-      campaign.classList.add('is-dragging');campaign.setPointerCapture?.(event.pointerId);
-    });
-    campaign.addEventListener('pointermove',event=>{if(event.pointerId===activePointer)moveCampaign(startPan+(event.clientX-startX)*.15);});
-    const stopCampaign=event=>{if(event.pointerId!==activePointer)return;campaign.classList.remove('is-dragging');if(campaign.hasPointerCapture?.(event.pointerId))campaign.releasePointerCapture(event.pointerId);activePointer=null;};
-    campaign.addEventListener('pointerup',stopCampaign);campaign.addEventListener('pointercancel',stopCampaign);
-    campaign.addEventListener('keydown',event=>{
-      if(!['ArrowLeft','ArrowRight','Home'].includes(event.key))return;
-      event.preventDefault();moveCampaign(event.key==='Home'?0:pan+(event.key==='ArrowLeft'?-8:8));
-    });
+    </section>
+    <section class="z-products-catalog" id="products-catalog" aria-labelledby="products-catalog-title"><div class="z-products-section-head"><div><p class="z-kicker">DANH MỤC XE</p><h2 id="products-catalog-title">Năm cá tính. Một bộ sưu tập.</h2></div><a href="gallery.html">Xem bộ sưu tập <span aria-hidden="true">↗</span></a></div><div class="z-products-catalog-grid">${productCatalogCards()}</div></section>
+    <section class="z-products-promo" aria-labelledby="products-promo-title"><video class="z-products-promo-media" src="assets/editorial/products-bmw-m4-g82.mp4" poster="assets/editorial/products-bmw-m4-g82-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Thước phim BMW M4 G82 hiển thị trọn khung xe">Trình duyệt của bạn không hỗ trợ phát video.</video><div><p class="z-kicker">CẤU HÌNH THEO CÁCH RIÊNG</p><h2 id="products-promo-title">Một màu sơn có thể thay đổi toàn bộ cảm giác.</h2><p>Thử bảng màu tiêu chuẩn và màu giới hạn trước khi lưu lựa chọn của bạn.</p><a href="#products-studio">Bắt đầu phối màu <span aria-hidden="true">↗</span></a></div></section>
+    <div id="products-studio" data-studio-mount></div>
+    <section class="z-products-journal" aria-labelledby="products-journal-title"><div class="z-products-section-head"><div><p class="z-kicker">GÓC NHÌN THIẾT KẾ</p><h2 id="products-journal-title">Khám phá nhiều hơn.</h2></div><a href="news.html">Xem tất cả bài viết <span aria-hidden="true">↗</span></a></div><div class="z-grid">${articleCards()}</div></section>`;
+    const productVideos=[...main.querySelectorAll('video.z-products-campaign-image, video.z-products-promo-media')];
+    const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+    const syncProductMotion=()=>productVideos.forEach(video=>{if(reducedMotion.matches)video.pause();else video.play().catch(()=>{});});
+    syncProductMotion();reducedMotion.addEventListener('change',syncProductMotion);
     await import('./studio.js');
   }
   if(page==='product'){

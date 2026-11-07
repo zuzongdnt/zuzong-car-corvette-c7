@@ -1,7 +1,7 @@
 import './assets/vendor/model-viewer-effects/model-viewer-effects.min.js';
 
 function profile(car,name){
-  if(name.startsWith('STUDIO_LIGHT | front |'))return {kind:'front',strength:14,color:[.86,.94,1]};
+  if(name.startsWith('STUDIO_LIGHT | front |'))return {kind:'front',strength:17,color:[.84,.94,1]};
   const names={
     corvette:{front:['Daylight Cover','Main Headlight Lens'],rear:['Tail Lights Red Cover','Tail Lights Red Cover 2']},
     bmw:{front:['BMW | LED daylight'],rear:['BMW | Den hau Material.023','BMW | Den hau Material.022','BMW | Den hau Material.020']},
@@ -9,15 +9,15 @@ function profile(car,name){
     mercedes:{front:['SL63_runninglight-Fr.001','SL63_runninglight-Fl.001','SL63_lowbeams-F.002'],rear:['SL63_runninglight-R.001','SL63_brakelight.001','SL63_beams-R.001']},
     lamborghini:{front:['White'],rear:['red','back-light-tex','Red Emission']}
   }[car];
-  if(names?.front.includes(name))return {kind:'front',strength:car==='corvette'?12:11,color:[.86,.94,1]};
-  if(names?.rear.includes(name))return {kind:'rear',strength:7.5,color:[1,.008,.016]};
+  if(names?.front.includes(name))return {kind:'front',strength:car==='corvette'?15:13.5,color:[.84,.94,1]};
+  if(names?.rear.includes(name))return {kind:'rear',strength:9,color:[1,.008,.016]};
   return null;
 }
 
 export function createCarLights(viewer,button,host){
   const mobile=matchMedia('(max-width:760px)'),reduced=matchMedia('(prefers-reduced-motion:reduce)');
-  const composer=document.createElement('effect-composer');composer.setAttribute('render-mode','quality');composer.setAttribute('msaa',mobile.matches?'0':'2');
-  const bloom=document.createElement('selective-bloom-effect');bloom.setAttribute('strength','0');bloom.setAttribute('radius','.42');bloom.setAttribute('threshold','.34');bloom.setAttribute('smoothing','.28');bloom.selection=[];composer.append(bloom);
+  const composer=document.createElement('effect-composer');composer.setAttribute('render-mode','quality');composer.setAttribute('msaa',mobile.matches?'2':'4');
+  const bloom=document.createElement('selective-bloom-effect');bloom.setAttribute('strength','0');bloom.setAttribute('radius','.5');bloom.setAttribute('threshold','.28');bloom.setAttribute('smoothing','.3');bloom.selection=[];composer.append(bloom);
   let wanted=false,ready=false,level=0,frame=0,last=0,car='',entries=[],meshes=[];
   const status=host.querySelector('[data-light-status]');
   function ui(){
@@ -34,7 +34,9 @@ export function createCarLights(viewer,button,host){
   function apply(value){
     level=value;
     for(const entry of entries){entry.material.setEmissiveFactor(entry.color);entry.material.setEmissiveStrength(entry.strength*level);}
-    bloom.strength=1.15*level;
+    bloom.strength=1.4*level;
+    viewer.exposure=1.1-.25*level;
+    viewer.shadowIntensity=2.15+.35*level;
     host.dataset.lightLevel=level.toFixed(3);composer.queueRender();
   }
   function animate(now){

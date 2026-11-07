@@ -7,7 +7,7 @@ export async function mountStudio(host,initial={}) {
   let part='body',ready=false,loadingTimer,lights,doors;
   host.innerHTML=`<div class="z-studio-head"><p>ZEPHYRON / AUTOMOTIVE STUDIO</p><h2>Một chiếc xe. Dấu ấn của bạn.</h2><div class="z-brands" role="group" aria-label="Chọn hãng xe">${cars.map(car=>`<button type="button" data-brand="${car.id}" aria-pressed="false"><img class="z-brand-emblem" src="${brandLogo(car.id)}" alt="" width="25" height="29"><span>${car.brand}</span></button>`).join('')}</div></div>
   <div class="z-studio-layout"><div class="z-viewer-stage" aria-busy="true"><div class="z-viewer-caption"><span data-car-caption></span><span data-paint-caption></span></div>
-  <model-viewer class="z-viewer" alt="Mô hình xe 3D tương tác" camera-controls touch-action="pan-y" disable-pan camera-orbit="-42deg 76deg 110%" min-camera-orbit="auto 20deg 45%" max-camera-orbit="auto 88deg 220%" field-of-view="30deg" shadow-intensity="1.3" shadow-softness=".9" environment-image="assets/model/studio-automotive.hdr" tone-mapping="neutral" exposure="1.05" interaction-prompt="none" loading="eager" reveal="auto"><div slot="poster" class="z-loader"><span class="z-loader-ring"></span><span data-load-text role="status">Đang chuẩn bị studio 3D…</span><button type="button" data-retry hidden>Thử lại</button></div></model-viewer>
+  <model-viewer class="z-viewer" alt="Mô hình xe 3D tương tác" camera-controls touch-action="pan-y" disable-pan camera-orbit="-42deg 76deg 110%" min-camera-orbit="auto 20deg 45%" max-camera-orbit="auto 88deg 220%" field-of-view="30deg" shadow-intensity="2.15" shadow-softness=".42" environment-image="assets/model/studio-automotive.hdr" tone-mapping="aces" exposure="1.1" interaction-prompt="none" loading="eager" reveal="auto"><div slot="poster" class="z-loader"><span class="z-loader-ring"></span><span data-load-text role="status">Đang chuẩn bị studio 3D…</span><button type="button" data-retry hidden>Thử lại</button></div></model-viewer>
   <div class="z-viewer-bottom"><p>Kéo để xoay <span>·</span> Cuộn / chụm để thu phóng</p><div class="z-camera-buttons"><button type="button" data-camera="front" aria-label="Xem đầu xe">Đầu</button><button type="button" data-camera="hero" aria-label="Xem góc nghiêng">3/4</button><button type="button" data-camera="side" aria-label="Xem ngang thân xe">Ngang</button><button type="button" data-camera="rear" aria-label="Xem đuôi xe">Đuôi</button><button type="button" data-spin aria-pressed="false" aria-label="Tự xoay xe">↻</button><button type="button" data-fullscreen aria-label="Xem toàn màn hình">⛶</button></div></div></div>
   <div class="z-config"><p class="z-series" data-series></p><h3 data-model-title></h3><fieldset class="z-options" disabled><legend class="sr-only">Tùy chỉnh màu xe</legend><div class="z-part-tabs" role="group" aria-label="Bộ phận đổi màu">${Object.entries(labels).map(([id,label])=>`<button type="button" data-part="${id}" aria-pressed="${id==='body'}">${label}</button>`).join('')}</div><div class="z-color-heading"><span data-part-label>Màu sơn</span><span data-color-name aria-live="polite"></span></div><div class="z-colors" data-swatches></div></fieldset>
   <button type="button" class="z-lights-toggle" data-car-lights disabled aria-pressed="false" aria-label="Bật đèn xe"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M14 3c7 0 10 3 10 8s-3 8-10 8V3ZM3 4l7 2M2 9l8 1M2 14l8-1M3 19l7-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-lights-label>Bật đèn xe</span><i aria-hidden="true"></i></button><p class="sr-only" data-light-status role="status"></p>
@@ -19,6 +19,8 @@ export async function mountStudio(host,initial={}) {
   const retry=host.querySelector('[data-retry]');
   const fieldset=host.querySelector('fieldset');
   const spin=host.querySelector('[data-spin]');
+  const cameraButtons=[...host.querySelectorAll('[data-camera]')];
+  const setCameraState=name=>cameraButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.camera===name)));
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const mobile=matchMedia('(max-width:760px)');
   const radius=()=>mobile.matches?'120%':'90%';
@@ -41,10 +43,16 @@ export async function mountStudio(host,initial={}) {
     viewer.model.materials.filter(material=>material.name.startsWith(`ZUZONG_${target} |`)).forEach(material=>{
       material.pbrMetallicRoughness.setBaseColorFactor(choice.hex);
       const satin=target==='body'&&choice.id==='satin';
-      material.pbrMetallicRoughness.setMetallicFactor(target==='rims'?.95:target==='calipers'?.25:satin?.65:.38);
-      material.pbrMetallicRoughness.setRoughnessFactor(target==='rims'?.24:target==='calipers'?.32:satin?.36:.23);
-      material.setClearcoatFactor(target==='body'?(satin?.65:1):target==='rims'?.3:.65);
-      material.setClearcoatRoughnessFactor(target==='body'?(satin?.2:.085):.16);
+      material.pbrMetallicRoughness.setMetallicFactor(target==='rims'?.95:target==='calipers'?.25:satin?.58:.72);
+      material.pbrMetallicRoughness.setRoughnessFactor(target==='rims'?.2:target==='calipers'?.29:satin?.32:.14);
+      material.setClearcoatFactor(target==='body'?(satin?.78:1):target==='rims'?.38:.7);
+      material.setClearcoatRoughnessFactor(target==='body'?(satin?.16:.045):.13);
+    });
+  }
+  function hidePlateText(){
+    viewer.model.materials.filter(material=>material.name.toLowerCase().startsWith('plate | golden yellow')).forEach(material=>{
+      material.setAlphaMode('BLEND');
+      material.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0]);
     });
   }
   function update(){
@@ -81,7 +89,7 @@ export async function mountStudio(host,initial={}) {
     if(!viewer.loaded||!viewer.model||!viewer.src.includes(`/${config.car}.glb`))return;
     clearTimeout(loadingTimer);
     if(!Object.keys(labels).every(target=>viewer.model.materials.some(material=>material.name.startsWith(`ZUZONG_${target} |`)))){failed('Model thiếu vật liệu tùy chỉnh. Hãy thử tải lại.');return;}
-    Object.keys(labels).forEach(applyPart);ready=true;host.dataset.ready='true';fieldset.disabled=false;stage.setAttribute('aria-busy','false');status.textContent='Model 3D sẵn sàng.';viewer.dismissPoster();
+    Object.keys(labels).forEach(applyPart);hidePlateText();ready=true;host.dataset.ready='true';fieldset.disabled=false;stage.setAttribute('aria-busy','false');status.textContent='Model 3D sẵn sàng.';viewer.dismissPoster();
     lights?.modelLoaded(config.car);
     doors?.modelLoaded(config.car);
     host.dispatchEvent(new CustomEvent('studio-ready',{detail:{...config}}));
@@ -92,8 +100,8 @@ export async function mountStudio(host,initial={}) {
     if(button.dataset.brand){if(config.car!==button.dataset.brand){config=cleanConfig({...config,car:button.dataset.brand});load();}}
     if(button.dataset.part){part=button.dataset.part;swatches();}
     if(button.dataset.color&&ready){config[part]=button.dataset.color;applyPart(part);update();notify('');}
-    if(button.dataset.camera&&ready){viewer.cameraOrbit=`${{front:-90,hero:-42,side:0,rear:90}[button.dataset.camera]}deg 76deg ${radius()}`;viewer.removeAttribute('auto-rotate');spin.setAttribute('aria-pressed','false');viewer.jumpCameraToGoal();}
-    if(button.hasAttribute('data-spin')&&ready){const active=spin.getAttribute('aria-pressed')!=='true';viewer.toggleAttribute('auto-rotate',active);spin.setAttribute('aria-pressed',String(active));}
+    if(button.dataset.camera&&ready){viewer.cameraOrbit=`${{front:-90,hero:-42,side:0,rear:90}[button.dataset.camera]}deg 76deg ${radius()}`;viewer.removeAttribute('auto-rotate');spin.setAttribute('aria-pressed','false');setCameraState(button.dataset.camera);viewer.jumpCameraToGoal();}
+    if(button.hasAttribute('data-spin')&&ready){const active=spin.getAttribute('aria-pressed')!=='true';viewer.toggleAttribute('auto-rotate',active);spin.setAttribute('aria-pressed',String(active));if(active)setCameraState('');}
     if(button.hasAttribute('data-fullscreen')){if(document.fullscreenElement)document.exitFullscreen?.();else stage.requestFullscreen?.().catch(()=>notify('Trình duyệt chưa hỗ trợ toàn màn hình.'));}
     if(button.hasAttribute('data-retry'))load(true);
     if(button.hasAttribute('data-save')){
@@ -111,6 +119,7 @@ export async function mountStudio(host,initial={}) {
       window.dispatchEvent(new Event('zuzong-cart'));
     }
   });
+  viewer.addEventListener('camera-change',event=>{if(event.detail?.source==='user-interaction')setCameraState('');});
   reduced.addEventListener('change',()=>{if(reduced.matches){viewer.removeAttribute('auto-rotate');spin.setAttribute('aria-pressed','false');}});
   mobile.addEventListener('change',()=>{if(ready){const orbit=viewer.getCameraOrbit();viewer.cameraOrbit=`${orbit.theta}rad ${orbit.phi}rad ${radius()}`;}});
   new IntersectionObserver(entries=>{if(!entries[0].isIntersecting){viewer.removeAttribute('auto-rotate');spin.setAttribute('aria-pressed','false');}}).observe(host);
@@ -119,12 +128,12 @@ export async function mountStudio(host,initial={}) {
   try{
     await import('./assets/vendor/model-viewer/model-viewer.min.js');
     const ModelViewer=await customElements.whenDefined('model-viewer');
-    ModelViewer.minimumRenderScale=mobile.matches?.5:.75;
+    ModelViewer.minimumRenderScale=mobile.matches?.78:1;
     const {createCarLights}=await import('./car-lights.js');
     lights=createCarLights(viewer,host.querySelector('[data-car-lights]'),host);
     const {createCarDoors}=await import('./car-doors.js');
     doors=createCarDoors(viewer,host.querySelector('[data-car-doors]'),host);
-    load();
+    setCameraState('hero');load();
   }catch{failed('Không khởi tạo được không gian 3D. Hãy tải lại trang.');}
   return {getConfig:()=>({...config}),viewer};
 }

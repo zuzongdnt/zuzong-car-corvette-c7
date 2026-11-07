@@ -12,7 +12,7 @@ export const vehicleSpecs={
 export function mountStudioSpecs(host){
  const section=document.createElement('section');section.className='z-live-specs';
  section.setAttribute('aria-label','Thông số xe đang chọn');
- section.innerHTML='<div class="z-live-specs-heading"><div><p class="z-live-specs-kicker">Bên trong từng chuyển động</p><h3 data-spec-car></h3><p data-spec-engine></p></div><a data-spec-source target="_blank" rel="noopener">Nguồn thông số <span aria-hidden="true">↗</span></a></div><dl class="z-live-specs-grid">'+['Dung tích','Công suất','Mã lực','Mô-men xoắn'].map((label,i)=>`<div><dt data-spec-label="${i}">${label}</dt><dd><span data-spec-value="${i}" aria-hidden="true">0</span><small data-spec-unit="${i}"></small></dd></div>`).join('')+'</dl><p class="z-live-specs-note" data-spec-note></p><p class="sr-only" data-spec-status role="status" aria-live="polite"></p>';
+ section.innerHTML='<div class="z-live-specs-heading"><div><p class="z-live-specs-kicker">Bên trong từng chuyển động</p><h3 data-spec-car></h3><p data-spec-engine></p></div><a data-spec-source target="_blank" rel="noopener noreferrer external">Nguồn thông số <span aria-hidden="true">↗</span></a></div><dl class="z-live-specs-grid">'+['Dung tích','Công suất','Mã lực','Mô-men xoắn'].map((label,i)=>`<div><dt data-spec-label="${i}">${label}</dt><dd><span data-spec-value="${i}" aria-hidden="true">0</span><small data-spec-unit="${i}"></small></dd></div>`).join('')+'</dl><p class="z-live-specs-note" data-spec-note></p><p class="sr-only" data-spec-status role="status" aria-live="polite"></p>';
  host.after(section);
  const values=[...section.querySelectorAll('[data-spec-value]')],units=[...section.querySelectorAll('[data-spec-unit]')];
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -41,9 +41,12 @@ export function mountStudioSpecs(host){
   if(id===current)return;
   cancelAnimationFrame(frame);frame=0;current=id;spec=vehicleSpecs[id];if(!spec)return;
   section.dataset.car=id;targets=[spec.litres,spec.kw,spec.hp,spec.torque];
-  section.querySelector('[data-spec-car]').textContent=getCar(id).name;
+  const car=getCar(id),sourceLink=section.querySelector('[data-spec-source]');
+  section.querySelector('[data-spec-car]').textContent=car.name;
   section.querySelector('[data-spec-engine]').textContent=spec.engine;
-  section.querySelector('[data-spec-source]').href=spec.source;
+  sourceLink.href=spec.source;
+  sourceLink.setAttribute('aria-label',`Mở nguồn thông số chính thức của ${car.name} trong tab mới`);
+  sourceLink.title=`Nguồn thông số chính thức: ${car.name}`;
   section.querySelector('[data-spec-note]').textContent=spec.variant+'. '+spec.note;
   section.querySelector('[data-spec-label="3"]').textContent=spec.torqueLabel;
   ['L','kW',spec.hpUnit,'Nm'].forEach((unit,i)=>{units[i].textContent=unit;values[i].parentElement.setAttribute('aria-label',format(targets[i],i)+' '+unit);});
