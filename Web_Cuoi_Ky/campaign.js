@@ -43,6 +43,23 @@
  document.addEventListener('visibilitychange',syncPlayback);reduced.addEventListener('change',()=>{userStarted=false;if(reduced.matches)root.classList.remove('has-video');syncPlayback();});
  const compact=matchMedia('(max-width:760px)');compact.addEventListener('change',()=>render(window.CAMPAIGN_CONFIG||{}));
 
+ if(window.finishPageLoad){
+  const canPlay = reduced.matches || navigator.connection?.saveData || failed || video.error ||
+    video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA
+    ? Promise.resolve()
+    : new Promise(resolve=>{
+      const events=new AbortController();
+      const settled=()=>{events.abort();resolve();};
+      video.addEventListener('loadeddata',settled,{signal:events.signal});
+      video.addEventListener('error',settled,{signal:events.signal});
+    });
+  window.finishPageLoad(Promise.allSettled([
+    poster.decode(),
+    root.querySelector('[data-campaign-logo]').decode(),
+    canPlay
+  ]));
+ }
+
  const glassCard = root.matches('#intro.campaign-five-cars') && root.querySelector('.campaign-card');
  if (glassCard) {
   const tiltMedia = matchMedia('(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)');

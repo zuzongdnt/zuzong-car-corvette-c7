@@ -1,5 +1,6 @@
-import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,readStore,writeStore,brandLogo} from './studio-data.js';
+import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,readStore,writeStore,brandLogo,poster} from './studio-data.js';
 import {mountStudioSpecs} from './studio-specs.js';
+import {mountStudioAnnotations} from './studio-annotations.js';
 
 export async function mountStudio(host,initial={}) {
   host.classList.add('z-studio');
@@ -15,6 +16,7 @@ export async function mountStudio(host,initial={}) {
   <div class="z-price"><p>GIÁ MINH HỌA</p><strong data-price></strong><span>Số liệu giả lập cho đồ án. Các màu cùng giá.</span></div><a class="z-button z-button-red" data-order href="cart.html">Đặt trước <span aria-hidden="true">↗</span></a><button class="z-button" data-save type="button">Lưu cấu hình <span aria-hidden="true">↗</span></button><a class="z-detail-link" data-detail href="product.html">Xem chi tiết xe <span aria-hidden="true">↗</span></a><p class="z-save-status" data-save-status role="status"></p></div></div>`;
   const viewer=host.querySelector('model-viewer');
   const stage=host.querySelector('.z-viewer-stage');
+  const annotations=mountStudioAnnotations(stage,viewer);
   const status=host.querySelector('[data-load-text]');
   const retry=host.querySelector('[data-retry]');
   const fieldset=host.querySelector('fieldset');
@@ -46,6 +48,7 @@ export async function mountStudio(host,initial={}) {
   }
   function update(){
     const car=getCar(config.car);
+    host.style.setProperty('--studio-glass-image',`url("${poster(car.id)}")`);
     specs.update(car.id);
     host.querySelector('[data-car-caption]').textContent=car.brand+' / '+car.name;
     host.querySelector('[data-paint-caption]').textContent=colorOf(config,'body').name;
@@ -55,9 +58,9 @@ export async function mountStudio(host,initial={}) {
     host.querySelector('[data-detail]').href=`product.html?car=${car.id}`;
     viewer.alt=`${car.brand} ${car.name}, ${colorOf(config,'body').name}, heo phanh ${colorOf(config,'calipers').name}, mâm ${colorOf(config,'rims').name}. Kéo để xoay và dùng phím mũi tên để đổi góc nhìn.`;
     host.querySelectorAll('[data-brand]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.brand===car.id)));
-    swatches();saveCurrent();
+    swatches();saveCurrent();annotations.update(config,ready);
   }
-  function failed(message){clearTimeout(loadingTimer);doors?.beginLoad(config.car);ready=false;fieldset.disabled=true;stage.setAttribute('aria-busy','false');host.dataset.ready='false';viewer.showPoster();status.textContent=message;retry.hidden=false;}
+  function failed(message){clearTimeout(loadingTimer);doors?.beginLoad(config.car);ready=false;fieldset.disabled=true;stage.setAttribute('aria-busy','false');host.dataset.ready='false';viewer.showPoster();status.textContent=message;retry.hidden=false;annotations.update(config,false);}
   function load(reload=false){
     doors?.beginLoad(config.car);
     lights?.beginLoad();
@@ -75,6 +78,7 @@ export async function mountStudio(host,initial={}) {
     clearTimeout(loadingTimer);
     if(!Object.keys(labels).every(target=>viewer.model.materials.some(material=>material.name.startsWith(`ZUZONG_${target} |`)))){failed('Model thiếu vật liệu tùy chỉnh. Hãy thử tải lại.');return;}
     Object.keys(labels).forEach(applyPart);ready=true;host.dataset.ready='true';fieldset.disabled=false;stage.setAttribute('aria-busy','false');status.textContent='Model 3D sẵn sàng.';viewer.dismissPoster();
+    annotations.update(config,true);
     lights?.modelLoaded(config.car);
     doors?.modelLoaded(config.car);
     host.dispatchEvent(new CustomEvent('studio-ready',{detail:{...config}}));

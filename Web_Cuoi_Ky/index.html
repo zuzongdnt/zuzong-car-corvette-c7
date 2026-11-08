@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="monochrome.css"><link rel="stylesheet" href="navigation.css">
 <link rel="stylesheet" href="studio-scroll.css"><script type="module" src="studio-scroll.js"></script>
 </head><body>
+<script src="page-loader.js"></script>
 <a class="skip-link" href="#performance">Đến nội dung chính</a>
 <header class="site-header is-intro">
   <a class="brand" href="#intro" aria-label="ZEPHYRON, về đầu trang"><img class="brand-logo" src="assets/brand-monochrome/zephyron-horizontal-black.svg" width="1634" height="804" alt=""></a>
@@ -29,7 +30,7 @@
 <main id="main-content">
 <section id="intro" class="campaign campaign-five-cars" aria-labelledby="campaign-brand">
   <div class="campaign-media" aria-hidden="true">
-    <img class="campaign-poster" alt="" decoding="async">
+    <img class="campaign-poster" alt="" decoding="async" fetchpriority="high">
     <video class="campaign-video" autoplay muted loop playsinline preload="metadata" tabindex="-1"></video>
   </div>
   <div class="campaign-content">

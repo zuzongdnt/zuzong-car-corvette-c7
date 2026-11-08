@@ -19,7 +19,7 @@ let browser;
    const state=await page.evaluate(()=>{
     const header=document.querySelector('.site-header,.z-header');
     const logo=header?.querySelector('img');
-    const headings=[...document.querySelectorAll('h1,h2,h3')].filter(e=>e.getBoundingClientRect().top<innerHeight);
+    const headings=[...document.querySelectorAll('h1,h2,h3')].filter(e=>!e.matches('.sr')&&e.getBoundingClientRect().top<innerHeight);
     return {overflow:document.documentElement.scrollWidth>innerWidth,theme:!!document.querySelector('link[href="monochrome.css"]'),
      body:getComputedStyle(document.body).backgroundColor,header:header?getComputedStyle(header).backgroundColor:'',headerHidden:header?getComputedStyle(header).visibility==='hidden':false,headerBlur:header?getComputedStyle(header,'::before').backdropFilter:'',logo:logo?.getAttribute('src'),
      headings:headings.map(e=>({text:e.textContent,clipped:e.scrollWidth>e.clientWidth+2})),h1:document.querySelectorAll('h1').length,

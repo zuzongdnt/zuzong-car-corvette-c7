@@ -106,6 +106,14 @@ main[data-page=gallery] .z-gallery-modal img{background:#fff}
 .site-header.is-scrolled:after,.ed-page .ed-header:after,.z-header:after{content:'';position:absolute;inset:1px;z-index:-1;pointer-events:none;border-radius:0;box-shadow:inset 0 1px 1px #fffffffa,inset 1px 0 2px #ffffffaa,inset -1px -1px 2px #ffffff88;background:linear-gradient(115deg,#ffffff28,transparent 22%,transparent 75%,#ffffff21)}
 .site-header.is-scrolled .desktop-nav a,.site-header.is-scrolled .z-legacy-account,.ed-page .ed-header .desktop-nav a,.z-header .z-main-nav a{color:#282828}
 .site-header.is-intro:before,.site-header.is-intro:after{content:none}
+#collection .z-config{position:relative;isolation:isolate;overflow:hidden;background:#ffffff70;backdrop-filter:none;-webkit-backdrop-filter:none;border-left-color:#ffffffb3;box-shadow:inset 0 1px 0 #ffffffcc,0 16px 50px #00000008}
+#collection .z-config:before{content:'';position:absolute;inset:-32px;z-index:-2;pointer-events:none;background:var(--studio-glass-image) center/cover;filter:blur(28px) saturate(.2);opacity:.34}
+#collection .z-config:after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(135deg,#ffffffa6,#ffffff73 55%,#ffffffb3);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:inset 1px 1px 0 #ffffffd9,inset -1px -1px 0 #ffffff70}
+@supports(backdrop-filter:url("#zephyron-liquid-refraction")){
+ #collection .z-config:after{backdrop-filter:url("#zephyron-liquid-refraction") blur(18px);-webkit-backdrop-filter:url("#zephyron-liquid-refraction") blur(18px)}
+}
+#collection .z-studio[data-lights=on] .z-viewer-stage{background:radial-gradient(ellipse at 50% 84%,#687482 0%,#35414e 46%,#19232e 100%)}
+#collection .z-studio[data-lights=on] .z-viewer-caption,#collection .z-studio[data-lights=on] .z-viewer-bottom>p{color:#f3f5f7;text-shadow:0 1px 5px #0006}
 .site-header .brand,.site-header .desktop-nav,.site-header .header-cta,.site-header .z-legacy-account,.site-header .menu-toggle,.z-header .z-brand,.z-header .z-main-nav,.z-header .z-header-tools,.z-header .z-menu{z-index:1}
 .campaign-five-cars .campaign-card{width:min(560px,44%);padding:23px 26px;bottom:132px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:#0c0c0c30;border-radius:14px}
 .campaign-five-cars .campaign-card h2{font-size:clamp(38px,3.9vw,60px);letter-spacing:-2.2px;line-height:1.06}

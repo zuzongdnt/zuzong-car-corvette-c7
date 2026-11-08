@@ -20,6 +20,7 @@ const html=`<!doctype html>
 <link rel="stylesheet" href="monochrome.css"><link rel="stylesheet" href="navigation.css">
 <link rel="stylesheet" href="studio-scroll.css"><script type="module" src="studio-scroll.js"></script>
 </head><body>
+<script src="page-loader.js"></script>
 ${hero.replace('<!--CAMPAIGN-->',campaign).replace('<!--SHOWCASE-->',showcase)}
 <script src="campaign-config.js"></script><script src="campaign.js"></script><script src="sections.js"></script><script src="reveal-sequence.js"></script><script src="app.js"></script><script type="module" src="unveil-five.js"></script>
 </body></html>`;

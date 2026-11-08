@@ -5,7 +5,7 @@ fs.copyFileSync(path.join(root,'unveil-five.css'),path.join(out,'unveil-five.css
 fs.copyFileSync(path.join(root,'monochrome.css'),path.join(out,'monochrome.css'));
 fs.copyFileSync(path.join(root,'studio-specs.js'),path.join(out,'studio-specs.js'));
 fs.copyFileSync(path.join(root,'car-doors.js'),path.join(out,'car-doors.js'));
-for(const file of ['navigation.js','navigation.css','page-updates.css','studio-page.js','car-lights-page.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
+for(const file of ['navigation.js','navigation.css','page-loader.js','page-updates.css','studio-page.js','studio-annotations.js','car-lights-page.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.cpSync(path.join(root,'assets','brand-monochrome'),path.join(out,'assets','brand-monochrome'),{recursive:true});
 for(const file of ['index.html','experience.html','films.html','gallery.html','hero.html','sections.html','styles.css','hero.css','sections.css','journal.css','editorial.css','app.js','sections.js','reveal-sequence.js','editorial.js','server.cjs','README.md','package.json'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.mkdirSync(path.join(out,'scripts'),{recursive:true});
@@ -37,7 +37,7 @@ for(const key of ['videoSrc','posterSrc','logoSrc']){const value=campaignConfig[
 fs.mkdirSync(path.join(out,'docs','research'),{recursive:true});
 for(const file of ['ASSETS.md','UPGRADE_V2_QA.md','PHOTO_RETOUCH.md','DRIVE_ALIGNMENT_QA.md','DRIVE_ROLLERS_QA.md','DRIVE_SHARP_QA.md','DETAIL_REAL_PHOTOS.md'])if(fs.existsSync(path.join(root,'docs','research',file)))fs.copyFileSync(path.join(root,'docs','research',file),path.join(out,'docs','research',file));
 fs.copyFileSync(path.join(root,'assets','detail-photos-manifest.json'),path.join(out,'assets','detail-photos-manifest.json'));
-for(const folder of ['details-five','brands'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
+for(const folder of ['details-five','brands','gallery-real-v1'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
 if(fs.existsSync(path.join(root,'assets','retouch-manifest.json')))fs.copyFileSync(path.join(root,'assets','retouch-manifest.json'),path.join(out,'assets','retouch-manifest.json'));
 for(const file of ['studio.css','studio.js','studio-data.js','site.css','site.js','products.html','product.html','about.html','contact.html','explore.html','gallery.html','news.html','article.html','cart.html','account.html','sources.html','policies.html'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.cpSync(path.join(root,'assets','model','studio'),path.join(out,'assets','model','studio'),{recursive:true});
