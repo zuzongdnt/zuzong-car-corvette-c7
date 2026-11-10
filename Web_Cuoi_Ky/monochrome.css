@@ -14,7 +14,7 @@ img,video,model-viewer,.z-colors button,.reveal-canvas,.drive-canvas,.drive-ambi
 .header-cta,.site-header .header-cta{border:1px solid #111;color:#111;background:none;border-radius:0;font-size:10px;letter-spacing:0;min-height:42px;padding:10px 16px}.header-cta:hover{background:#111;color:#fff}
 .header-cta [data-cart-count]{font-size:12px;margin-left:10px}.z-header-tools{font-size:11px;gap:20px}.z-cart-count{background:#111;color:#fff;min-width:19px;display:inline-block;text-align:center;border-radius:0;padding:0 4px}.z-legacy-account{color:#555;font-size:10px}
 .reading-progress{background:#111}.site-header.is-intro .reading-progress{opacity:1}.menu-toggle span{background:#111}.mobile-nav,.z-main-nav.is-open{background:#fff;border-color:#ddd;color:#111}.mobile-nav a{color:#111}.z-menu{background:#fff;color:#111;border-color:#ccc;min-height:44px;min-width:44px}
-.z-container{width:calc(100% - 2 * var(--gutter));max-width:1600px}
+.z-container{width:calc(100% - 2 * var(--gutter));max-width:none}
 .z-page-heading{padding:80px 0 52px;max-width:1280px}.z-kicker{font-size:10px;letter-spacing:1.6px;margin-bottom:26px;color:#666}
 .z-page-heading h1,.z-display,.section-title,.ed-display,.ed-section-title{font-family:var(--font-display);text-transform:none;font-weight:500;font-size:clamp(46px,6.2vw,92px);line-height:1.08;letter-spacing:-3.4px;color:#111}
 .z-page-heading h1{max-width:1150px;margin-bottom:26px}.z-page-heading h1 em,.z-display em,.section-title em,.ed-display em,.ed-section-title em{color:inherit;font-style:normal}

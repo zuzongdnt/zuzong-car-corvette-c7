@@ -24,8 +24,8 @@ export function createCarLights(viewer,button,host){
   function ui(){
     button.disabled=!ready;
     button.setAttribute('aria-pressed',String(wanted));
-    button.querySelector('[data-lights-label]').textContent=wanted?'Đèn xe đang bật sáng':'Bật đèn xe';
-    button.setAttribute('aria-label',wanted?'Tắt đèn xe':'Bật đèn xe');
+    button.querySelector('[data-lights-label]').textContent='Ánh sáng showroom';
+    button.setAttribute('aria-label','Chuyển chế độ ánh sáng showroom');
     host.dataset.lights=wanted?'on':'off';
   }
   function beginLoad(){

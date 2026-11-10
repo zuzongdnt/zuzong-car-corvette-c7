@@ -11,7 +11,7 @@ export async function mountStudio(host,initial={}) {
   <model-viewer class="z-viewer" alt="Mô hình xe 3D tương tác" camera-controls touch-action="pan-y" disable-pan camera-orbit="-42deg 76deg 110%" min-camera-orbit="auto 20deg 45%" max-camera-orbit="auto 88deg 220%" field-of-view="30deg" shadow-intensity="1.3" shadow-softness=".9" environment-image="assets/model/studio-automotive.hdr" tone-mapping="neutral" exposure="1.05" interaction-prompt="none" loading="eager" reveal="auto"><div slot="poster" class="z-loader"><span class="z-loader-ring"></span><span data-load-text role="status">Đang chuẩn bị studio 3D…</span><button type="button" data-retry hidden>Thử lại</button></div></model-viewer>
   <div class="z-viewer-bottom"><p>Kéo để xoay <span>·</span> Cuộn / chụm để thu phóng</p><div class="z-camera-buttons"><button type="button" data-camera="front" aria-label="Xem đầu xe">Đầu</button><button type="button" data-camera="hero" aria-label="Xem góc nghiêng">3/4</button><button type="button" data-camera="side" aria-label="Xem ngang thân xe">Ngang</button><button type="button" data-camera="rear" aria-label="Xem đuôi xe">Đuôi</button><button type="button" data-spin aria-pressed="false" aria-label="Tự xoay xe">↻</button><button type="button" data-fullscreen aria-label="Xem toàn màn hình">⛶</button></div></div></div>
   <div class="z-config"><p class="z-series" data-series></p><h3 data-model-title></h3><fieldset class="z-options" disabled><legend class="sr-only">Tùy chỉnh màu xe</legend><div class="z-part-tabs" role="group" aria-label="Bộ phận đổi màu">${Object.entries(labels).map(([id,label])=>`<button type="button" data-part="${id}" aria-pressed="${id==='body'}">${label}</button>`).join('')}</div><div class="z-color-heading"><span data-part-label>Màu sơn</span><span data-color-name aria-live="polite"></span></div><div class="z-colors" data-swatches></div></fieldset>
-  <button type="button" class="z-lights-toggle" data-car-lights disabled aria-pressed="false" aria-label="Bật đèn xe"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M14 3c7 0 10 3 10 8s-3 8-10 8V3ZM3 4l7 2M2 9l8 1M2 14l8-1M3 19l7-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-lights-label>Bật đèn xe</span><i aria-hidden="true"></i></button><p class="sr-only" data-light-status role="status"></p>
+  <button type="button" class="z-lights-toggle" data-car-lights disabled aria-pressed="false" aria-label="Chuyển chế độ ánh sáng showroom"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M14 3c7 0 10 3 10 8s-3 8-10 8V3ZM3 4l7 2M2 9l8 1M2 14l8-1M3 19l7-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-lights-label>Ánh sáng showroom</span><span class="z-light-mode-options" aria-hidden="true"><span data-mode-light>Sáng</span><span data-mode-dark>Tối</span></span></button><p class="sr-only" data-light-status role="status"></p>
   <button type="button" class="z-lights-toggle z-doors-toggle" data-car-doors hidden disabled aria-pressed="false" aria-label="Mở hai cửa xe"><svg viewBox="0 0 28 22" fill="none" aria-hidden="true"><path d="M5 18V7l5-4h11v15H5ZM8 8h10V5h-7L8 8ZM16 11h3M3 20h21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-doors-label>Mở cửa xe</span><i aria-hidden="true"></i></button><p class="sr-only" data-door-status role="status"></p>
   <div class="z-price"><p>GIÁ MINH HỌA</p><strong data-price></strong><span>Số liệu giả lập cho đồ án. Các màu cùng giá.</span></div><a class="z-button z-button-red" data-order href="cart.html">Đặt trước <span aria-hidden="true">↗</span></a><button class="z-button" data-save type="button">Lưu cấu hình <span aria-hidden="true">↗</span></button><a class="z-detail-link" data-detail href="product.html">Xem chi tiết xe <span aria-hidden="true">↗</span></a><p class="z-save-status" data-save-status role="status"></p></div></div>`;
   const viewer=host.querySelector('model-viewer');
@@ -46,6 +46,14 @@ export async function mountStudio(host,initial={}) {
       material.setClearcoatRoughnessFactor(target==='body'?(satin?.2:.085):.16);
     });
   }
+  async function hidePlateText(){
+    const materials=viewer.model.materials.filter(material=>material.name.toLowerCase().startsWith('plate | golden yellow'));
+    await Promise.all(materials.map(async material=>{
+      await material.ensureLoaded();
+      material.setAlphaMode('BLEND');
+      material.pbrMetallicRoughness.setBaseColorFactor([0,0,0,0]);
+    }));
+  }
   function update(){
     const car=getCar(config.car);
     host.style.setProperty('--studio-glass-image',`url("${poster(car.id)}")`);
@@ -68,16 +76,18 @@ export async function mountStudio(host,initial={}) {
     viewer.showPoster();status.textContent=`Đang tải ${getCar(config.car).name}…`;
     viewer.removeAttribute('auto-rotate');spin.setAttribute('aria-pressed','false');
     viewer.cameraOrbit=`-42deg 76deg ${radius()}`;
-    viewer.src=`assets/model/studio/${config.car}.glb`+(reload?`?retry=${Date.now()}`:'');
+    viewer.src=`assets/model/studio-clean/${config.car}.glb`+(reload?`?retry=${Date.now()}`:'');
     clearTimeout(loadingTimer);loadingTimer=setTimeout(()=>failed('Tải model lâu hơn dự kiến. Kiểm tra kết nối rồi thử lại.'),120000);
     update();
   }
   viewer.addEventListener('progress',event=>{if(!ready) status.textContent=`Đang tải ${getCar(config.car).name} · ${Math.round(event.detail.totalProgress*100)}%`;});
-  viewer.addEventListener('load',()=>{
+  viewer.addEventListener('load',async()=>{
     if(!viewer.loaded||!viewer.model||!viewer.src.includes(`/${config.car}.glb`))return;
     clearTimeout(loadingTimer);
     if(!Object.keys(labels).every(target=>viewer.model.materials.some(material=>material.name.startsWith(`ZUZONG_${target} |`)))){failed('Model thiếu vật liệu tùy chỉnh. Hãy thử tải lại.');return;}
-    Object.keys(labels).forEach(applyPart);ready=true;host.dataset.ready='true';fieldset.disabled=false;stage.setAttribute('aria-busy','false');status.textContent='Model 3D sẵn sàng.';viewer.dismissPoster();
+    Object.keys(labels).forEach(applyPart);
+    try{await hidePlateText();}catch(error){console.warn('Không thể ẩn vật liệu biển số:',error);}
+    ready=true;host.dataset.ready='true';fieldset.disabled=false;stage.setAttribute('aria-busy','false');status.textContent='Model 3D sẵn sàng.';viewer.dismissPoster();
     annotations.update(config,true);
     lights?.modelLoaded(config.car);
     doors?.modelLoaded(config.car);

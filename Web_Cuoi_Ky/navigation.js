@@ -1,5 +1,25 @@
 import './bottom-nav.js';
 
+const THEME_STORAGE_KEY='zephyron-site-theme';
+const readSiteTheme=()=>{
+  try{return localStorage.getItem(THEME_STORAGE_KEY)==='dark'?'dark':'light';}
+  catch{return 'light';}
+};
+function applySiteTheme(theme=readSiteTheme()){
+  const next=theme==='dark'?'dark':'light';
+  document.documentElement.dataset.siteTheme=next;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content',next==='dark'?'#111214':'#ffffff');
+  return next;
+}
+applySiteTheme();
+if(!document.querySelector('link[data-site-theme-styles]')){
+  const themeStyles=document.createElement('link');
+  themeStyles.rel='stylesheet';
+  themeStyles.href=new URL('./theme.css',import.meta.url).href;
+  themeStyles.dataset.siteThemeStyles='';
+  document.head.append(themeStyles);
+}
+
 const primary=[['index.html','Trang chủ'],['about.html','Giới thiệu'],['products.html','Sản phẩm','Studio 3D'],['explore.html','Khám phá'],['gallery.html','Bộ sưu tập']];
 const news=['news.html','Tin tức','Bài viết'];
 const contact=['contact.html','Liên hệ'];
@@ -31,6 +51,7 @@ export function mountNavigation(searchEntries){
   if(filename==='account.html')account.setAttribute('aria-current','page');
   if(filename==='cart.html')cta.setAttribute('aria-current','page');
   toggle.type='button';
+  mountThemeToggle(header,toggle);
   const close=(restore=false)=>{
     toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Mở menu');
     mobile.hidden=true;header.classList.remove('menu-is-open');
@@ -49,6 +70,35 @@ export function mountNavigation(searchEntries){
   matchMedia('(max-width:760px)').addEventListener('change',()=>close());
   if(filename!=='index.html')header.classList.add('is-scrolled');
   header.dataset.navigationReady='true';
+}
+
+function mountThemeToggle(header,menuToggle){
+  let button=header.querySelector('.nav-theme-toggle');
+  if(!button){
+    button=document.createElement('button');
+    button.className='nav-theme-toggle';
+    button.type='button';
+    button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"></svg><span data-theme-label></span>';
+    menuToggle.insertAdjacentElement('beforebegin',button);
+  }
+  const update=theme=>{
+    const dark=theme==='dark';
+    button.setAttribute('aria-pressed',String(dark));
+    button.setAttribute('aria-label',dark?'Chuyển sang giao diện sáng':'Chuyển sang giao diện tối');
+    button.title=dark?'Chuyển sang giao diện sáng':'Chuyển sang giao diện tối';
+    button.querySelector('[data-theme-label]').textContent=dark?'Tối':'Sáng';
+    button.querySelector('svg').innerHTML=dark
+      ?'<path d="M20.1 15.1A8.3 8.3 0 0 1 8.9 3.9 8.5 8.5 0 1 0 20.1 15.1Z"/>'
+      :'<circle cx="12" cy="12" r="3.7"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>';
+  };
+  update(document.documentElement.dataset.siteTheme||readSiteTheme());
+  if(button.dataset.themeReady)return;
+  button.addEventListener('click',()=>{
+    const next=applySiteTheme(document.documentElement.dataset.siteTheme==='dark'?'light':'dark');
+    try{localStorage.setItem(THEME_STORAGE_KEY,next);}catch{}
+    update(next);
+  });
+  button.dataset.themeReady='true';
 }
 
 function mountSearch(toggle, closeMenu, entries){

@@ -11,10 +11,14 @@ export const palettes = {
     {id:'pearl',name:'Trắng Pearl',hex:'#e7e7e2',surcharge:180000000},
     {id:'racing',name:'Đỏ Racing',hex:'#ad101c',surcharge:280000000},
     {id:'velocity',name:'Xanh Velocity',hex:'#164ea1',surcharge:650000000,limited:true},
-    {id:'satin',name:'Bạc Satin',hex:'#9298a1',surcharge:420000000}
+    {id:'satin',name:'Bạc Satin',hex:'#9298a1',surcharge:420000000},
+    {id:'british',name:'Xanh British',hex:'#164537',surcharge:450000000},
+    {id:'yellow',name:'Vàng Competition',hex:'#c99c16',surcharge:360000000},
+    {id:'lava',name:'Cam Lava',hex:'#df541f',surcharge:420000000},
+    {id:'violet',name:'Tím Violet',hex:'#5c4a8e',surcharge:380000000}
   ],
-  calipers:[{id:'red',name:'Đỏ Racing',hex:'#cc1826'},{id:'yellow',name:'Vàng Sport',hex:'#f3b718'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'}],
-  rims:[{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'bronze',name:'Đồng Bronze',hex:'#a47d4b'},{id:'white',name:'Trắng Ceramic',hex:'#e7e7e2'}]
+  calipers:[{id:'red',name:'Đỏ Racing',hex:'#cc1826'},{id:'yellow',name:'Vàng Sport',hex:'#f3b718'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'orange',name:'Cam Competition',hex:'#ec6a21'},{id:'white',name:'Trắng Ceramic',hex:'#f0eee7'},{id:'green',name:'Xanh Emerald',hex:'#188052'}],
+  rims:[{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'bronze',name:'Đồng Bronze',hex:'#a47d4b'},{id:'white',name:'Trắng Ceramic',hex:'#e7e7e2'},{id:'gunmetal',name:'Xám Gunmetal',hex:'#555c63'},{id:'gold',name:'Vàng Champagne',hex:'#c5a268'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'}]
 };
 export const labels = {body:'Màu sơn',calipers:'Heo phanh',rims:'Mâm xe'};
 export const money = value => new Intl.NumberFormat('vi-VN').format(value) + ' đ';
@@ -33,5 +37,5 @@ export function configurationPrice(raw={}) {
 export function readStore(key, fallback=[]) {try {const v=JSON.parse(localStorage.getItem('zuzong.'+key));return v??fallback;}catch{return fallback;}}
 export function writeStore(key,value) {try{localStorage.setItem('zuzong.'+key,JSON.stringify(value));return true;}catch{return false;}}
 export function configText(config){return Object.keys(labels).map(part=>{const color=colorOf(config,part);return `${labels[part]}: ${color.name}${part==='body'&&color.limited?' (giới hạn)':''}`;}).join(' · ');}
-export const poster = (car,angle='hero') => `assets/gallery-real-v1/${car}-${angle}-real-v1.webp`;
+export const poster = (car,angle='hero') => car==='bmw'&&angle==='side' ? 'assets/gallery-real-v2/bmw-side-full-car.jpg' : `assets/gallery-real-v1/${car}-${angle}-real-v1.webp`;
 export const brandLogo = id => 'assets/brands/'+({corvette:'chevrolet.svg',bmw:'bmw.svg',porsche:'porsche.svg',mercedes:'mercedes.svg',lamborghini:'lamborghini-shield.png'}[id]||'chevrolet.svg');

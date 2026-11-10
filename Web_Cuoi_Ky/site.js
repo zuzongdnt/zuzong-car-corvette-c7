@@ -44,13 +44,8 @@ const main=document.querySelector('[data-page]');
 const heading=(title,text='',kicker='ZEPHYRON')=>`<div class="z-page-heading"><p class="z-kicker">${kicker}</p><h1>${title}</h1>${text?`<p>${text}</p>`:''}</div>`;
 const button=(href,label,red=false)=>`<a class="z-button ${red?'z-button-red':''}" href="${href}">${label} <span aria-hidden="true">↗</span></a>`;
 const modelCards=()=>cars.map(car=>`<article class="z-card"><a href="product.html?car=${car.id}"><img src="${poster(car.id)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"><div class="z-card-body"><small>${car.brand}</small><h2>${car.name}</h2><p>${car.text}</p><span class="z-card-link">Khám phá mẫu xe ↗</span></div></a></article>`).join('');
-const catalogImage=car=>({
-  corvette:'assets/editorial/corvette-c7-large-catalog-v1.png',
-  bmw:'assets/editorial/bmw-m4-g82-large-catalog-v1.png',
-  porsche:'assets/editorial/porsche-911-gt3-large-catalog-v1.png',
-  mercedes:'assets/editorial/mercedes-amg-sl63-large-catalog-v1.png',
-  lamborghini:'assets/editorial/lamborghini-revuelto-large-catalog-v1.png'
-}[car.id]||poster(car.id));
+const catalogImage=car=>poster(car.id,'hero');
+const articleImage=car=>`assets/article-real-v1/${car.id}-front-real-v1.webp`;
 const productCatalogCards=()=>cars.map((car,index)=>`<article class="z-product-tile"><a href="product.html?car=${car.id}"><div class="z-product-tile-visual"><span class="z-product-tag">${index===4?'Mới':index===2?'Nổi bật':'Có sẵn'}</span><img src="${catalogImage(car)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"></div><div class="z-product-tile-body"><small>${car.brand}</small><h3>${car.name}</h3><p>${car.series} · ${car.layout}</p><strong>Từ ${money(car.price)}</strong><span>Giá minh họa ↗</span></div></a></article>`).join('');
 const articles=[
   {id:'dau-an-mau-sac',title:'Một màu sơn. Một cá tính.',car:'bmw',category:'Góc nhìn thiết kế',intro:'Từ sắc đen trầm đến xanh nổi bật, màu sắc thay đổi cách chúng ta cảm nhận đường nét của một chiếc xe.',body:[['Bắt đầu từ cảm giác','Đen Obsidian nhấn vào hình khối và độ phản chiếu. Trắng Pearl giúp bề mặt trở nên sáng rõ. Đỏ Racing tạo điểm nhìn mạnh, trong khi xanh Velocity mang lại cảm giác hiện đại.'],['Để chi tiết lên tiếng','Thử giữ màu thân xe trung tính rồi chọn heo phanh đỏ hoặc vàng. Mâm bạc làm rõ cấu trúc nan; mâm đen tạo cảm giác liền khối với lốp. Studio cho phép thay từng phần để bạn tự so sánh.'],['Chọn bằng trải nghiệm','Đổi màu, xoay xe về cùng một góc và quan sát dưới cùng ánh sáng. Đây là cách đơn giản để so sánh các cấu hình công bằng trước khi lưu lựa chọn.']]},
@@ -60,7 +55,7 @@ const articles=[
   {id:'mercedes-amg-sl63-sang-trong-chuyen-dong',title:'Mercedes-AMG SL 63: sang trọng trong từng chuyển động.',car:'mercedes',category:'Phong cách roadster',intro:'Dáng mui trần thanh thoát kết hợp những chi tiết thể thao giúp SL 63 giữ được vẻ sang trọng nhưng vẫn đầy năng lượng.',body:[['Một dáng xe, hai cảm xúc','Khi đóng mui, SL 63 có đường mái gọn và dáng coupé liền mạch. Khi mở mui, khoang lái trở nên thoáng hơn, nhấn mạnh trải nghiệm roadster và sự kết nối với không gian xung quanh.'],['Nhận diện từ phía trước','Lưới tản nhiệt dọc, cụm đèn mảnh và các hốc gió lớn tạo nên gương mặt mạnh mẽ. Nhìn từ bên hông, thân xe dài và khoang lái thấp giúp tổng thể vẫn giữ được nét thanh lịch.'],['Hoàn thiện bằng màu sắc','Sơn đen tạo vẻ kín đáo, trong khi màu sáng làm rõ đường vai và bề mặt thân xe. Mâm bạc mang lại độ tương phản; mâm tối giúp xe liền khối hơn. Hãy bật đèn trong studio để quan sát cách các chi tiết thay đổi trên nền tối.']]}
 ];
 navigation();
-function articleCards(exclude=''){return articles.filter(a=>a.id!==exclude).map(a=>`<article class="z-card"><a href="article.html?id=${a.id}"><img src="${catalogImage(getCar(a.car))}" alt="${getCar(a.car).brand} ${getCar(a.car).name}" loading="lazy"><div class="z-card-body"><small>${a.category}</small><h2>${a.title}</h2><p>${a.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`).join('');}
+function articleCards(exclude=''){return articles.filter(a=>a.id!==exclude).map(a=>`<article class="z-card"><a href="article.html?id=${a.id}"><img src="${articleImage(getCar(a.car))}" alt="${getCar(a.car).brand} ${getCar(a.car).name}" loading="lazy"><div class="z-card-body"><small>${a.category}</small><h2>${a.title}</h2><p>${a.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`).join('');}
 if(main){
   const page=main.dataset.page;
   if(page==='products'){
@@ -76,7 +71,7 @@ if(main){
         </header>
         <div class="z-digital-grid">
           <a class="z-digital-stage" href="#products-studio" aria-label="Mở Studio 360 độ">
-            <img src="assets/unveil-five/lamborghini-still.webp" alt="Lamborghini màu trắng trong showroom kỹ thuật số" loading="lazy">
+            <img src="assets/editorial/products-lamborghini-hero-v1.jpg" alt="Lamborghini Revuelto màu đen trong cảnh phố đêm" loading="lazy">
             <div class="z-digital-stage-copy"><h3>Không bỏ sót một đường nét.</h3><span>Kéo, xoay và thu phóng <b aria-hidden="true">↗</b></span></div>
           </a>
           <aside class="z-build-sheet" aria-label="Cấu hình xe đang xem">
@@ -92,14 +87,66 @@ if(main){
       </div>
     </section>
     <section class="z-products-catalog" id="products-catalog" aria-labelledby="products-catalog-title"><div class="z-products-section-head"><div><p class="z-kicker">DANH MỤC XE</p><h2 id="products-catalog-title">Năm cá tính. Một bộ sưu tập.</h2></div><a href="gallery.html">Xem bộ sưu tập <span aria-hidden="true">↗</span></a></div><div class="z-products-catalog-grid">${productCatalogCards()}</div></section>
+    <section class="z-car-anatomy" id="car-anatomy" data-car-anatomy aria-label="Sơ đồ khái niệm các lớp cấu tạo xe"></section>
     <section class="z-products-promo" aria-labelledby="products-promo-title"><video class="z-products-promo-media" src="assets/editorial/products-bmw-m4-g82.mp4" poster="assets/editorial/products-bmw-m4-g82-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Thước phim BMW M4 G82 hiển thị trọn khung xe">Trình duyệt của bạn không hỗ trợ phát video.</video><div><p class="z-kicker">CẤU HÌNH THEO CÁCH RIÊNG</p><h2 id="products-promo-title">Một màu sơn có thể thay đổi toàn bộ cảm giác.</h2><p>Thử bảng màu tiêu chuẩn và màu giới hạn trước khi lưu lựa chọn của bạn.</p><a href="#products-studio">Bắt đầu phối màu <span aria-hidden="true">↗</span></a></div></section>
     <div id="products-studio" data-studio-mount></div>
-    <section class="z-products-journal" aria-labelledby="products-journal-title"><div class="z-products-section-head"><div><p class="z-kicker">GÓC NHÌN THIẾT KẾ</p><h2 id="products-journal-title">Khám phá nhiều hơn.</h2></div><a href="news.html">Xem tất cả bài viết <span aria-hidden="true">↗</span></a></div><div class="z-grid">${articleCards()}</div></section>`;
+    <section class="z-ar-experience" id="ar-experience" data-ar-experience aria-label="Xem mô hình xe trong không gian thật"></section>
+    <section class="z-sound-experience" id="sound-experience" data-sound-experience aria-label="Trải nghiệm âm thanh mẫu do trình duyệt tổng hợp"></section>
+    <section class="z-smart-ownership" id="smart-ownership" data-smart-ownership aria-label="Tính khoản vay, chi phí sử dụng và chọn phụ kiện"></section>
+    <section class="z-before-after" id="before-after" data-before-after aria-label="So sánh cấu hình mặc định và cấu hình đã nâng cấp"></section>
+    <section class="z-dream-car" id="my-dream-car" data-dream-car aria-label="Lưu và chia sẻ xe mơ ước"></section>
+    <section class="z-feature-explorer" id="feature-explorer" data-feature-explorer aria-label="Khám phá công nghệ trên từng mẫu xe"></section>
+    <section class="z-drive-mode" id="drive-mode-simulator" data-drive-mode-simulator aria-label="Mô phỏng và giải thích các chế độ lái"></section>
+    <section class="z-safety-visualizer" id="safety-visualizer" data-safety-visualizer aria-label="Minh họa camera, cảm biến, túi khí và hệ thống trợ lái"></section>
+    <section class="z-technical-specs" id="technical-specs" data-technical-specs aria-label="Thông số kỹ thuật và biểu đồ so sánh trực quan"></section>
+    <section class="z-version-comparison" id="version-comparison" data-version-comparison aria-label="So sánh các phiên bản bằng dữ liệu chính hãng"></section>
+    <section class="z-car-advisor" id="car-advisor" data-car-advisor aria-label="Hỏi đáp về xe dựa trên dữ liệu có nguồn"></section>
+    <section class="z-real-life" id="real-life-scenarios" data-real-life-scenarios aria-label="Mô phỏng tình huống sử dụng xe thực tế"></section>
+    <section class="z-smart-test-drive" id="smart-test-drive" data-smart-test-drive aria-label="Xem trước giao diện đặt lịch lái thử"></section>
+    <section class="z-car-quiz" id="car-quiz" data-car-quiz aria-label="Trắc nghiệm kiến thức về năm mẫu xe"></section>
+    <section class="z-products-journal" aria-labelledby="products-journal-title"><div class="z-products-section-head"><div><p class="z-kicker">GÓC NHÌN THIẾT KẾ</p><h2 id="products-journal-title">Khám phá nhiều hơn.</h2></div><a href="news.html">Xem tất cả bài viết <span aria-hidden="true">↗</span></a></div><div class="z-grid">${articleCards()}</div></section>
+    <section class="z-scroll-story" id="scroll-storytelling" data-scroll-story aria-label="Câu chuyện thương hiệu và lời mời khám phá xe"></section>`;
     const productVideos=[...main.querySelectorAll('video.z-products-campaign-image, video.z-products-promo-media')];
     const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
     const syncProductMotion=()=>productVideos.forEach(video=>{if(reducedMotion.matches)video.pause();else video.play().catch(()=>{});});
     syncProductMotion();reducedMotion.addEventListener('change',syncProductMotion);
     await import('./studio-page.js');
+    const {mountCarAnatomy}=await import('./car-anatomy.js');
+    mountCarAnatomy(main.querySelector('[data-car-anatomy]'),main.querySelector('[data-studio-mount]'));
+    const {mountScrollStorytelling}=await import('./scroll-storytelling.js');
+    mountScrollStorytelling(main.querySelector('[data-scroll-story]'));
+    const {mountARExperience}=await import('./ar-experience.js');
+    await mountARExperience(main.querySelector('[data-ar-experience]'),main.querySelector('[data-studio-mount]'));
+    const {mountSoundExperience}=await import('./sound-experience.js');
+    mountSoundExperience(main.querySelector('[data-sound-experience]'),main.querySelector('[data-studio-mount]'));
+    const {mountFeatureExplorer}=await import('./feature-explorer.js');
+    mountFeatureExplorer(main.querySelector('[data-feature-explorer]'),main.querySelector('[data-studio-mount]'));
+    const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js');
+    mountDriveModeSimulator(main.querySelector('[data-drive-mode-simulator]'),main.querySelector('[data-studio-mount]'));
+    const {mountSafetyVisualizer}=await import('./safety-visualizer.js');
+    mountSafetyVisualizer(main.querySelector('[data-safety-visualizer]'),main.querySelector('[data-studio-mount]'));
+    const {mountTechnicalSpecs}=await import('./technical-specs.js');
+    mountTechnicalSpecs(main.querySelector('[data-technical-specs]'),main.querySelector('[data-studio-mount]'));
+    const {mountVersionComparison}=await import('./version-comparison.js');
+    mountVersionComparison(main.querySelector('[data-version-comparison]'),main.querySelector('[data-studio-mount]'));
+    const {mountCarAdvisor}=await import('./car-advisor.js');
+    mountCarAdvisor(main.querySelector('[data-car-advisor]'),main.querySelector('[data-studio-mount]'));
+    const {mountRealLifeScenarios}=await import('./real-life-scenarios.js');
+    mountRealLifeScenarios(main.querySelector('[data-real-life-scenarios]'));
+    const {mountSmartOwnership}=await import('./smart-ownership.js');
+    mountSmartOwnership(main.querySelector('[data-smart-ownership]'),main.querySelector('[data-studio-mount]'));
+    const {mountBeforeAfter}=await import('./before-after.js');
+    mountBeforeAfter(main.querySelector('[data-before-after]'),main.querySelector('[data-studio-mount]'));
+    const {mountDreamCar}=await import('./dream-car.js');
+    mountDreamCar(main.querySelector('[data-dream-car]'),main.querySelector('[data-studio-mount]'));
+    const {mountCarQuiz}=await import('./car-quiz.js');
+    mountCarQuiz(main.querySelector('[data-car-quiz]'));
+    const {mountSmartTestDrive}=await import('./smart-test-drive.js');
+    mountSmartTestDrive(main.querySelector('[data-smart-test-drive]'),main.querySelector('[data-studio-mount]'));
+    if(location.hash==='#products-studio'){
+      const revealStudio=()=>main.querySelector('#products-studio')?.scrollIntoView({block:'start'});
+      requestAnimationFrame(revealStudio);setTimeout(revealStudio,450);setTimeout(revealStudio,1100);
+    }
   }
   if(page==='product'){
     const car=getCar(params.get('car'));
@@ -127,18 +174,19 @@ if(main){
   if(page==='news')main.innerHTML=heading('Góc nhìn <em>sau tay lái.</em>','Những câu chuyện về thiết kế, màu sắc và trải nghiệm trong studio Zuzong.')+'<div class="z-grid">'+articleCards()+'</div>';
   if(page==='article'){
     const article=articles.find(a=>a.id===params.get('id'))||articles[0];document.title=article.title+' — ZEPHYRON';
-    main.innerHTML=`<article class="z-article">${heading(article.title,article.intro,`<a href="news.html">Bài viết</a> / ${article.category}`)}<img src="${catalogImage(getCar(article.car))}" alt="${getCar(article.car).brand} ${getCar(article.car).name} trong studio">${article.body.map(([h,p])=>`<h2>${h}</h2><p>${p}</p>`).join('')}<p class="z-form-note">Ban biên tập ZEPHYRON / Nội dung phục vụ đồ án</p><div class="z-cart-actions">${button('products.html?car='+article.car,'Thử trong studio',true)}<button class="z-inline-button" type="button" data-share>Chia sẻ bài viết</button></div><p class="z-status" data-share-status role="status"></p><h2>Bình luận mẫu</h2><p>Khách tham quan: “Mình thích phối màu thân tối cùng mâm bạc.”</p><form class="z-form" data-comment><label>Bình luận mô phỏng<textarea name="comment" required maxlength="500"></textarea></label><button class="z-button" type="submit">Thêm bình luận mẫu</button><p class="z-status" role="status"></p></form></article><div class="z-page-heading"><h2 class="z-display">Đọc <em>tiếp.</em></h2></div><div class="z-grid">${articleCards(article.id)}</div>`;
+    main.innerHTML=`<article class="z-article">${heading(article.title,article.intro,`<a href="news.html">Bài viết</a> / ${article.category}`)}<img src="${articleImage(getCar(article.car))}" alt="${getCar(article.car).brand} ${getCar(article.car).name} trong studio">${article.body.map(([h,p])=>`<h2>${h}</h2><p>${p}</p>`).join('')}<p class="z-form-note">Ban biên tập ZEPHYRON / Nội dung phục vụ đồ án</p><div class="z-cart-actions">${button('products.html?car='+article.car,'Thử trong studio',true)}<button class="z-inline-button" type="button" data-share>Chia sẻ bài viết</button></div><p class="z-status" data-share-status role="status"></p><h2>Bình luận mẫu</h2><p>Khách tham quan: “Mình thích phối màu thân tối cùng mâm bạc.”</p><form class="z-form" data-comment><label>Bình luận mô phỏng<textarea name="comment" required maxlength="500"></textarea></label><button class="z-button" type="submit">Thêm bình luận mẫu</button><p class="z-status" role="status"></p></form></article><div class="z-page-heading"><h2 class="z-display">Đọc <em>tiếp.</em></h2></div><div class="z-grid">${articleCards(article.id)}</div>`;
     main.querySelector('[data-share]').addEventListener('click',async()=>{const status=main.querySelector('[data-share-status]');try{await navigator.clipboard.writeText(location.href);status.textContent='Đã sao chép liên kết bài viết.';}catch{status.textContent='Liên kết bài viết: '+location.href;}});
     main.querySelector('[data-comment]').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;const text=form.elements.comment.value.trim();if(!text)return;form.querySelector('.z-status').textContent='Bạn (mô phỏng): '+text;form.reset();});
   }
   if(page==='cart')renderCart();
   if(page==='account')renderAccount();
   if(page==='sources')main.innerHTML=heading('Nguồn hình <em>& model.</em>','Ghi công các tác giả và tài nguyên được sử dụng trong đồ án.')+`<div class="z-source-list"><div><h2>Chevrolet Corvette C7</h2><p>Martin Trafas · CC BY 4.0. Chuyển FBX sang GLB, chỉnh vật liệu, tối ưu hình học, thêm biển và tách màu.</p><a href="https://sketchfab.com/3d-models/chevrolet-corvette-c7-2b509d1bce104224b147c81757f6f43a" target="_blank" rel="noopener">Trang model gốc</a></div><div><h2>BMW M4 G82 Coupé</h2><p>Sloftm_Carz / SLBofficial · CC BY 4.0 theo hồ sơ nguồn dự án. Chỉnh vật liệu, logo, biển và tối ưu cho web.</p><a href="https://sketchfab.com/3d-models/bmw-m4-g82-coupe-free-high-detail-8704e302e4214c849bc607edb294be8a" target="_blank" rel="noopener">Trang model gốc</a></div><div><h2>Porsche 911 GT3 (992)</h2><p>Ddiaz Design · nguồn ghi CSR2 / GM25. CC BY-NC-SA 4.0 theo hồ sơ nguồn: ghi công, phi thương mại, chia sẻ tương tự. Bản model chỉnh sửa trong đồ án giữ cùng giấy phép.</p><a href="https://sketchfab.com/3d-models/2022-porsche-911-gt3-992-ba01afbaf32846e598db315be3507db3" target="_blank" rel="noopener">Trang model gốc</a></div><div><h2>Mercedes-Benz SL63 AMG</h2><p>Black Snow / BlackSnow02 · CC BY 4.0 theo hồ sơ. Giữ nội thất kem, chỉnh biển và vật liệu web.</p><a href="https://sketchfab.com/3d-models/mersedes-benz-sl63-amg-free-f7a625e6f5de425e89e84ae2e92cad65" target="_blank" rel="noopener">Trang model gốc</a></div><div><h2>Lamborghini Revuelto</h2><p>AmJViZ / BlenderKit · Royalty Free theo metadata nguồn. Chỉnh vật liệu, biển và ánh sáng đèn sau.</p><a href="https://www.blenderkit.com/asset-gallery-detail/4146135b-e6e7-45f5-b81b-372d4bbb74e8/" target="_blank" rel="noopener">Trang model gốc</a></div><div><h2>Hình ảnh studio & thư viện</h2><p>Bộ sưu tập dùng ảnh thật của đúng 5 mẫu xe: 12 ảnh chọn từ Pinterest và 3 ảnh Mercedes-AMG SL 63 R232 từ Wikimedia Commons. Ảnh chỉ được căn khung, làm nét nhẹ và nén WebP; không tạo chi tiết xe bằng AI. Ảnh, video Corvette và tài nguyên bối cảnh cũ được giữ theo hồ sơ <a href="docs/research/ASSETS.md">ASSETS.md</a>.</p></div><div><h2>Công cụ & phông chữ</h2><p>&lt;model-viewer&gt; / Google · Apache 2.0. Manrope và Barlow Condensed · SIL Open Font License. Nguồn Blender đầy đủ: <a href="docs/STUDIO_MODEL_SOURCES.md">hồ sơ tài nguyên</a>.</p></div></div>`;
+  if(page==='sources')main.querySelector('.z-source-list')?.insertAdjacentHTML('beforeend',`<div><h2>Ảnh nội thất tham khảo</h2><p>Góc nhìn cabin thật dùng trong nút “Xem nội thất thực tế”. Ảnh được lưu cục bộ trong dự án; xem thông tin và điều kiện sử dụng tại trang nguồn của từng xe.</p><p><a href="https://www.hendrickatlanta.com/chevrolet-models-research/2019-chevrolet-corvette-stingray/" target="_blank" rel="noopener">Chevrolet Corvette C7 · nguồn ảnh ↗</a></p><p><a href="https://www.caranddriver.com/reviews/a40368599/2022-bmw-m4-competition-awd-by-the-numbers/" target="_blank" rel="noopener">BMW M4 G82 · nguồn ảnh ↗</a></p><p><a href="https://911andco.fr/nouvelle-porsche-911-gt3-992-510ch-et-un-nouveau-record/" target="_blank" rel="noopener">Porsche 911 GT3 992 · nguồn ảnh ↗</a></p><p><a href="https://www.caranddriver.com/photos/g38572340/2022-mercedes-amg-sl-drive-gallery/" target="_blank" rel="noopener">Mercedes-AMG SL 63 · nguồn ảnh ↗</a></p><p><a href="https://www.carexpert.com.au/car-news/lamborghini-revuelto-hybrid-v12-flagship-revealed" target="_blank" rel="noopener">Lamborghini Revuelto · nguồn ảnh ↗</a></p></div>`);
   if(page==='policies')main.innerHTML=heading('Rõ ràng từ <em>trải nghiệm đầu tiên.</em>','Bảo mật và điều kiện của bản demo đồ án ZEPHYRON.')+`<div class="z-copy"><h2>Giá và cấu hình</h2><p>Mọi giá hiển thị là số liệu giả lập. Giá thay đổi theo màu sơn; heo phanh và mâm không làm thay đổi giá. Không có thanh toán, đặt cọc hoặc giao dịch mua xe.</p><h2>Yêu cầu đặt trước</h2><p>Thao tác xác nhận chỉ tạo yêu cầu mẫu trên trình duyệt. Trạng thái “Chờ tư vấn” là mô phỏng, chưa được chuyển tới showroom hay bên thứ ba.</p><h2>Dữ liệu trên thiết bị</h2><p>Cấu hình, giỏ, thông tin liên hệ và hồ sơ mẫu được lưu trong localStorage của trình duyệt đang sử dụng. Dữ liệu không đồng bộ sang thiết bị khác. Chỉ nên dùng thông tin mẫu khi trình bày đồ án.</p><h2>Tài khoản mẫu</h2><p>Đăng nhập, đăng ký và quên mật khẩu là các trạng thái giao diện mô phỏng, chưa có xác thực máy chủ. Mật khẩu nhập vào không được lưu. Không dùng tài khoản này để lưu thông tin cần bảo mật.</p><h2>Tài nguyên thiết kế</h2><p>Model và hình ảnh được ghi công tại <a href="sources.html">Nguồn hình & model</a>. Một số tài nguyên có giới hạn phi thương mại và điều kiện chia sẻ tương tự.</p></div>`;
 }
 
 if(main?.dataset.page==='sources')main.insertAdjacentHTML('beforeend',`<section class="z-source-list detail-photo-sources" aria-labelledby="journey-source-title"><div><h2 id="journey-source-title">Ảnh hành trình trên trang chủ</h2><p>Porsche 911 Carrera trên đường, hậu cảnh núi. Ảnh wallpaper chính thức của Porsche, giữ màu gốc và chuyển WebP để tải nhanh. Dùng trong đồ án cá nhân.</p><a href="https://www.porsche.com/stories/design/download-porsche-911-wallpapers/" target="_blank" rel="noopener">Nguồn ảnh Porsche</a></div></section>`);
-if(main?.dataset.page==='sources')main.insertAdjacentHTML('beforeend',`<section class="z-source-list detail-photo-sources" aria-labelledby="gallery-real-source-title"><div><h2 id="gallery-real-source-title">Ảnh thật trong Bộ sưu tập</h2><p>Mỗi mẫu xe được trình bày thành ba góc. Ảnh Pinterest giữ liên kết tới từng pin gốc; riêng Mercedes-AMG SL 63 dùng ảnh R232 có giấy phép mở trên Wikimedia Commons để tránh nhầm đời xe.</p><a href="assets/gallery-real-v1/sources.json">Xem hồ sơ nguồn của 15 ảnh</a></div></section>`);
+if(main?.dataset.page==='sources')main.insertAdjacentHTML('beforeend',`<section class="z-source-list detail-photo-sources" aria-labelledby="gallery-real-source-title"><div><h2 id="gallery-real-source-title">Ảnh thật trong Bộ sưu tập</h2><p>Mỗi mẫu xe được trình bày thành ba góc. Ảnh Pinterest kèm liên kết trang nguồn; riêng Mercedes-AMG SL 63 dùng ảnh R232 có giấy phép mở trên Wikimedia Commons để tránh nhầm đời xe.</p><a href="assets/gallery-real-v1/sources.json">Xem hồ sơ nguồn của 15 ảnh</a></div></section>`);
 if(main?.dataset.page==='sources')main.insertAdjacentHTML('beforeend',`<section class="z-source-list detail-photo-sources" id="detail-photo-sources" aria-labelledby="detail-photo-sources-title">
   <div><h2 id="detail-photo-sources-title">Ảnh chi tiết của 5 mẫu xe</h2><p>Ảnh tham khảo được cắt khung, thu nhỏ và nén WebP; không đổi màu hoặc tạo chi tiết bằng AI. Quyền ảnh thuộc chủ sở hữu nguồn. Ảnh các phiên bản tham khảo có thể khác cấu hình trong studio.</p>
   <ul class="detail-photo-credits">
