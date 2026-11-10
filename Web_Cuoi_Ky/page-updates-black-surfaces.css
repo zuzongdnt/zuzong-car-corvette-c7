@@ -2075,293 +2075,21 @@ body.z-page:has(main[data-page="products"]) footer :is(h1,h2,h3,h4,p,span,a,smal
   :where(body.z-page) main[data-page="products"] .z-products-journal { padding-top: 68px !important; }
 }
 
-/* Preserve the white digital showroom when the site-wide dark theme inverts main. */
-html[data-site-theme="dark"] body.z-page main[data-page="products"] .z-digital-showroom {
-  filter: invert(1);
-  background-color: #ffffff !important;
-  color: #111416 !important;
-}
-html[data-site-theme="dark"] body.z-page main[data-page="products"] .z-digital-showroom :is(img, video, canvas, model-viewer, iframe) {
-  filter: none !important;
-}
-
-/* High contrast for the digital showroom introduction in either site theme. */
-:where(body.z-page) main[data-page="products"] .z-digital-showroom {
-  background: #ffffff !important;
-  color: #17191b !important;
-}
-:where(body.z-page) main[data-page="products"] .z-digital-showroom .z-digital-head h2 { color: #17191b !important; }
-:where(body.z-page) main[data-page="products"] .z-digital-showroom .z-digital-head .z-kicker { color: #c3442f !important; }
-:where(body.z-page) main[data-page="products"] .z-digital-showroom :is(.z-digital-lead, .z-digital-intro p) { color: #4e565a !important; }
-
-/* White surfaces and dark typography for the sections in Quynh's latest references. */
-:where(body.z-page) main[data-page="products"] :is(
-  .z-products-catalog,.z-car-anatomy,.z-products-promo,.z-technical-specs,
-  .z-dream-car,.z-drive-mode,.z-safety-visualizer,.z-smart-test-drive,.z-scroll-story
-) {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-}
-:where(body.z-page) main[data-page="products"] :is(
-  .z-products-catalog,.z-car-anatomy,.z-products-promo,.z-technical-specs,
-  .z-dream-car,.z-drive-mode,.z-safety-visualizer,.z-smart-test-drive,.z-scroll-story
-) :is(h1,h2,h3,h4,p,span,small,strong,b,a,button,label,li,dt,dd,th,td,figcaption,legend,output) {
-  color: #17191b !important;
-}
-:where(body.z-page) main[data-page="products"] :is(
-  .z-car-anatomy,.z-products-promo,.z-drive-mode,.z-safety-visualizer,.z-scroll-story
-) :is(.z-experience-kicker,.z-kicker,.z-dm-head>div:first-child>p,.z-sv-head>div:first-child>p) {
-  color: #c3442f !important;
-}
-:where(body.z-page) main[data-page="products"] :is(
-  .z-car-anatomy,.z-products-promo,.z-technical-specs,.z-dream-car,
-  .z-drive-mode,.z-safety-visualizer,.z-smart-test-drive,.z-scroll-story
-) :is(button,select,input,textarea) {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  border-color: #cbd1d4 !important;
-}
-:where(body.z-page) main[data-page="products"] :is(
-  .z-car-anatomy,.z-dream-car,.z-drive-mode,.z-safety-visualizer
-) :is(button[aria-pressed="true"],button[aria-selected="true"],button.is-active) {
-  color: #17191b !important;
-  background-color: #eef1f2 !important;
-  border-color: #aeb8bd !important;
-}
-:where(body.z-page) main[data-page="products"] :is(
-  .z-car-anatomy,.z-dream-car,.z-drive-mode,.z-safety-visualizer,.z-scroll-story
-) :is([class*="layout"],[class*="workbench"],[class*="console"],[class*="info"],[class*="detail"],[class*="current"],[class*="saved"],[class*="chapter"],[class*="closing"],[class*="car-tabs"],[class*="mode-rail"],[class*="layer-tabs"],[class*="controls"],[class*="collection"],[class*="choice"],[class*="price"]) {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  border-color: #d6dcdf !important;
-}
-:where(body.z-page) main[data-page="products"] .z-car-anatomy .z-ca-visual,
-:where(body.z-page) main[data-page="products"] .z-dream-car .z-dream-visual,
-:where(body.z-page) main[data-page="products"] .z-drive-mode .z-dm-stage,
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-stage,
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-stage {
-  background: #f4f5f5 !important;
-}
-:where(body.z-page) main[data-page="products"] .z-car-anatomy :is(.z-ca-detail ul,.z-ca-layer-tabs button),
-:where(body.z-page) main[data-page="products"] .z-dream-car :is(.z-dream-choice,.z-dream-price),
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-progress {
-  border-color: #d6dcdf !important;
-}
-:where(body.z-page) main[data-page="products"] .z-car-anatomy :is(.z-ca-heading>p,.z-ca-disclaimer,.z-ca-detail>p:not(:first-child),.z-ca-layer-tabs button span),
-:where(body.z-page) main[data-page="products"] .z-drive-mode :is(.z-dm-head>div:last-child p,.z-dm-info-kicker,.z-dm-summary,.z-dm-plain,.z-dm-disclaimer),
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer :is(.z-sv-head>div:last-child p,.z-sv-head>div:last-child span,.z-sv-info,.z-sv-stage-note),
-:where(body.z-page) main[data-page="products"] .z-scroll-story :is(.z-story-head>p,.z-story-chapter>span,.z-story-closing p) {
-  color: #5e686e !important;
-}
-:where(body.z-page) main[data-page="products"] .z-products-promo :is(video,img) { background-color: #ffffff !important; }
-:where(body.z-page) main[data-page="products"] .z-drive-mode .z-dm-stage :is(img,.z-dm-stage-shade) { filter: none !important; }
-:where(body.z-page) main[data-page="products"] .z-drive-mode .z-dm-stage-shade { background: linear-gradient(180deg, transparent 58%, rgb(255 255 255 / 88%) 100%) !important; }
-:where(body.z-page) main[data-page="products"] .z-drive-mode .z-dm-stage-copy { padding: 12px 16px; background: rgb(255 255 255 / 92%) !important; }
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-stage :is(img,.z-sv-shade) { filter: none !important; }
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-shade { background: transparent !important; }
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-stage-status { color: #17191b !important; background: rgb(255 255 255 / 94%) !important; border-color: #cbd1d4 !important; }
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-stage-status :is(span,small) { color: #5e686e !important; }
-:where(body.z-page) main[data-page="products"] .z-safety-visualizer .z-sv-stage-status strong { color: #c3442f !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-frame figcaption { color: #17191b !important; background: rgb(255 255 255 / 92%) !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-frame figcaption span { color: #5e686e !important; }
-
-/* Remove the dark gutters that were showing as horizontal bands between sections. */
-body.z-page:has(main[data-page="products"]),
-body.z-page:has(main[data-page="products"]) main[data-page="products"],
-body.z-page:has(main[data-page="products"]) footer {
-  background-color: #ffffff !important;
-}
-
-/* Keep the products page in its authored light palette when the global dark theme is active. */
-html[data-site-theme="dark"]:has(body.z-page main[data-page="products"]) { background-color: #ffffff !important; }
-html[data-site-theme="dark"] body.z-page main[data-page="products"] { filter: none !important; }
-html[data-site-theme="dark"] body.z-page main[data-page="products"] :is(img,video,canvas,model-viewer,iframe) { filter: invert(1) !important; }
-html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) footer { filter: invert(1) !important; }
-html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) footer :is(img,video,canvas,iframe) { filter: invert(1) !important; }
-body.z-page:has(main[data-page="products"]) footer :is(h1,h2,h3,h4,p,span,a,small,strong,li,dt,dd) { color: #17191b !important; }
-
-/* Light treatment for the real-world driving scenario shown in the new reference. */
-:where(body.z-page) main[data-page="products"] .z-real-life {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-}
-:where(body.z-page) main[data-page="products"] .z-real-life :is(h1,h2,h3,h4,p,span,small,strong,b,a,button,label,li,dt,dd,figcaption) { color: #17191b !important; }
-:where(body.z-page) main[data-page="products"] .z-real-life :is(.z-rs-car-tabs,.z-rs-experience,.z-rs-panel,.z-rs-tabs,.z-rs-visual,.z-rs-tabs button,.z-rs-car-tabs button) {
-  background-color: #ffffff !important;
-  border-color: #d6dcdf !important;
-}
-:where(body.z-page) main[data-page="products"] .z-real-life :is(.z-rs-head>div>p,.z-rs-head>p,.z-rs-panel-title,.z-rs-stats span,.z-rs-benefits p,.z-rs-note,.z-rs-tabs small,.z-rs-car-tabs span) { color: #5e686e !important; }
-:where(body.z-page) main[data-page="products"] .z-real-life .z-rs-visual { background: #ffffff !important; }
-:where(body.z-page) main[data-page="products"] .z-real-life .z-rs-atmosphere { background: transparent !important; background-image: none !important; }
-:where(body.z-page) main[data-page="products"] .z-real-life .z-rs-copy {
-  padding: 16px 20px !important;
-  color: #17191b !important;
-  background: rgb(255 255 255 / 94%) !important;
-  text-shadow: none !important;
-}
-:where(body.z-page) main[data-page="products"] .z-real-life .z-rs-readout span {
-  color: #17191b !important;
-  background: rgb(255 255 255 / 94%) !important;
-  border-color: #cbd1d4 !important;
-}
-:where(body.z-page) main[data-page="products"] .z-real-life :is(.z-rs-benefits b,.z-rs-head .z-experience-kicker) { color: #c3442f !important; }
-:where(body.z-page) main[data-page="products"] .z-products-catalog .z-product-tile-visual { background-color: #ffffff !important; }
-
-/* Dark ending for the product-story finale and its footer. */
-:where(body.z-page) main[data-page="products"] .z-scroll-story {
-  color: #f2f4f5 !important;
-  background-color: #090b0d !important;
-}
-:where(body.z-page) main[data-page="products"] .z-scroll-story :is(h1,h2,h3,h4,strong,b,a,button,figcaption) { color: #f2f4f5 !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story :is(p,span,small) { color: #aeb7bc !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-experience-kicker { color: #e75339 !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-head h2 em { color: #87949a !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story :is(.z-story-stage,.z-story-chapter,.z-story-closing) {
-  color: #f2f4f5 !important;
-  background-color: #090b0d !important;
-  border-color: #343c41 !important;
-}
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-frame figcaption {
-  color: #f2f4f5 !important;
-  background-color: #11161a !important;
-  border-color: #343c41 !important;
-}
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-frame figcaption span { color: #aeb7bc !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-progress { background-color: #343c41 !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-closing { border-top-color: #454d51 !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-closing>div>p:last-child { color: #aeb7bc !important; }
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-closing nav a {
-  color: #f2f4f5 !important;
-  background-color: transparent !important;
-  border-color: #687278 !important;
-}
-:where(body.z-page) main[data-page="products"] .z-scroll-story .z-story-closing nav a:last-child {
-  color: #17191b !important;
-  background-color: #f2f4f5 !important;
-  border-color: #f2f4f5 !important;
-}
-body.z-page:has(main[data-page="products"]) .z-footer {
-  margin-top: 0 !important;
-  color: #f2f4f5 !important;
-  background-color: #090b0d !important;
-  border-color: #343c41 !important;
-}
-body.z-page:has(main[data-page="products"]) .z-footer :is(h1,h2,h3,h4,a,span,small,strong,li,dt,dd) { color: #f2f4f5 !important; }
-body.z-page:has(main[data-page="products"]) .z-footer :is(p,.z-footer-bottom) { color: #aeb7bc !important; }
-body.z-page:has(main[data-page="products"]) .z-footer .z-footer-word img { filter: brightness(0) invert(1) !important; }
-html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) .z-footer { filter: none !important; }
-
-/* Final light page canvas; the footer above remains the sole dark surface. */
-body.z-page:has(main[data-page="products"]) main[data-page="products"] {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  filter: none !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] > section {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  border-color: #d6dcdf !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] > section *:not(img):not(video):not(canvas):not(model-viewer):not(iframe):not(i):not(svg):not(path) {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  background-image: none !important;
-  border-color: #d6dcdf !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] > section :is(button,select,input,textarea,option) {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-  border-color: #cbd1d4 !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] > section :is(img,video,canvas,model-viewer,iframe) { background-color: #ffffff !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] > .z-products-campaign::after { background: none !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-dm-dial {
-  border-color: #aeb8bd !important;
-  background: radial-gradient(circle, #ffffff 0 45%, #e7eaec 46% 58%, transparent 59%), repeating-conic-gradient(from 228deg, #aeb8bd 0 1deg, transparent 1deg 8deg) !important;
-  box-shadow: inset 0 0 35px rgb(0 0 0 / 8%), 0 0 40px rgb(var(--dm-rgb) / 8%) !important;
-}
-
-/* White sound experience with a model-specific car video instead of the orbit graphic. */
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience {
-  color: #17191b !important;
-  background-color: #ffffff !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-sound-copy h2,
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-sound-copy h2 em {
-  color: #17191b !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-sound-copy h2 em { color: #78848a !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-experience-kicker { color: #d8563b !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-sound-copy > p:not(.z-experience-kicker) { color: #4c5559 !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-experience .z-sound-copy > small { color: #6e777c !important; }
+/* Keep the restored pre-push sound section while embedding the selected real video. */
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-player {
   display: block !important;
   min-height: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
-  color: #17191b !important;
-  background: #ffffff !important;
-  border-color: #d9dfe2 !important;
+  color: #f4f5f5 !important;
+  background: #15191c !important;
+  border-color: #333a3e !important;
   box-shadow: none !important;
 }
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual {
-  position: relative;
   width: 100%;
-  aspect-ratio: 16 / 8.7;
-  overflow: hidden;
-  background: #111416 !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual video {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #111416 !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-video-caption {
-  position: absolute;
-  right: 12px;
-  bottom: 12px;
-  padding: 8px 10px;
-  color: #ffffff !important;
-  background: rgb(10 12 14 / 78%) !important;
-  border: 0 !important;
-  font-size: 10px;
-  letter-spacing: .02em;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: clamp(16px,2vw,25px); }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-meta span,
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-signature,
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-status { color: #697277 !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-meta strong { color: #17191b !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-car-tabs button,
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-modes button {
-  color: #333a3e !important;
-  background: #ffffff !important;
-  border-color: #c9d0d3 !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-car-tabs button[aria-pressed="true"],
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-modes button[aria-pressed="true"] {
-  color: #ffffff !important;
-  background: #17191b !important;
-  border-color: #17191b !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions { border-top-color: #d9dfe2 !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions label { color: #596267 !important; }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-play {
-  color: #ffffff !important;
-  background: #17191b !important;
-  border-color: #17191b !important;
-}
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions input { accent-color: #d8563b; }
-@media (max-width: 640px) {
-  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual { aspect-ratio: 16 / 10; }
-  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: 16px; }
-}
-
-/* Native YouTube player: real source audio, with playback started by the visitor. */
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual {
   aspect-ratio: 16 / 9;
+  overflow: hidden;
   background: #111416 !important;
 }
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual iframe {
@@ -2370,7 +2098,9 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-
   height: 100%;
   border: 0;
 }
-body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: clamp(16px,2vw,25px); }
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls {
+  padding: clamp(16px,2vw,25px);
+}
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-signature {
   min-height: 0;
   margin: 0 0 16px;
@@ -2382,17 +2112,16 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-
   align-items: flex-start;
   gap: 8px;
   padding-top: 16px;
-  border-top: 1px solid #d9dfe2 !important;
 }
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-source {
-  color: #17191b !important;
+  color: #f4f5f5 !important;
   font-size: 11px;
   font-weight: 650;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions [data-sound-note] {
-  color: #697277 !important;
+  color: #aab3b8 !important;
   font-size: 10px;
   line-height: 1.5;
 }
@@ -2400,6 +2129,10 @@ html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) main[da
   filter: none !important;
 }
 @media (max-width: 640px) {
-  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual { aspect-ratio: 16 / 9; }
-  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: 16px; }
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual {
+    aspect-ratio: 16 / 9;
+  }
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls {
+    padding: 16px;
+  }
 }
