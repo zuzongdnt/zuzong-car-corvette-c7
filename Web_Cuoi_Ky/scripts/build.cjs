@@ -5,7 +5,6 @@ fs.copyFileSync(path.join(root,'unveil-five.css'),path.join(out,'unveil-five.css
 fs.copyFileSync(path.join(root,'monochrome.css'),path.join(out,'monochrome.css'));
 fs.copyFileSync(path.join(root,'studio-specs.js'),path.join(out,'studio-specs.js'));
 fs.copyFileSync(path.join(root,'car-doors.js'),path.join(out,'car-doors.js'));
-for(const file of ['navigation.js','navigation.css','page-loader.js','theme.css','page-updates.css','page-updates-black-surfaces.css','studio-page.js','studio-annotations.js','car-lights-page.js','feature-explorer.js','drive-mode-simulator.js','safety-visualizer.js','technical-specs.js','version-comparison.js','real-life-scenarios.js','smart-ownership.js','ar-experience.js','car-advisor.js','sound-experience.js','scroll-storytelling.js','smart-test-drive.js','car-anatomy.js','before-after.js','dream-car.js','car-quiz.js'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.cpSync(path.join(root,'assets','brand-monochrome'),path.join(out,'assets','brand-monochrome'),{recursive:true});
 for(const file of ['index.html','experience.html','films.html','gallery.html','hero.html','sections.html','styles.css','hero.css','sections.css','journal.css','editorial.css','app.js','sections.js','reveal-sequence.js','editorial.js','server.cjs','README.md','package.json'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.mkdirSync(path.join(out,'scripts'),{recursive:true});
@@ -37,13 +36,10 @@ for(const key of ['videoSrc','posterSrc','logoSrc']){const value=campaignConfig[
 fs.mkdirSync(path.join(out,'docs','research'),{recursive:true});
 for(const file of ['ASSETS.md','UPGRADE_V2_QA.md','PHOTO_RETOUCH.md','DRIVE_ALIGNMENT_QA.md','DRIVE_ROLLERS_QA.md','DRIVE_SHARP_QA.md','DETAIL_REAL_PHOTOS.md'])if(fs.existsSync(path.join(root,'docs','research',file)))fs.copyFileSync(path.join(root,'docs','research',file),path.join(out,'docs','research',file));
 fs.copyFileSync(path.join(root,'assets','detail-photos-manifest.json'),path.join(out,'assets','detail-photos-manifest.json'));
-for(const folder of ['details-five','brands','gallery-real-v1','article-real-v1','interior-photo-v1','feature-videos','real-life-scenarios'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
+for(const folder of ['details-five','brands'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
 if(fs.existsSync(path.join(root,'assets','retouch-manifest.json')))fs.copyFileSync(path.join(root,'assets','retouch-manifest.json'),path.join(out,'assets','retouch-manifest.json'));
 for(const file of ['studio.css','studio.js','studio-data.js','site.css','site.js','products.html','product.html','about.html','contact.html','explore.html','gallery.html','news.html','article.html','cart.html','account.html','sources.html','policies.html'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.cpSync(path.join(root,'assets','model','studio'),path.join(out,'assets','model','studio'),{recursive:true});
-fs.cpSync(path.join(root,'assets','model','studio-clean'),path.join(out,'assets','model','studio-clean'),{recursive:true});
-for(const folder of ['studio-interior','studio-screen-textures'])fs.cpSync(path.join(root,'assets','model',folder),path.join(out,'assets','model',folder),{recursive:true});
-for(const folder of ['gallery','gallery-real-v2'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
 fs.cpSync(path.join(root,'assets','studio'),path.join(out,'assets','studio'),{recursive:true});
 fs.copyFileSync(path.join(root,'docs','STUDIO_MODEL_SOURCES.md'),path.join(out,'docs','STUDIO_MODEL_SOURCES.md'));
 console.log('Studio sitemap assets OK');
@@ -53,4 +49,4 @@ fs.copyFileSync(path.join(root,'docs','MODEL_FINISH_20261102.md'),path.join(out,
 fs.copyFileSync(path.join(root,'docs','CAR_LIGHTS_20261102.md'),path.join(out,'docs','CAR_LIGHTS_20261102.md'));
 fs.copyFileSync(path.join(root,'docs','STUDIO_SCROLL_20261105.md'),path.join(out,'docs','STUDIO_SCROLL_20261105.md'));
 for(const page of ['index.html','experience.html','films.html','gallery.html','products.html','product.html','about.html','contact.html','explore.html','news.html','article.html','cart.html','account.html','sources.html','policies.html']){const html=fs.readFileSync(path.join(out,page),'utf8');for(const match of html.matchAll(/(?:src|href|poster|data-src)="([^"#]+)"/g)){if(/^(https?:|data:|mailto:)/.test(match[1]))continue;const target=match[1].split('#')[0].split('?')[0];if(target&&!fs.existsSync(path.join(out,target)))throw Error(page+': Missing asset '+target);}}
-console.log('Static build OK: dist/ — 13 pages, 2 redirects, studio models and gallery');
+console.log('Static build OK: dist/ — 15 pages, studio models and gallery');

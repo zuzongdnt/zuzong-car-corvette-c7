@@ -16,16 +16,15 @@ function profile(car,name){
 
 export function createCarLights(viewer,button,host){
   const mobile=matchMedia('(max-width:760px)'),reduced=matchMedia('(prefers-reduced-motion:reduce)');
-  const composer=document.createElement('effect-composer');composer.setAttribute('render-mode','quality');composer.setAttribute('msaa',mobile.matches?'0':'2');
+  const composer=document.createElement('effect-composer');composer.setAttribute('render-mode','quality');composer.setAttribute('msaa',mobile.matches?'2':'4');
   const bloom=document.createElement('selective-bloom-effect');bloom.setAttribute('strength','0');bloom.setAttribute('radius','.5');bloom.setAttribute('threshold','.28');bloom.setAttribute('smoothing','.3');bloom.selection=[];composer.append(bloom);
   let wanted=false,ready=false,level=0,frame=0,last=0,car='',entries=[],meshes=[];
   const status=host.querySelector('[data-light-status]');
-  const exposure=viewer.exposure,shadowIntensity=viewer.shadowIntensity;
   function ui(){
     button.disabled=!ready;
     button.setAttribute('aria-pressed',String(wanted));
-    button.querySelector('[data-lights-label]').textContent='Ánh sáng showroom';
-    button.setAttribute('aria-label','Chuyển chế độ ánh sáng showroom');
+    button.querySelector('[data-lights-label]').textContent=wanted?'Đèn xe đang bật sáng':'Bật đèn xe';
+    button.setAttribute('aria-label',wanted?'Tắt đèn xe':'Bật đèn xe');
     host.dataset.lights=wanted?'on':'off';
   }
   function beginLoad(){
@@ -36,8 +35,8 @@ export function createCarLights(viewer,button,host){
     level=value;
     for(const entry of entries){entry.material.setEmissiveFactor(entry.color);entry.material.setEmissiveStrength(entry.strength*level);}
     bloom.strength=1.4*level;
-    viewer.exposure=exposure*(1-.15*level);
-    viewer.shadowIntensity=shadowIntensity+.3*level;
+    viewer.exposure=1.1-.25*level;
+    viewer.shadowIntensity=2.15+.35*level;
     host.dataset.lightLevel=level.toFixed(3);composer.queueRender();
   }
   function animate(now){

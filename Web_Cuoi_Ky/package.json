@@ -6,6 +6,6 @@
   "scripts": {
     "start": "node server.cjs",
     "build": "node scripts/build.cjs",
-    "check": "node --check app.js && node --check unveil-five.js && node --check sections.js && node --check reveal-sequence.js && node --check editorial.js && node --check server.cjs && node --check studio.js && node --check studio-page.js && node --check car-lights-page.js && node --check feature-explorer.js && node --check drive-mode-simulator.js && node --check safety-visualizer.js && node --check technical-specs.js && node --check version-comparison.js && node --check real-life-scenarios.js && node --check smart-ownership.js && node --check studio-data.js && node --check site.js && node --check studio-scroll.js && node --check navigation.js && node --check bottom-nav.js && node --check ar-experience.js && node --check car-advisor.js && node --check sound-experience.js && node --check scroll-storytelling.js && node --check smart-test-drive.js"
+    "check": "node --check app.js && node --check unveil-five.js && node --check sections.js && node --check reveal-sequence.js && node --check editorial.js && node --check server.cjs && node --check studio.js && node --check studio-data.js && node --check site.js && node --check studio-scroll.js"
   }
 }
