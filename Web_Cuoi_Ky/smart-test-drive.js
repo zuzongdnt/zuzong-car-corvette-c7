@@ -1,7 +1,14 @@
 import {cars} from './studio-data.js';
 
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-const testDriveImage=carId=>`assets/studio/${carId}-rear-clean.webp`;
+const testDrivePhotos={
+  corvette:'assets/test-drive-real/corvette-rear.jpg',
+  bmw:'assets/test-drive-real/bmw-rear.jpg',
+  porsche:'assets/test-drive-real/porsche-rear.jpg',
+  mercedes:'assets/test-drive-real/mercedes-rear.jpg',
+  lamborghini:'assets/test-drive-real/lamborghini-rear-alt.jpg'
+};
+const testDriveImage=carId=>testDrivePhotos[carId]||testDrivePhotos.corvette;
 
 export function mountSmartTestDrive(host,studio){
   if(!host||host.dataset.mounted)return;

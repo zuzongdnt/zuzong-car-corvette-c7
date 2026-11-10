@@ -2136,3 +2136,608 @@ html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) main[da
     padding: 16px;
   }
 }
+
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-products-catalog .z-product-tag {
+  color: #17191b !important;
+  background: #fff !important;
+  border: 1px solid #d6dcdf;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
+}
+
+/* Safety visualizer overlays use white type over the car image. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-status {
+  color: #fff !important;
+  background: rgb(10 13 16 / 76%) !important;
+  border-color: rgb(255 255 255 / 38%) !important;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 22%) !important;
+  backdrop-filter: blur(8px) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-status :is(span,small,strong),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-note,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-visual-label {
+  color: #fff !important;
+  text-shadow: 0 1px 5px rgb(0 0 0 / 55%) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-visual-label {
+  background: rgb(10 13 16 / 76%) !important;
+  border-color: rgb(255 255 255 / 55%) !important;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 20%) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+/* Keep the real-life scenario caption inside the photo when scrolling. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy {
+  bottom: clamp(76px, 8vw, 104px) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy p {
+  margin-top: 12px !important;
+}
+@media (max-width: 600px) {
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy {
+    bottom: 64px !important;
+  }
+}
+
+/* Restore vehicle media above section backgrounds. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-fx-stage > img,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-fx-stage > video,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-fx-animation-screen,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-rs-image {
+  z-index: 1 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(.z-fx-shade,.z-dm-stage-shade,.z-sv-shade,.z-rs-atmosphere) {
+  background: transparent !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(.z-fx-shade,.z-rs-atmosphere) {
+  z-index: 2 !important;
+}
+
+/* Light background and dark typography for the four requested sections. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(#products-experience,#car-anatomy,#my-dream-car,#scroll-storytelling) {
+  color: #17191b !important;
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(#products-experience,#car-anatomy,#my-dream-car,#scroll-storytelling) :is(h1,h2,h3,h4,p,span,small,strong,b,a,button,label,li,dt,dd,figcaption,summary,select,option) {
+  color: #17191b !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(#products-experience,#car-anatomy,#my-dream-car,#scroll-storytelling) :is(.z-experience-kicker,.z-kicker) {
+  color: #c8462c !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience :is(.z-digital-stage,.z-build-sheet),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #car-anatomy :is(.z-ca-workbench,.z-ca-visual,.z-ca-info,.z-ca-layer-tabs),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car :is(.z-dream-current,.z-dream-visual,.z-dream-controls,.z-dream-saved,.z-dream-choice,.z-dream-price),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #scroll-storytelling :is(.z-story-stage,.z-story-chapter,.z-story-closing,.z-story-frame figcaption) {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+  border-color: #d6dcdf !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage {
+  background-color: #f4f5f5 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage :is(h3,span) {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 55%);
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #car-anatomy :is(button,.z-ca-info),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car :is(button,select,input),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #scroll-storytelling :is(button,a) {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+  border-color: #cbd1d4 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #car-anatomy button:is([aria-pressed="true"],[aria-selected="true"]),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car button:is([aria-pressed="true"],[aria-selected="true"]) {
+  color: #17191b !important;
+  background-color: #eef1f2 !important;
+  border-color: #aeb8bd !important;
+}
+
+/* Remove remaining black letterbox bands and dark section gutters. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] > section {
+  background-color: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] > section :is(img,video,canvas,model-viewer) {
+  background-color: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-product-tile-visual,
+  .z-products-promo,
+  .z-live-specs,
+  .z-ba-hero,
+  .z-ca-visual,
+  .z-dream-visual,
+  .z-story-stage,
+  .z-story-frame,
+  .z-drive-mode,
+  .z-safety-visualizer,
+  .z-real-life
+) {
+  background-color: #ffffff !important;
+}
+
+/* Complete the light product-page treatment for interactive workbenches. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-dm-car-tabs,.z-dm-console,.z-dm-mode-rail,.z-dm-stage,.z-dm-info,
+  .z-sv-car-tabs,.z-sv-workbench,.z-sv-layer-tabs,.z-sv-stage,.z-sv-info,
+  .z-rs-car-tabs,.z-rs-experience,.z-rs-visual,.z-rs-panel,.z-rs-tabs,
+  .z-sound-player,.z-sound-visual,.z-sound-controls,
+  .z-dream-visual > span
+) {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+  border-color: #d6dcdf !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  #drive-mode-simulator,#safety-visualizer,#real-life-scenarios,#sound-experience
+) :is(h1,h2,h3,h4,p,span,small,strong,b,a,button,label,li,dt,dd,figcaption) {
+  color: #17191b !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-dm-car-tabs,.z-dm-mode-rail,
+  .z-sv-car-tabs,.z-sv-layer-tabs,
+  .z-rs-car-tabs,.z-rs-tabs
+) button {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+  border-color: #d6dcdf !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-dm-car-tabs,.z-dm-mode-rail,
+  .z-sv-car-tabs,.z-sv-layer-tabs,
+  .z-rs-car-tabs,.z-rs-tabs
+) button:is(.is-active,[aria-pressed="true"],[aria-selected="true"]) {
+  color: #17191b !important;
+  background-color: #eef1f2 !important;
+  border-color: #aeb8bd !important;
+}
+
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(.z-products-campaign,.z-products-promo,.z-live-specs) {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(.z-products-campaign,.z-products-promo,.z-live-specs) :is(h1,h2,h3,h4,p,span,small,strong,b,a,button,label,li,dt,dd) {
+  color: #17191b !important;
+}
+
+/* White page canvas removes the dark bands between light sections. */
+body.z-page:has(main[data-page="products"]),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  #car-anatomy .z-ca-layout,
+  #car-anatomy .z-ca-photo,
+  #car-anatomy .z-ca-photo img,
+  .z-products-promo,
+  .z-ba-hero,
+  .z-story-stage,
+  .z-story-frame
+) {
+  border-color: #ffffff !important;
+  outline-color: #ffffff !important;
+}
+
+/* Rectangular labels and controls use the same white/black treatment. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  button,
+  .z-button,
+  .z-inline-button,
+  .z-build-actions a,
+  .z-light-mode-options,
+  .z-dream-visual > span,
+  .z-dm-live,
+  .z-sv-stage-status,
+  .z-rs-readout span
+) {
+  color: #17191b !important;
+  background-color: #ffffff !important;
+  border-color: #d6dcdf !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] button:is(.is-active,[aria-pressed="true"],[aria-selected="true"]) {
+  color: #17191b !important;
+  background-color: #eef1f2 !important;
+  border-color: #aeb8bd !important;
+}
+
+/* Selected Car Anatomy photo panel: remove the remaining dark gradient. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #car-anatomy :is(
+  .z-ca-visual,.z-ca-photo,.z-ca-photo figcaption,.z-ca-car-label,.z-ca-disclaimer
+) {
+  color: #17191b !important;
+  background: #ffffff !important;
+  background-image: none !important;
+  border-color: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #car-anatomy .z-ca-visual :is(
+  h1,h2,h3,h4,p,span,small,strong,b,a,figcaption
+) {
+  color: #17191b !important;
+}
+
+/* Keep Studio colour swatches visible after the global white-button treatment. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] [data-studio-mount]
+button[style*="--swatch:"] {
+  background: var(--swatch) !important;
+  background-color: var(--swatch) !important;
+  border-color: #c7cdd0 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] [data-studio-mount]
+button[style*="--swatch:"][aria-pressed="true"] {
+  background: var(--swatch) !important;
+  background-color: var(--swatch) !important;
+  border-color: #17191b !important;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #17191b !important;
+}
+
+/* Browser review: light status labels and a white safety visual stage. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #drive-mode-simulator .z-dm-intro > span,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-head > div:last-child > span {
+  color: #17191b !important;
+  background: #ffffff !important;
+  border-color: #d6dcdf !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage {
+  color: #17191b !important;
+  background: #ffffff !important;
+  background-image: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage::before,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-shade {
+  background: none !important;
+  background-image: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage img {
+  filter: brightness(.92) saturate(.95) contrast(1.04) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-status {
+  color: #17191b !important;
+  background: #ffffff !important;
+  border-color: #d6dcdf !important;
+  box-shadow: 0 8px 24px rgb(23 25 27 / 10%) !important;
+  backdrop-filter: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-status :is(span,small,strong),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-stage-note,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-visual-label {
+  color: #17191b !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #safety-visualizer .z-sv-visual-label {
+  background: #ffffff !important;
+  border-color: #b9c8ce !important;
+  box-shadow: 0 4px 14px rgb(23 25 27 / 10%) !important;
+  backdrop-filter: none !important;
+}
+
+/* Browser review: give the selected driving headline a black title plate. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy h3 {
+  display: table;
+  max-width: 100%;
+  padding: 12px 16px;
+  color: #ffffff !important;
+  background: #090b0d !important;
+  text-shadow: none !important;
+}
+
+/* Use the real-photo assets in the saved-car preview and keep the video panel minimal. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-visual {
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 410px;
+  object-fit: cover;
+  object-position: center 55%;
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-player {
+  display: grid;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  padding: 0;
+  border: 0;
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-controls {
+  padding: 0;
+  border: 0;
+  background: #ffffff !important;
+}
+
+/* Follow-up review: keep Drive Mode stage copy white and scenario copy transparent. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #drive-mode-simulator .z-dm-stage-copy > :is(span,h3) {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 65%) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy {
+  color: #17191b !important;
+  padding: 0 !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy h3 {
+  color: #ffffff !important;
+  background: #090b0d !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy p {
+  color: #17191b !important;
+  padding: 0 !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+
+/* Product-page type system: black text, clear scale and readable captions. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] {
+  --product-ink: #151719;
+  --product-muted: #303538;
+  --product-rule: #d7dcdf;
+  color: var(--product-ink) !important;
+  font-family: 'Manrope', 'Segoe UI', Arial, sans-serif !important;
+  font-size: 15px !important;
+  line-height: 1.6;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  h1,h2,h3,h4,h5,h6,p,span,small,strong,b,a,button,label,li,dt,dd,
+  figcaption,summary,output,legend,th,td,caption,blockquote,em,select,option
+) {
+  color: var(--product-ink) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] h1 {
+  font-size: clamp(36px, 5.2vw, 72px) !important;
+  font-weight: 520 !important;
+  letter-spacing: -.055em !important;
+  line-height: 1.02 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] h2 {
+  font-size: clamp(30px, 4.1vw, 56px) !important;
+  font-weight: 520 !important;
+  letter-spacing: -.05em !important;
+  line-height: 1.06 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] h3 {
+  font-size: clamp(22px, 2.3vw, 31px) !important;
+  font-weight: 600 !important;
+  letter-spacing: -.035em !important;
+  line-height: 1.18 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] h4 {
+  font-size: clamp(18px, 1.55vw, 22px) !important;
+  font-weight: 620 !important;
+  line-height: 1.28 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(p,li,dd,blockquote) {
+  font-size: clamp(14px, 1.05vw, 16px) !important;
+  line-height: 1.65 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] small,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-experience-kicker,.z-kicker,.z-dm-intro > span,.z-sv-head > div:last-child > span,
+  .z-dm-live span,.z-dm-live small,.z-sv-stage-status span,.z-sv-stage-status small,
+  .z-sv-stage-note,.z-sv-visual-label,.z-rs-readout span,.z-sound-meta span,
+  .z-ca-disclaimer,.z-ca-car-label,.z-story-frame figcaption,.z-fx-info-kicker
+) {
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(button,select,input,textarea) {
+  font-family: inherit !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(button,select,input,textarea)::placeholder {
+  color: var(--product-ink) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-dm-stage-copy h3 {
+  font-size: clamp(26px, 3vw, 42px) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-rs-copy h3 {
+  font-size: clamp(28px, 3.4vw, 46px) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-fx-info h3 {
+  font-size: clamp(24px, 2.5vw, 36px) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(.z-specs dd,.z-fx-info dd) {
+  font-size: 16px !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-live-specs-grid dd {
+  font-size: clamp(32px, 4vw, 54px) !important;
+}
+
+/* Give black type a light backing anywhere it sits over car photography. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] :is(
+  .z-dm-live,.z-dm-stage-copy,.z-sv-stage-status,.z-sv-visual-label,
+  .z-rs-readout,.z-rs-copy h3,.z-fx-stage figcaption,
+  .z-ar-chip,.z-dream-visual > span,.z-ca-car-label,.z-ca-disclaimer
+) {
+  color: var(--product-ink) !important;
+  background: rgb(255 255 255 / 94%) !important;
+  border-color: var(--product-rule) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-rs-copy {
+  color: var(--product-ink) !important;
+  background: transparent !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-dm-live :is(span,small,strong),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-dm-stage-copy :is(span,h3),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sv-stage-status :is(span,small,strong),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sv-visual-label,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-rs-readout span,
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-rs-copy :is(h3,p),
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-fx-stage figcaption :is(span,strong) {
+  color: var(--product-ink) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage :is(h3,span) {
+  color: var(--product-ink) !important;
+  padding: 4px 8px;
+  background: rgb(255 255 255 / 94%) !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #drive-mode-simulator .z-dm-live {
+  color: var(--product-ink) !important;
+  background: #ffffff !important;
+  border-color: var(--product-rule) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #drive-mode-simulator .z-dm-stage-copy {
+  padding: 14px 18px !important;
+  background: rgb(255 255 255 / 94%) !important;
+  border-left: 3px solid var(--product-ink) !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #drive-mode-simulator .z-dm-stage-copy > :is(span,h3) {
+  color: var(--product-ink) !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy {
+  color: var(--product-ink) !important;
+  background: transparent !important;
+  padding: 0 !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy h3 {
+  color: var(--product-ink) !important;
+  background: #ffffff !important;
+  border-color: var(--product-rule) !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #real-life-scenarios .z-rs-copy p {
+  color: var(--product-ink) !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-ar-experience .z-ar-car-tabs button[aria-pressed="true"],
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-ar-experience .z-ar-launch {
+  color: var(--product-ink) !important;
+  background: #ffffff !important;
+  border-color: var(--product-rule) !important;
+}
+
+/* Keep the showroom photo labels compact instead of stretching white bars. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage-copy h3 {
+  display: table !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  padding: 4px 9px !important;
+  margin-bottom: 12px !important;
+  color: var(--product-ink) !important;
+  background: rgb(255 255 255 / 94%) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage-copy > span {
+  display: inline-flex !important;
+  width: fit-content !important;
+  max-width: 100% !important;
+  padding: 7px 10px !important;
+  color: var(--product-ink) !important;
+  background: rgb(255 255 255 / 94%) !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #products-experience .z-digital-stage-copy > span b {
+  color: var(--product-ink) !important;
+}
+
+/* Put all five configurable models directly above the saved-car panel. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: 0 0 14px;
+  border: 1px solid #d6dcdf;
+  background: #fff;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button {
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 64px;
+  padding: 11px 15px;
+  border: 0;
+  border-right: 1px solid #d6dcdf;
+  color: #17191b !important;
+  background: #fff !important;
+  text-align: left;
+  cursor: pointer;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button:last-child { border-right: 0; }
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button[aria-pressed="true"] {
+  background: #f0f2f3 !important;
+  box-shadow: inset 0 -3px #17191b;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button span {
+  font-size: 13px;
+  font-weight: 650;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button small {
+  color: #5d666b !important;
+  font-size: 11px;
+  line-height: 1.35;
+}
+@media (max-width: 760px) {
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream-car .z-dream-car-tabs button {
+    flex: 0 0 145px;
+  }
+}
+
+/* Arrival card: white surface and black text */
+:where(body.z-page) main[data-page="products"] .z-products-arrival {
+  color: #111 !important;
+  background: #fff !important;
+  border-color: #d5dadd !important;
+  backdrop-filter: none;
+}
+:where(body.z-page) main[data-page="products"] .z-products-arrival span {
+  color: #111 !important;
+  background: #fff !important;
+}
+:where(body.z-page) main[data-page="products"] .z-products-arrival strong {
+  color: #111 !important;
+}
+/* Native local vehicle videos: preserve the full frame without external player branding. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual video[data-sound-embed] {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border: 0;
+  object-fit: contain;
+  background: #111416;
+}
+/* Keep every original edge while widening portrait footage by a restrained amount. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual video[data-sound-embed] {
+  display: block;
+  width: 72%;
+  max-width: 760px;
+  height: 100%;
+  margin-inline: auto;
+  min-height: 0;
+  border: 0;
+  object-fit: fill !important;
+  background: #ffffff !important;
+}

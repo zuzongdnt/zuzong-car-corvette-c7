@@ -91,7 +91,7 @@ if(main){
     <section class="z-products-promo" aria-labelledby="products-promo-title"><video class="z-products-promo-media" src="assets/editorial/products-bmw-m4-g82.mp4" poster="assets/editorial/products-bmw-m4-g82-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Thước phim BMW M4 G82 hiển thị trọn khung xe">Trình duyệt của bạn không hỗ trợ phát video.</video><div><p class="z-kicker">CẤU HÌNH THEO CÁCH RIÊNG</p><h2 id="products-promo-title">Một màu sơn có thể thay đổi toàn bộ cảm giác.</h2><p>Thử bảng màu tiêu chuẩn và màu giới hạn trước khi lưu lựa chọn của bạn.</p><a href="#products-studio">Bắt đầu phối màu <span aria-hidden="true">↗</span></a></div></section>
     <div id="products-studio" data-studio-mount></div>
     <section class="z-ar-experience" id="ar-experience" data-ar-experience aria-label="Xem mô hình xe trong không gian thật"></section>
-    <section class="z-sound-experience" id="sound-experience" data-sound-experience aria-label="Trải nghiệm video âm thanh xe gốc"></section>
+    <section class="z-sound-experience" id="sound-experience" data-sound-experience aria-label="Trải nghiệm video và âm thanh theo mẫu xe"></section>
     <section class="z-smart-ownership" id="smart-ownership" data-smart-ownership aria-label="Tính khoản vay, chi phí sử dụng và chọn phụ kiện"></section>
     <section class="z-before-after" id="before-after" data-before-after aria-label="So sánh cấu hình mặc định và cấu hình đã nâng cấp"></section>
     <section class="z-dream-car" id="my-dream-car" data-dream-car aria-label="Lưu và chia sẻ xe mơ ước"></section>
@@ -117,8 +117,12 @@ if(main){
     mountScrollStorytelling(main.querySelector('[data-scroll-story]'));
     const {mountARExperience}=await import('./ar-experience.js');
     await mountARExperience(main.querySelector('[data-ar-experience]'),main.querySelector('[data-studio-mount]'));
-    const {mountSoundExperience}=await import('./sound-experience.js');
-    mountSoundExperience(main.querySelector('[data-sound-experience]'),main.querySelector('[data-studio-mount]'));
+    try{
+      const {mountSoundExperience}=await import('./sound-experience.js?v=20261111-local-car-videos-full-stretch');
+      mountSoundExperience(main.querySelector('[data-sound-experience]'),main.querySelector('[data-studio-mount]'));
+    }catch(error){
+      console.error('Không tải được Sound Experience; các phần còn lại vẫn tiếp tục khởi tạo.',error);
+    }
     const {mountFeatureExplorer}=await import('./feature-explorer.js');
     mountFeatureExplorer(main.querySelector('[data-feature-explorer]'),main.querySelector('[data-studio-mount]'));
     const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js');

@@ -1,32 +1,11 @@
 import { cars, getCar } from './studio-data.js';
 
 const soundVideos = {
-  corvette: {
-    id: 'jQwmjZ98fbE',
-    title: 'Corvette C7 Stingray Start Up & Revs - Lovely Exhaust Sound!',
-    creator: 'NM2255 | Raw Car Sounds'
-  },
-  bmw: {
-    id: 'fG1fdW06HWI',
-    title: 'BMW M4 COMPETITION | Start, Revs, Exhaust Sound + BONUS',
-    creator: 'BMWBLOG'
-  },
-  porsche: {
-    id: 'mGyAcKlLyJY',
-    title: 'New Porsche 911 GT3 (992) - Exhaust, Sound & Start up',
-    creator: 'MCarsPL'
-  },
-  mercedes: {
-    id: 'NFKxjPM5TyQ',
-    title: '2023 AMG SL 63 SOUND, DRIVING & START UP',
-    creator: 'TB CARS'
-  },
-  lamborghini: {
-    id: 'kBbDSugoXv8',
-    title: 'Straight piped Lamborghini Revuelto sounds INSANE at 9,500rpm',
-    creator: 'NM2255 | Raw Car Sounds',
-    note: 'Video này giới thiệu Revuelto đã độ ống xả thẳng.'
-  }
+  corvette: 'assets/feature-videos/cars/corvette-c7.mp4',
+  bmw: 'assets/feature-videos/cars/bmw-m4-g82.mp4',
+  porsche: 'assets/feature-videos/cars/porsche-911-gt3.mp4',
+  mercedes: 'assets/feature-videos/cars/mercedes-amg-sl63.mp4',
+  lamborghini: 'assets/feature-videos/cars/lamborghini-revuelto.mp4'
 };
 
 export function mountSoundExperience(host, studio) {
@@ -49,27 +28,15 @@ export function mountSoundExperience(host, studio) {
       </div>
       <div class="z-sound-player">
         <div class="z-sound-visual">
-          <iframe
-            data-sound-embed
-            title="Video âm thanh xe đang chọn"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <video data-sound-embed controls playsinline preload="metadata" aria-label="Video xe đang chọn"></video>
         </div>
         <div class="z-sound-controls">
           <div class="z-sound-meta">
-            <span>VIDEO GỐC CÓ ÂM THANH</span>
+            <span>ĐANG XEM</span>
             <strong data-sound-car></strong>
           </div>
-          <p class="z-sound-signature" data-sound-signature></p>
           <div class="z-sound-car-tabs" role="group" aria-label="Chọn một trong năm mẫu xe">
             ${cars.map(car => `<button type="button" data-sound-car-choice="${car.id}" aria-pressed="false">${car.brand}</button>`).join('')}
-          </div>
-          <div class="z-sound-actions">
-            <a class="z-sound-source" data-sound-source target="_blank" rel="noopener noreferrer">Mở video gốc trên YouTube ↗</a>
-            <span data-sound-note></span>
           </div>
         </div>
       </div>
@@ -77,9 +44,6 @@ export function mountSoundExperience(host, studio) {
 
   const player = host.querySelector('[data-sound-embed]');
   const carLabel = host.querySelector('[data-sound-car]');
-  const signature = host.querySelector('[data-sound-signature]');
-  const sourceLink = host.querySelector('[data-sound-source]');
-  const note = host.querySelector('[data-sound-note]');
 
   const setCar = id => {
     if (!cars.some(car => car.id === id)) return;
@@ -88,11 +52,9 @@ export function mountSoundExperience(host, studio) {
     const car = getCar(id);
     carId = id;
     carLabel.textContent = `${car.brand} ${car.name}`;
-    signature.textContent = `${source.title} · ${source.creator}`;
-    note.textContent = source.note || 'Âm thanh được phát trực tiếp từ video gốc.';
-    sourceLink.href = `https://www.youtube.com/watch?v=${source.id}`;
-    player.title = `Video tiếng xe ${car.brand} ${car.name} trên YouTube`;
-    player.src = `https://www.youtube-nocookie.com/embed/${source.id}?playsinline=1&rel=0`;
+    player.title = `Video tiếng xe ${car.brand} ${car.name}`;
+    player.src = source;
+    player.load();
     host.querySelectorAll('[data-sound-car-choice]').forEach(button => {
       button.setAttribute('aria-pressed', String(button.dataset.soundCarChoice === id));
     });

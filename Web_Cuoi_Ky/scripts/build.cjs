@@ -43,6 +43,7 @@ for(const file of ['studio.css','studio.js','studio-data.js','site.css','site.js
 fs.cpSync(path.join(root,'assets','model','studio'),path.join(out,'assets','model','studio'),{recursive:true});
 fs.cpSync(path.join(root,'assets','model','studio-clean'),path.join(out,'assets','model','studio-clean'),{recursive:true});
 for(const folder of ['studio-interior','studio-screen-textures'])fs.cpSync(path.join(root,'assets','model',folder),path.join(out,'assets','model',folder),{recursive:true});
+fs.cpSync(path.join(root,'assets','test-drive-real'),path.join(out,'assets','test-drive-real'),{recursive:true});
 for(const folder of ['gallery','gallery-real-v2'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
 fs.cpSync(path.join(root,'assets','studio'),path.join(out,'assets','studio'),{recursive:true});
 fs.copyFileSync(path.join(root,'docs','STUDIO_MODEL_SOURCES.md'),path.join(out,'docs','STUDIO_MODEL_SOURCES.md'));
@@ -51,6 +52,7 @@ for(const file of ['Mo_Web_ZUZONG.cmd'])fs.copyFileSync(path.join(root,file),pat
 fs.copyFileSync(path.join(root,'docs','STUDIO_3D_20261102.md'),path.join(out,'docs','STUDIO_3D_20261102.md'));
 fs.copyFileSync(path.join(root,'docs','MODEL_FINISH_20261102.md'),path.join(out,'docs','MODEL_FINISH_20261102.md'));
 fs.copyFileSync(path.join(root,'docs','CAR_LIGHTS_20261102.md'),path.join(out,'docs','CAR_LIGHTS_20261102.md'));
+fs.copyFileSync(path.join(root,'docs','TEST_DRIVE_REAL_PHOTOS.md'),path.join(out,'docs','TEST_DRIVE_REAL_PHOTOS.md'));
 fs.copyFileSync(path.join(root,'docs','STUDIO_SCROLL_20261105.md'),path.join(out,'docs','STUDIO_SCROLL_20261105.md'));
 for(const page of ['index.html','experience.html','films.html','gallery.html','products.html','product.html','about.html','contact.html','explore.html','news.html','article.html','cart.html','account.html','sources.html','policies.html']){const html=fs.readFileSync(path.join(out,page),'utf8');for(const match of html.matchAll(/(?:src|href|poster|data-src)="([^"#]+)"/g)){if(/^(https?:|data:|mailto:)/.test(match[1]))continue;const target=match[1].split('#')[0].split('?')[0];if(target&&!fs.existsSync(path.join(out,target)))throw Error(page+': Missing asset '+target);}}
 console.log('Static build OK: dist/ — 13 pages, 2 redirects, studio models and gallery');
