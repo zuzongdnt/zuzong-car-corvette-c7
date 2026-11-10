@@ -2358,3 +2358,48 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-
   body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual { aspect-ratio: 16 / 10; }
   body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: 16px; }
 }
+
+/* Native YouTube player: real source audio, with playback started by the visitor. */
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual {
+  aspect-ratio: 16 / 9;
+  background: #111416 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: clamp(16px,2vw,25px); }
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-signature {
+  min-height: 0;
+  margin: 0 0 16px;
+  overflow-wrap: anywhere;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #d9dfe2 !important;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-source {
+  color: #17191b !important;
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-actions [data-sound-note] {
+  color: #697277 !important;
+  font-size: 10px;
+  line-height: 1.5;
+}
+html[data-site-theme="dark"] body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual iframe {
+  filter: none !important;
+}
+@media (max-width: 640px) {
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-visual { aspect-ratio: 16 / 9; }
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-sound-controls { padding: 16px; }
+}
