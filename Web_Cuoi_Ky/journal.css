@@ -7,6 +7,7 @@
 .world-feature{display:grid;grid-template-columns:1fr 1fr;min-height:720px;position:relative;isolation:isolate;border-bottom:1px solid var(--line)}
 .world-feature-image{grid-column:2;grid-row:1;overflow:hidden;height:720px}
 .world-feature-image img{width:100%;height:100%;object-fit:cover;object-position:center 64%;transition:transform .7s}
+.world-feature-image video{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .world-feature-copy{grid-column:1;grid-row:1;position:sticky;top:150px;align-self:start;padding:100px 45px 70px 0}
 .world-feature-copy>.eyebrow{color:#aaaaaa;font-size:10px}
 .world-feature-copy h3{font:800 76px/1.02 var(--font-display);margin:28px 0 22px}

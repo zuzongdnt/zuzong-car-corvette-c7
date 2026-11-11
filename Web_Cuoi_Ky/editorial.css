@@ -22,10 +22,6 @@
 .ed-hero { margin: 88px var(--gutter) 0; min-height: 700px; height: calc(100svh - 88px); max-height: 1000px; position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; padding: 32px 0 76px; }
 .ed-hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 30px 0; }
 .ed-hero-copy .ed-kicker { margin-bottom: 24px; }
-.ed-explore-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
-.ed-explore-links .ed-text-link { gap: 10px; }
-.ed-page--explore :is(.ed-hero-media figcaption, .ed-frame-caption) { color: #fff; }
-.ed-page--explore :is(#journey, #films, #film-road, #film-night, #main-content) { scroll-margin-top: 100px; }
 .ed-hero-media { position: relative; margin: 0; overflow: hidden; min-height: 0; }
 .ed-hero-media:after { content: ''; position: absolute; inset: 55% 0 0; background: linear-gradient(transparent,#00000099); pointer-events: none; }
 .ed-hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 66%; }
@@ -215,4 +211,23 @@
   .ed-lightbox-header h2 { font-size: 24px; }
   .ed-lightbox-stage { min-height: 70px; height: calc(100svh - 180px); margin-top: 10px; }
   .ed-lightbox-bottom { margin-top: 8px; padding-top: 8px; font-size: 9px; }
+}
+
+.ed-film--portrait .ed-film-player { width: min(100%, 360px, 45svh); justify-self: center; }
+.ed-film--portrait .ed-film-player video { aspect-ratio: 9 / 16; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ed-film--entered:not(:focus-within) .ed-film-description,
+  .ed-film--entered:not(:focus-within) .ed-film-player {
+    animation: ed-film-enter 600ms ease-out both;
+  }
+
+  .ed-film--entered:not(:focus-within) .ed-film-player {
+    animation-delay: 90ms;
+  }
+
+  @keyframes ed-film-enter {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 }

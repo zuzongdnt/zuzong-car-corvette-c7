@@ -35,6 +35,13 @@
  addEventListener('scroll',requestUpdate,{passive:true});addEventListener('resize',measure);reduced.addEventListener('change',measure);
  scrollCue.addEventListener('click',()=>{scrollTo({top:hero.dataset.selectedCar?document.querySelector('#collection').offsetTop:reduced.matches||current>=.61?document.querySelector('#performance').offsetTop:heroTop+travel*.9,behavior:reduced.matches?'instant':'smooth'});});
  hero.addEventListener('unveil-selection',requestUpdate);
+ const menu=document.querySelector('.menu-toggle'),mobile=document.querySelector('.mobile-nav');
+ function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Mở menu');mobile.hidden=true;}
+ menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Đóng menu':'Mở menu');mobile.hidden=!open;});
+ mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus();}});
+ document.addEventListener('click',e=>{if(!header.contains(e.target))closeMenu();});
+ addEventListener('resize',()=>{if(innerWidth>760)closeMenu();});
  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px -35px 0px'});
  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
  window.initShowcase?.();measure();

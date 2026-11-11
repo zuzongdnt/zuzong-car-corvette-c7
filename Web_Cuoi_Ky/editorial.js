@@ -1,19 +1,52 @@
 (() => {
   'use strict';
   const header = document.querySelector('.site-header');
+  const menuButton = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('#mobile-nav');
   const progress = document.querySelector('.reading-progress');
   const chapters = [...document.querySelectorAll('[data-chapter]')];
   const journeyImages = [...document.querySelectorAll('[data-journey-image]')];
   const chapterMarks = [...document.querySelectorAll('.ed-chapter-progress i')];
   const journeyLabel = document.querySelector('[data-journey-label]');
   const journeyCounter = document.querySelector('[data-journey-counter]');
+  const mobileQuery = window.matchMedia('(max-width: 900px)');
   const storyQuery = window.matchMedia('(min-width: 901px)');
   let activeChapter = -1;
   let scrollQueued = false;
 
+  function closeMenu(returnFocus = false) {
+    if (!mobileNav || !menuButton) return;
+    mobileNav.hidden = true;
+    menuButton.setAttribute('aria-expanded', 'false');
+    menuButton.setAttribute('aria-label', 'Mở menu');
+    if (returnFocus) menuButton.focus();
+  }
+  menuButton?.addEventListener('click', () => {
+    const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+    mobileNav.hidden = !willOpen;
+    menuButton.setAttribute('aria-expanded', String(willOpen));
+    menuButton.setAttribute('aria-label', willOpen ? 'Đóng menu' : 'Mở menu');
+  });
+  mobileNav?.addEventListener('click', event => {
+    if (event.target.closest('a')) closeMenu();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && mobileNav && !mobileNav.hidden) {
+      closeMenu(true);
+      event.preventDefault();
+    }
+  });
+  document.addEventListener('pointerdown', event => {
+    if (mobileNav && !mobileNav.hidden && !header.contains(event.target)) closeMenu();
+  });
+  document.addEventListener('focusin', event => {
+    if (mobileNav && !mobileNav.hidden && !header.contains(event.target)) closeMenu();
+  });
+  mobileQuery.addEventListener('change', () => closeMenu());
+
   function updateScroll() {
     scrollQueued = false;
-    if (header?.classList.contains('ed-header')) header.classList.toggle('is-scrolled', window.scrollY > 12);
+    header?.classList.toggle('is-scrolled', window.scrollY > 12);
     if (progress) {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.transform = 'scaleX(' + (total > 0 ? Math.min(1, window.scrollY / total) : 0) + ')';
@@ -41,6 +74,18 @@
   window.addEventListener('scroll', queueScroll, { passive: true });
   window.addEventListener('resize', queueScroll, { passive: true });
   updateScroll();
+
+  const films = document.querySelectorAll('.ed-film');
+  if (films.length && 'IntersectionObserver' in window) {
+    const revealFilm = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('ed-film--entered');
+        revealFilm.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px' });
+    films.forEach(film => revealFilm.observe(film));
+  }
 
   const videos = [...document.querySelectorAll('video[data-video-src]')];
   function prepareVideo(video) {

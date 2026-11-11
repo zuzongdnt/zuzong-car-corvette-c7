@@ -1,7 +1,7 @@
 const {chromium}=require('C:/Users/zuzong/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..'),out=path.join(root,'output/playwright/monochrome');fs.mkdirSync(out,{recursive:true});
-const pages=['index.html','about.html','products.html','product.html?car=bmw','explore.html','gallery.html','news.html','article.html','contact.html','cart.html','account.html','sources.html','policies.html'];
+const pages=['index.html','about.html','products.html','product.html?car=bmw','explore.html','gallery.html','news.html','article.html','contact.html','cart.html','account.html','sources.html','policies.html','experience.html','films.html'];
 let browser;
 (async()=>{
  browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--enable-unsafe-swiftshader']});
@@ -19,7 +19,7 @@ let browser;
    const state=await page.evaluate(()=>{
     const header=document.querySelector('.site-header,.z-header');
     const logo=header?.querySelector('img');
-    const headings=[...document.querySelectorAll('h1,h2,h3')].filter(e=>!e.matches('.sr')&&e.getBoundingClientRect().top<innerHeight);
+    const headings=[...document.querySelectorAll('h1,h2,h3')].filter(e=>e.getBoundingClientRect().top<innerHeight);
     return {overflow:document.documentElement.scrollWidth>innerWidth,theme:!!document.querySelector('link[href="monochrome.css"]'),
      body:getComputedStyle(document.body).backgroundColor,header:header?getComputedStyle(header).backgroundColor:'',headerHidden:header?getComputedStyle(header).visibility==='hidden':false,headerBlur:header?getComputedStyle(header,'::before').backdropFilter:'',logo:logo?.getAttribute('src'),
      headings:headings.map(e=>({text:e.textContent,clipped:e.scrollWidth>e.clientWidth+2})),h1:document.querySelectorAll('h1').length,
