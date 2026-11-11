@@ -1,12 +1,12 @@
 globalThis.zephyronArticles = [
   {
     "id": "porsche-gt3-9000",
-    "title": "Porsche 911 GT3 và sức hút của 9.000 vòng/phút",
+    "title": "Trải nghiệm Porsche 911 GT3: Đỉnh cao cỗ máy hút khí tự nhiên 9.000 vòng/phút trên đường đua",
     "car": "porsche",
     "section": "review",
     "category": "Đánh giá chuyên sâu",
     "author": "Minh Khang",
-    "minutes": 2,
+    "minutes": 4,
     "tags": [
       "Porsche 911 GT3",
       "Boxer 4,0 L",

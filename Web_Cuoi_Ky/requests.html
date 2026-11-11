@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Danh sách yêu cầu đặt trước — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="garage.css">
+  <link rel="stylesheet" href="requests.css">
+  <script defer src="requests.js"></script>
+</head>
+<body>
+  <a class="garage-skip" href="#requests-main">Đến danh sách yêu cầu</a>
+  <header class="garage-header">
+    <nav class="garage-wrap flex flex-wrap items-center justify-between gap-4" aria-label="Điều hướng">
+      <a class="garage-brand" href="index.html"><img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="214" height="42"></a>
+      <div class="flex flex-wrap gap-4">
+        <a href="explore.html">Khám phá</a>
+        <a href="garage.html">Cấu hình đã lưu</a>
+        <a href="requests.html" aria-current="page">Yêu cầu đặt trước</a>
+      </div>
+    </nav>
+  </header>
+  <main id="requests-main" class="garage-wrap" tabindex="-1">
+    <header class="garage-intro request-intro">
+      <h1>Danh sách yêu cầu đặt trước</h1>
+      <p class="garage-note">Theo dõi yêu cầu mẫu đã lưu trên trình duyệt này.</p>
+    </header>
+    <dl class="garage-totals request-totals" aria-label="Tổng quan yêu cầu">
+      <div><dt>Tổng yêu cầu</dt><dd data-total>0</dd></div>
+      <div><dt>Chờ tư vấn</dt><dd data-pending>0</dd></div>
+      <div><dt>Đã hủy</dt><dd data-cancelled>0</dd></div>
+    </dl>
+    <p class="garage-status" role="status" data-status></p>
+    <section class="garage-empty" data-empty aria-labelledby="requests-empty">
+      <h2 id="requests-empty">Bạn chưa có yêu cầu nào</h2>
+      <p>Mở Garage, chọn bản phối và tạo yêu cầu báo giá hoặc đặt trước.</p>
+      <a class="garage-button garage-primary" href="garage.html">Mở Garage ↗</a>
+    </section>
+    <section data-history hidden aria-label="Lịch sử yêu cầu">
+      <div class="request-filters">
+        <label>Tìm yêu cầu<input type="search" data-search placeholder="Mã yêu cầu hoặc tên xe"></label>
+        <label>Trạng thái<select data-filter><option value="all">Tất cả</option><option value="pending">Chờ tư vấn</option><option value="cancelled">Đã hủy</option></select></label>
+      </div>
+      <p class="garage-note" data-no-results hidden>Không tìm thấy yêu cầu phù hợp.</p>
+      <div class="request-list" data-list></div>
+    </section>
+    <noscript><p>Bật JavaScript để xem yêu cầu đã lưu.</p></noscript>
+  </main>
+  <dialog class="garage-dialog request-dialog" aria-labelledby="request-dialog-title">
+    <header class="flex items-center justify-between gap-3">
+      <h2 id="request-dialog-title"></h2>
+      <button class="garage-button" type="button" data-close>Đóng</button>
+    </header>
+    <div data-detail></div>
+  </dialog>
+</body>
+</html>

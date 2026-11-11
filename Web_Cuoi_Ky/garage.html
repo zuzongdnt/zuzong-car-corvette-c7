@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Cấu hình đã lưu — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="garage.css">
+  <script defer src="garage.js"></script>
+</head>
+<body>
+  <a class="garage-skip" href="#garage-main">Đến nội dung Garage</a>
+  <header class="garage-header">
+    <nav class="garage-wrap flex flex-wrap items-center justify-between gap-4" aria-label="Điều hướng">
+      <a class="garage-brand" href="index.html"><img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="214" height="42"></a>
+      <div class="flex flex-wrap gap-4"><a href="explore.html">Khám phá</a><a href="news.html">Tin tức</a><a href="requests.html">Yêu cầu đặt trước</a><a href="products.html#products-studio" data-create>Studio 3D</a></div>
+    </nav>
+  </header>
+  <main id="garage-main" class="garage-wrap">
+    <header class="garage-intro grid gap-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+      <div><p class="garage-kicker" data-greeting>Garage của bạn</p><h1>Cấu hình đã lưu</h1><a class="garage-button garage-create" href="products.html#products-studio" data-create data-create-more hidden>Tạo bản phối ↗</a></div>
+      <dl class="garage-totals grid gap-3 sm:grid-cols-2">
+        <div><dt>Bản phối đã lưu</dt><dd data-count>0</dd></div>
+        <div><dt>Tổng ngân sách dự tính</dt><dd data-budget>0 đ</dd></div>
+      </dl>
+    </header>
+    <p class="garage-note">Chi phí minh họa từ Studio. Yêu cầu báo giá và đặt trước được lưu mẫu trên trình duyệt.</p>
+    <p class="garage-status" role="status" data-status></p>
+    <section class="garage-empty" aria-labelledby="garage-empty-title" data-empty>
+      <h2 id="garage-empty-title">Bắt đầu với chiếc xe đầu tiên.</h2>
+      <p>Chọn xe, phối màu trong Studio 3D và lưu lại để xem ở đây.</p>
+      <div class="flex flex-wrap gap-3">
+        <a class="garage-button garage-primary" href="products.html#products-studio" data-create>Tạo bản phối ↗</a>
+        <a class="garage-button" href="explore.html">Khám phá năm mẫu xe ↗</a>
+        <button class="garage-button" type="button" data-samples>Tải hai bản phối mẫu</button>
+      </div>
+    </section>
+    <div class="garage-gallery grid gap-6 xl:grid-cols-2" aria-label="Danh sách bản phối" data-gallery></div>
+    <section class="garage-actions" aria-label="Thao tác với bản phối đã chọn" data-actions hidden>
+      <p data-selection-label>Chọn một bản phối để thao tác.</p>
+      <div class="flex flex-wrap gap-2">
+        <button class="garage-button" type="button" data-action="edit" disabled>Chỉnh sửa cấu hình</button>
+        <button class="garage-button" type="button" data-action="pdf" disabled>Tải PDF thông số</button>
+        <button class="garage-button garage-primary" type="button" data-action="quote" disabled>Yêu cầu báo giá VIP / Đặt trước</button>
+        <button class="garage-button" type="button" data-action="compare" disabled>So sánh bản phối</button>
+      </div>
+    </section>
+    <noscript><p>Bật JavaScript để xem và quản lý các bản phối đã lưu.</p></noscript>
+  </main>
+  <dialog class="garage-dialog" aria-labelledby="garage-dialog-title">
+    <header class="flex items-center justify-between gap-3"><h2 id="garage-dialog-title"></h2><button class="garage-button" type="button" data-close>Đóng</button></header>
+    <div data-dialog-content></div>
+  </dialog>
+</body>
+</html>

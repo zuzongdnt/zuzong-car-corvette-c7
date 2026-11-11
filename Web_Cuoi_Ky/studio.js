@@ -1,9 +1,12 @@
-import {cars,palettes,labels,money,getCar,cleanConfig,colorOf,configurationPrice,readStore,writeStore,brandLogo} from './studio-data.js';
+import {cars,colorsFor,labels,equipmentLabels,equipmentFor,money,getCar,cleanConfig,colorOf,configurationPrice,readStore,writeStore,brandLogo} from './studio-data.js';
 import {mountStudioSpecs} from './studio-specs.js';
 
 export async function mountStudio(host,initial={}) {
   host.classList.add('z-studio');
-  let config=cleanConfig({...readStore('current',{}),...initial});
+  const savedEdit=initial.saved;
+  const savedList=()=>{const items=readStore('saved',[]);return Array.isArray(items)?items:[];};
+  const savedConfig=savedEdit?savedList().find(item=>String(item?.id)===savedEdit):null;
+  let config=cleanConfig(savedConfig||{...readStore('current',{}),...initial});
   let part='body',ready=false,loadingTimer,lights,doors;
   host.innerHTML=`<div class="z-studio-head"><p>ZEPHYRON / AUTOMOTIVE STUDIO</p><h2>Một chiếc xe. Dấu ấn của bạn.</h2><div class="z-brands" role="group" aria-label="Chọn hãng xe">${cars.map(car=>`<button type="button" data-brand="${car.id}" aria-pressed="false"><img class="z-brand-emblem" src="${brandLogo(car.id)}" alt="" width="25" height="29"><span>${car.brand}</span></button>`).join('')}</div></div>
   <div class="z-studio-layout"><div class="z-viewer-stage" aria-busy="true"><div class="z-viewer-caption"><span data-car-caption></span><span data-paint-caption></span></div>
@@ -18,6 +21,9 @@ export async function mountStudio(host,initial={}) {
   const status=host.querySelector('[data-load-text]');
   const retry=host.querySelector('[data-retry]');
   const fieldset=host.querySelector('fieldset');
+  const equipmentPanel=document.createElement('div');
+  equipmentPanel.className='z-form';
+  fieldset.after(equipmentPanel);
   const spin=host.querySelector('[data-spin]');
   const cameraButtons=[...host.querySelectorAll('[data-camera]')];
   const setCameraState=name=>cameraButtons.forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.camera===name)));
@@ -26,18 +32,39 @@ export async function mountStudio(host,initial={}) {
   const radius=()=>mobile.matches?'120%':'90%';
   const editing=initial.edit;
   if(editing)host.querySelector('[data-order]').innerHTML='Cập nhật cấu hình <span aria-hidden="true">↗</span>';
+  if(savedConfig)host.querySelector('[data-save]').textContent='Cập nhật cấu hình đã lưu';
   const notify=message=>host.querySelector('[data-save-status]').textContent=message;
+  const garageLink=document.createElement('a');
+  garageLink.className='z-detail-link';
+  garageLink.href='garage.html';
+  garageLink.textContent='Mở Garage ↗';
+  host.querySelector('[data-save]').after(garageLink);
   const specs=mountStudioSpecs(host);
   function saveCurrent(){writeStore('current',config);host.dataset.config=JSON.stringify(config);}
   function swatches(){
     host.querySelector('[data-part-label]').textContent=labels[part];
     host.querySelector('[data-color-name]').textContent=colorOf(config,part).name;
-    host.querySelector('[data-swatches]').innerHTML=palettes[part].map(color=>{
+    host.querySelector('[data-swatches]').innerHTML=colorsFor(config.car,part).map(color=>{
       const paintDetail=part==='body'?`, ${money(configurationPrice({...config,body:color.id}))}${color.limited?', màu giới hạn':''}`:'';
       return `<button type="button" style="--swatch:${color.hex}" data-color="${color.id}" aria-label="${labels[part]}: ${color.name}${paintDetail}" aria-pressed="${config[part]===color.id}" title="${color.name}${color.limited?' · Màu giới hạn':''}"><span>${config[part]===color.id?'✓':''}</span></button>`;
     }).join('');
     host.querySelectorAll('[data-part]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.part===part)));
   }
+  function renderEquipment(){
+    const fields=Object.entries(equipmentLabels).flatMap(([key,label])=>{
+      const choices=equipmentFor(config.car,key);
+      return choices.length?[ `<label>${label}<select data-equipment="${key}"><option value="">Tiêu chuẩn</option>${choices.map(choice=>`<option value="${choice.id}" ${choice.id===config[key]?'selected':''}>${choice.name}</option>`).join('')}</select></label>` ]:[];
+    });
+    equipmentPanel.innerHTML=fields.length?fields.join('')+'<p class="z-form-note">Nội thất và gói carbon được ghi trên cấu hình. Hình học 3D dùng model tham khảo.</p>':'';
+  }
+  equipmentPanel.addEventListener('change',event=>{
+    const key=event.target.dataset.equipment;
+    if(!key)return;
+    config=cleanConfig({...config,[key]:event.target.value});
+    update();
+    equipmentPanel.querySelector(`[data-equipment="${key}"]`)?.focus();
+    notify('');
+  });
   function applyPart(target){
     const choice=colorOf(config,target);
     viewer.model.materials.filter(material=>material.name.startsWith(`ZUZONG_${target} |`)).forEach(material=>{
@@ -66,11 +93,12 @@ export async function mountStudio(host,initial={}) {
     host.querySelector('[data-price]').textContent=money(configurationPrice(config));
     const badge=host.querySelector('[data-limited-badge]');
     badge.hidden=!paint.limited;
-    host.querySelector('[data-price-note]').textContent=paint.surcharge?`${paint.name} · Phụ phí ${money(paint.surcharge)}.`:`${paint.name} · Giá tiêu chuẩn.`;
+    const surcharge=configurationPrice(config)-car.price;
+    host.querySelector('[data-price-note]').textContent=surcharge?`Phụ phí tùy chọn ${money(surcharge)}.`:'Giá cấu hình tiêu chuẩn.';
     host.querySelector('[data-detail]').href=`product.html?car=${car.id}`;
     viewer.alt=`${car.brand} ${car.name}, ${colorOf(config,'body').name}, heo phanh ${colorOf(config,'calipers').name}, mâm ${colorOf(config,'rims').name}. Kéo để xoay và dùng phím mũi tên để đổi góc nhìn.`;
     host.querySelectorAll('[data-brand]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.brand===car.id)));
-    swatches();saveCurrent();
+    swatches();renderEquipment();saveCurrent();
   }
   function failed(message){clearTimeout(loadingTimer);doors?.beginLoad(config.car);ready=false;fieldset.disabled=true;stage.setAttribute('aria-busy','false');host.dataset.ready='false';viewer.showPoster();status.textContent=message;retry.hidden=false;}
   function load(reload=false){
@@ -105,10 +133,18 @@ export async function mountStudio(host,initial={}) {
     if(button.hasAttribute('data-fullscreen')){if(document.fullscreenElement)document.exitFullscreen?.();else stage.requestFullscreen?.().catch(()=>notify('Trình duyệt chưa hỗ trợ toàn màn hình.'));}
     if(button.hasAttribute('data-retry'))load(true);
     if(button.hasAttribute('data-save')){
-      const stored=readStore('saved',[]);const saved=Array.isArray(stored)?stored:[];
+      const saved=savedList();
+      if(savedConfig){
+        const index=saved.findIndex(item=>String(item?.id)===savedEdit);
+        if(index<0){notify('Cấu hình đã bị xóa khỏi Garage.');return;}
+        saved[index]={...config,id:savedConfig.id};
+        if(writeStore('saved',saved))location.href='garage.html';
+        else notify('Không cập nhật được Garage. Kiểm tra quyền lưu trữ của trình duyệt.');
+        return;
+      }
       const exists=saved.some(item=>JSON.stringify(cleanConfig(item))===JSON.stringify(config));
       if(exists){notify('Cấu hình này đã có trong tài khoản của bạn.');return;}
-      if(writeStore('saved',[{...config,id:Date.now().toString(36)},...saved]))notify('Đã lưu. Xem lại trong mục Tài khoản.');else notify('Không lưu được. Kiểm tra quyền lưu trữ của trình duyệt.');
+      if(writeStore('saved',[{...config,id:Date.now().toString(36)},...saved]))notify('Đã lưu vào Garage của bạn.');else notify('Không lưu được. Kiểm tra quyền lưu trữ của trình duyệt.');
     }
     if(button.hasAttribute('data-order')){
       const stored=readStore('cart',[]);const cart=Array.isArray(stored)?stored:[];
