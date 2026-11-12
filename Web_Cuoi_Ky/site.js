@@ -220,13 +220,46 @@ if(main){
   if(page==='gallery'){
     let filter=cars.some(car=>car.id===params.get('car'))?params.get('car'):'all';let current=0;
     const items=cars.flatMap(car=>['hero','side','rear'].map((angle,i)=>({car:car.id,name:car.name,src:poster(car.id,angle),label:['Góc nghiêng','Ngang thân xe','Phía sau'][i]})));
-    main.innerHTML=heading('Mọi góc nhìn. <em>Mọi cá tính.</em>','Bộ sưu tập năm dòng xe. Chọn hãng và mở ảnh để nhìn gần hơn.')+`<div class="z-filter" role="group" aria-label="Lọc bộ sưu tập"><button data-filter="all">Tất cả</button>${cars.map(car=>`<button data-filter="${car.id}">${car.brand}</button>`).join('')}</div><div class="z-grid" data-gallery-grid></div><dialog class="z-gallery-modal" aria-label="Xem ảnh xe lớn"><img alt=""><div class="z-lightbox-toolbar"><button type="button" data-prev aria-label="Ảnh trước">←</button><span data-caption></span><button type="button" data-next aria-label="Ảnh tiếp theo">→</button><button type="button" data-close aria-label="Đóng ảnh">Đóng ✕</button></div></dialog>`;
+    main.innerHTML=heading('Mọi góc nhìn. <em>Mọi cá tính.</em>','Bộ sưu tập năm dòng xe. Chọn hãng và mở ảnh để nhìn gần hơn.')+`<div class="z-filter" role="group" aria-label="Lọc bộ sưu tập"><button data-filter="all">Tất cả</button>${cars.map(car=>`<button data-filter="${car.id}">${car.brand}</button>`).join('')}</div><div class="z-grid" data-gallery-grid></div><dialog class="z-gallery-modal" aria-label="Xem ảnh xe toàn màn hình">
+      <div class="z-lightbox-header"><button type="button" data-close autofocus>Đóng ảnh <span aria-hidden="true">×</span></button></div>
+      <div class="z-lightbox-stage"><img alt=""></div>
+      <div class="z-lightbox-toolbar">
+        <button type="button" data-prev aria-label="Ảnh trước">←</button>
+        <span data-caption aria-live="polite" aria-atomic="true"></span>
+        <button type="button" data-next aria-label="Ảnh tiếp theo">→</button>
+      </div>
+    </dialog>`;
     const dialog=main.querySelector('dialog');const visible=()=>items.filter(item=>filter==='all'||item.car===filter);
-    function render(){main.querySelectorAll('[data-filter]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.filter===filter)));main.querySelector('[data-gallery-grid]').innerHTML=visible().map((item,i)=>`<article class="z-card"><button type="button" data-image="${i}" aria-label="Xem ${item.name}, ${item.label}" style="display:block;width:100%;padding:0;border:0;text-align:left;background:none;color:inherit"><img src="${item.src}" alt="${item.name}, ${item.label}" loading="lazy"><div class="z-card-body"><small>${getCar(item.car).brand}</small><h2>${item.name}</h2><p>${item.label} ↗</p></div></button></article>`).join('');}
+    const grid = main.querySelector('[data-gallery-grid]');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const revealCards = 'IntersectionObserver' in window ? new IntersectionObserver((entries, observer) => {
+      const arriving = entries.filter(entry => entry.isIntersecting && entry.target.isConnected);
+      arriving.forEach(({target}, index) => {
+        target.style.setProperty('--gallery-reveal-delay', `${Math.min(index, 3) * 140}ms`);
+        target.classList.add('z-gallery-card-reveal');
+        observer.unobserve(target);
+      });
+    }) : null;
+
+    function render() {
+      revealCards?.disconnect();
+      main.querySelectorAll('[data-filter]').forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
+      });
+      grid.innerHTML = visible().map((item,i)=>`<article class="z-card"><button type="button" data-image="${i}" aria-label="Xem ${item.name}, ${item.label}" style="display:block;width:100%;padding:0;border:0;text-align:left;background:none;color:inherit"><span class="z-gallery-photo"><img src="${item.src}" alt="${item.name}, ${item.label}" loading="lazy" decoding="async"><span class="z-gallery-hover-caption" aria-hidden="true"><strong>${item.name}</strong><small>${item.label}</small></span></span><div class="z-card-body"><small>${getCar(item.car).brand}</small><h2>${item.name}</h2><p>${item.label} ↗</p></div></button></article>`).join('');
+      if (revealCards && !reducedMotion.matches) {
+        for (const card of grid.children) revealCards.observe(card);
+      }
+    }
     function show(){const all=visible();current=(current+all.length)%all.length;const item=all[current];dialog.querySelector('img').src=item.src;dialog.querySelector('img').alt=item.name+', '+item.label;dialog.querySelector('[data-caption]').textContent=`${item.name} / ${item.label} · ${current+1}/${all.length}`;}
     main.addEventListener('click',event=>{const el=event.target.closest('button');if(!el)return;if(el.dataset.filter){filter=el.dataset.filter;render();}if(el.dataset.image!==undefined){current=Number(el.dataset.image);show();dialog.showModal();}if(el.hasAttribute('data-close'))dialog.close();if(el.hasAttribute('data-prev')){current--;show();}if(el.hasAttribute('data-next')){current++;show();}});
-    dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
-    dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){current--;show();}if(event.key==='ArrowRight'){current++;show();}});render();
+    dialog.addEventListener('keydown', event => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      current += event.key === 'ArrowLeft' ? -1 : 1;
+      show();
+    });
+    render();
   }
   if(page==='news')main.innerHTML=heading('Góc nhìn <em>sau tay lái.</em>','Những câu chuyện về thiết kế, màu sắc và trải nghiệm trong studio Zuzong.')+'<div class="z-grid">'+articleCards()+'</div>';
   if(page==='article'){
