@@ -1677,16 +1677,31 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] #smart-ow
 /* Car Anatomy: use the real exterior photo for each selected model. */
 :where(body.z-page) main[data-page="products"] .z-ca-visual { display: flex; flex-direction: column; }
 :where(body.z-page) main[data-page="products"] .z-ca-photo { width: 100%; margin: 16px 0 0; }
-:where(body.z-page) main[data-page="products"] .z-ca-photo img { display: block; width: 100%; aspect-ratio: 1.62 / 1; border: 1px solid #343c40; background: #111416; object-fit: cover; object-position: center 54%; }
+:where(body.z-page) main[data-page="products"] .z-ca-image-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f4f4f6;
+}
+:where(body.z-page) main[data-page="products"] .z-ca-image-frame img {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: block;
+  width: var(--ca-photo-width, 100%);
+  max-width: none;
+  height: auto;
+  translate: -50% var(--ca-photo-offset, -50%);
+}
+/* These source files include side margins. Frame each photo around the car. */
+.z-ca-image-frame [data-photo-car="porsche"] { --ca-photo-width: 189%; --ca-photo-offset: -64%; }
+.z-ca-image-frame [data-photo-car="mercedes"] { --ca-photo-width: 129%; --ca-photo-offset: -61%; }
+.z-ca-image-frame [data-photo-car="lamborghini"] { --ca-photo-width: 121%; }
 :where(body.z-page) main[data-page="products"] .z-ca-photo figcaption { display: flex; justify-content: space-between; gap: 14px; padding-top: 10px; color: #aab4b9; font-size: 9px; line-height: 1.5; }
 :where(body.z-page) main[data-page="products"] .z-ca-photo figcaption a { color: #e2e7e9; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 :where(body.z-page) main[data-page="products"] .z-ca-disclaimer { margin-top: 12px; line-height: 1.7; }
 @media (max-width: 900px) {
   :where(body.z-page) main[data-page="products"] .z-ca-layout { grid-template-columns: minmax(0,1fr); }
   :where(body.z-page) main[data-page="products"] .z-ca-info { border-left: 0; border-top: 1px solid #353d41; }
-}
-@media (max-width: 640px) {
-  :where(body.z-page) main[data-page="products"] .z-ca-photo img { aspect-ratio: 1.5 / 1; object-position: center; }
 }
 
 /* Products page dark backgrounds requested by Quynh */
@@ -2674,15 +2689,16 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] #my-dream
 :where(body.z-page) main[data-page="products"] .z-products-arrival strong {
   color: #111 !important;
 }
-/* All five clips use their native portrait ratio and a shared viewing size. */
+/* Full-width section with the vehicle list beside the portrait player. */
 body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-shell {
   width: 100%;
   max-width: none;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, min(440px, 50svh));
-  gap: clamp(24px, 2.5vw, 36px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, min(36%, 43svh));
   align-items: center;
-  padding: clamp(24px, 3vw, 48px) clamp(20px, 4.4vw, 76px);
+  gap: clamp(24px, 3vw, 48px);
+  min-height: calc(100svh - 86px);
+  padding: clamp(24px, 4svh, 48px) var(--gutter);
 }
 body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-copy {
   min-width: 0;
@@ -2716,6 +2732,7 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-ex
 body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-visual {
   position: relative;
   width: 100%;
+  height: auto;
   aspect-ratio: 9 / 16;
   overflow: hidden;
   border-radius: 10px;
@@ -2779,19 +2796,14 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-ex
   outline: 2px solid #17191b;
   outline-offset: 3px;
 }
-@media (max-width: 900px) {
+@media (max-width: 760px) {
   body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-shell {
     grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
-  }
-  body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-copy {
-    max-width: none;
-    width: 100%;
-    margin: 0 auto;
+    min-height: auto;
   }
   body.z-page:has(main[data-page="products"]) main[data-page="products"] #sound-experience .z-sound-player {
-    width: min(100%, 440px, 50svh);
-    margin: 0 auto;
+    width: min(100%, 43svh);
+    justify-self: center;
   }
 }
 
@@ -3034,4 +3046,40 @@ main[data-page="products"] .z-fx-stage[data-mode="video"] .z-product-image-previ
 @keyframes z-product-reveal {
   from { opacity: .3; translate: 0 16px; }
   to { opacity: 1; translate: 0 0; }
+}
+
+/* Extend the product sections to the viewport and align their content to the header. */
+body.z-page main[data-page="products"] > :is(
+  .z-products-campaign, .z-digital-showroom, .z-products-promo, .z-car-anatomy,
+  .z-ar-experience, .z-sound-experience, .z-smart-ownership, .z-before-after,
+  .z-dream-car, .z-feature-explorer, .z-drive-mode, .z-safety-visualizer,
+  .z-technical-specs, .z-version-comparison, .z-car-advisor,
+  .z-smart-test-drive, .z-car-quiz, .z-scroll-story
+) {
+  inset-inline-start: auto;
+  width: auto;
+  max-width: none;
+  margin-inline: calc(-1 * var(--gutter));
+}
+body.z-page main[data-page="products"] > .z-products-campaign {
+  padding-inline: var(--gutter) 0;
+}
+body.z-page main[data-page="products"] > .z-products-promo { border-radius: 0; }
+body.z-page main[data-page="products"] > section > :is(
+  .z-ca-shell, .z-ar-shell, .z-own-shell, .z-ba-shell, .z-dream-shell,
+  .z-fx-shell, .z-dm-shell, .z-sv-shell, .z-ts-shell, .z-vc-shell,
+  .z-advisor-shell, .z-test-shell, .z-quiz-shell, .z-story-shell
+) {
+  width: 100%;
+  max-width: none;
+  padding-inline: var(--gutter);
+}
+body.z-page main[data-page="products"] > .z-digital-showroom > .z-digital-shell { width: 100%; }
+
+@media (max-width: 760px) {
+  body.z-page main[data-page="products"] .z-ar-visual { width: 100%; min-width: 0; }
+  body.z-page main[data-page="products"] > .z-products-campaign { padding-inline: 0; }
+  body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-products-caption {
+    padding-inline: var(--gutter);
+  }
 }

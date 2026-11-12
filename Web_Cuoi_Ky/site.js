@@ -141,7 +141,7 @@ if(main){
     const syncProductMotion=()=>productVideos.forEach(video=>{if(reducedMotion.matches)video.pause();else video.play().catch(()=>{});});
     syncProductMotion();reducedMotion.addEventListener('change',syncProductMotion);
     await import('./studio-page.js?v=20261111-feature-panel-v26');
-    const {mountCarAnatomy}=await import('./car-anatomy.js');
+    const {mountCarAnatomy}=await import('./car-anatomy.js?v=wide-photo-v1');
     mountCarAnatomy(main.querySelector('[data-car-anatomy]'),main.querySelector('[data-studio-mount]'));
     const {mountScrollStorytelling}=await import('./scroll-storytelling.js');
     mountScrollStorytelling(main.querySelector('[data-scroll-story]'));
@@ -196,7 +196,7 @@ if(main){
   if(page==='explore')main.innerHTML=heading('Khám phá <em>thế giới ZEPHYRON.</em>','Từ studio tương tác đến những câu chuyện về màu sắc và đường nét.')+`<div class="z-grid">${modelCards()}</div><div class="z-link-tiles"><a href="films.html">Thước phim ↗<small>Hai thước phim về Mercedes-AMG SL 63 và Porsche 911 GT3 RS</small></a><a href="experience.html">Hành trình ↗<small>Khám phá không gian và cảm xúc sau tay lái</small></a><a href="news.html">Tin tức / Bài viết ↗<small>Góc nhìn thiết kế và trải nghiệm studio</small></a><a href="article.html?id=${articles[0].id}">Chi tiết bài viết ↗<small>${articles[0].title}</small></a><a href="account.html#saved">Cấu hình đã lưu ↗<small>Mở lại những cấu hình bạn đã lưu trong Studio 3D</small></a><a href="requests.html">Danh sách yêu cầu đặt trước ↗<small>Xem các yêu cầu tư vấn và lái thử đã tạo</small></a></div>`;
   if(page==='gallery'){
     let filter=cars.some(car=>car.id===params.get('car'))?params.get('car'):'all';let current=0;
-    const items=cars.flatMap(car=>['hero','side','rear'].map((angle,i)=>({car:car.id,name:car.name,src:poster(car.id,angle),label:['Góc nghiêng','Ngang thân xe','Phía sau'][i]})));
+    const items=cars.flatMap(car=>['hero','side','rear'].map((angle,i)=>({car:car.id,angle,name:car.name,src:poster(car.id,angle),label:['Góc nghiêng','Ngang thân xe','Phía sau'][i]})));
     main.innerHTML=heading('Mọi góc nhìn. <em>Mọi cá tính.</em>','Bộ sưu tập năm dòng xe. Chọn hãng và mở ảnh để nhìn gần hơn.')+`<div class="z-filter" role="group" aria-label="Lọc bộ sưu tập"><button data-filter="all">Tất cả</button>${cars.map(car=>`<button data-filter="${car.id}">${car.brand}</button>`).join('')}</div><div class="z-grid" data-gallery-grid></div><dialog class="z-gallery-modal" aria-label="Xem ảnh xe toàn màn hình">
       <div class="z-lightbox-header"><button type="button" data-close autofocus>Đóng ảnh <span aria-hidden="true">×</span></button></div>
       <div class="z-lightbox-stage"><img alt=""></div>
@@ -223,7 +223,7 @@ if(main){
       main.querySelectorAll('[data-filter]').forEach(button => {
         button.setAttribute('aria-pressed', String(button.dataset.filter === filter));
       });
-      grid.innerHTML = visible().map((item,i)=>`<article class="z-card"><button type="button" data-image="${i}" aria-label="Xem ${item.name}, ${item.label}" style="display:block;width:100%;padding:0;border:0;text-align:left;background:none;color:inherit"><span class="z-gallery-photo"><img src="${item.src}" alt="${item.name}, ${item.label}" loading="lazy" decoding="async"><span class="z-gallery-hover-caption" aria-hidden="true"><strong>${item.name}</strong><small>${item.label}</small></span></span><div class="z-card-body"><small>${getCar(item.car).brand}</small><h2>${item.name}</h2><p>${item.label} ↗</p></div></button></article>`).join('');
+      grid.innerHTML = visible().map((item,i)=>`<article class="z-card"><button type="button" data-image="${i}" aria-label="Xem ${item.name}, ${item.label}" style="display:block;width:100%;padding:0;border:0;text-align:left;background:none;color:inherit"><span class="z-gallery-photo" data-gallery-shot="${item.car}-${item.angle}"><img src="${item.src}" alt="${item.name}, ${item.label}" loading="lazy" decoding="async"><span class="z-gallery-hover-caption" aria-hidden="true"><strong>${item.name}</strong><small>${item.label}</small></span></span><div class="z-card-body"><small>${getCar(item.car).brand}</small><h2>${item.name}</h2><p>${item.label} ↗</p></div></button></article>`).join('');
       if (revealCards && !reducedMotion.matches) {
         for (const card of grid.children) revealCards.observe(card);
       }

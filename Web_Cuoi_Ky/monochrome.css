@@ -15,6 +15,14 @@ img,video,model-viewer,.z-colors button,.reveal-canvas,.drive-canvas,.drive-ambi
 .header-cta [data-cart-count]{font-size:12px;margin-left:10px}.z-header-tools{font-size:11px;gap:20px}.z-cart-count{background:#111;color:#fff;min-width:19px;display:inline-block;text-align:center;border-radius:0;padding:0 4px}.z-legacy-account{color:#555;font-size:10px}
 .reading-progress{background:#111}.site-header.is-intro .reading-progress{opacity:1}.menu-toggle span{background:#111}.mobile-nav,.z-main-nav.is-open{background:#fff;border-color:#ddd;color:#111}.mobile-nav a{color:#111}.z-menu{background:#fff;color:#111;border-color:#ccc;min-height:44px;min-width:44px}
 .z-container{width:calc(100% - 2 * var(--gutter));max-width:1600px}
+/* Match the home page: full-width sections with an inset for readable content. */
+:where(body:has(main[data-page="about"], main[data-page="products"],
+  main[data-page="gallery"], main[data-page="account"])) :is(main.z-container, .z-footer > .z-container) {
+  width: 100%;
+  max-width: none;
+  padding-inline: var(--gutter);
+}
+
 .z-page-heading{padding:80px 0 52px;max-width:1280px}.z-kicker{font-size:10px;letter-spacing:1.6px;margin-bottom:26px;color:#666}
 .z-page-heading h1,.z-display,.section-title,.ed-display,.ed-section-title{font-family:var(--font-display);text-transform:none;font-weight:500;font-size:clamp(46px,6.2vw,92px);line-height:1.08;letter-spacing:-3.4px;color:#111}
 .z-page-heading h1{max-width:1150px;margin-bottom:26px}.z-page-heading h1 em,.z-display em,.section-title em,.ed-display em,.ed-section-title em{color:inherit;font-style:normal}
@@ -619,11 +627,34 @@ main[data-page="gallery"] .z-gallery-photo {
   display: block;
   position: relative;
   overflow: hidden;
+  aspect-ratio: var(--gallery-frame-ratio, 16 / 9);
 }
 
 main[data-page="gallery"] .z-gallery-photo img {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  display: block;
+  width: var(--gallery-photo-width, 100%);
+  max-width: none;
+  height: auto;
+  aspect-ratio: auto;
+  translate: -50% var(--gallery-photo-offset, -50%);
   transform: none;
 }
+
+/* Crop the original file margins in the grid, using each car as the focal point. */
+[data-gallery-shot="corvette-rear"] { --gallery-photo-width: 142%; --gallery-photo-offset: -48%; }
+[data-gallery-shot="bmw-hero"] { --gallery-frame-ratio: 2.1; }
+[data-gallery-shot="bmw-side"] { --gallery-photo-offset: -54%; }
+[data-gallery-shot="bmw-rear"],
+[data-gallery-shot="porsche-hero"] { --gallery-photo-width: 151%; --gallery-photo-offset: -60%; }
+[data-gallery-shot="porsche-side"] { --gallery-photo-width: 189%; --gallery-photo-offset: -64%; }
+[data-gallery-shot="porsche-rear"] { --gallery-photo-width: 151%; --gallery-photo-offset: -58%; }
+[data-gallery-shot="mercedes-side"] { --gallery-photo-width: 129%; --gallery-photo-offset: -61%; }
+[data-gallery-shot="mercedes-rear"] { --gallery-photo-width: 132%; --gallery-photo-offset: -61%; }
+[data-gallery-shot="lamborghini-hero"] { --gallery-photo-width: 178%; --gallery-photo-offset: -63%; }
+[data-gallery-shot="lamborghini-side"] { --gallery-photo-width: 121%; --gallery-photo-offset: -52%; }
+[data-gallery-shot="lamborghini-rear"] { --gallery-photo-width: 100.5%; }
 
 main[data-page="gallery"] .z-gallery-photo::after {
   content: "";
@@ -784,7 +815,6 @@ main .z-gallery-modal::backdrop {
   --about-column-gap: clamp(28px, 4vw, 56px);
   --about-heading-size: clamp(30px, 3.2vw, 44px);
 }
-#about-top main.z-container, #about-top .z-footer .z-container { max-width: 1240px; }
 .z-about-hero {
   display: grid;
   grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
@@ -837,7 +867,7 @@ main .z-gallery-modal::backdrop {
 }
 .z-about-hero .z-about-hero-cta:hover { background: #363636; }
 .z-about-hero .z-about-hero-cta:focus-visible { outline: 2px solid #141414; outline-offset: 3px; }
-.z-about-hero-visual { min-width: 0; margin: 0; }
+.z-about-hero-visual { min-width: 0; margin: 0 calc(-1 * var(--gutter)) 0 0; }
 .z-about-hero-visual img { display: block; width: 100%; height: auto; }
 .z-about-hero-visual figcaption, .z-about-story-identity figcaption {
   margin-top: 10px;
@@ -845,7 +875,7 @@ main .z-gallery-modal::backdrop {
   font-size: 11px;
   line-height: 1.6;
 }
-.z-about-hero-visual figcaption { text-align: right; }
+.z-about-hero-visual figcaption { padding-inline-end: var(--gutter); text-align: right; }
 .z-about-story, .z-about-values, .z-about-section {
   margin-block: 0 var(--about-section-gap);
   color: #141414;
@@ -882,7 +912,7 @@ main .z-gallery-modal::backdrop {
   line-height: 1.8;
 }
 .z-about-story-chapters p { max-width: 65ch; }
-.z-about-values { padding: clamp(24px, 3.2vw, 40px); background: #f3f4f5; }
+.z-about-values { padding-block: clamp(24px, 3.2vw, 40px); background: #f3f4f5; }
 .z-about-values h2 { margin-block-end: 28px; }
 .z-about-values-list {
   display: grid;
@@ -922,12 +952,16 @@ main .z-gallery-modal::backdrop {
 .z-about-brand-list img[src$="mercedes.svg"] { filter: brightness(0); }
 .z-about-brand-list strong { font-size: 15px; font-weight: 650; }
 .z-about-brand-list a > span { color: #52585c; font-size: 12px; }
+.z-about-values, .z-about-services {
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+}
 .z-about-services {
   display: grid;
   grid-template-columns: minmax(0, 38fr) minmax(0, 62fr);
   align-items: start;
   gap: var(--about-column-gap);
-  padding: clamp(24px, 3.2vw, 40px);
+  padding-block: clamp(24px, 3.2vw, 40px);
   background: #f3f4f5;
 }
 .z-about-services-intro h2 { margin-block-end: 16px; }
@@ -983,7 +1017,8 @@ main .z-gallery-modal::backdrop {
   .z-about-hero h1 { margin-block: 14px 16px; font-size: clamp(39px, 11.5vw, 68px); }
   .z-about-hero-tagline { font-size: clamp(22px, 5.8vw, 30px); }
   .z-about-hero .z-about-hero-intro { margin-block: 16px 22px; font-size: 15px; }
-  .z-about-hero-visual figcaption { text-align: left; font-size: 10px; }
+  .z-about-hero-visual { margin-inline: calc(-1 * var(--gutter)); }
+  .z-about-hero-visual figcaption { padding-inline: var(--gutter); text-align: left; font-size: 10px; }
   .z-about-story-heading { margin-block-end: 24px; }
   .z-about-story-heading h2 { max-width: 22ch; }
   .z-about-story-chapters > div { padding-block: 20px; }
@@ -1007,4 +1042,15 @@ main .z-gallery-modal::backdrop {
   .z-about-service-list strong { font-size: 18px; }
   .z-about-showroom-layout { margin-block-start: 20px; gap: 24px; }
   .z-about-showroom-copy { padding-block: 0; }
+}
+
+main[data-page="gallery"] [data-gallery-grid] {
+  margin-inline: calc(-1 * var(--gutter));
+  gap: clamp(28px, 3vw, 54px) clamp(12px, 1.5vw, 24px);
+}
+main[data-page="gallery"] [data-gallery-grid] .z-card-body {
+  padding-inline: clamp(14px, 1.8vw, 28px);
+}
+@media (max-width: 760px) {
+  main[data-page="gallery"] [data-gallery-grid] .z-card-body { padding-inline: var(--gutter); }
 }

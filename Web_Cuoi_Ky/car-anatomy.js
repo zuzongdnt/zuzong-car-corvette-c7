@@ -59,7 +59,9 @@ export function mountCarAnatomy(host, studio) {
       <div class="z-ca-visual">
         <div class="z-ca-car-label"><span>ẢNH XE THẬT / GÓC NGOẠI THẤT</span><strong data-ca-car-name></strong></div>
         <figure class="z-ca-photo">
-          <img data-ca-photo alt="" loading="lazy" decoding="async">
+          <div class="z-ca-image-frame">
+            <img data-ca-photo alt="" loading="lazy" decoding="async">
+          </div>
           <figcaption><span>Ảnh tham khảo · xe thật</span><a data-ca-photo-source target="_blank" rel="noopener noreferrer">Nguồn ảnh ↗</a></figcaption>
         </figure>
         <p class="z-ca-disclaimer">Ảnh là xe thật của mẫu đang chọn. Mô tả cấu tạo mang tính tổng quan; không thể hiện vị trí chi tiết hoặc cấu hình tháo rời chính xác của nhà sản xuất.</p>
@@ -85,9 +87,14 @@ export function mountCarAnatomy(host, studio) {
     host.querySelectorAll('[data-ca-layer]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.caLayer === layer)));
 
     const photo = host.querySelector('[data-ca-photo]');
-    photo.src = poster(car.id, 'side');
+    photo.dataset.photoCar = car.id;
     photo.alt = `Ảnh thật ngoại thất ${car.brand} ${car.name}`;
-    photo.onerror = () => { photo.onerror = null; photo.src = poster(car.id, 'rear'); };
+    photo.onerror = () => {
+      photo.onerror = null;
+      delete photo.dataset.photoCar;
+      photo.src = poster(car.id, 'rear');
+    };
+    photo.src = poster(car.id, 'side');
     host.querySelector('[data-ca-photo-source]').href = PHOTO_SOURCES[car.id] || '#';
 
     host.querySelector('[data-ca-eyebrow]').textContent = selected.label;

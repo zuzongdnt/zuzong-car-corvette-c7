@@ -5,7 +5,7 @@
   --account-paper: #f5f5f4;
 }
 
-.z-account-page main { max-width: 1200px; padding-bottom: clamp(48px, 6vw, 88px); }
+.z-account-page main { padding-bottom: clamp(48px, 6vw, 88px); }
 .z-account-page :is(#ho-so, #garage) { scroll-margin-top: 110px; }
 .account-heading {
   display: flex;
@@ -25,8 +25,15 @@
 .account-heading nav { display: flex; gap: 24px; }
 .account-heading nav a { padding-block: 12px; font-weight: 650; white-space: nowrap; border-bottom: 1px solid var(--account-line); }
 .account-heading nav a:hover { border-color: var(--account-ink); }
-.account-layout { display: grid; grid-template-columns: minmax(0, 45fr) minmax(0, 55fr); align-items: stretch; }
-.account-panel { min-width: 0; padding: clamp(20px, 3vw, 38px); background: var(--account-paper); }
+.account-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 44fr) minmax(0, 56fr);
+  align-items: start;
+  margin-inline: calc(-1 * var(--gutter));
+  background: var(--account-paper);
+}
+.account-panel { min-width: 0; padding: clamp(24px, 3vw, 44px) var(--gutter); }
+.account-panel > * { max-width: 560px; }
 .account-panel h2, .account-garage h2 {
   margin: 0;
   line-height: 1.2;
@@ -107,7 +114,7 @@
 .account-media video {
   display: block;
   width: 100%;
-  height: clamp(330px, 38vw, 490px);
+  height: clamp(330px, 38vw, 600px);
   object-fit: cover;
   object-position: center 55%;
   background: #1b1d1e;

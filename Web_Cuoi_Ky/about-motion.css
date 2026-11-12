@@ -112,8 +112,12 @@
 }
 .z-about-to-top:hover { background: #f0f1f2; }
 
-.z-about-hero-media { position: relative; overflow: hidden; }
+/* Frame the BMW above the watermark; the figure caption keeps the credit. */
+.z-about-hero-media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
 .z-about-hero-media img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   translate: 0 var(--about-parallax, 0px);
 }
 .z-about-hero-media::after {
