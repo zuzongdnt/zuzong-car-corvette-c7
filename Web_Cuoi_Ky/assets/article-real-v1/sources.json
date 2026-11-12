@@ -43,5 +43,14 @@
     "sourceImage": "https://i.pinimg.com/736x/07/f0/4b/07f04b408b9e8b3fe2eb5f99963409b3.jpg",
     "title": "Lamborghini Revuelto | Cool black sports cars, Black car lamborghini ...",
     "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "bmw",
+    "angle": "track",
+    "asset": "assets/article-real-v1/bmw-m4-track.webp",
+    "sourcePage": "https://www.press.bmwgroup.com/global/photo/detail/P90466521/The-BMW-M4-Competition-Coupe-06-2022",
+    "sourceImage": "https://mediapool.bmwgroup.com/cache/P9/202206/P90466521/P90466521-the-bmw-m4-competition-coupe-06-2022-2250px.jpg",
+    "title": "The BMW M4 Competition Coupe (06/2022).",
+    "credit": "BMW Group PressClub"
   }
 ]

@@ -15,9 +15,25 @@ export function mountCarAdvisor(host,studio){
   const select=host.querySelector('[data-advisor-car]');
   const form=host.querySelector('[data-advisor-form]');
   const input=form.elements.question;
-  select.value=carId;
-  function updateCar(id){if(cars.some(car=>car.id===id)){carId=id;select.value=id;}}
-  studio?.addEventListener('studio-change',event=>updateCar(event.detail?.car));
+  if (!cars.some(car => car.id === carId)) carId = cars[0].id;
+  select.value = carId;
+  let activeQuestion = 'Thông số kỹ thuật cơ bản';
+  let studioCarId = carId;
+
+  function updateCar(id) {
+    if (id === carId || !cars.some(car => car.id === id)) return;
+    carId = id;
+    select.value = id;
+    render(activeQuestion);
+  }
+
+  select.addEventListener('change', () => updateCar(select.value));
+  studio?.addEventListener('studio-change', event => {
+    const id = event.detail?.car;
+    if (id === studioCarId || !cars.some(car => car.id === id)) return;
+    studioCarId = id;
+    updateCar(id);
+  });
   function render(question){
     const car=cars.find(item=>item.id===carId)||cars[0];
     const spec=TECH_SPECS[car.id],versions=VERSION_DATA[car.id],knowledge=FEATURE_DATA[car.id];
@@ -49,7 +65,21 @@ export function mountCarAdvisor(host,studio){
     host.querySelector('[data-advisor-body]').innerHTML=body;
     const link=host.querySelector('[data-advisor-source]');link.hidden=!source;if(source){link.href=source;link.textContent=`${sourceLabel} ↗`;}
   }
-  form.addEventListener('submit',event=>{event.preventDefault();const question=input.value.trim();if(question)render(question);});
-  host.addEventListener('click',event=>{const button=event.target.closest('[data-question]');if(!button)return;input.value=button.dataset.question;render(input.value);});
-  render('Thông số kỹ thuật cơ bản');
+  function answerQuestion(question) {
+    activeQuestion = question;
+    render(activeQuestion);
+  }
+
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (question) answerQuestion(question);
+  });
+  host.addEventListener('click', event => {
+    const button = event.target.closest('[data-question]');
+    if (!button) return;
+    input.value = button.dataset.question;
+    answerQuestion(input.value);
+  });
+  render(activeQuestion);
 }

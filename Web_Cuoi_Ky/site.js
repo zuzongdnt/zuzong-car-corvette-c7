@@ -59,21 +59,38 @@ const heading=(title,text='',kicker='ZEPHYRON')=>`<div class="z-page-heading"><p
 const button=(href,label,red=false)=>`<a class="z-button ${red?'z-button-red':''}" href="${href}">${label} <span aria-hidden="true">↗</span></a>`;
 const modelCards=()=>cars.map(car=>`<article class="z-card"><a href="product.html?car=${car.id}"><img src="${poster(car.id)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"><div class="z-card-body"><small>${car.brand}</small><h2>${car.name}</h2><p>${car.text}</p><span class="z-card-link">Khám phá mẫu xe ↗</span></div></a></article>`).join('');
 const catalogImage=car=>({
-  corvette:'assets/editorial/corvette-c7-large-catalog-v1.png',
-  bmw:'assets/editorial/bmw-m4-g82-large-catalog-v1.png',
-  porsche:'assets/editorial/porsche-911-gt3-large-catalog-v1.png',
-  mercedes:'assets/editorial/mercedes-amg-sl63-large-catalog-v1.png',
-  lamborghini:'assets/editorial/lamborghini-revuelto-large-catalog-v1.png'
+  corvette:'assets/gallery-real-v1/corvette-hero-real-v1.webp',
+  bmw:'assets/gallery-real-v1/bmw-hero-real-v1.webp',
+  porsche:'assets/gallery-real-v1/porsche-hero-real-v1.webp',
+  mercedes:'assets/gallery-real-v1/mercedes-hero-real-v1.webp',
+  lamborghini:'assets/gallery-real-v1/lamborghini-hero-real-v1.webp'
 }[car.id]||poster(car.id));
-const productCatalogCards=()=>cars.map((car,index)=>`<article class="z-product-tile"><a href="product.html?car=${car.id}"><div class="z-product-tile-visual"><span class="z-product-tag">${index===4?'Mới':index===2?'Nổi bật':'Có sẵn'}</span><img src="${catalogImage(car)}" alt="${car.brand} ${car.name} trong studio" loading="lazy"></div><div class="z-product-tile-body"><small>${car.brand}</small><h3>${car.name}</h3><p>${car.series} · ${car.layout}</p><strong>Từ ${money(car.price)}</strong><span>Giá minh họa ↗</span></div></a></article>`).join('');
+const productCatalogCards=()=>cars.map((car,index)=>`<article class="z-product-tile"><a href="product.html?car=${car.id}"><div class="z-product-tile-visual"><span class="z-product-tag">${index===4?'Mới':index===2?'Nổi bật':'Có sẵn'}</span><img src="${catalogImage(car)}" alt="Ảnh chụp thật ${car.brand} ${car.name}" loading="lazy"></div><div class="z-product-tile-body"><small>${car.brand}</small><h3>${car.name}</h3><p>${car.series} · ${car.layout}</p><strong>Từ ${money(car.price)}</strong><span>Giá minh họa ↗</span></div></a></article>`).join('');
 const articles=globalThis.zephyronArticles;
-function articleCards(exclude=''){return articles.filter(a=>a.id!==exclude).map(a=>`<article class="z-card"><a href="article.html?id=${a.id}"><img src="${poster(a.car)}" alt="${getCar(a.car).name}" loading="lazy"><div class="z-card-body"><small>${a.category}</small><h2>${a.title}</h2><p>${a.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`).join('');}
+const journalCovers = {
+  'porsche-gt3-9000': {src: 'assets/details-five/porsche.webp', alt: 'Porsche 911 GT3 chạy trên đường đua ban đêm'},
+  'bmw-m4-doi-dau-amg-sl63': {src: 'assets/comparison-real-v27/bmw-photo.webp', alt: 'BMW M4 G82 màu xanh nhìn từ góc trước'},
+  'corvette-c7-c8-doi-vi-tri-dong-co': {src: 'assets/feature-real-v30/corvette-3.webp', alt: 'Corvette C7 Stingray màu đỏ nhìn từ góc sau bên hông'},
+  'revuelto-phoi-mau-studio': {src: 'assets/feature-real-v30/lamborghini-3.webp', alt: 'Lamborghini Revuelto màu vàng nhìn từ góc sau bên hông'},
+  'track-day-m4-vong-lam-quen': {src: 'assets/article-real-v1/bmw-m4-track.webp', alt: 'BMW M4 Competition chạy trên đường đua'},
+  'dau-an-mau-sac': {src: 'assets/details-five/bmw.webp', alt: 'Cận cảnh màu sơn vàng xanh và cụm đèn trước của BMW M4'},
+  'nam-ngon-ngu-thiet-ke': {src: 'assets/article-real-v1/mercedes-front-real-v1.webp', alt: 'Mercedes-AMG SL 63 màu xám nhìn từ góc trước'},
+  'trai-nghiem-studio-3d': {src: 'assets/gallery-real-v1/porsche-rear-real-v1.webp', alt: 'Góc đuôi Porsche 911 GT3 với cánh gió sau'}
+};
+function articleCards(exclude = '', covers = {}) {
+  return articles.filter(article => article.id !== exclude).map(article => {
+    const cover = covers[article.id];
+    const src = cover?.src ?? poster(article.car);
+    const alt = cover?.alt ?? getCar(article.car).name;
+    return `<article class="z-card"><a href="article.html?id=${article.id}"><img src="${src}" alt="${alt}" loading="lazy"><div class="z-card-body"><small>${article.category}</small><h2>${article.title}</h2><p>${article.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`;
+  }).join('');
+}
 if(main){
   const page=main.dataset.page;
   if(page==='products'){
     main.innerHTML=`<section class="z-products-campaign" aria-label="Không chỉ chọn xe. Chọn cách bạn xuất hiện.">
-      <video class="z-products-campaign-image" src="assets/editorial/products-hero-video-crisp-v11.mp4" poster="assets/editorial/products-hero-video-final-poster.jpg" autoplay muted loop playsinline preload="auto" aria-label="Thước phim hình thành chiếc xe từ logo đến mẫu xe hoàn chỉnh">Trình duyệt của bạn không hỗ trợ phát video.</video>
-      <div class="z-products-fixed-copy"><span>ZEPHYRON / STUDIO 360°</span><h1>Không chỉ chọn xe.<br>Chọn cách bạn xuất hiện.</h1><p>Tốc độ dẫn lối. Công nghệ định hình. Bứt phá mọi giới hạn.</p></div>
+      <video class="z-products-campaign-image" src="assets/editorial/products-hero-clean-v25.mp4" poster="assets/editorial/products-hero-clean-v25-poster.webp" autoplay muted loop playsinline preload="auto" aria-label="Thước phim hình thành chiếc xe từ logo đến mẫu xe hoàn chỉnh">Trình duyệt của bạn không hỗ trợ phát video.</video>
+      <div class="z-products-caption"><span>ZEPHYRON / STUDIO 360°</span><h1>Không chỉ chọn xe.<br>Chọn cách bạn xuất hiện.</h1><p>Tốc độ dẫn lối. Công nghệ định hình. Bứt phá mọi giới hạn.</p></div>
       <span class="z-products-edge-cleaner" aria-hidden="true"></span>
       <div class="z-products-arrival" aria-label="Mercedes-AMG G 63 sắp về showroom"><span>Sắp về showroom</span><strong>Mercedes-AMG G 63</strong></div>
     </section>
@@ -111,20 +128,19 @@ if(main){
     <section class="z-dream-car" id="my-dream-car" data-dream-car aria-label="Lưu và chia sẻ xe mơ ước"></section>
     <section class="z-feature-explorer" id="feature-explorer" data-feature-explorer aria-label="Khám phá công nghệ trên từng mẫu xe"></section>
     <section class="z-drive-mode" id="drive-mode-simulator" data-drive-mode-simulator aria-label="Mô phỏng và giải thích các chế độ lái"></section>
-    <section class="z-safety-visualizer" id="safety-visualizer" data-safety-visualizer aria-label="Minh họa camera, cảm biến, túi khí và hệ thống trợ lái"></section>
+    <section class="z-safety-visualizer" id="safety-visualizer" data-safety-visualizer aria-label="Minh họa túi khí"></section>
     <section class="z-technical-specs" id="technical-specs" data-technical-specs aria-label="Thông số kỹ thuật và biểu đồ so sánh trực quan"></section>
     <section class="z-version-comparison" id="version-comparison" data-version-comparison aria-label="So sánh các phiên bản bằng dữ liệu chính hãng"></section>
     <section class="z-car-advisor" id="car-advisor" data-car-advisor aria-label="Hỏi đáp về xe dựa trên dữ liệu có nguồn"></section>
-    <section class="z-real-life" id="real-life-scenarios" data-real-life-scenarios aria-label="Mô phỏng tình huống sử dụng xe thực tế"></section>
     <section class="z-smart-test-drive" id="smart-test-drive" data-smart-test-drive aria-label="Xem trước giao diện đặt lịch lái thử"></section>
     <section class="z-car-quiz" id="car-quiz" data-car-quiz aria-label="Trắc nghiệm kiến thức về năm mẫu xe"></section>
-    <section class="z-products-journal" aria-labelledby="products-journal-title"><div class="z-products-section-head"><div><p class="z-kicker">GÓC NHÌN THIẾT KẾ</p><h2 id="products-journal-title">Khám phá nhiều hơn.</h2></div><a href="news.html">Xem tất cả bài viết <span aria-hidden="true">↗</span></a></div><div class="z-grid">${articleCards()}</div></section>
+    <section class="z-products-journal" aria-labelledby="products-journal-title"><div class="z-products-section-head"><div><p class="z-kicker">GÓC NHÌN THIẾT KẾ</p><h2 id="products-journal-title">Khám phá nhiều hơn.</h2></div><a href="news.html">Xem tất cả bài viết <span aria-hidden="true">↗</span></a></div><div class="z-grid">${articleCards('', journalCovers)}</div></section>
     <section class="z-scroll-story" id="scroll-storytelling" data-scroll-story aria-label="Câu chuyện thương hiệu và lời mời khám phá xe"></section>`;
     const productVideos=[...main.querySelectorAll('video.z-products-campaign-image, video.z-products-promo-media')];
     const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
     const syncProductMotion=()=>productVideos.forEach(video=>{if(reducedMotion.matches)video.pause();else video.play().catch(()=>{});});
     syncProductMotion();reducedMotion.addEventListener('change',syncProductMotion);
-    await import('./studio-page.js');
+    await import('./studio-page.js?v=20261111-feature-panel-v26');
     const {mountCarAnatomy}=await import('./car-anatomy.js');
     mountCarAnatomy(main.querySelector('[data-car-anatomy]'),main.querySelector('[data-studio-mount]'));
     const {mountScrollStorytelling}=await import('./scroll-storytelling.js');
@@ -132,30 +148,28 @@ if(main){
     const {mountARExperience}=await import('./ar-experience.js');
     await mountARExperience(main.querySelector('[data-ar-experience]'),main.querySelector('[data-studio-mount]'));
     try{
-      const {mountSoundExperience}=await import('./sound-experience.js?v=20261111-local-car-videos-full-stretch');
+      const {mountSoundExperience}=await import('./sound-experience.js?v=20261111-auto-sound-v22');
       mountSoundExperience(main.querySelector('[data-sound-experience]'),main.querySelector('[data-studio-mount]'));
     }catch(error){
       console.error('Không tải được Sound Experience; các phần còn lại vẫn tiếp tục khởi tạo.',error);
     }
-    const {mountFeatureExplorer}=await import('./feature-explorer.js');
+    const {mountFeatureExplorer}=await import('./feature-explorer.js?v=20261111-feature-media-v31');
     mountFeatureExplorer(main.querySelector('[data-feature-explorer]'),main.querySelector('[data-studio-mount]'));
-    const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js');
+    const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js?v=20261112-revuelto-photo-v51');
     mountDriveModeSimulator(main.querySelector('[data-drive-mode-simulator]'),main.querySelector('[data-studio-mount]'));
-    const {mountSafetyVisualizer}=await import('./safety-visualizer.js');
+    const {mountSafetyVisualizer}=await import('./safety-visualizer.js?v=20261112-corvette-cabin-v50');
     mountSafetyVisualizer(main.querySelector('[data-safety-visualizer]'),main.querySelector('[data-studio-mount]'));
     const {mountTechnicalSpecs}=await import('./technical-specs.js');
     mountTechnicalSpecs(main.querySelector('[data-technical-specs]'),main.querySelector('[data-studio-mount]'));
     const {mountVersionComparison}=await import('./version-comparison.js');
     mountVersionComparison(main.querySelector('[data-version-comparison]'),main.querySelector('[data-studio-mount]'));
-    const {mountCarAdvisor}=await import('./car-advisor.js');
+    const {mountCarAdvisor}=await import('./car-advisor.js?v=20261112-advisor-sync-v52');
     mountCarAdvisor(main.querySelector('[data-car-advisor]'),main.querySelector('[data-studio-mount]'));
-    const {mountRealLifeScenarios}=await import('./real-life-scenarios.js');
-    mountRealLifeScenarios(main.querySelector('[data-real-life-scenarios]'));
     const {mountSmartOwnership}=await import('./smart-ownership.js');
     mountSmartOwnership(main.querySelector('[data-smart-ownership]'),main.querySelector('[data-studio-mount]'));
-    const {mountBeforeAfter}=await import('./before-after.js');
+    const {mountBeforeAfter}=await import('./before-after.js?v=20261111-real-photos-v27');
     mountBeforeAfter(main.querySelector('[data-before-after]'),main.querySelector('[data-studio-mount]'));
-    const {mountDreamCar}=await import('./dream-car.js');
+    const {mountDreamCar}=await import('./dream-car.js?v=20261111-dream-actions-v29');
     mountDreamCar(main.querySelector('[data-dream-car]'),main.querySelector('[data-studio-mount]'));
     const {mountCarQuiz}=await import('./car-quiz.js');
     mountCarQuiz(main.querySelector('[data-car-quiz]'));

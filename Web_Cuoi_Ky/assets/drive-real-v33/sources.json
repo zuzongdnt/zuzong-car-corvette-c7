@@ -1,0 +1,82 @@
+[
+  {
+    "car": "corvette",
+    "asset": "assets/drive-real-v33/corvette.webp",
+    "title": "2016 Chevrolet Corvette Stingray coupe, front right, 08-30-2026.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2016_Chevrolet_Corvette_Stingray_coupe,_front_right,_08-30-2026.jpg",
+    "author": "MercurySable99",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      928
+    ],
+    "sha256": "b5947abf28b62fc460075e04ad38eeb23445eadc1e89b3910769ce05e29aa81d"
+  },
+  {
+    "car": "bmw",
+    "asset": "assets/drive-real-v33/bmw.webp",
+    "title": "2021 BMW M4 Competition G82 front.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_BMW_M4_Competition_G82_front.jpg",
+    "author": "LuvsMG481",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      531
+    ],
+    "sha256": "ca3edefa70c4070e6d491588efaa2880ecdbab649e8338bf7048de46f2989788"
+  },
+  {
+    "car": "porsche",
+    "asset": "assets/drive-real-v33/porsche.webp",
+    "title": "2021 Shark Blue Porsche 911 GT3.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_Shark_Blue_Porsche_911_GT3.jpg",
+    "author": "MrWalkr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      859
+    ],
+    "sha256": "ee2201070b2bc4e292c2d567194d4969b896271c36ff6a33d811ceedba5c10bb"
+  },
+  {
+    "car": "mercedes",
+    "asset": "assets/drive-real-v33/mercedes.webp",
+    "title": "2023 Mercedes-AMG SL 63 HCC24.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2023_Mercedes-AMG_SL_63_HCC24.jpg",
+    "author": "MrWalkr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      804
+    ],
+    "sha256": "3b9df1b6a8ac5219f48f6454c809ff4a7157118e82846d29b422c7eb2d8d30de"
+  },
+  {
+    "car": "lamborghini",
+    "asset": "assets/drive-real-v33/lamborghini.webp",
+    "title": "Lamborghini Revuelto - 2024 (54326348094).jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Revuelto_-_2024_(54326348094).jpg",
+    "author": "John Bauld from Toronto, Canada",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      853
+    ],
+    "sha256": "ff88a69eb18ddd8a1326c260e8b0e88c548442a4b2a104ef23056637f956eee3"
+  },
+  {
+    "car": "Lamborghini Revuelto",
+    "asset": "assets/drive-real-v33/lamborghini-revuelto-user.png",
+    "source": "Ảnh do người dùng cung cấp"
+  }
+]

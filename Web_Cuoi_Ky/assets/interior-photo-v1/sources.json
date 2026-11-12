@@ -28,5 +28,12 @@
     "asset": "lamborghini-revuelto-cabin-web.webp",
     "sourcePage": "https://www.carexpert.com.au/car-news/lamborghini-revuelto-hybrid-v12-flagship-revealed",
     "image": "https://images.carexpert.com.au/crop/1600/1067/app/uploads/2023/03/2024-Lamborghini-Revuelto-28.jpg"
+  },
+  {
+    "car": "Chevrolet Corvette C7 Stingray (2015)",
+    "asset": "corvette-c7-cabin-front-web.webp",
+    "sourcePage": "https://www.hagerty.com/valuation-tools/chevrolet/corvette/2015/2015-chevrolet-corvette-stingray",
+    "image": "https://hagerty-vid-images.imgix.net/Vehicle%20Reference%20Data/VRD-15612/2015_Chevrolet_Corvette_Stingray_10.jpg",
+    "credit": "Hagerty"
   }
 ]

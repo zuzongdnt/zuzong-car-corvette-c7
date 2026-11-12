@@ -14,12 +14,14 @@ export function mountDreamCar(host,studio){
   try{config=cleanConfig(JSON.parse(studio?.dataset.config||'{}'));}catch{}
   const query=new URLSearchParams(location.search);
   let accessoryMap=objectStore('accessorySelections'),variantMap=objectStore('dreamVariants');
-  const sharedAccessories=query.has('dreamAccessories')?validAccessories((query.get('dreamAccessories')||'').split(',').filter(Boolean)):null;
+  if(query.has('dreamAccessories')){
+    accessoryMap[config.car]=validAccessories((query.get('dreamAccessories')||'').split(',').filter(Boolean));
+  }
   const sharedVariant=Number(query.get('dreamVersion'));
   if(query.has('dreamVersion')&&Number.isInteger(sharedVariant)&&sharedVariant>=0&&sharedVariant<VERSION_DATA[config.car].variants.length)variantMap[config.car]=sharedVariant;
   let versionIndex=Number.isInteger(Number(variantMap[config.car]))?Number(variantMap[config.car]):VERSION_DATA[config.car].variants.findIndex(item=>item.tag==='Mẫu đang xem');
   if(versionIndex<0)versionIndex=0;
-  function addonsFor(car){return sharedAccessories&&car===config.car?sharedAccessories:validAccessories(accessoryMap[car]);}
+  function addonsFor(car){return validAccessories(accessoryMap[car]);}
   function savedCars(){const value=readStore('dreamCars',[]);return Array.isArray(value)?value:[];}
   function versionFor(car,index){return VERSION_DATA[car].variants[index]||VERSION_DATA[car].variants[0];}
   function shareUrl(item){
@@ -35,7 +37,24 @@ export function mountDreamCar(host,studio){
     const car=getCar(config.car),versions=VERSION_DATA[car.id].variants,version=versions[versionIndex]||versions[0],addons=addonsFor(car.id).map(id=>ADDONS.find(item=>item.id===id)).filter(Boolean),paint=colorOf(config,'body'),brake=colorOf(config,'calipers'),rims=colorOf(config,'rims'),saved=savedCars();
     host.innerHTML=`<div class="z-dream-shell"><header class="z-dream-heading"><div><p class="z-experience-kicker">MY DREAM CAR</p><h2>Giữ lại chiếc xe<br><em>đúng gu của bạn.</em></h2></div><p>Lưu màu xe đang phối, phụ kiện đã chọn và phiên bản yêu thích. Cấu hình được lưu trên trình duyệt này.</p></header><div class="z-dream-car-tabs" role="group" aria-label="Chọn một trong năm mẫu xe">${cars.map(item=>`<button type="button" data-dream-car="${item.id}" aria-pressed="${item.id===car.id}"><span>${esc(item.brand)}</span><small>${esc(item.name)}</small></button>`).join('')}</div><div class="z-dream-current"><div class="z-dream-visual"><img src="${dreamImage(car.id)}" alt="Ảnh chụp thật tham khảo ${esc(car.brand+' '+car.name)}; phối màu và phiên bản hiện tại nằm trong thông tin cấu hình" loading="lazy"><span>${esc(car.brand)} / ${esc(car.name)}</span></div><div class="z-dream-controls"><label>Phiên bản tham khảo<select data-dream-version>${versions.map((item,index)=>`<option value="${index}" ${index===versionIndex?'selected':''}>${esc(item.name)}</option>`).join('')}</select></label><p class="z-dream-source"><a href="${esc(version.source)}" target="_blank" rel="noopener noreferrer">${esc(version.sourceLabel)} ↗</a></p><div class="z-dream-choice"><span>Màu sơn</span><strong><i style="--dream-color:${paint.hex}" aria-hidden="true"></i>${esc(paint.name)}</strong></div><div class="z-dream-choice"><span>Heo phanh</span><strong><i style="--dream-color:${brake.hex}" aria-hidden="true"></i>${esc(brake.name)}</strong></div><div class="z-dream-choice"><span>Mâm xe</span><strong><i style="--dream-color:${rims.hex}" aria-hidden="true"></i>${esc(rims.name)}</strong></div><div class="z-dream-choice z-dream-accessories"><span>Phụ kiện đã chọn</span><strong>${addons.length?esc(addons.map(item=>item.name).join(' · ')):'Chưa chọn phụ kiện'}</strong><a href="#smart-ownership">Chọn phụ kiện trong Accessories Studio ↗</a></div><div class="z-dream-price"><span>Giá xe cấu hình hiện tại · minh họa</span><strong>${money(configurationPrice(config))}</strong></div><div class="z-dream-actions"><button type="button" data-dream-save>Lưu xe mơ ước</button><button type="button" data-dream-share-current>Chia sẻ cấu hình</button></div><p class="z-dream-status" data-dream-status role="status" aria-live="polite">Ảnh chụp thật tham khảo; phối màu và phụ kiện được ghi rõ theo cấu hình.</p></div></div><div class="z-dream-collection"><div><p>THƯ VIỆN CỦA BẠN</p><h3>Xe đã lưu <span data-dream-count>${saved.length}</span></h3></div><div class="z-dream-saved-grid" data-dream-saved>${saved.length?saved.map(savedCard).join(''):'<p class="z-dream-empty">Chưa có xe yêu thích. Chọn phiên bản, phụ kiện rồi lưu cấu hình này.</p>'}</div></div></div>`;
   }
-  async function copy(url){const status=host.querySelector('[data-dream-status]');try{await navigator.clipboard.writeText(url);status.textContent='Đã sao chép liên kết cấu hình.';}catch{status.textContent=`Hãy sao chép liên kết này: ${url}`;}}
+  async function copy(url){
+    const status=host.querySelector('[data-dream-status]');
+    try{
+      await navigator.clipboard.writeText(url);
+      status.textContent='Đã sao chép liên kết cấu hình.';
+    }catch{
+      if(!status.isConnected)return;
+      const link=document.createElement('input');
+      link.className='z-dream-share-link';
+      link.type='text';
+      link.readOnly=true;
+      link.value=url;
+      link.setAttribute('aria-label','Liên kết cấu hình xe');
+      status.replaceChildren('Sao chép liên kết bên dưới để chia sẻ.',link);
+      link.focus();
+      link.select();
+    }
+  }
   host.addEventListener('change',event=>{
     if(!event.target.matches('[data-dream-version]'))return;
     versionIndex=Number(event.target.value);variantMap[config.car]=versionIndex;writeStore('dreamVariants',variantMap);
@@ -44,7 +63,7 @@ export function mountDreamCar(host,studio){
     render();
   });
   host.addEventListener('click',async event=>{
-    const carChoice=event.target.closest('[data-dream-car]');
+    const carChoice=event.target.closest('button[data-dream-car]');
     if(carChoice){
       const nextCar=cars.find(item=>item.id===carChoice.dataset.dreamCar);
       if(!nextCar||nextCar.id===config.car)return;
@@ -76,9 +95,14 @@ export function mountDreamCar(host,studio){
   studio?.addEventListener('studio-change',event=>{
     if(!event.detail?.car||!cars.some(car=>car.id===event.detail.car))return;
     const changedCar=config.car!==event.detail.car;config=cleanConfig(event.detail);
-    if(changedCar){sharedAccessories&&sharedAccessories.splice(0,sharedAccessories.length);versionIndex=Number.isInteger(Number(variantMap[config.car]))?Number(variantMap[config.car]):VERSION_DATA[config.car].variants.findIndex(item=>item.tag==='Mẫu đang xem');if(versionIndex<0)versionIndex=0;}
+    if(changedCar){versionIndex=Number.isInteger(Number(variantMap[config.car]))?Number(variantMap[config.car]):VERSION_DATA[config.car].variants.findIndex(item=>item.tag==='Mẫu đang xem');if(versionIndex<0)versionIndex=0;}
     render();
   });
-  window.addEventListener('zuzong-accessories-change',event=>{if(event.detail?.car===config.car){accessoryMap[config.car]=validAccessories(event.detail.accessories);sharedAccessories&&sharedAccessories.splice(0,sharedAccessories.length);render();}});
+  window.addEventListener('zuzong-accessories-change',event=>{
+    const {car,accessories}=event.detail||{};
+    if(!cars.some(item=>item.id===car))return;
+    accessoryMap[car]=validAccessories(accessories);
+    if(car===config.car)render();
+  });
   render();
 }
