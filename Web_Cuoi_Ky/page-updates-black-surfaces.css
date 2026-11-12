@@ -3004,3 +3004,14 @@ body.z-page:has(main[data-page="products"]) main[data-page="products"] .z-produc
 @media (max-width: 720px) {
   #parking-fit .z-parking-layout { grid-template-columns: minmax(0, 1fr); }
 }
+
+@media (prefers-reduced-motion: no-preference) {
+  main[data-page="products"] .z-product-reveal {
+    animation: z-product-reveal 560ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+@keyframes z-product-reveal {
+  from { opacity: 0.3; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}

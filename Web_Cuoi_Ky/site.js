@@ -85,6 +85,29 @@ function articleCards(exclude = '', covers = {}) {
     return `<article class="z-card"><a href="article.html?id=${article.id}"><img src="${src}" alt="${alt}" loading="lazy"><div class="z-card-body"><small>${article.category}</small><h2>${article.title}</h2><p>${article.intro}</p><span class="z-card-link">Đọc bài viết ↗</span></div></a></article>`;
   }).join('');
 }
+function observeProductReveals(main) {
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const targets = main.querySelectorAll([
+    ':scope > section:not(.z-products-campaign, .z-scroll-story) h2:not(.z-card h2)',
+    ':scope > #products-studio .z-studio-head h2',
+    '.z-products-catalog .z-product-tile img',
+    '.z-products-journal .z-card img'
+  ].join(', '));
+
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('z-product-reveal');
+      observer.unobserve(entry.target);
+    }
+  }, {threshold: 0.15});
+
+  for (const target of targets) {
+    if (target.getBoundingClientRect().top >= window.innerHeight) observer.observe(target);
+  }
+}
+
 if(main){
   const page=main.dataset.page;
   if(page==='products'){
@@ -175,6 +198,7 @@ if(main){
     mountCarQuiz(main.querySelector('[data-car-quiz]'));
     const {mountSmartTestDrive}=await import('./smart-test-drive.js');
     mountSmartTestDrive(main.querySelector('[data-smart-test-drive]'),main.querySelector('[data-studio-mount]'));
+    observeProductReveals(main);
     if(location.hash==='#products-studio'){
       const revealStudio=()=>main.querySelector('#products-studio')?.scrollIntoView({block:'start'});
       requestAnimationFrame(revealStudio);setTimeout(revealStudio,450);setTimeout(revealStudio,1100);
