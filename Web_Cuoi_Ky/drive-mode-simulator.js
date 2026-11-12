@@ -1,3 +1,4 @@
+import {changeProductImage} from './products-motion.js';
 const DRIVE_CARS={
   corvette:{
     brand:'Chevrolet',model:'Corvette C7',image:'assets/drive-real-v33/corvette.webp',defaultMode:'sport',
@@ -126,8 +127,7 @@ export function mountDriveModeSimulator(host,studio){
       button.setAttribute('aria-pressed',String(button.dataset.dmCar===carId));
     });
     modeRail.innerHTML=car.modes.map(mode=>`<button type="button" data-dm-mode="${mode.id}">${escapeHtml(mode.name)}</button>`).join('');
-    image.src=car.image;
-    image.alt=car.imageAlt ?? `Ảnh chụp ${car.brand} ${car.model}`;
+    changeProductImage(image, car.image, car.imageAlt ?? `Ảnh chụp ${car.brand} ${car.model}`);
     caption.textContent=car.imageCaption ?? '';
     caption.hidden=!car.imageCaption;
     renderMode();

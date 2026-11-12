@@ -1,3 +1,4 @@
+import {changeProductImage} from './products-motion.js';
 const CAR_ORDER=['corvette','bmw','porsche','mercedes','lamborghini'];
 export const FEATURE_DATA={
   corvette:{
@@ -107,8 +108,7 @@ export function mountFeatureExplorer(host,studio){
   function renderFeature(){
     const car=FEATURE_DATA[carId],feature=activeData();
     host.querySelectorAll('[data-fx-feature]').forEach((button,index)=>{const active=index===featureIndex;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});
-    image.src=`assets/feature-real-v30/${carId}-${featureIndex+1}.webp`;
-    image.alt=`Ảnh chụp thật ${car.brand} ${car.model}`;
+    changeProductImage(image, `assets/feature-real-v30/${carId}-${featureIndex+1}.webp`, `Ảnh chụp thật ${car.brand} ${car.model}`);
     host.querySelector('[data-fx-caption]').textContent=`${feature.eyebrow} / ${feature.title}`;
     host.querySelector('[data-fx-counter]').textContent=`${String(featureIndex+1).padStart(2,'0')} / ${String(car.features.length).padStart(2,'0')}`;
     stage.dataset.tech=feature.type;
