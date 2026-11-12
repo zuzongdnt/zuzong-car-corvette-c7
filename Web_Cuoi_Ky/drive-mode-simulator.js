@@ -45,7 +45,7 @@ const DRIVE_CARS={
     ]
   },
   lamborghini:{
-    brand:'Lamborghini',model:'Revuelto',image:'assets/drive-real-v33/lamborghini-revuelto-user.png',defaultMode:'sport',
+    brand:'Lamborghini',model:'Revuelto',image:'assets/drive-real-v33/lamborghini-showroom-user.png',imageAlt:'Lamborghini màu xám đậm, viền đỏ, trong showroom',imageCaption:'Ảnh minh họa Lamborghini trong showroom',defaultMode:'sport',
     source:'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/model_detail/revuelto/2024/brochure/REVUELTO_DIGITAL_BROCHURE_EN_2024.pdf',
     sourceLabel:'Lamborghini Revuelto Digital Brochure',
     modes:[
@@ -81,6 +81,7 @@ export function mountDriveModeSimulator(host,studio){
     <div class="z-dm-console" data-dm-console>
       <figure class="z-dm-stage">
         <div class="z-dm-photo"><img data-dm-image alt=""></div>
+        <figcaption data-dm-caption hidden></figcaption>
       </figure>
       <aside class="z-dm-info">
         <div class="z-dm-result" aria-live="polite">
@@ -102,6 +103,7 @@ export function mountDriveModeSimulator(host,studio){
   const consoleEl=host.querySelector('[data-dm-console]');
   const modeRail=host.querySelector('[data-dm-modes]');
   const image=host.querySelector('[data-dm-image]');
+  const caption=host.querySelector('[data-dm-caption]');
 
   function activeCar(){return DRIVE_CARS[carId];}
   function activeMode(){const car=activeCar();return car.modes.find(mode=>mode.id===modeId)||car.modes[0];}
@@ -125,7 +127,9 @@ export function mountDriveModeSimulator(host,studio){
     });
     modeRail.innerHTML=car.modes.map(mode=>`<button type="button" data-dm-mode="${mode.id}">${escapeHtml(mode.name)}</button>`).join('');
     image.src=car.image;
-    image.alt=`Ảnh chụp ${car.brand} ${car.model}`;
+    image.alt=car.imageAlt ?? `Ảnh chụp ${car.brand} ${car.model}`;
+    caption.textContent=car.imageCaption ?? '';
+    caption.hidden=!car.imageCaption;
     renderMode();
   }
   host.addEventListener('click',event=>{

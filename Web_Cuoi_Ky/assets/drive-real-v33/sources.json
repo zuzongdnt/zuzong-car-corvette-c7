@@ -78,5 +78,10 @@
     "car": "Lamborghini Revuelto",
     "asset": "assets/drive-real-v33/lamborghini-revuelto-user.png",
     "source": "Ảnh do người dùng cung cấp"
+  },
+  {
+    "car": "Lamborghini",
+    "asset": "assets/drive-real-v33/lamborghini-showroom-user.png",
+    "source": "Ảnh minh họa do người dùng cung cấp"
   }
 ]

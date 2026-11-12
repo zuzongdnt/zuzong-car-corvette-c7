@@ -849,7 +849,8 @@
 :where(body.z-page) .z-dm-stage { display: grid; min-width: 0; margin: 0; background: #fff; }
 :where(body.z-page) .z-dm-photo { display: grid; align-items: center; }
 :where(body.z-page) .z-dm-photo img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: contain; }
-:where(body.z-page) .z-drive-mode[data-car="lamborghini"] .z-dm-photo img { object-fit: cover; object-position: center 53%; }
+:where(body.z-page) .z-drive-mode[data-car="lamborghini"] .z-dm-photo img { aspect-ratio: 5 / 4; object-fit: cover; object-position: center 24%; }
+:where(body.z-page) .z-dm-stage figcaption { padding: 8px 14px; text-align: center; font-size: 12px; }
 :where(body.z-page) .z-dm-info { min-width: 0; padding: clamp(16px, 2.4vw, 32px); border-left: 1px solid #d7dcdf; }
 :where(body.z-page) .z-dm-result h3 { margin: 0 0 6px; }
 :where(body.z-page) .z-dm-use,

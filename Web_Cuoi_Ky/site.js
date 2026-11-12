@@ -155,7 +155,7 @@ if(main){
     }
     const {mountFeatureExplorer}=await import('./feature-explorer.js?v=20261111-feature-media-v31');
     mountFeatureExplorer(main.querySelector('[data-feature-explorer]'),main.querySelector('[data-studio-mount]'));
-    const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js?v=20261112-revuelto-photo-v51');
+    const {mountDriveModeSimulator}=await import('./drive-mode-simulator.js?v=20261112-lamborghini-showroom-v55');
     mountDriveModeSimulator(main.querySelector('[data-drive-mode-simulator]'),main.querySelector('[data-studio-mount]'));
     const {mountSafetyVisualizer}=await import('./safety-visualizer.js?v=20261112-corvette-cabin-v50');
     mountSafetyVisualizer(main.querySelector('[data-safety-visualizer]'),main.querySelector('[data-studio-mount]'));
