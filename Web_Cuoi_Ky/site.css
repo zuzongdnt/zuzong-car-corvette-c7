@@ -54,3 +54,8 @@
 }
 @media(max-width:600px){.brand-rights-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px}.brand-rights{padding:26px 0}.brand-rights h2{font-size:18px}}
 @media(max-width:360px){.z-brand img,.brand .brand-logo{width:96px}.z-header{gap:10px}.z-header-tools{gap:10px}.z-menu{padding:8px}}
+
+.z-main-nav .z-mobile-account { display: none; }
+@media (max-width: 760px) {
+  .z-main-nav .z-mobile-account { display: block; }
+}

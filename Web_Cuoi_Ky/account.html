@@ -1,10 +1,68 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#090a0c"><meta name="description" content="ZEPHYRON — Tài khoản. Studio tương tác 5 hãng xe."><title>Tài khoản — ZEPHYRON</title><link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts/fonts.css"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="site.css"><script>
-  function openSavedGarage() {
-    if (location.hash === '#saved') location.replace('garage.html');
-    if (location.hash === '#requests') location.replace('requests.html');
-  }
-  openSavedGarage();
-  window.addEventListener('hashchange', openSavedGarage);
-</script><script type="module" src="site.js"></script><link rel="stylesheet" href="monochrome.css">
-</head><body class="z-page"><a class="skip-link sr-only" href="#main-content">Đến nội dung chính</a><div data-site-header></div><main class="z-container" id="main-content" data-page="account"></main><div data-site-footer></div><noscript><p>Vui lòng bật JavaScript để sử dụng studio và các chức năng của đồ án.</p></noscript></body></html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Quản lý hồ sơ và mở lại cấu hình xe yêu thích trong Garage ZEPHYRON.">
+  <title>Tài khoản — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="studio.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="monochrome.css">
+  <link rel="stylesheet" href="account.css">
+  <script type="module" src="site.js?v=account-1"></script>
+  <script type="module" src="account.js"></script>
+  <script>
+    function openAccountDestination() {
+      if (location.hash === '#saved') location.replace('garage.html');
+      if (location.hash === '#requests') location.replace('requests.html');
+    }
+    openAccountDestination();
+    window.addEventListener('hashchange', openAccountDestination);
+  </script>
+</head>
+<body class="z-page z-account-page">
+  <a class="skip-link sr-only" href="#main-content">Đến nội dung chính</a>
+  <div data-site-header></div>
+  <main class="z-container" id="main-content" data-page="account" tabindex="-1">
+    <header class="account-heading">
+      <div>
+        <p class="account-kicker">Tài khoản ZEPHYRON</p>
+        <h1>Không gian của bạn.</h1>
+      </div>
+      <nav aria-label="Các mục tài khoản">
+        <a href="#ho-so">Hồ sơ</a>
+        <a href="#garage">Garage</a>
+      </nav>
+    </header>
+    <div class="account-layout">
+      <section id="ho-so" class="account-panel" aria-labelledby="account-panel-title">
+        <div data-account-panel></div>
+        <p class="account-notice">Tài khoản mẫu của đồ án, lưu trên trình duyệt này. Hãy dùng mật khẩu riêng cho bản demo.</p>
+        <noscript><h2 id="account-panel-title">Hồ sơ</h2><p>Bật JavaScript để sử dụng tài khoản.</p></noscript>
+      </section>
+      <figure class="account-media">
+        <video controls autoplay muted playsinline preload="metadata" width="576" height="1024"
+          poster="assets/account/porsche-showcase-poster.webp" aria-label="Video Porsche" src="assets/account/porsche-showcase.mp4">
+          Trình duyệt không hỗ trợ phát video.
+        </video>
+        <figcaption>Porsche</figcaption>
+      </figure>
+    </div>
+    <section id="garage" class="account-garage" aria-labelledby="account-garage-title" data-account-reveal>
+      <div>
+        <h2 id="account-garage-title">Garage của bạn</h2>
+        <p>Xem lại màu sơn, mâm và heo phanh của từng bản phối. Bạn có thể mở xe trong Studio 3D hoặc xóa bản phối trong Garage.</p>
+      </div>
+      <div class="account-links">
+        <a href="garage.html"><span><strong>Cấu hình đã lưu</strong><small data-saved-count></small></span><span aria-hidden="true">↗</span></a>
+        <a href="products.html#my-dream-car"><span><strong>Xe yêu thích</strong><small data-favorite-count></small></span><span aria-hidden="true">↗</span></a>
+        <a href="requests.html"><span><strong>Yêu cầu đặt trước</strong></span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>

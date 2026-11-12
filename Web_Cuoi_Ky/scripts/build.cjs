@@ -39,9 +39,9 @@ for(const key of ['videoSrc','posterSrc','logoSrc']){const value=campaignConfig[
 fs.mkdirSync(path.join(out,'docs','research'),{recursive:true});
 for(const file of ['ASSETS.md','UPGRADE_V2_QA.md','PHOTO_RETOUCH.md','DRIVE_ALIGNMENT_QA.md','DRIVE_ROLLERS_QA.md','DRIVE_SHARP_QA.md','DETAIL_REAL_PHOTOS.md'])if(fs.existsSync(path.join(root,'docs','research',file)))fs.copyFileSync(path.join(root,'docs','research',file),path.join(out,'docs','research',file));
 fs.copyFileSync(path.join(root,'assets','detail-photos-manifest.json'),path.join(out,'assets','detail-photos-manifest.json'));
-for(const folder of ['details-five','brands','gallery-real-v1','article-real-v1','interior-photo-v1','feature-videos','real-life-scenarios','comparison-real-v27','drive-real-v33','feature-real-v30'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
+for(const folder of ['account','details-five','brands','gallery-real-v1','article-real-v1','interior-photo-v1','feature-videos','real-life-scenarios','comparison-real-v27','drive-real-v33','feature-real-v30'])fs.cpSync(path.join(root,'assets',folder),path.join(out,'assets',folder),{recursive:true});
 if(fs.existsSync(path.join(root,'assets','retouch-manifest.json')))fs.copyFileSync(path.join(root,'assets','retouch-manifest.json'),path.join(out,'assets','retouch-manifest.json'));
-for(const file of ['studio.css','studio.js','studio-data.js','site.css','site.js','products.html','product.html','about.html','contact.html','explore.html','gallery.html','news.html','article.html','cart.html','account.html','sources.html','policies.html'])fs.copyFileSync(path.join(root,file),path.join(out,file));
+for(const file of ['studio.css','studio.js','studio-data.js','site.css','site.js','account.js','account.css','products.html','product.html','about.html','contact.html','explore.html','gallery.html','news.html','article.html','cart.html','account.html','sources.html','policies.html'])fs.copyFileSync(path.join(root,file),path.join(out,file));
 for (const file of ['editorial-data.js', 'news.js', 'news.css', 'explore-scroll.css', 'explore-scroll.js', 'article-gt3.html', 'article-gt3.css', 'article-gt3.js', 'garage.html', 'garage.css', 'garage.js', 'requests.html', 'requests.css', 'requests.js']) {
   fs.copyFileSync(path.join(root, file), path.join(out, file));
 }
