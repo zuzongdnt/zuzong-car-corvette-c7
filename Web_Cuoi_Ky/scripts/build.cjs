@@ -1,5 +1,6 @@
 const fs=require('fs'),path=require('path');const root=path.resolve(__dirname,'..'),out=path.join(root,'dist');
 require('./assemble.cjs');fs.mkdirSync(out,{recursive:true});
+for(const file of ["home-bottom-nav.css", "home-bottom-nav.js", "home-campaign.css", "home-journal.css", "home-sections.css", "home-site.css", "home-monochrome.css", "home-studio.css", "home-studio.js", "home-studio-data.js", "home-car-lights.js", "home-site.js"])fs.copyFileSync(path.join(root,file),path.join(out,file));
 fs.copyFileSync(path.join(root,'unveil-five.js'),path.join(out,'unveil-five.js'));
 fs.copyFileSync(path.join(root,'unveil-five.css'),path.join(out,'unveil-five.css'));
 fs.copyFileSync(path.join(root,'monochrome.css'),path.join(out,'monochrome.css'));
@@ -30,6 +31,7 @@ fs.cpSync(path.join(root,'assets','fonts'),path.join(out,'assets','fonts'),{recu
 fs.cpSync(path.join(root,'assets','reveal-cloth-2k'),path.join(out,'assets','reveal-cloth-2k'),{recursive:true});
 fs.cpSync(path.join(root,'assets','unveil-five'),path.join(out,'assets','unveil-five'),{recursive:true});
 fs.cpSync(path.join(root,'assets','unveil-five-full'),path.join(out,'assets','unveil-five-full'),{recursive:true});
+fs.cpSync(path.join(root,'assets','unveil-five-v3'),path.join(out,'assets','unveil-five-v3'),{recursive:true});
 fs.cpSync(path.join(root,'assets','editorial'),path.join(out,'assets','editorial'),{recursive:true});
 fs.cpSync(path.join(root,'assets','campaign'),path.join(out,'assets','campaign'),{recursive:true});
 const campaignConfig=require('../campaign-config.js');

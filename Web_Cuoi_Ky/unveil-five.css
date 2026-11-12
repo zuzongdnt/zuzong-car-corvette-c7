@@ -7,8 +7,11 @@ body.has-bottom-nav .unveil-five .hero-vehicle{width:100%}
 .unveil-group,.unveil-films{position:absolute;inset:0;transition:opacity .55s cubic-bezier(.22,1,.36,1)}
 .unveil-group{opacity:1}.unveil-films{opacity:0}.unveil-five.is-film .unveil-group{opacity:0}.unveil-five.is-film .unveil-films{opacity:1}
 .unveil-five .hero-car img,.unveil-five .hero-poster img,.unveil-five .reveal-canvas,.unveil-film,.unveil-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 52%}
+.unveil-five .unveil-group :is(.hero-car img,.hero-poster img,.reveal-canvas){width:min(100%,240svh);height:auto;aspect-ratio:12/5;margin:auto;object-fit:contain;mask-image:linear-gradient(transparent,#000 8%,#000 90%,transparent)}
+.unveil-five .unveil-group{background:radial-gradient(ellipse at center,#252525,#090909 75%)}
 .unveil-film{opacity:0;transition:opacity .55s cubic-bezier(.22,1,.36,1)}.unveil-film.is-visible{opacity:1}
 .unveil-ambient{display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(24px);opacity:.65;transform:scale(1.1)}
+.unveil-five.sequence-ready .unveil-ambient{display:block}
 .unveil-five .hero-stage:after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#000000cc 0%,#00000088 25%,transparent 47%,#00000011 63%,#000000dd 85%,#090909 100%)}
 .unveil-five .hero-topline{position:absolute;top:108px;left:var(--gutter);right:var(--gutter);z-index:3;display:flex;align-items:center;justify-content:space-between;color:#e3e3e3;font-size:11px;letter-spacing:.3px}
 .unveil-overview{border:0;background:none;min-height:44px;font-size:11px;color:#d5d5d5;padding:8px 0 8px 16px;cursor:pointer}.unveil-overview[aria-pressed=true]{color:white}.unveil-overview span{margin-left:12px;color:var(--accent)}
@@ -34,9 +37,6 @@ body.has-bottom-nav .unveil-five .hero-vehicle{width:100%}
 .unveil-five .hero-footer{position:absolute;left:var(--gutter);right:var(--gutter);bottom:24px;z-index:3;display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;min-height:36px}.unveil-hint{font-size:10px;color:#c4c4c4;margin:0}.unveil-five .scroll-cue{font-size:10px}
 @media(min-width:761px) and (max-width:1100px){.unveil-five .studio-caption-title{font-size:56px}.unveil-title-lockup{gap:14px}.unveil-brand-logo{width:46px;height:62px}.unveil-choices{gap:16px}.unveil-choices button{gap:9px}.unveil-choices img{width:30px;height:34px}.unveil-choices [data-unveil-car=corvette] img{width:34px}.unveil-choices button>span{font-size:11px}.unveil-choices small{font-size:9px}}
 @media(max-aspect-ratio:4/3){
- .unveil-five:not(.is-film) .hero-car img,.unveil-five:not(.is-film) .hero-poster img,.unveil-five .reveal-canvas{object-fit:contain}
- .unveil-five .hero-car,.unveil-five .hero-poster{background:radial-gradient(ellipse at center,#414141,#111111 75%)}
- .sequence-ready .unveil-ambient{display:block}
  .unveil-five:not(.is-film) .hero-stage:after{background:linear-gradient(180deg,#090909f5,#090909a8 33%,transparent 48%,#00000022 60%,#090909f2 80%,#090909)}
 }
 @media(max-width:760px){

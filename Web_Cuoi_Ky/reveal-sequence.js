@@ -13,6 +13,7 @@
   const count = Number(hero.dataset.revealCount || 160);
   const source = hero.dataset.revealSrc || 'assets/reveal-cloth-2k';
   const sourceHeight = Number(hero.dataset.revealHeight || 1080);
+  const cuts = new Set(hero.dataset.revealCuts?.split(',').map(Number));
   const directory = () => source + (compact ? '/mobile/' : '/');
   canvas.width = compact ? 960 : 1920;
   canvas.height = compact ? sourceHeight / 2 : sourceHeight;
@@ -102,12 +103,16 @@
   function paint() {
     paintFrame = 0;
     if (!active || (!bitmaps.size && !previews.size)) return;
-    const lo = Math.floor(wanted), hi = Math.ceil(wanted), fraction = wanted - lo;
+    let lo = Math.floor(wanted), hi = Math.ceil(wanted);
+    // A camera cut or headlight switch should never crossfade during scrolling.
+    if (cuts.has(hi)) lo = hi = index();
+    const frame = lo === hi ? lo : wanted;
+    const fraction = frame - lo;
     const useFull = bitmaps.has(lo) && bitmaps.has(hi);
     const source = useFull ? bitmaps : previews.has(lo) && previews.has(hi) ? previews : bitmaps;
     const quality = source === bitmaps ? 'full' : 'preview';
     const lower = source.get(lo), upper = source.get(hi);
-    if (state.ready && Math.abs(state.drawnFrame - wanted) < .0001 && state.drawnQuality === quality) return;
+    if (state.ready && Math.abs(state.drawnFrame - frame) < .0001 && state.drawnQuality === quality) return;
     context.clearRect(0, 0, canvas.width, canvas.height);
     if (lower && upper) {
       // Blend only neighboring source frames (1/24 s apart), preserving opacity.
@@ -118,7 +123,7 @@
         context.globalAlpha = fraction;
         context.drawImage(upper, 0, 0, canvas.width, canvas.height);
       }
-      state.drawnFrame = wanted;
+      state.drawnFrame = frame;
     } else {
       const available = new Map([...previews, ...bitmaps]);
       const nearest = lower ? lo : upper ? hi : [...available.keys()].reduce((best, i) => Math.abs(i - wanted) < Math.abs(best - wanted) ? i : best);

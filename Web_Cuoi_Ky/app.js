@@ -8,6 +8,7 @@
  const clamp=(value,min=0,max=1)=>Math.max(min,Math.min(max,value));
  let target=0,current=0,frame=0,travel=1,heroTop=0,lastPaint=0,measured=false;
  const scrollCue=document.querySelector('.scroll-cue');
+ const revealComplete=.74;
  function measure(){heroTop=hero.getBoundingClientRect().top+scrollY;travel=Math.max(1,hero.offsetHeight-document.querySelector('.hero-stage').offsetHeight);requestUpdate();if(!measured){current=target;measured=true;}}
  function paint(now){
   frame=0;const elapsed=lastPaint?Math.min(64,now-lastPaint):16.67;lastPaint=now;
@@ -18,8 +19,8 @@
   hero.dataset.revealProgress=sequenceProgress.toFixed(5);
   hero.updateUnveilCopy?.(sequenceProgress);
   const selected=!!hero.dataset.selectedCar;
-  scrollCue.querySelector('.scroll-cue-label').textContent=selected?'VÀO STUDIO':reduced.matches||sequenceProgress>=.70?'TIẾP TỤC':'MỞ BẠT 5 XE';
-  scrollCue.setAttribute('aria-label',selected?'Đến studio 3D':reduced.matches||sequenceProgress>=.70?'Đến phần tiếp theo':'Cuộn để mở bạt năm xe');
+  scrollCue.querySelector('.scroll-cue-label').textContent=selected?'VÀO STUDIO':sequenceProgress>=revealComplete?'TIẾP TỤC':'MỞ BẠT 5 XE';
+  scrollCue.setAttribute('aria-label',selected?'Đến studio 3D':sequenceProgress>=revealComplete?'Đến phần tiếp theo':'Cuộn để mở bạt năm xe');
   hero.classList.toggle('is-open',sequenceProgress>.94);
   reading.style.transform=`scaleX(${clamp(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight))})`;
   const campaign=document.querySelector('#intro');
@@ -33,15 +34,8 @@
  }
  function requestUpdate(){target=reduced.matches?0:clamp((scrollY-heroTop)/travel,-1,1);if(!frame)frame=requestAnimationFrame(paint);}
  addEventListener('scroll',requestUpdate,{passive:true});addEventListener('resize',measure);reduced.addEventListener('change',measure);
- scrollCue.addEventListener('click',()=>{scrollTo({top:hero.dataset.selectedCar?document.querySelector('#collection').offsetTop:reduced.matches||current>=.61?document.querySelector('#performance').offsetTop:heroTop+travel*.9,behavior:reduced.matches?'instant':'smooth'});});
+ scrollCue.addEventListener('click',()=>{scrollTo({top:hero.dataset.selectedCar?document.querySelector('#collection').offsetTop:reduced.matches||current>=.05+.8*revealComplete?document.querySelector('#performance').offsetTop:heroTop+travel*.9,behavior:reduced.matches?'instant':'smooth'});});
  hero.addEventListener('unveil-selection',requestUpdate);
- const menu=document.querySelector('.menu-toggle'),mobile=document.querySelector('.mobile-nav');
- function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Mở menu');mobile.hidden=true;}
- menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')!=='true';menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Đóng menu':'Mở menu');mobile.hidden=!open;});
- mobile.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.getAttribute('aria-expanded')==='true'){closeMenu();menu.focus();}});
- document.addEventListener('click',e=>{if(!header.contains(e.target))closeMenu();});
- addEventListener('resize',()=>{if(innerWidth>760)closeMenu();});
  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px -35px 0px'});
  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
  window.initShowcase?.();measure();

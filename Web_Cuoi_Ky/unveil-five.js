@@ -21,13 +21,14 @@ if(hero){
   {lines:['Từng đường nét.','Dần lộ diện.'],text:'Lớp bạt lướt qua. Ánh sáng chạm lên từng dáng xe, hé lộ năm cá tính riêng.',label:'Năm cá tính cùng hé lộ'},
   {lines:['Năm biểu tượng.','Một dấu ấn.'],text:'Chevrolet, BMW, Porsche, Mercedes-Benz và Lamborghini. Chọn một hãng để khám phá góc nhìn của bạn.',label:'Bộ sưu tập ZEPHYRON'}
  ];
+ const chapterBoundaries=[39/143,105/143];
  let progress=0,chapter=-1;
  let selected='',revision=0,visible=-1,inView=false,userPaused=false,resumeAfterVisibility=false;
  function titleLines(lines){title.replaceChildren(...lines.map(line=>{const span=document.createElement('span');span.textContent=line;return span;}));}
  hero.updateUnveilCopy=p=>{
   progress=p;
   if(selected)return;
-  const index=reduced.matches?2:p<.22?0:p<.56?1:2;
+  const index=reduced.matches?2:p<chapterBoundaries[0]?0:p<chapterBoundaries[1]?1:2;
   if(index!==chapter){
    chapter=index;hero.dataset.copyChapter=String(index);
    titleLines(chapters[index].lines);text.textContent=chapters[index].text;
@@ -35,7 +36,7 @@ if(hero){
   }
   let opacity=1,y=0;
   if(!reduced.matches){
-   for(const boundary of [.22,.56]){
+   for(const boundary of chapterBoundaries){
     const distance=p-boundary;
     if(Math.abs(distance)<.045){const t=Math.abs(distance)/.045;opacity=t*t*(3-2*t);y=(distance<0?-1:1)*(1-opacity)*14;break;}
    }

@@ -1,21 +1,42 @@
-"""Keep the original 16:9 Blender composition for a full-viewport reveal."""
+"""Extract the 2K studio reveal into desktop, mobile and quick-loading WebP frames."""
 from pathlib import Path
+import argparse
 import json
 import subprocess
-import imageio_ffmpeg
 
-ROOT=Path(__file__).resolve().parents[1]
-SOURCE=Path('E:/bmw/ZUZONG_Earth_5Cars_Intro/Garage_V6/FullHD_1080p/work/clip_intro.mp4')
-OUT=ROOT/'assets/unveil-five-full'
-OUT.mkdir(parents=True,exist_ok=True)
-for folder,width,height,quality in [('',1920,1080,86),('mobile',960,540,82),('preview',384,216,74),('mobile/preview',288,162,72)]:
-    dest=OUT/folder
-    dest.mkdir(parents=True,exist_ok=True)
-    subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(),'-hide_banner','-loglevel','error','-y',
-        '-i',str(SOURCE),'-t','6','-an','-vf',f'scale={width}:{height}:flags=lanczos',
-        '-c:v','libwebp','-quality',str(quality),'-start_number','0',str(dest/'frame-%03d.webp')],check=True)
-    assert len(list(dest.glob('frame-*.webp')))==144
-    print(folder or 'desktop',flush=True)
-(OUT/'manifest.json').write_text(json.dumps({'source':str(SOURCE),'fps':24,'frameCount':144,
-    'durationSeconds':6,'desktop':[1920,1080],'mobile':[960,540],
-    'composition':'Original full 16:9 frame, no crop. Portrait uses a blurred ambient fill behind the complete foreground frame.'},indent=2),encoding='utf-8')
+import imageio_ffmpeg
+from PIL import Image
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('video', type=Path)
+source = parser.parse_args().video.resolve(strict=True)
+out = Path(__file__).resolve().parents[1] / 'assets/unveil-five-v3'
+ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+count = 144
+
+for folder, width, height, quality in [
+    ('', 1920, 800, 85),
+    ('mobile', 960, 400, 82),
+    ('preview', 384, 160, 74),
+    ('mobile/preview', 288, 120, 72),
+]:
+    target = out / folder
+    target.mkdir(parents=True, exist_ok=True)
+    subprocess.run([
+        ffmpeg, '-hide_banner', '-loglevel', 'error', '-y', '-i', str(source),
+        '-map', '0:v:0', '-an', '-vf', f'fps=24,scale={width}:{height}:flags=lanczos',
+        '-c:v', 'libwebp', '-quality', str(quality), '-start_number', '0',
+        str(target / 'frame-%03d.webp'),
+    ], check=True)
+    frames = sorted(target.glob('frame-*.webp'))
+    assert [frame.name for frame in frames] == [f'frame-{i:03}.webp' for i in range(count)]
+    for frame in frames:
+        with Image.open(frame) as image:
+            assert image.size == (width, height), frame
+            image.load()
+    print(folder or 'desktop', len(frames), flush=True)
+
+(out / 'manifest.json').write_text(json.dumps({
+    'source': source.name, 'fps': 24, 'frameCount': count, 'durationSeconds': 6,
+    'desktop': [1920, 800], 'mobile': [960, 400], 'cuts': [39, 105],
+}, indent=2) + '\n', encoding='utf-8')
