@@ -23,7 +23,7 @@
             <p>${article.intro}</p>
           </div>
           <p class="z-form-note">${byline}</p>
-          <img src="assets/studio/${article.car}-hero.webp" alt="">
+          <img src="${({corvette:"assets/editorial/user-corvette.jpg",bmw:"assets/editorial/user-bmw-m4-g82.jpg",porsche:"assets/editorial/user-porsche-911-gt3.jpg",mercedes:"assets/editorial/user-mercedes-amg-sl63.jpg",lamborghini:"assets/editorial/user-revuelto.jpg"}[article.car] || "assets/studio/" + article.car + "-hero.webp")}" alt="">
           ${article.body.map(([heading, text]) => `<h2>${heading}</h2><p>${text}</p>`).join('')}
           ${sources}
           <p><a class="z-button" href="news.html#bai-viet">Xem tất cả tin tức</a></p>
@@ -40,7 +40,7 @@
   const categories = [['all', 'Tất cả'], ...newsArticles.map(article => [article.section, article.category])];
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
-  const photo = article => 'assets/studio/' + article.car + '-hero.webp';
+  const photo = article => ({corvette:"assets/editorial/user-corvette.jpg",bmw:"assets/editorial/user-bmw-m4-g82.jpg",porsche:"assets/editorial/user-porsche-911-gt3.jpg",mercedes:"assets/editorial/user-mercedes-amg-sl63.jpg",lamborghini:"assets/editorial/user-revuelto.jpg"}[article.car] || "assets/studio/" + article.car + "-hero.webp");
   const url = article => 'article.html?id=' + article.id;
   const cta = article => `<a class="news-cta" href="${url(article)}">Đọc bài viết <span aria-hidden="true">↗</span></a>`;
   const byline = article => `<p class="news-meta">${article.author} · ${article.minutes} phút đọc</p>`;
