@@ -4,123 +4,193 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="ZEPHYRON — Danh sách yêu cầu đặt trước. Theo dõi yêu cầu mẫu đã lưu trên trình duyệt này.">
   <title>Danh sách yêu cầu đặt trước — ZEPHYRON</title>
   <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/fonts/fonts.css">
-  <link rel="stylesheet" href="garage.css">
-  <link rel="stylesheet" href="requests.css">
-  <script defer src="requests.js"></script>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <a class="garage-skip" href="#requests-main">Đến danh sách yêu cầu</a>
-  <header class="garage-header">
-    <nav class="garage-wrap flex flex-wrap items-center justify-between gap-4" aria-label="Điều hướng">
-      <a class="garage-brand" href="index.html"><img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="214" height="42"></a>
-      <div class="flex flex-wrap gap-4">
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+
+  <!-- Header dùng chung -->
+  <header class="z-header">
+    <div class="z-container z-header-inner">
+      <a class="z-brand" href="index.html" aria-label="Trang chủ ZEPHYRON">
+        <img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="163" height="40">
+      </a>
+      <nav class="z-nav" aria-label="Điều hướng chính">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
         <a href="explore.html">Khám phá</a>
-        <a href="garage.html">Cấu hình đã lưu</a>
-        <a href="requests.html" aria-current="page">Yêu cầu đặt trước</a>
+        <a href="gallery.html">Bộ sưu tập</a>
+      </nav>
+      <div class="z-header-actions">
+        <a href="account.html">Tài khoản</a>
+        <a class="z-cart-pill" href="cart.html" aria-label="Giỏ đặt trước">
+          <span>Giỏ</span>
+          <span class="count">0</span>
+        </a>
       </div>
-    </nav>
+    </div>
   </header>
-  <main id="requests-main" class="garage-wrap" tabindex="-1">
-    <header class="garage-intro request-intro">
-      <p class="garage-kicker">TRUNG TÂM QUẢN LÝ ĐẶT TRƯỚC · ZEPHYRON CONCIERGE</p>
-      <h1>Danh sách yêu cầu đặt trước</h1>
-      <p class="garage-note">Theo dõi, tìm kiếm và quản lý toàn bộ yêu cầu tư vấn, hẹn lái thử và cấu hình siêu xe đã lưu trên trình duyệt của bạn.</p>
+
+  <!-- Nội dung chính -->
+  <main class="main-content z-container" id="main-content">
+    <header class="page-header">
+      <p class="page-kicker">ZEPHYRON CONCIERGE</p>
+      <h1 class="page-title">Danh sách yêu cầu đặt trước</h1>
+      <p class="page-desc">Theo dõi yêu cầu mẫu đã lưu trên trình duyệt này.</p>
     </header>
-    
-    <dl class="garage-totals request-totals" aria-label="Tổng quan yêu cầu">
-      <div class="request-metric-card">
-        <dt><span class="metric-icon" aria-hidden="true">📋</span> Tổng yêu cầu</dt>
-        <dd data-total>0</dd>
-        <span class="metric-sub">Hồ sơ đã tạo</span>
+
+    <!-- Ba thẻ thống kê: Tổng yêu cầu, Chờ tư vấn, Đã hủy -->
+    <dl class="stats-grid" aria-label="Tổng quan yêu cầu">
+      <div class="stat-card">
+        <dt>Tổng yêu cầu</dt>
+        <dd id="stat-total">1</dd>
       </div>
-      <div class="request-metric-card is-pending">
-        <dt><span class="metric-icon" aria-hidden="true">⏳</span> Chờ tư vấn</dt>
-        <dd data-pending>0</dd>
-        <span class="metric-sub">Đang chờ phản hồi</span>
+      <div class="stat-card">
+        <dt>Chờ tư vấn</dt>
+        <dd id="stat-pending">1</dd>
       </div>
-      <div class="request-metric-card is-cancelled">
-        <dt><span class="metric-icon" aria-hidden="true">✕</span> Đã hủy</dt>
-        <dd data-cancelled>0</dd>
-        <span class="metric-sub">Yêu cầu đã đóng</span>
+      <div class="stat-card">
+        <dt>Đã hủy</dt>
+        <dd id="stat-cancelled">0</dd>
       </div>
     </dl>
-    
-    <p class="garage-status" role="status" data-status></p>
-    
-    <section class="garage-empty request-empty-box" data-empty aria-labelledby="requests-empty">
-      <div class="request-empty-icon" aria-hidden="true">
-        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-          <polyline points="10 9 9 9 8 9"></polyline>
-        </svg>
-      </div>
-      <p class="garage-kicker">CHƯA CÓ YÊU CẦU NÀO</p>
-      <h2 id="requests-empty">Bạn chưa có yêu cầu đặt trước nào</h2>
-      <p class="request-empty-desc">Toàn bộ yêu cầu tư vấn từ Showroom số hoặc đơn đặt trước từ Studio 3D sẽ xuất hiện tại đây. Bạn có thể mở Garage để xem bản phối hoặc bắt đầu cấu hình xe mới.</p>
-      <div class="request-empty-actions">
-        <a class="garage-button garage-primary" href="garage.html">Mở Garage cấu hình ↗</a>
-        <a class="garage-button" href="products.html">Khám phá Studio 3D ↗</a>
-        <a class="garage-button" href="contact.html">Liên hệ Showroom số ↗</a>
-      </div>
 
-      <div class="request-roadmap">
-        <div class="roadmap-step">
-          <span class="step-num">01</span>
-          <div>
-            <strong>Tùy biến xe 3D</strong>
-            <small>Chọn màu sơn, mâm & phanh trong Studio</small>
-          </div>
-        </div>
-        <div class="roadmap-arrow" aria-hidden="true">→</div>
-        <div class="roadmap-step">
-          <span class="step-num">02</span>
-          <div>
-            <strong>Gửi thông tin đặt trước</strong>
-            <small>Đăng ký tư vấn hoặc hẹn lái thử 1:1</small>
-          </div>
-        </div>
-        <div class="roadmap-arrow" aria-hidden="true">→</div>
-        <div class="roadmap-step">
-          <span class="step-num">03</span>
-          <div>
-            <strong>Quản lý & Hủy yêu cầu</strong>
-            <small>Theo dõi mã yêu cầu hoặc hủy khi cần</small>
-          </div>
-        </div>
+    <!-- Thanh lọc: ô tìm kiếm và dropdown trạng thái -->
+    <div class="filter-toolbar" role="search" aria-label="Lọc và tìm kiếm yêu cầu">
+      <div class="form-group">
+        <label for="filter-search">Tìm yêu cầu</label>
+        <input class="form-input" id="filter-search" type="search" placeholder="Mã yêu cầu hoặc tên xe...">
       </div>
+      <div class="form-group">
+        <label for="filter-status">Trạng thái</label>
+        <select class="form-select" id="filter-status">
+          <option value="all">Tất cả</option>
+          <option value="pending" selected>Chờ tư vấn</option>
+          <option value="cancelled">Đã hủy</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Danh sách thẻ yêu cầu -->
+    <section class="request-cards-list" aria-label="Danh sách yêu cầu">
+      <!-- Thẻ yêu cầu mẫu: ảnh, huy hiệu TƯ VẤN, trạng thái, tên xe, mã yêu cầu, ngày tạo, mã cấu hình, nút "Xem chi tiết" -->
+      <article class="request-item-card">
+        <div class="request-thumb">
+          <img src="assets/unveil-five/corvette-still.webp" alt="Chevrolet Corvette C7 Stingray" loading="lazy">
+        </div>
+        <div class="request-details">
+          <div class="request-badges">
+            <span class="badge-tu-van">TƯ VẤN</span>
+            <span class="badge-status">Chờ tư vấn</span>
+          </div>
+          <h2 class="request-car-name">Chevrolet Corvette C7</h2>
+          <div class="request-meta-row">
+            <span>Mã: <strong class="request-code">ZZ-T-M4K9B2</strong></span>
+            <span>Ngày tạo: 13/11/2026, 08:30</span>
+          </div>
+          <p class="request-meta-row">
+            <span>Mã cấu hình: Màu sơn: Đỏ Racing · Heo phanh: Vàng · Mâm: Bạc</span>
+          </p>
+        </div>
+        <div>
+          <button class="btn-primary btn-sm" type="button" onclick="document.getElementById('detail-modal').showModal()">
+            <span>Xem chi tiết</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </article>
     </section>
 
-    <section data-history hidden aria-label="Lịch sử yêu cầu">
-      <div class="request-filters">
-        <label>Tìm kiếm nhanh
-          <input type="search" data-search placeholder="Nhập mã yêu cầu (ZZ-...), tên xe hoặc họ tên khách...">
-        </label>
-        <label>Trạng thái
-          <select data-filter>
-            <option value="all">Tất cả trạng thái</option>
-            <option value="pending">Đang chờ tư vấn</option>
-            <option value="cancelled">Đã hủy</option>
-          </select>
-        </label>
+    <!-- Hộp thoại Chi tiết yêu cầu -->
+    <dialog class="card" id="detail-modal" style="margin: auto; max-width: 600px; width: 90vw; padding: 32px; border: 1px solid var(--line); border-radius: var(--radius-card); box-shadow: 0 20px 50px rgba(0,0,0,0.15);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line);">
+        <h2 style="font-size: 1.25rem; font-weight: 750;">Chi tiết yêu cầu — ZZ-T-M4K9B2</h2>
+        <button class="btn-secondary btn-sm" type="button" onclick="document.getElementById('detail-modal').close()">Đóng ×</button>
       </div>
-      <p class="garage-note" data-no-results hidden>Không tìm thấy yêu cầu phù hợp với từ khóa.</p>
-      <div class="request-list" data-list></div>
-    </section>
-
-    <noscript><p>Bật JavaScript để xem yêu cầu đã lưu.</p></noscript>
+      <div style="display: grid; gap: 14px; font-size: 0.875rem;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px;">
+          <span style="color: var(--muted);">Loại yêu cầu</span>
+          <strong>Tư vấn cấu hình</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px;">
+          <span style="color: var(--muted);">Trạng thái</span>
+          <span class="badge-status">Chờ tư vấn</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px;">
+          <span style="color: var(--muted);">Mẫu xe</span>
+          <strong>Chevrolet Corvette C7 Stingray</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px;">
+          <span style="color: var(--muted);">Bản phối</span>
+          <span>Đỏ Racing / Heo vàng / Mâm bạc</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 8px;">
+          <span style="color: var(--muted);">Ngày tạo</span>
+          <span>13/11/2026, 08:30</span>
+        </div>
+        <div style="background: var(--soft); padding: 14px; border-radius: 8px; margin-top: 6px;">
+          <small style="color: var(--muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 4px;">Ghi chú tư vấn</small>
+          <p style="margin: 0;">Khách quan tâm gói mâm xe khí động học và thử nghiệm màu sơn độc bản trong Studio 3D.</p>
+        </div>
+      </div>
+    </dialog>
   </main>
-  <dialog class="garage-dialog request-dialog" aria-labelledby="request-dialog-title">
-    <header class="flex items-center justify-between gap-3">
-      <h2 id="request-dialog-title"></h2>
-      <button class="garage-button" type="button" data-close>Đóng</button>
-    </header>
-    <div data-detail></div>
-  </dialog>
+
+  <!-- Footer dùng chung -->
+  <footer class="z-footer">
+    <div class="z-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>ZEPHYRON</h2>
+          <p>Năm cá tính. Một dấu ấn riêng.</p>
+        </div>
+        <div class="footer-links-col">
+          <h3>Điều hướng</h3>
+          <ul>
+            <li><a href="products.html">Studio xe</a></li>
+            <li><a href="about.html">Thương hiệu ZEPHYRON</a></li>
+            <li><a href="contact.html">Liên hệ / Showroom</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h3>Thông tin</h3>
+          <ul>
+            <li><a href="news.html">Tin tức / Bài viết</a></li>
+            <li><a href="sources.html">Nguồn hình & model</a></li>
+            <li><a href="policies.html">Bảo mật & điều kiện đặt trước</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Khối Bản quyền thương hiệu -->
+      <div class="footer-trademarks">
+        <h4>Bản quyền thương hiệu</h4>
+        <div class="trademark-list">
+          <span class="trademark-item"><strong>Chevrolet Corvette C7</strong> – General Motors</span>
+          <span class="trademark-item"><strong>BMW M4 Coupé</strong> – BMW AG</span>
+          <span class="trademark-item"><strong>Porsche 911 GT3</strong> – Dr. Ing. h.c. F. Porsche AG</span>
+          <span class="trademark-item"><strong>Mercedes-AMG SL 63</strong> – Mercedes-Benz Group AG</span>
+          <span class="trademark-item"><strong>Lamborghini Revuelto</strong> – Automobili Lamborghini S.p.A.</span>
+        </div>
+      </div>
+
+      <!-- Các dòng miễn trừ & bản quyền -->
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Đây là website mô phỏng đồ án thiết kế đồ họa / showroom siêu xe số, không phải website chính thức của các hãng sản xuất xe hơi.</p>
+        <div class="footer-bottom-row">
+          <span>© 2026 ZEPHYRON / ĐỒ ÁN THIẾT KẾ ĐỒ HỌA</span>
+          <span>Giá giả lập. Yêu cầu và tài khoản được mô phỏng trên trình duyệt.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

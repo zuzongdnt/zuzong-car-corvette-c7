@@ -1,3 +1,132 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#090a0c"><meta name="description" content="ZEPHYRON — Giỏ đặt trước. Studio tương tác 5 hãng xe."><title>Giỏ đặt trước — ZEPHYRON</title><link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts/fonts.css"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="site.css"><script type="module" src="site.js"></script><link rel="stylesheet" href="monochrome.css">
-</head><body class="z-page"><a class="skip-link sr-only" href="#main-content">Đến nội dung chính</a><div data-site-header></div><main class="z-container" id="main-content" data-page="cart"></main><div data-site-footer></div><noscript><p>Vui lòng bật JavaScript để sử dụng studio và các chức năng của đồ án.</p></noscript></body></html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="ZEPHYRON — Cấu hình của bạn. Studio tương tác 5 dòng siêu xe.">
+  <title>Cấu hình của bạn — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+
+  <!-- Header dùng chung -->
+  <header class="z-header">
+    <div class="z-container z-header-inner">
+      <a class="z-brand" href="index.html" aria-label="Trang chủ ZEPHYRON">
+        <img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="163" height="40">
+      </a>
+      <nav class="z-nav" aria-label="Điều hướng chính">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="explore.html">Khám phá</a>
+        <a href="gallery.html">Bộ sưu tập</a>
+      </nav>
+      <div class="z-header-actions">
+        <a href="account.html">Tài khoản</a>
+        <a class="z-cart-pill" href="cart.html" aria-current="page" aria-label="Giỏ đặt trước">
+          <span>Giỏ</span>
+          <span class="count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nội dung chính -->
+  <main class="main-content z-container" id="main-content">
+    <header class="page-header">
+      <p class="page-kicker">ZEPHYRON</p>
+      <h1 class="page-title">Cấu hình <em>của bạn.</em></h1>
+      <p class="page-desc">Từ lựa chọn trong studio đến yêu cầu tư vấn. Bạn có thể tiếp tục dưới dạng khách.</p>
+    </header>
+
+    <!-- Thanh bước 1 - 2 - 3 (Bước 1 được nhấn mạnh) -->
+    <ol class="cart-stepper" aria-label="Các bước đặt trước">
+      <li class="cart-step is-active" aria-current="step">
+        <span class="step-number" aria-hidden="true">1</span>
+        <span class="step-label">1. Cấu hình đã chọn</span>
+      </li>
+      <li class="cart-step-divider" aria-hidden="true"></li>
+      <li class="cart-step">
+        <span class="step-number" aria-hidden="true">2</span>
+        <span class="step-label">2. Thông tin đặt trước</span>
+      </li>
+      <li class="cart-step-divider" aria-hidden="true"></li>
+      <li class="cart-step">
+        <span class="step-number" aria-hidden="true">3</span>
+        <span class="step-label">3. Xác nhận yêu cầu</span>
+      </li>
+    </ol>
+
+    <!-- Khối trạng thái trống khi chưa có cấu hình -->
+    <section class="cart-empty-state" aria-labelledby="cart-empty-title">
+      <div class="cart-empty-icon" aria-hidden="true">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="8" cy="21" r="1"></circle>
+          <circle cx="19" cy="21" r="1"></circle>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+        </svg>
+      </div>
+      <h2 id="cart-empty-title">Giỏ đang chờ dấu ấn của bạn.</h2>
+      <p>Chọn một chiếc xe, thử bảng màu và bấm Đặt trước để bắt đầu.</p>
+      <a class="btn-primary" href="products.html">Khám phá Studio xe ↗</a>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <footer class="z-footer">
+    <div class="z-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>ZEPHYRON</h2>
+          <p>Năm cá tính. Một dấu ấn riêng.</p>
+        </div>
+        <div class="footer-links-col">
+          <h3>Điều hướng</h3>
+          <ul>
+            <li><a href="products.html">Studio xe</a></li>
+            <li><a href="about.html">Thương hiệu ZEPHYRON</a></li>
+            <li><a href="contact.html">Liên hệ / Showroom</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h3>Thông tin</h3>
+          <ul>
+            <li><a href="news.html">Tin tức / Bài viết</a></li>
+            <li><a href="sources.html">Nguồn hình & model</a></li>
+            <li><a href="policies.html">Bảo mật & điều kiện đặt trước</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Khối Bản quyền thương hiệu -->
+      <div class="footer-trademarks">
+        <h4>Bản quyền thương hiệu</h4>
+        <div class="trademark-list">
+          <span class="trademark-item"><strong>Chevrolet Corvette C7</strong> – General Motors</span>
+          <span class="trademark-item"><strong>BMW M4 Coupé</strong> – BMW AG</span>
+          <span class="trademark-item"><strong>Porsche 911 GT3</strong> – Dr. Ing. h.c. F. Porsche AG</span>
+          <span class="trademark-item"><strong>Mercedes-AMG SL 63</strong> – Mercedes-Benz Group AG</span>
+          <span class="trademark-item"><strong>Lamborghini Revuelto</strong> – Automobili Lamborghini S.p.A.</span>
+        </div>
+      </div>
+
+      <!-- Các dòng miễn trừ & bản quyền -->
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Đây là website mô phỏng đồ án thiết kế đồ họa / showroom siêu xe số, không phải website chính thức của các hãng sản xuất xe hơi.</p>
+        <div class="footer-bottom-row">
+          <span>© 2026 ZEPHYRON / ĐỒ ÁN THIẾT KẾ ĐỒ HỌA</span>
+          <span>Giá giả lập. Yêu cầu và tài khoản được mô phỏng trên trình duyệt.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

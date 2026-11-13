@@ -1,3 +1,221 @@
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#090a0c"><meta name="description" content="ZEPHYRON — Liên hệ / Showroom. Studio tương tác 5 hãng xe."><title>Liên hệ / Showroom — ZEPHYRON</title><link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/fonts/fonts.css"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="site.css"><script type="module" src="site.js"></script><link rel="stylesheet" href="monochrome.css">
-</head><body class="z-page"><a class="skip-link sr-only" href="#main-content">Đến nội dung chính</a><div data-site-header></div><main class="z-container" id="main-content" data-page="contact"></main><div data-site-footer></div><noscript><p>Vui lòng bật JavaScript để sử dụng studio và các chức năng của đồ án.</p></noscript></body></html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="ZEPHYRON — Liên hệ / Showroom. Bắt đầu cuộc trò chuyện.">
+  <title>Liên hệ / Showroom — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+
+  <!-- Header dùng chung -->
+  <header class="z-header">
+    <div class="z-container z-header-inner">
+      <a class="z-brand" href="index.html" aria-label="Trang chủ ZEPHYRON">
+        <img src="assets/brand-monochrome/zephyron-horizontal-black.svg" alt="ZEPHYRON" width="163" height="40">
+      </a>
+      <nav class="z-nav" aria-label="Điều hướng chính">
+        <a href="index.html">Trang chủ</a>
+        <a href="about.html">Giới thiệu</a>
+        <a href="products.html">Sản phẩm</a>
+        <a href="explore.html">Khám phá</a>
+        <a href="gallery.html">Bộ sưu tập</a>
+      </nav>
+      <div class="z-header-actions">
+        <a href="account.html">Tài khoản</a>
+        <a class="z-cart-pill" href="cart.html" aria-label="Giỏ đặt trước">
+          <span>Giỏ</span>
+          <span class="count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Nội dung chính -->
+  <main class="main-content z-container" id="main-content">
+    <header class="page-header">
+      <p class="page-kicker">ZEPHYRON</p>
+      <h1 class="page-title">Bắt đầu <em>cuộc trò chuyện.</em></h1>
+      <p class="page-desc">Lưu lại yêu cầu tư vấn hoặc chọn thời gian bạn muốn trải nghiệm xe.</p>
+    </header>
+
+    <!-- Bố cục hai cột: thẻ showroom bên trái, form bên phải -->
+    <div class="two-columns">
+      <!-- Cột trái: Thẻ showroom -->
+      <section class="showroom-card" aria-labelledby="showroom-title">
+        <h2 id="showroom-title">ZEPHYRON / Showroom số</h2>
+        <dl class="showroom-info-list">
+          <div class="showroom-info-item">
+            <dt>Địa điểm</dt>
+            <dd>Không gian trưng bày trực tuyến của đồ án.</dd>
+          </div>
+          <div class="showroom-info-item">
+            <dt>Giờ tư vấn minh họa</dt>
+            <dd>08:00 – 18:00, thứ Hai đến thứ Bảy.</dd>
+          </div>
+          <div class="showroom-info-item">
+            <dt>Lưu ý thực tế</dt>
+            <dd>Chưa thiết lập địa chỉ, số điện thoại và bản đồ showroom thực tế.</dd>
+          </div>
+        </dl>
+        <p class="showroom-note">Biểu mẫu tạo yêu cầu mẫu trong trình duyệt của bạn. Chưa gửi email hoặc liên hệ đến showroom.</p>
+      </section>
+
+      <!-- Cột phải: Form tư vấn -->
+      <section class="card" aria-labelledby="form-heading">
+        <h2 id="form-heading" class="sr-only">Biểu mẫu gửi yêu cầu tư vấn</h2>
+        <form class="contact-form" action="#" method="post">
+          <div class="form-group">
+            <label for="contact-name">Họ và tên *</label>
+            <input class="form-input" id="contact-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Nhập họ và tên của bạn">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-phone">Số điện thoại *</label>
+            <input class="form-input" id="contact-phone" name="phone" type="tel" autocomplete="tel" required pattern="[+0-9 ()-]{9,18}" title="Nhập số điện thoại từ 9 đến 18 ký tự." placeholder="0901 234 567">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-email">Email *</label>
+            <input class="form-input" id="contact-email" name="email" type="email" autocomplete="email" maxlength="120" required placeholder="name@example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-car">Mẫu xe quan tâm</label>
+            <select class="form-select" id="contact-car" name="car">
+              <option value="corvette">Chevrolet Corvette C7</option>
+              <option value="bmw">BMW M4 G82 Coupé</option>
+              <option value="porsche">Porsche 911 GT3 (992)</option>
+              <option value="mercedes">Mercedes-Benz AMG SL63</option>
+              <option value="lamborghini">Lamborghini Revuelto</option>
+            </select>
+          </div>
+
+          <!-- Gợi ý nhanh -->
+          <div class="quick-tags" aria-label="Gợi ý nội dung nhanh">
+            <span class="quick-tags-label">Gợi ý nhanh:</span>
+            <button type="button" class="tag-btn" onclick="document.getElementById('contact-note').value='Tôi muốn nhận bảng báo giá chi tiết và tư vấn màu sơn độc bản.'">Báo giá màu độc bản</button>
+            <button type="button" class="tag-btn" onclick="document.getElementById('contact-note').value='Tôi muốn đặt lịch trải nghiệm mô phỏng lái thử xe vào cuối tuần.'">Hẹn lái thử</button>
+            <button type="button" class="tag-btn" onclick="document.getElementById('contact-note').value='Tôi cần tư vấn thêm về thông số kỹ thuật động cơ và chế độ vận hành.'">Tư vấn kỹ thuật</button>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-note">Nội dung tư vấn</label>
+            <textarea class="form-textarea" id="contact-note" name="note" maxlength="1000" placeholder="Chia sẻ mong muốn của bạn về màu sơn, phiên bản hoặc thời điểm trải nghiệm..."></textarea>
+          </div>
+
+          <button class="btn-primary btn-full" type="submit">
+            <span>Lưu yêu cầu mẫu</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <!-- Phần FAQ bằng <details>, bốn câu hỏi -->
+    <section class="faq-section" aria-labelledby="faq-title">
+      <div class="faq-header">
+        <h2 id="faq-title">Câu hỏi thường gặp</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Tôi có thể đổi những màu nào?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            <p>Bạn có thể đổi riêng màu sơn thân xe, heo phanh và mâm. Màu kính, lốp và đĩa phanh giữ theo model.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Tôi có cần đăng nhập để đặt trước?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            <p>Không. Bạn có thể đi từ studio đến giỏ và nhập thông tin dưới dạng khách.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Giá hiển thị có phải báo giá thật không?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            <p>Không. Tất cả giá là số liệu giả lập dùng cho đồ án; mỗi màu sơn có mức giá riêng và màu giới hạn có phụ phí cao hơn.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary class="faq-summary">
+            <span>Cấu hình đã lưu nằm ở đâu?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-body">
+            <p>Trong mục Tài khoản trên chính trình duyệt này. Dữ liệu chưa được đồng bộ giữa các thiết bị.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer dùng chung -->
+  <footer class="z-footer">
+    <div class="z-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h2>ZEPHYRON</h2>
+          <p>Năm cá tính. Một dấu ấn riêng.</p>
+        </div>
+        <div class="footer-links-col">
+          <h3>Điều hướng</h3>
+          <ul>
+            <li><a href="products.html">Studio xe</a></li>
+            <li><a href="about.html">Thương hiệu ZEPHYRON</a></li>
+            <li><a href="contact.html">Liên hệ / Showroom</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-col">
+          <h3>Thông tin</h3>
+          <ul>
+            <li><a href="news.html">Tin tức / Bài viết</a></li>
+            <li><a href="sources.html">Nguồn hình & model</a></li>
+            <li><a href="policies.html">Bảo mật & điều kiện đặt trước</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Khối Bản quyền thương hiệu -->
+      <div class="footer-trademarks">
+        <h4>Bản quyền thương hiệu</h4>
+        <div class="trademark-list">
+          <span class="trademark-item"><strong>Chevrolet Corvette C7</strong> – General Motors</span>
+          <span class="trademark-item"><strong>BMW M4 Coupé</strong> – BMW AG</span>
+          <span class="trademark-item"><strong>Porsche 911 GT3</strong> – Dr. Ing. h.c. F. Porsche AG</span>
+          <span class="trademark-item"><strong>Mercedes-AMG SL 63</strong> – Mercedes-Benz Group AG</span>
+          <span class="trademark-item"><strong>Lamborghini Revuelto</strong> – Automobili Lamborghini S.p.A.</span>
+        </div>
+      </div>
+
+      <!-- Các dòng miễn trừ & bản quyền -->
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">Đây là website mô phỏng đồ án thiết kế đồ họa / showroom siêu xe số, không phải website chính thức của các hãng sản xuất xe hơi.</p>
+        <div class="footer-bottom-row">
+          <span>© 2026 ZEPHYRON / ĐỒ ÁN THIẾT KẾ ĐỒ HỌA</span>
+          <span>Giá giả lập. Yêu cầu và tài khoản được mô phỏng trên trình duyệt.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

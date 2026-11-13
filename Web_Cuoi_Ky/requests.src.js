@@ -73,7 +73,6 @@ function renderList() {
   document.querySelector('[data-no-results]').hidden = visible.length > 0;
   list.innerHTML = visible.map(({ key, request, type, cars, status }) => `
     <article class="request-card">
-<<<<<<< HEAD
       <div class="request-card-content">
         <div class="request-card-header">
           <span class="request-type-badge">${escape(type)}</span>
@@ -85,14 +84,7 @@ function renderList() {
           <span class="request-date">Ngày tạo: ${formatDate(request.created)}</span>
           ${request.name ? `<span class="request-client">Khách: <strong>${escape(request.name)}</strong></span>` : ''}
         </div>
-=======
-      <div>
-        <p class="garage-kicker">${escape(type)}</p>
-        <h2>${escape(cars.map(car => car.name).join(' · ') || 'Yêu cầu tư vấn')}</h2>
-        ${cars.length ? `<div class="request-car-previews">${cars.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join('')}</div>` : ''}
-        <p class="garage-note">${escape(request.id)} · ${formatDate(request.created)}</p>
-        <div class="request-meta"><span class="request-status">${escape(status)}</span></div>
->>>>>>> 2e77d95ccd7e88204618b69e7d364c5bb77b68e2
+        ${cars.length && cars[0]?.image ? `<div class="request-car-previews">${cars.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join('')}</div>` : ''}
       </div>
       <button class="garage-button garage-primary request-open-btn" type="button" data-open="${escape(key)}" aria-label="Xem chi tiết ${escape(request.id)}">
         <span>Xem chi tiết</span>
@@ -112,7 +104,6 @@ function showDetail(record) {
   ].filter(([, value]) => value);
   dialog.querySelector('h2').textContent = 'Chi tiết yêu cầu — ' + escape(request.id);
   content.innerHTML = `
-<<<<<<< HEAD
     <div class="request-detail-sheet">
       <div class="request-detail-badge-row">
         <span class="request-type-badge">${escape(type)}</span>
@@ -123,9 +114,12 @@ function showDetail(record) {
       <div class="request-detail-cars-section">
         <h3>Thông tin cấu hình siêu xe</h3>
         <ul class="request-specs" aria-label="Xe và cấu hình">${cars.map(car => `
-          <li>
-            <strong>${escape(car.name)}</strong>
-            ${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ''}
+          <li class="request-spec-car">
+            ${car.image ? `<img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy">` : ''}
+            <div>
+              <strong>${escape(car.name)}</strong>
+              ${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ''}
+            </div>
           </li>`).join('')}
         </ul>
       </div>` : ''}
@@ -136,12 +130,6 @@ function showDetail(record) {
       </div>` : ''}
       ${status === pending ? '<div class="request-detail-actions"><button class="garage-button request-cancel-btn" type="button" data-cancel>Hủy yêu cầu này ×</button></div>' : ''}
     </div>`;
-=======
-    <dl class="request-fields">${fields.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
-    ${cars.length ? `<ul class="request-specs" aria-label="Xe và cấu hình">${cars.map(car => `<li class="request-spec-car"><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><div><strong>${escape(car.name)}</strong>${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ''}</div></li>`).join('')}</ul>` : ''}
-    ${request.note ? `<p><strong>Ghi chú</strong><br>${escape(request.note)}</p>` : ''}
-    ${status === pending ? '<div class="request-detail-actions"><button class="garage-button" type="button" data-cancel>Hủy yêu cầu</button></div>' : ''}`;
->>>>>>> 2e77d95ccd7e88204618b69e7d364c5bb77b68e2
   if (!dialog.open) dialog.showModal();
 }
 

@@ -150,7 +150,6 @@
     document.querySelector("[data-no-results]").hidden = visible.length > 0;
     list.innerHTML = visible.map(({ key, request, type, cars: cars2, status }) => `
     <article class="request-card">
-<<<<<<< HEAD
       <div class="request-card-content">
         <div class="request-card-header">
           <span class="request-type-badge">${escape(type)}</span>
@@ -162,14 +161,7 @@
           <span class="request-date">Ngày tạo: ${formatDate(request.created)}</span>
           ${request.name ? `<span class="request-client">Khách: <strong>${escape(request.name)}</strong></span>` : ''}
         </div>
-=======
-      <div>
-        <p class="garage-kicker">${escape(type)}</p>
-        <h2>${escape(cars2.map((car) => car.name).join(" \xB7 ") || "Y\xEAu c\u1EA7u t\u01B0 v\u1EA5n")}</h2>
-        <p class="garage-note">${escape(request.id)} \xB7 ${formatDate(request.created)}</p>
-        <div class="request-meta"><span class="request-status">${escape(status)}</span></div>
-        ${cars2.length ? `<div class="request-car-previews">${cars2.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join("")}</div>` : ""}
->>>>>>> 2e77d95ccd7e88204618b69e7d364c5bb77b68e2
+        ${cars2.length && cars2[0]?.image ? `<div class="request-car-previews">${cars2.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join("")}</div>` : ""}
       </div>
       <button class="garage-button garage-primary request-open-btn" type="button" data-open="${escape(key)}" aria-label="Xem chi tiết ${escape(request.id)}">
         <span>Xem chi tiết</span>
