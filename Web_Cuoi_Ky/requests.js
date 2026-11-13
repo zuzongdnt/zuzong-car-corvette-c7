@@ -14,22 +14,15 @@
       { id: "racing", name: "\u0110\u1ECF Racing", hex: "#ad101c", surcharge: 28e7 },
       { id: "velocity", name: "Xanh Velocity", hex: "#164ea1", surcharge: 65e7, limited: true },
       { id: "satin", name: "B\u1EA1c Satin", hex: "#9298a1", surcharge: 42e7 },
-      { id: "british", name: "Xanh British", hex: "#164537", surcharge: 45e7 },
-      { id: "yellow", name: "V\xE0ng Competition", hex: "#c99c16", surcharge: 36e7 },
-      { id: "lava", name: "Cam Lava", hex: "#df541f", surcharge: 42e7 },
-      { id: "violet", name: "T\xEDm Violet", hex: "#5c4a8e", surcharge: 38e7 },
       { id: "shark-blue", name: "Shark Blue", hex: "#1878d3", surcharge: 65e7, car: "porsche" },
       { id: "verde-scandal", name: "Verde Scandal", hex: "#b4e62e", surcharge: 85e7, car: "lamborghini" }
     ],
-    calipers: [{ id: "red", name: "\u0110\u1ECF Racing", hex: "#cc1826" }, { id: "yellow", name: "V\xE0ng Sport", hex: "#f3b718" }, { id: "blue", name: "Xanh Cobalt", hex: "#1762c5" }, { id: "silver", name: "B\u1EA1c Titanium", hex: "#aeb3bb" }, { id: "black", name: "\u0110en Graphite", hex: "#202228" }, { id: "orange", name: "Cam Competition", hex: "#ec6a21" }, { id: "white", name: "Tr\u1EAFng Ceramic", hex: "#f0eee7" }, { id: "green", name: "Xanh Emerald", hex: "#188052" }],
+    calipers: [{ id: "red", name: "\u0110\u1ECF Racing", hex: "#cc1826" }, { id: "yellow", name: "V\xE0ng Sport", hex: "#f3b718" }, { id: "blue", name: "Xanh Cobalt", hex: "#1762c5" }, { id: "silver", name: "B\u1EA1c Titanium", hex: "#aeb3bb" }, { id: "black", name: "\u0110en Graphite", hex: "#202228" }],
     rims: [
       { id: "silver", name: "B\u1EA1c Titanium", hex: "#aeb3bb" },
       { id: "black", name: "\u0110en Graphite", hex: "#202228" },
       { id: "bronze", name: "\u0110\u1ED3ng Bronze", hex: "#a47d4b" },
       { id: "white", name: "Tr\u1EAFng Ceramic", hex: "#e7e7e2" },
-      { id: "gunmetal", name: "X\xE1m Gunmetal", hex: "#555c63" },
-      { id: "gold", name: "V\xE0ng Champagne", hex: "#c5a268" },
-      { id: "blue", name: "Xanh Cobalt", hex: "#1762c5" },
       { id: "satin-neodyme", name: "GT3 Wheels Satin Neodyme", hex: "#aa936a", surcharge: 22e7, car: "porsche" },
       { id: "altanero-black", name: "Altanero Shiny Black", hex: "#15161a", surcharge: 35e7, car: "lamborghini" }
     ]
@@ -124,18 +117,16 @@
   var statusOf = (request) => request.status || pending;
   var normalize = (value) => String(value).toLocaleLowerCase("vi").normalize("NFD").replace(/\p{Diacritic}/gu, "").replace(/đ/g, "d");
   var nameOf = (car) => car.id === "mercedes" ? "Mercedes-AMG SL 63" : car.brand + " " + car.name;
+  function photoOf(car) { return ({corvette: "assets/editorial/user-corvette.jpg", bmw: "assets/editorial/user-bmw-m4-g82.jpg", porsche: "assets/editorial/user-porsche-911-gt3.jpg", mercedes: "assets/editorial/user-mercedes-amg-sl63.jpg", lamborghini: "assets/editorial/user-revuelto.jpg"})[car] || "assets/studio/" + car + "-hero.webp"; }
   function carsOf(request) {
     const configs = Array.isArray(request.configs) ? request.configs : [];
-    return configs.filter((config) => config?.car).map((config) => ({
-      name: nameOf(getCar(config.car)),
-      spec: configText(cleanConfig(config))
-    }));
+    return configs.filter((config) => config?.car).map((config) => { const car = getCar(config.car); return { id: car.id, image: photoOf(car.id), name: nameOf(car), spec: configText(cleanConfig(config)) }; });
   }
   function recordOf(store, request) {
     const cars2 = carsOf(request);
     const hasConfiguration = cars2.length > 0;
     const car = request.car || (request.note === "Porsche 911 GT3 \xB7 B\xE0i vi\u1EBFt \u0111\xE1nh gi\xE1" ? "porsche" : "");
-    if (!hasConfiguration && car) cars2.push({ name: nameOf(getCar(car)), spec: "" });
+    if (!hasConfiguration && car) cars2.push({ id: getCar(car).id, image: photoOf(getCar(car).id), name: nameOf(getCar(car)), spec: "" });
     const status = statusOf(request);
     const type = request.intent === "testdrive" ? "H\u1EB9n l\xE1i th\u1EED" : request.note === "Y\xEAu c\u1EA7u b\xE1o gi\xE1 VIP t\u1EEB Garage" ? "B\xE1o gi\xE1 VIP" : store === "requests" && hasConfiguration ? "\u0110\u1EB7t tr\u01B0\u1EDBc" : "T\u01B0 v\u1EA5n";
     return { store, key: keyOf(store, request.id), request, cars: cars2, status, type };
@@ -164,6 +155,7 @@
         <h2>${escape(cars2.map((car) => car.name).join(" \xB7 ") || "Y\xEAu c\u1EA7u t\u01B0 v\u1EA5n")}</h2>
         <p class="garage-note">${escape(request.id)} \xB7 ${formatDate(request.created)}</p>
         <div class="request-meta"><span class="request-status">${escape(status)}</span></div>
+        ${cars2.length ? `<div class="request-car-previews">${cars2.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join("")}</div>` : ""}
       </div>
       <button class="garage-button" type="button" data-open="${escape(key)}" aria-label="Xem chi ti\u1EBFt ${escape(request.id)}">Xem chi ti\u1EBFt \u2197</button>
     </article>`).join("");

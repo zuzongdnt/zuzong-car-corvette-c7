@@ -12,15 +12,11 @@ export const palettes = {
     {id:'racing',name:'Đỏ Racing',hex:'#ad101c',surcharge:280000000},
     {id:'velocity',name:'Xanh Velocity',hex:'#164ea1',surcharge:650000000,limited:true},
     {id:'satin',name:'Bạc Satin',hex:'#9298a1',surcharge:420000000},
-    {id:'british',name:'Xanh British',hex:'#164537',surcharge:450000000},
-    {id:'yellow',name:'Vàng Competition',hex:'#c99c16',surcharge:360000000},
-    {id:'lava',name:'Cam Lava',hex:'#df541f',surcharge:420000000},
-    {id:'violet',name:'Tím Violet',hex:'#5c4a8e',surcharge:380000000},
     {id:'shark-blue',name:'Shark Blue',hex:'#1878d3',surcharge:650000000,car:'porsche'},
     {id:'verde-scandal',name:'Verde Scandal',hex:'#b4e62e',surcharge:850000000,car:'lamborghini'}
   ],
-  calipers:[{id:'red',name:'Đỏ Racing',hex:'#cc1826'},{id:'yellow',name:'Vàng Sport',hex:'#f3b718'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'orange',name:'Cam Competition',hex:'#ec6a21'},{id:'white',name:'Trắng Ceramic',hex:'#f0eee7'},{id:'green',name:'Xanh Emerald',hex:'#188052'}],
-  rims:[{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'bronze',name:'Đồng Bronze',hex:'#a47d4b'},{id:'white',name:'Trắng Ceramic',hex:'#e7e7e2'},{id:'gunmetal',name:'Xám Gunmetal',hex:'#555c63'},{id:'gold',name:'Vàng Champagne',hex:'#c5a268'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},
+  calipers:[{id:'red',name:'Đỏ Racing',hex:'#cc1826'},{id:'yellow',name:'Vàng Sport',hex:'#f3b718'},{id:'blue',name:'Xanh Cobalt',hex:'#1762c5'},{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'}],
+  rims:[{id:'silver',name:'Bạc Titanium',hex:'#aeb3bb'},{id:'black',name:'Đen Graphite',hex:'#202228'},{id:'bronze',name:'Đồng Bronze',hex:'#a47d4b'},{id:'white',name:'Trắng Ceramic',hex:'#e7e7e2'},
     {id:'satin-neodyme',name:'GT3 Wheels Satin Neodyme',hex:'#aa936a',surcharge:220000000,car:'porsche'},
     {id:'altanero-black',name:'Altanero Shiny Black',hex:'#15161a',surcharge:350000000,car:'lamborghini'}]
 };
@@ -69,5 +65,6 @@ export function configText(config){
   });
   return [...colors,...extras].join(' · ');
 }
-export const poster = (car,angle='hero') => car==='bmw'&&angle==='side' ? 'assets/gallery-real-v2/bmw-side-full-car.jpg' : `assets/gallery-real-v1/${car}-${angle}-real-v1.webp`;
+const suppliedPhotos={"corvette":"assets/editorial/user-corvette.jpg","bmw":"assets/editorial/user-bmw-m4-g82.jpg","porsche":"assets/editorial/user-porsche-911-gt3.jpg","mercedes":"assets/editorial/user-mercedes-amg-sl63.jpg","lamborghini":"assets/editorial/user-revuelto.jpg"};
+export const poster = (car,angle='hero') => angle==='hero'&&suppliedPhotos[car] ? suppliedPhotos[car] : `assets/studio/${car}-${angle}.webp`;
 export const brandLogo = id => 'assets/brands/'+({corvette:'chevrolet.svg',bmw:'bmw.svg',porsche:'porsche.svg',mercedes:'mercedes.svg',lamborghini:'lamborghini-shield.png'}[id]||'chevrolet.svg');

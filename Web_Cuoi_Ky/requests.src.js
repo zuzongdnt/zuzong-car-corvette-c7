@@ -1,5 +1,7 @@
 import { cleanConfig, configText, getCar, readStore, writeStore } from './studio-data.js';
 
+const photoOf = car => ({corvette: 'assets/editorial/user-corvette.jpg', bmw: 'assets/editorial/user-bmw-m4-g82.jpg', porsche: 'assets/editorial/user-porsche-911-gt3.jpg', mercedes: 'assets/editorial/user-mercedes-amg-sl63.jpg', lamborghini: 'assets/editorial/user-revuelto.jpg'})[car] || 'assets/studio/' + car + '-hero.webp';
+
 const stores = ['requests', 'consultations'];
 const pending = 'Chờ tư vấn';
 const cancelled = 'Đã hủy';
@@ -33,16 +35,14 @@ const nameOf = car => car.id === 'mercedes' ? 'Mercedes-AMG SL 63' : car.brand +
 
 function carsOf(request) {
   const configs = Array.isArray(request.configs) ? request.configs : [];
-  return configs.filter(config => config?.car).map(config => ({
-    name: nameOf(getCar(config.car)), spec: configText(cleanConfig(config))
-  }));
+  return configs.filter(config => config?.car).map(config => { const car = getCar(config.car); return { id: car.id, image: photoOf(car.id), name: nameOf(car), spec: configText(cleanConfig(config)) }; });
 }
 
 function recordOf(store, request) {
   const cars = carsOf(request);
   const hasConfiguration = cars.length > 0;
   const car = request.car || (request.note === 'Porsche 911 GT3 · Bài viết đánh giá' ? 'porsche' : '');
-  if (!hasConfiguration && car) cars.push({ name: nameOf(getCar(car)), spec: '' });
+  if (!hasConfiguration && car) cars.push({ id: getCar(car).id, image: photoOf(getCar(car).id), name: nameOf(getCar(car)), spec: '' });
   const status = statusOf(request);
   const type = request.intent === 'testdrive' ? 'Hẹn lái thử'
     : request.note === 'Yêu cầu báo giá VIP từ Garage' ? 'Báo giá VIP'
@@ -76,6 +76,7 @@ function renderList() {
       <div>
         <p class="garage-kicker">${escape(type)}</p>
         <h2>${escape(cars.map(car => car.name).join(' · ') || 'Yêu cầu tư vấn')}</h2>
+        ${cars.length ? `<div class="request-car-previews">${cars.map(car => `<figure><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><figcaption>${escape(car.name)}</figcaption></figure>`).join('')}</div>` : ''}
         <p class="garage-note">${escape(request.id)} · ${formatDate(request.created)}</p>
         <div class="request-meta"><span class="request-status">${escape(status)}</span></div>
       </div>
@@ -95,7 +96,7 @@ function showDetail(record) {
   dialog.querySelector('h2').textContent = 'Chi tiết yêu cầu';
   content.innerHTML = `
     <dl class="request-fields">${fields.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join('')}</dl>
-    ${cars.length ? `<ul class="request-specs" aria-label="Xe và cấu hình">${cars.map(car => `<li><strong>${escape(car.name)}</strong>${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ''}</li>`).join('')}</ul>` : ''}
+    ${cars.length ? `<ul class="request-specs" aria-label="Xe và cấu hình">${cars.map(car => `<li class="request-spec-car"><img src="${escape(car.image)}" alt="${escape(car.name)}" loading="lazy"><div><strong>${escape(car.name)}</strong>${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ''}</div></li>`).join('')}</ul>` : ''}
     ${request.note ? `<p><strong>Ghi chú</strong><br>${escape(request.note)}</p>` : ''}
     ${status === pending ? '<div class="request-detail-actions"><button class="garage-button" type="button" data-cancel>Hủy yêu cầu</button></div>' : ''}`;
   if (!dialog.open) dialog.showModal();

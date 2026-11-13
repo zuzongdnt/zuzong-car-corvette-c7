@@ -23,3 +23,5 @@
   .request-card, .request-filters { grid-template-columns: 1fr; }
   .request-card .garage-button { justify-self: start; }
 }
+
+.request-car-previews{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.request-car-previews figure{width:min(180px,45%);margin:0}.request-car-previews img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#eee}.request-car-previews figcaption{font-size:.78rem;margin-top:4px}
