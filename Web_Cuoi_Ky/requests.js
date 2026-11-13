@@ -159,34 +159,62 @@
     document.querySelector("[data-no-results]").hidden = visible.length > 0;
     list.innerHTML = visible.map(({ key, request, type, cars: cars2, status }) => `
     <article class="request-card">
-      <div>
-        <p class="garage-kicker">${escape(type)}</p>
-        <h2>${escape(cars2.map((car) => car.name).join(" \xB7 ") || "Y\xEAu c\u1EA7u t\u01B0 v\u1EA5n")}</h2>
-        <p class="garage-note">${escape(request.id)} \xB7 ${formatDate(request.created)}</p>
-        <div class="request-meta"><span class="request-status">${escape(status)}</span></div>
+      <div class="request-card-content">
+        <div class="request-card-header">
+          <span class="request-type-badge">${escape(type)}</span>
+          <span class="request-status-pill ${status === pending ? 'is-pending' : 'is-cancelled'}">● ${escape(status)}</span>
+        </div>
+        <h2 class="request-card-title">${escape(cars2.map((car) => car.name).join(" · ") || "Yêu cầu tư vấn")}</h2>
+        <div class="request-card-meta">
+          <span class="request-id-badge">${escape(request.id)}</span>
+          <span class="request-date">Ngày tạo: ${formatDate(request.created)}</span>
+          ${request.name ? `<span class="request-client">Khách: <strong>${escape(request.name)}</strong></span>` : ''}
+        </div>
       </div>
-      <button class="garage-button" type="button" data-open="${escape(key)}" aria-label="Xem chi ti\u1EBFt ${escape(request.id)}">Xem chi ti\u1EBFt \u2197</button>
+      <button class="garage-button garage-primary request-open-btn" type="button" data-open="${escape(key)}" aria-label="Xem chi tiết ${escape(request.id)}">
+        <span>Xem chi tiết</span>
+        <span aria-hidden="true">↗</span>
+      </button>
     </article>`).join("");
   }
   function showDetail(record) {
     const { request, status, cars: cars2, type } = record;
     const fields = [
-      ["M\xE3 y\xEAu c\u1EA7u", request.id],
-      ["Tr\u1EA1ng th\xE1i", status],
-      ["Lo\u1EA1i y\xEAu c\u1EA7u", type],
-      ["Ng\xE0y t\u1EA1o", formatDate(request.created)],
-      ["H\u1ECD v\xE0 t\xEAn", request.name],
+      ["Mã yêu cầu", request.id],
+      ["Trạng thái", status],
+      ["Loại yêu cầu", type],
+      ["Ngày tạo", formatDate(request.created)],
+      ["Họ và tên", request.name],
       ["Email", request.email],
-      ["S\u1ED1 \u0111i\u1EC7n tho\u1EA1i", request.phone],
-      ["Ng\xE0y mong mu\u1ED1n", request.date ? formatDate(request.date, dayFormat) : ""],
-      ["Ng\xE0y h\u1EE7y", request.cancelledAt ? formatDate(request.cancelledAt) : ""]
+      ["Số điện thoại", request.phone],
+      ["Ngày mong muốn", request.date ? formatDate(request.date, dayFormat) : ""],
+      ["Ngày hủy", request.cancelledAt ? formatDate(request.cancelledAt) : ""]
     ].filter(([, value]) => value);
-    dialog.querySelector("h2").textContent = "Chi ti\u1EBFt y\xEAu c\u1EA7u";
+    dialog.querySelector("h2").textContent = "Chi tiết yêu cầu — " + escape(request.id);
     content.innerHTML = `
-    <dl class="request-fields">${fields.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join("")}</dl>
-    ${cars2.length ? `<ul class="request-specs" aria-label="Xe v\xE0 c\u1EA5u h\xECnh">${cars2.map((car) => `<li><strong>${escape(car.name)}</strong>${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ""}</li>`).join("")}</ul>` : ""}
-    ${request.note ? `<p><strong>Ghi ch\xFA</strong><br>${escape(request.note)}</p>` : ""}
-    ${status === pending ? '<div class="request-detail-actions"><button class="garage-button" type="button" data-cancel>H\u1EE7y y\xEAu c\u1EA7u</button></div>' : ""}`;
+    <div class="request-detail-sheet">
+      <div class="request-detail-badge-row">
+        <span class="request-type-badge">${escape(type)}</span>
+        <span class="request-status-pill ${status === pending ? 'is-pending' : 'is-cancelled'}">● ${escape(status)}</span>
+      </div>
+      <dl class="request-fields">${fields.map(([label, value]) => `<div><dt>${label}</dt><dd>${escape(value)}</dd></div>`).join("")}</dl>
+      ${cars2.length ? `
+      <div class="request-detail-cars-section">
+        <h3>Thông tin cấu hình siêu xe</h3>
+        <ul class="request-specs" aria-label="Xe và cấu hình">${cars2.map((car) => `
+          <li>
+            <strong>${escape(car.name)}</strong>
+            ${car.spec ? `<p class="garage-note">${escape(car.spec)}</p>` : ""}
+          </li>`).join("")}
+        </ul>
+      </div>` : ""}
+      ${request.note ? `
+      <div class="request-detail-note-section">
+        <small>Ghi chú của khách hàng</small>
+        <p>${escape(request.note)}</p>
+      </div>` : ""}
+      ${status === pending ? '<div class="request-detail-actions"><button class="garage-button request-cancel-btn" type="button" data-cancel>Hủy yêu cầu này ×</button></div>' : ""}
+    </div>`;
     if (!dialog.open) dialog.showModal();
   }
   function cancelRequest(record) {

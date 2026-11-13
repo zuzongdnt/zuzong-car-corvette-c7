@@ -189,8 +189,148 @@ if(main){
     await import('./studio.js');
   }
   if(page==='contact'){
-    main.innerHTML=heading('Bắt đầu <em>cuộc trò chuyện.</em>','Lưu lại yêu cầu tư vấn hoặc chọn thời gian bạn muốn trải nghiệm xe.')+`<div class="z-split"><div><div class="z-info-block"><h2>ZEPHYRON / Showroom số</h2><p>Địa điểm: Không gian trưng bày trực tuyến của đồ án.</p><p>Giờ tư vấn minh họa: 08:00 – 18:00, thứ Hai đến thứ Bảy.</p><p>Chưa thiết lập địa chỉ, số điện thoại và bản đồ showroom thực tế.</p></div><p class="z-form-note">Biểu mẫu tạo yêu cầu mẫu trong trình duyệt của bạn. Chưa gửi email hoặc liên hệ đến showroom.</p></div><form class="z-form" data-contact><div class="z-two-cols"><label>Họ và tên *<input name="name" autocomplete="name" required minlength="2" maxlength="80"></label><label>Số điện thoại *<input name="phone" type="tel" autocomplete="tel" required pattern="[+0-9 ()-]{9,18}" title="Nhập số điện thoại từ 9 đến 18 ký tự."></label></div><label>Email *<input name="email" type="email" autocomplete="email" maxlength="120" required></label><label>Mẫu xe quan tâm<select name="car">${cars.map(car=>`<option value="${car.id}">${car.brand} ${car.name}</option>`).join('')}</select></label><label>Nội dung tư vấn<textarea name="note" maxlength="1000"></textarea></label><button class="z-button z-button-red" type="submit">Lưu yêu cầu mẫu <span aria-hidden="true">↗</span></button><p class="z-status" role="status"></p></form></div><h2>Câu hỏi thường gặp</h2>${[['Tôi có thể đổi những màu nào?','Bạn có thể đổi riêng màu sơn thân xe, heo phanh và mâm. Màu kính, lốp và đĩa phanh giữ theo model.'],['Tôi có cần đăng nhập để đặt trước?','Không. Bạn có thể đi từ studio đến giỏ và nhập thông tin dưới dạng khách.'],['Giá hiển thị có phải báo giá thật không?','Không. Tất cả giá là số liệu giả lập dùng cho đồ án; mỗi màu sơn có mức giá riêng và màu giới hạn có phụ phí cao hơn.'],['Cấu hình đã lưu nằm ở đâu?','Trong mục Tài khoản trên chính trình duyệt này. Dữ liệu chưa được đồng bộ giữa các thiết bị.']].map(([q,a])=>`<details class="z-faq"><summary>${q}</summary><p>${a}</p></details>`).join('')}`;
-    main.querySelector('[data-contact]').addEventListener('submit',event=>{event.preventDefault();const form=event.currentTarget;const data=Object.fromEntries(new FormData(form));if(!data.name.trim()){form.elements.name.setCustomValidity('Vui lòng nhập họ tên.');form.elements.name.reportValidity();return;}const ok=writeStore('consultations',[{...data,id:'ZZ-T-'+Date.now().toString(36).toUpperCase(),created:new Date().toISOString(),status:'Chờ tư vấn'},...list('consultations')]);form.querySelector('.z-status').textContent=ok?'Đã lưu yêu cầu mẫu trên trình duyệt. Chưa gửi đến showroom.':'Không lưu được. Hãy kiểm tra quyền lưu trữ.';if(ok)form.reset();});
+    main.innerHTML=heading('Bắt đầu <em>cuộc trò chuyện.</em>','Không gian kết nối giữa bạn và những tác phẩm cơ khí đỉnh cao. Đặt lịch tư vấn riêng biệt, giải đáp kỹ thuật hoặc chuẩn bị cho hành trình trải nghiệm.')+`
+    <div class="z-split z-contact-split">
+      <div class="z-showroom-column">
+        <div class="z-showroom-hero-card">
+          <div class="z-showroom-media">
+            <img src="assets/unveil-five/lamborghini-still.webp" alt="Không gian trưng bày ZEPHYRON Digital Lounge" loading="lazy">
+            <span class="z-showroom-badge"><span class="z-pulse-dot" aria-hidden="true"></span> DIGITAL SHOWROOM · 24/7 INTERACTIVE</span>
+          </div>
+          <div class="z-showroom-content">
+            <p class="z-kicker">KHÔNG GIAN TRẢI NGHIỆM ĐỘC BẢN</p>
+            <h2>ZEPHYRON / Showroom số</h2>
+            <p class="z-showroom-desc">Không gian trưng bày trực tuyến tương tác cao. Khám phá 5 dòng siêu xe biểu tượng trên nền tảng 3D thời gian thực với cấu hình tùy biến không giới hạn.</p>
+            <div class="z-showroom-grid">
+              <div class="z-showroom-feature">
+                <span class="z-feat-icon">📍</span>
+                <div>
+                  <strong>Trụ sở Showroom số</strong>
+                  <p>Không gian trực tuyến của đồ án tốt nghiệp</p>
+                </div>
+              </div>
+              <div class="z-showroom-feature">
+                <span class="z-feat-icon">🕒</span>
+                <div>
+                  <strong>Giờ tiếp đón trực tuyến</strong>
+                  <p>08:00 – 18:00 · Thứ Hai đến Thứ Bảy</p>
+                </div>
+              </div>
+              <div class="z-showroom-feature">
+                <span class="z-feat-icon">📞</span>
+                <div>
+                  <strong>Đường dây tư vấn VIP</strong>
+                  <p>1900 8888 (Mô phỏng đồ án) · Hỗ trợ 24/7</p>
+                </div>
+              </div>
+              <div class="z-showroom-feature">
+                <span class="z-feat-icon">🛡️</span>
+                <div>
+                  <strong>Đặc quyền khách hàng</strong>
+                  <p>Tư vấn cấu hình Bespoke & Hẹn lái thử 1:1</p>
+                </div>
+              </div>
+            </div>
+            <div class="z-showroom-notice">
+              <span class="z-notice-icon">ℹ️</span>
+              <p>Biểu mẫu tạo yêu cầu mẫu lưu an toàn trong trình duyệt (localStorage). Chưa gửi email hoặc kết nối giao dịch tài chính bên ngoài.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="z-form-column">
+        <div class="z-form-card">
+          <div class="z-form-header">
+            <h3>Đăng ký tư vấn trực tuyến</h3>
+            <p>Vui lòng để lại thông tin, chuyên viên tư vấn sẽ liên hệ lại trong thời gian sớm nhất.</p>
+          </div>
+          <form class="z-form z-contact-form" data-contact>
+            <div class="z-two-cols">
+              <label>Họ và tên *
+                <input name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="Ví dụ: Nguyễn Văn A">
+              </label>
+              <label>Số điện thoại *
+                <input name="phone" type="tel" autocomplete="tel" required pattern="[+0-9 ()-]{9,18}" title="Nhập số điện thoại từ 9 đến 18 ký tự." placeholder="0901 234 567">
+              </label>
+            </div>
+            <label>Email liên hệ *
+              <input name="email" type="email" autocomplete="email" maxlength="120" required placeholder="name@example.com">
+            </label>
+            <label>Mẫu xe quan tâm
+              <select name="car">
+                ${cars.map(car=>`<option value="${car.id}">${car.brand} ${car.name} (${car.series || car.engine})</option>`).join('')}
+              </select>
+            </label>
+            <div class="z-quick-tags" aria-label="Gợi ý nội dung nhanh">
+              <span>Gợi ý nhanh:</span>
+              <button type="button" class="z-tag-btn" data-fill="Tôi muốn nhận bảng báo giá chi tiết và tư vấn màu sơn độc bản.">Báo giá màu độc bản</button>
+              <button type="button" class="z-tag-btn" data-fill="Tôi muốn đặt lịch trải nghiệm mô phỏng lái thử xe vào cuối tuần.">Hẹn lái thử</button>
+              <button type="button" class="z-tag-btn" data-fill="Tôi cần tư vấn thêm về thông số kỹ thuật động cơ và chế độ vận hành.">Tư vấn kỹ thuật</button>
+            </div>
+            <label>Nội dung tư vấn
+              <textarea name="note" maxlength="1000" rows="4" placeholder="Chia sẻ yêu cầu đặc biệt của bạn về màu sắc, phiên bản hoặc thời điểm mong muốn trải nghiệm..."></textarea>
+            </label>
+            <button class="z-button z-button-red z-btn-block" type="submit">
+              <span>Gửi yêu cầu tư vấn mẫu</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+            <p class="z-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="z-contact-faq-section" aria-labelledby="contact-faq-title">
+      <div class="z-faq-head">
+        <p class="z-kicker">HỖ TRỢ THÔNG TIN</p>
+        <h2 id="contact-faq-title">Câu hỏi thường gặp</h2>
+        <p>Những thắc mắc phổ biến của khách hàng khi khám phá và trải nghiệm showroom số ZEPHYRON.</p>
+      </div>
+      <div class="z-faq-grid">
+        ${[
+          ['Tôi có thể tùy biến những chi tiết nào trên xe?', 'Trong Studio 3D, bạn có thể tùy chọn riêng biệt màu sơn thân xe (gồm cả các mã màu giới hạn độc bản), màu heo phanh thể thao và kiểu mâm xe. Các chi tiết kính, đĩa phanh và khung gầm được giữ chuẩn xác theo nguyên mẫu.'],
+          ['Tôi có cần tạo tài khoản để gửi yêu cầu đặt trước không?', 'Không bắt buộc. Bạn hoàn toàn có thể cấu hình xe trong Studio, chuyển đến giỏ và hoàn tất thông tin đặt trước dưới dạng khách tham quan. Nếu có tài khoản, các bản phối sẽ được đồng bộ vào Garage cá nhân.'],
+          ['Mức giá hiển thị trên website có phải giá bán thực tế không?', 'Không. Toàn bộ mức giá hiển thị là số liệu giả lập phục vụ cho đồ án thiết kế đồ họa tốt nghiệp; mỗi màu sơn và trang bị có mức giá mô phỏng tương ứng để tăng tính chân thực của trải nghiệm.'],
+          ['Dữ liệu cấu hình và yêu cầu của tôi được lưu trữ ở đâu?', 'Tất cả cấu hình xe đã lưu, giỏ đặt trước và danh sách yêu cầu được lưu an toàn trong bộ nhớ localStorage của trình duyệt trên thiết bị của bạn. Bạn có thể kiểm tra lại bất cứ lúc nào tại mục Danh sách yêu cầu.']
+        ].map(([q,a])=>`
+          <details class="z-faq-item">
+            <summary>
+              <span>${q}</span>
+              <span class="z-faq-icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="z-faq-body"><p>${a}</p></div>
+          </details>
+        `).join('')}
+      </div>
+    </section>`;
+
+    const contactForm = main.querySelector('[data-contact]');
+    contactForm.addEventListener('submit',event=>{
+      event.preventDefault();
+      const form=event.currentTarget;
+      const data=Object.fromEntries(new FormData(form));
+      if(!data.name.trim()){
+        form.elements.name.setCustomValidity('Vui lòng nhập họ tên.');
+        form.elements.name.reportValidity();
+        return;
+      }
+      const ok=writeStore('consultations',[{...data,id:'ZZ-T-'+Date.now().toString(36).toUpperCase(),created:new Date().toISOString(),status:'Chờ tư vấn'},...list('consultations')]);
+      const statusEl = form.querySelector('.z-status');
+      if(ok){
+        statusEl.innerHTML='<span class="z-status-success">✓ Đã lưu yêu cầu tư vấn thành công trên trình duyệt. Mã: <strong>ZZ-T-'+Date.now().toString(36).toUpperCase()+'</strong>. Bạn có thể theo dõi trong <a href="requests.html">Danh sách yêu cầu ↗</a>.</span>';
+        form.reset();
+      }else{
+        statusEl.textContent='Không lưu được. Hãy kiểm tra quyền lưu trữ của trình duyệt.';
+      }
+    });
+    main.querySelectorAll('.z-tag-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const textarea = contactForm.querySelector('[name=note]');
+        textarea.value = btn.dataset.fill;
+        textarea.focus();
+      });
+    });
     main.querySelector('[name=name]').addEventListener('input',event=>event.target.setCustomValidity(''));
   }
   if(page==='explore')main.innerHTML=heading('Khám phá <em>thế giới ZEPHYRON.</em>','Từ studio tương tác đến những câu chuyện về màu sắc và đường nét.')+`<div class="z-grid">${modelCards()}</div><div class="z-link-tiles"><a href="films.html">Thước phim ↗<small>Hai thước phim về Mercedes-AMG SL 63 và Porsche 911 GT3 RS</small></a><a href="experience.html">Hành trình ↗<small>Khám phá không gian và cảm xúc sau tay lái</small></a><a href="news.html">Tin tức / Bài viết ↗<small>Góc nhìn thiết kế và trải nghiệm studio</small></a><a href="article.html?id=${articles[0].id}">Chi tiết bài viết ↗<small>${articles[0].title}</small></a><a href="account.html#saved">Cấu hình đã lưu ↗<small>Mở lại những cấu hình bạn đã lưu trong Studio 3D</small></a><a href="requests.html">Danh sách yêu cầu đặt trước ↗<small>Xem các yêu cầu tư vấn và lái thử đã tạo</small></a></div>`;
@@ -266,32 +406,319 @@ if(main?.dataset.page==='sources')main.insertAdjacentHTML('beforeend',`<section 
 function configItem(item){
   const config=cleanConfig(item),car=getCar(config.car);const query=new URLSearchParams(config);
   query.set('edit',String(item.id));
-  return `<article class="z-cart-item"><img src="${poster(car.id)}" alt="${car.name}, ảnh tham khảo màu mặc định"><div><h2>${car.name}</h2><p>${escape(configText(config))}</p><p>${money(configurationPrice(config))} · Giá cấu hình minh họa</p><div class="z-cart-actions"><a href="products.html?${query}">Mở cấu hình 3D ↗</a><button class="z-inline-button" type="button" data-remove="${escape(item.id)}">Bỏ xe</button></div><p class="z-form-note">Ảnh tham khảo; mở 3D để xem màu đã chọn.</p></div></article>`;
+  const paint=colorOf(item,'body');
+  const brake=colorOf(item,'brake');
+  const wheel=colorOf(item,'wheels');
+  return `<article class="z-cart-item">
+    <div class="z-cart-item-media">
+      <img src="${poster(car.id)}" alt="${car.name}">
+      <span class="z-cart-brand-tag">${car.brand}</span>
+    </div>
+    <div class="z-cart-item-content">
+      <div class="z-cart-item-header">
+        <div>
+          <p class="z-kicker">${car.series || car.engine}</p>
+          <h2>${car.name}</h2>
+        </div>
+        <div class="z-cart-price-tag">
+          <strong>${money(configurationPrice(config))}</strong>
+          <small>Giá cấu hình minh họa</small>
+        </div>
+      </div>
+      <div class="z-cart-pills-row">
+        <span class="z-cart-pill"><i class="z-pill-swatch" style="--paint:${paint.hex}" aria-hidden="true"></i> Sơn: <strong>${paint.name}</strong>${paint.limited?' · <em class="z-tag-limited">Màu giới hạn</em>':''}</span>
+        <span class="z-cart-pill"><i class="z-pill-swatch" style="--paint:${brake.hex}" aria-hidden="true"></i> Phanh: <strong>${brake.name}</strong></span>
+        <span class="z-cart-pill"><i class="z-pill-swatch" style="--paint:${wheel.hex}" aria-hidden="true"></i> Mâm: <strong>${wheel.name}</strong></span>
+      </div>
+      <p class="z-cart-item-spec-text">${escape(configText(config))}</p>
+      <div class="z-cart-actions">
+        <a class="z-button z-btn-sm" href="products.html?${query}">Mở cấu hình 3D ↗</a>
+        <button class="z-inline-button z-remove-item-btn" type="button" data-remove="${escape(item.id)}">Bỏ xe khỏi giỏ ×</button>
+      </div>
+      <p class="z-form-note">Mở lại 3D để xoay 360°, đổi góc đèn và chiêm ngưỡng bản phối đầy đủ.</p>
+    </div>
+  </article>`;
 }
+
 function renderCart(step=1,request=null){
   const cart=list('cart').map(item=>({...cleanConfig(item),id:String(item.id)}));
-  main.innerHTML=heading('Cấu hình <em>của bạn.</em>','Từ lựa chọn trong studio đến yêu cầu tư vấn. Bạn có thể tiếp tục dưới dạng khách.')+`<ol class="z-stepper"><li ${step===1?'aria-current="step"':''}>1. Cấu hình đã chọn</li><li ${step===2?'aria-current="step"':''}>2. Thông tin đặt trước</li><li ${step===3?'aria-current="step"':''}>3. Xác nhận yêu cầu</li></ol><div data-cart-body></div>`;
+  main.innerHTML=heading('Cấu hình <em>của bạn.</em>','Từ bản phối trong Studio 3D đến quy trình đặt trước đặc quyền. Bạn có thể tiếp tục hoàn tất dưới dạng khách tham quan.')+`
+  <div class="z-stepper-wrap">
+    <ol class="z-stepper z-luxury-stepper">
+      <li class="${step===1?'aria-current-step':''} ${step>1?'is-complete':''}">
+        <span class="z-step-dot">${step>1?'✓':'1'}</span>
+        <span class="z-step-title">1. Cấu hình đã chọn</span>
+      </li>
+      <li class="z-step-connector ${step>1?'is-active':''}"></li>
+      <li class="${step===2?'aria-current-step':''} ${step>2?'is-complete':''}">
+        <span class="z-step-dot">${step>2?'✓':'2'}</span>
+        <span class="z-step-title">2. Thông tin đặt trước</span>
+      </li>
+      <li class="z-step-connector ${step===3?'is-active':''}"></li>
+      <li class="${step===3?'aria-current-step':''}">
+        <span class="z-step-dot">${step===3?'✓':'3'}</span>
+        <span class="z-step-title">3. Xác nhận yêu cầu</span>
+      </li>
+    </ol>
+  </div>
+  <div data-cart-body></div>`;
+
   const target=main.querySelector('[data-cart-body]');
-  if(step===3&&request){target.innerHTML=`<div class="z-empty"><div class="z-success-mark">✓</div><h2>Đã tạo yêu cầu mẫu.</h2><p>Mã yêu cầu: <strong>${escape(request.id)}</strong><br>Trạng thái: Chờ tư vấn</p><p>${escape(request.name)}, cấu hình của bạn đã được lưu trên trình duyệt. Chưa gửi đến showroom.</p>${request.configs.map(c=>`<p><strong>${getCar(c.car).name}</strong><br>${escape(configText(c))}</p>`).join('')}${button('requests.html','Xem yêu cầu đã tạo',true)}${button('products.html','Tiếp tục khám phá')}</div>`;return;}
-  if(!cart.length){target.innerHTML=`<div class="z-empty"><h2>Giỏ đang chờ dấu ấn của bạn.</h2><p>Chọn một chiếc xe, thử bảng màu và bấm Đặt trước để bắt đầu.</p>${button('products.html','Chọn xe trong studio',true)}</div>`;return;}
+  
+  if(step===3&&request){
+    target.innerHTML=`
+    <div class="z-confirmation-wrap">
+      <div class="z-confirmation-card">
+        <div class="z-success-header">
+          <div class="z-success-icon-wrap"><span class="z-success-mark" aria-hidden="true">✓</span></div>
+          <p class="z-kicker">HOÀN TẤT ĐẶT TRƯỚC MÔ PHỎNG</p>
+          <h2>Đã tạo yêu cầu mẫu thành công.</h2>
+          <p class="z-confirm-sub">Chào <strong>${escape(request.name)}</strong>, yêu cầu đặt trước của bạn đã được lưu an toàn trong trình duyệt (localStorage). Chưa gửi đến showroom thực tế.</p>
+        </div>
+
+        <div class="z-vip-pass">
+          <div class="z-vip-pass-top">
+            <div>
+              <span class="z-pass-kicker">MÃ YÊU CẦU ĐẶT TRƯỚC</span>
+              <h3 class="z-pass-id">${escape(request.id)}</h3>
+            </div>
+            <span class="z-pass-badge">● ${escape(request.status || 'Chờ tư vấn')}</span>
+          </div>
+
+          <div class="z-pass-details-grid">
+            <div><small>Họ và tên</small><strong>${escape(request.name)}</strong></div>
+            <div><small>Số điện thoại</small><strong>${escape(request.phone)}</strong></div>
+            <div><small>Email liên hệ</small><strong>${escape(request.email)}</strong></div>
+            <div><small>Hình thức</small><strong>${request.intent==='testdrive'?'Hẹn lái thử (mô phỏng)':'Nhận tư vấn cấu hình'}</strong></div>
+            ${request.date ? `<div><small>Ngày hẹn mong muốn</small><strong>${escape(request.date)}</strong></div>` : ''}
+            <div><small>Thời gian tạo</small><strong>${new Intl.DateTimeFormat('vi-VN', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Ho_Chi_Minh' }).format(new Date(request.created))}</strong></div>
+          </div>
+
+          <div class="z-pass-car-list">
+            <h4>Danh sách siêu xe đã chọn (${(request.configs || []).length} xe)</h4>
+            ${(request.configs || []).map(c=>`
+              <div class="z-pass-car-row">
+                <img src="${poster(c.car)}" alt="${getCar(c.car).name}">
+                <div>
+                  <strong>${getCar(c.car).brand} ${getCar(c.car).name}</strong>
+                  <p>${escape(configText(c))}</p>
+                  <small>${money(configurationPrice(c))} · Giá minh họa</small>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          ${request.note ? `<div class="z-pass-note"><small>Ghi chú của khách hàng:</small><p>${escape(request.note)}</p></div>` : ''}
+        </div>
+
+        <div class="z-confirm-next-steps">
+          <h4>Quy trình tiếp theo</h4>
+          <ul>
+            <li><strong>Lưu mã yêu cầu:</strong> Bạn có thể mở mục <a href="requests.html">Danh sách yêu cầu</a> bất cứ lúc nào để xem lại hoặc hủy yêu cầu.</li>
+            <li><strong>Mô phỏng trải nghiệm:</strong> Dữ liệu được lưu trong trình duyệt hiện tại và không đồng bộ sang thiết bị khác.</li>
+          </ul>
+        </div>
+
+        <div class="z-cart-actions z-confirm-actions">
+          ${button('requests.html','Xem yêu cầu đã tạo ↗',true)}
+          ${button('products.html','Tiếp tục khám phá Studio')}
+        </div>
+      </div>
+    </div>`;
+    return;
+  }
+
+  if(!cart.length){
+    target.innerHTML=`
+    <div class="z-empty-showcase">
+      <div class="z-empty-box-hero">
+        <div class="z-empty-hero-icon" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="8" cy="21" r="1"></circle>
+            <circle cx="19" cy="21" r="1"></circle>
+            <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+          </svg>
+        </div>
+        <p class="z-kicker">GIỎ ĐẶT TRƯỚC TRỐNG</p>
+        <h2>Giỏ đang chờ dấu ấn của bạn.</h2>
+        <p>Bạn chưa lưu cấu hình xe nào. Hãy chọn một mẫu xe từ studio, thử nghiệm các gam màu độc bản, tùy biến mâm và heo phanh để tạo nên kiệt tác của riêng bạn.</p>
+        <div class="z-empty-actions">
+          ${button('products.html','Chọn xe trong studio 3D ↗',true)}
+          <a class="z-button" href="explore.html">Tìm hiểu thế giới ZEPHYRON ↗</a>
+        </div>
+      </div>
+
+      <div class="z-empty-featured-section">
+        <div class="z-empty-featured-head">
+          <p class="z-kicker">BỘ SƯU TẬP KHUYÊN DÙNG</p>
+          <h3>Khám phá các dòng siêu xe tiêu biểu</h3>
+        </div>
+        <div class="z-empty-car-grid">
+          ${cars.map(c=>`
+            <article class="z-mini-car-card">
+              <a href="product.html?car=${c.id}" class="z-mini-card-link">
+                <div class="z-mini-media">
+                  <img src="${poster(c.id)}" alt="${c.brand} ${c.name}" loading="lazy">
+                  <span class="z-mini-badge">${c.brand}</span>
+                </div>
+                <div class="z-mini-body">
+                  <h4>${c.name}</h4>
+                  <p class="z-mini-spec">${c.engine} · ${c.layout}</p>
+                  <div class="z-mini-bottom">
+                    <span class="z-mini-price">${money(c.price)}</span>
+                    <span class="z-mini-cta">Tùy biến 3D ↗</span>
+                  </div>
+                </div>
+              </a>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </div>`;
+    return;
+  }
+
   const total=cart.reduce((sum,item)=>sum+configurationPrice(item),0);
-  const summaryCars=cart.map(item=>{const car=getCar(item.car),paint=colorOf(item,'body');return `<figure class="z-cart-preview"><img src="${poster(car.id)}" alt="${car.name}, xe đang đặt trước"><figcaption><strong>${car.name}</strong><span><i style="--paint:${paint.hex}" aria-hidden="true"></i>${paint.name}${paint.limited?' · Màu giới hạn':''}</span></figcaption></figure>`;}).join('');
-  const summary=`<aside class="z-info-block z-cart-summary"><div class="z-cart-summary-head"><h2>Xe đặt trước</h2><p>${cart.length} xe đã chọn</p></div><div class="z-cart-preview-list">${summaryCars}</div><div class="z-cart-summary-total"><p>Tổng giá minh họa</p><h2>${money(total)}</h2><p>Mọi giá là dữ liệu giả lập. Không thu tiền hoặc đặt cọc.</p><p>Giá thay đổi theo màu sơn và trang bị đã chọn.</p></div></aside>`;
+  const summaryCars=cart.map(item=>{
+    const car=getCar(item.car),paint=colorOf(item,'body');
+    return `<figure class="z-cart-preview">
+      <img src="${poster(car.id)}" alt="${car.name}, xe đang đặt trước">
+      <figcaption>
+        <strong>${car.name}</strong>
+        <span><i class="z-pill-swatch" style="--paint:${paint.hex}" aria-hidden="true"></i>${paint.name}${paint.limited?' · Màu giới hạn':''}</span>
+      </figcaption>
+    </figure>`;
+  }).join('');
+
+  const summary=`
+  <aside class="z-info-block z-cart-summary">
+    <div class="z-cart-summary-head">
+      <p class="z-kicker">TÓM TẮT ĐẶT TRƯỚC</p>
+      <h2>Xe đặt trước</h2>
+      <p>${cart.length} xe đã sẵn sàng</p>
+    </div>
+    <div class="z-cart-preview-list">${summaryCars}</div>
+    <div class="z-cart-summary-total">
+      <p class="z-total-label">Tổng giá trị minh họa</p>
+      <h2 class="z-total-amount">${money(total)}</h2>
+      <div class="z-summary-guarantees">
+        <p>✓ Lưu cấu hình độc bản trên trình duyệt</p>
+        <p>✓ Giá giả lập minh họa, không thu tiền/đặt cọc</p>
+        <p>✓ Hỗ trợ tư vấn và xếp lịch lái thử mô phỏng</p>
+      </div>
+    </div>
+  </aside>`;
+
   if(step===1){
-    target.innerHTML=`<div class="z-cart-layout"><div>${cart.map(item=>configItem(item)).join('')}<div class="z-cart-actions">${button('products.html','Chọn thêm xe')}<button class="z-button z-button-red" type="button" data-next-step>Thông tin đặt trước <span aria-hidden="true">↗</span></button></div></div>${summary}</div>`;
+    target.innerHTML=`
+    <div class="z-cart-layout">
+      <div class="z-cart-main-col">
+        <div class="z-cart-items-header">
+          <h3>Danh sách cấu hình đã chọn (${cart.length} xe)</h3>
+          <p>Mỗi chiếc xe mang một bản phối riêng. Bạn có thể mở lại Studio 3D để chỉnh sửa bất kỳ lúc nào.</p>
+        </div>
+        <div class="z-cart-items-list">${cart.map(item=>configItem(item)).join('')}</div>
+        <div class="z-cart-actions z-cart-flow-actions">
+          ${button('products.html','+ Chọn thêm xe')}
+          <button class="z-button z-button-red z-btn-next" type="button" data-next-step>
+            <span>Tiếp tục: Thông tin đặt trước</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+      ${summary}
+    </div>`;
     target.querySelector('[data-next-step]').addEventListener('click',()=>renderCart(2));
-    target.querySelectorAll('[data-remove]').forEach(button=>button.addEventListener('click',()=>{writeStore('cart',cart.filter(item=>item.id!==button.dataset.remove));updateCount();renderCart();}));
+    target.querySelectorAll('[data-remove]').forEach(button=>button.addEventListener('click',()=>{
+      writeStore('cart',cart.filter(item=>item.id!==button.dataset.remove));
+      updateCount();
+      renderCart();
+    }));
   }else{
-    const draft=readStore('checkoutDraft',{});const user=readStore('user',{});
-    target.innerHTML=`<div class="z-cart-layout"><form class="z-form" data-checkout><div class="z-two-cols"><label>Họ và tên *<input name="name" autocomplete="name" required minlength="2" maxlength="80" value="${escape(draft.name||user.name||'')}"></label><label>Số điện thoại *<input name="phone" autocomplete="tel" type="tel" required pattern="[+0-9 ()-]{9,18}" title="Nhập số điện thoại từ 9 đến 18 ký tự." value="${escape(draft.phone||'')}"></label></div><label>Email *<input name="email" type="email" autocomplete="email" required maxlength="120" value="${escape(draft.email||user.email||'')}"></label><label>Bạn muốn<select name="intent"><option value="consult">Nhận tư vấn</option><option value="testdrive">Hẹn lái thử (mô phỏng)</option></select></label><label>Ngày mong muốn<input name="date" type="date" min="${new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Ho_Chi_Minh'}).format(new Date())}" value="${escape(draft.date||'')}"></label><label>Ghi chú<textarea name="note" maxlength="1000">${escape(draft.note||'')}</textarea></label><label class="z-check"><input type="checkbox" required name="consent">Tôi hiểu đây là yêu cầu mẫu của đồ án, lưu trên trình duyệt và không tạo giao dịch thực tế.</label><div class="z-cart-actions"><button class="z-button" type="button" data-back-step>Quay lại cấu hình</button><button class="z-button z-button-red" type="submit">Xác nhận yêu cầu mẫu <span aria-hidden="true">↗</span></button></div><p class="z-status" role="status"></p></form>${summary}</div>`;
-    const form=target.querySelector('form');form.elements.intent.value=draft.intent==='testdrive'?'testdrive':'consult';
-    form.addEventListener('input',()=>{form.elements.name.setCustomValidity('');form.elements.date.required=form.elements.intent.value==='testdrive';writeStore('checkoutDraft',Object.fromEntries(new FormData(form)));});
+    const draft=readStore('checkoutDraft',{});
+    const user=readStore('user',{});
+    target.innerHTML=`
+    <div class="z-cart-layout">
+      <div class="z-cart-main-col">
+        <div class="z-checkout-card">
+          <div class="z-checkout-header">
+            <h3>Thông tin khách hàng & Yêu cầu</h3>
+            <p>Vui lòng cung cấp thông tin để nhân viên tư vấn chuẩn bị hồ sơ xe phù hợp nhất.</p>
+          </div>
+          <form class="z-form z-checkout-form" data-checkout>
+            <div class="z-two-cols">
+              <label>Họ và tên *
+                <input name="name" autocomplete="name" required minlength="2" maxlength="80" placeholder="Ví dụ: Trần Quốc Bảo" value="${escape(draft.name||user.name||'')}">
+              </label>
+              <label>Số điện thoại *
+                <input name="phone" autocomplete="tel" type="tel" required pattern="[+0-9 ()-]{9,18}" title="Nhập số điện thoại từ 9 đến 18 ký tự." placeholder="0912 345 678" value="${escape(draft.phone||'')}">
+              </label>
+            </div>
+            <label>Email liên hệ *
+              <input name="email" type="email" autocomplete="email" required maxlength="120" placeholder="bao.tran@example.com" value="${escape(draft.email||user.email||'')}">
+            </label>
+            <label>Bạn muốn nhận dịch vụ
+              <select name="intent">
+                <option value="consult">Nhận tư vấn cấu hình & Báo giá chi tiết</option>
+                <option value="testdrive">Hẹn lịch lái thử mô phỏng 1:1</option>
+              </select>
+            </label>
+            <label>Ngày mong muốn trải nghiệm
+              <input name="date" type="date" min="${new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Ho_Chi_Minh'}).format(new Date())}" value="${escape(draft.date||'')}">
+            </label>
+            <label>Ghi chú đặc biệt
+              <textarea name="note" maxlength="1000" rows="3" placeholder="Chia sẻ thêm về khung giờ thuận tiện, yêu cầu riêng về phụ kiện hoặc câu hỏi kỹ thuật...">${escape(draft.note||'')}</textarea>
+            </label>
+            <label class="z-check z-consent-check">
+              <input type="checkbox" required name="consent">
+              <span>Tôi hiểu đây là yêu cầu đặt trước mô phỏng của đồ án ZEPHYRON, lưu an toàn trong trình duyệt và không phát sinh bất kỳ nghĩa vụ tài chính thực tế nào.</span>
+            </label>
+            <div class="z-cart-actions z-form-step-actions">
+              <button class="z-button" type="button" data-back-step>← Quay lại cấu hình</button>
+              <button class="z-button z-button-red" type="submit">
+                <span>Xác nhận yêu cầu mẫu</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <p class="z-status" role="status"></p>
+          </form>
+        </div>
+      </div>
+      ${summary}
+    </div>`;
+    const form=target.querySelector('form');
+    form.elements.intent.value=draft.intent==='testdrive'?'testdrive':'consult';
+    form.addEventListener('input',()=>{
+      form.elements.name.setCustomValidity('');
+      form.elements.date.required=form.elements.intent.value==='testdrive';
+      writeStore('checkoutDraft',Object.fromEntries(new FormData(form)));
+    });
     form.elements.date.required=form.elements.intent.value==='testdrive';
-    target.querySelector('[data-back-step]').addEventListener('click',()=>renderCart());
-    form.addEventListener('submit',event=>{event.preventDefault();const data=Object.fromEntries(new FormData(form));if(data.name.trim().length<2){form.elements.name.setCustomValidity('Nhập họ tên ít nhất 2 ký tự.');form.elements.name.reportValidity();return;}
-      const request={...data,name:data.name.trim(),id:'ZZ-'+Date.now().toString(36).toUpperCase(),configs:cart,created:new Date().toISOString(),status:'Chờ tư vấn'};
-      if(!writeStore('requests',[request,...list('requests')])){form.querySelector('.z-status').textContent='Không lưu được yêu cầu. Thông tin vẫn được giữ trong biểu mẫu.';return;}
-      writeStore('cart',[]);writeStore('checkoutDraft',{});updateCount();renderCart(3,request);
+    target.querySelector('[data-back-step]').addEventListener('click',()=>renderCart(1));
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      const data=Object.fromEntries(new FormData(form));
+      if(data.name.trim().length<2){
+        form.elements.name.setCustomValidity('Nhập họ tên ít nhất 2 ký tự.');
+        form.elements.name.reportValidity();
+        return;
+      }
+      const request={
+        ...data,
+        name:data.name.trim(),
+        id:'ZZ-'+Date.now().toString(36).toUpperCase(),
+        configs:cart,
+        created:new Date().toISOString(),
+        status:'Chờ tư vấn'
+      };
+      if(!writeStore('requests',[request,...list('requests')])){
+        form.querySelector('.z-status').textContent='Không lưu được yêu cầu. Thông tin vẫn được giữ trong biểu mẫu.';
+        return;
+      }
+      writeStore('cart',[]);
+      writeStore('checkoutDraft',{});
+      updateCount();
+      renderCart(3,request);
     });
   }
 }
