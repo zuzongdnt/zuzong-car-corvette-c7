@@ -1,0 +1,322 @@
+[
+  {
+    "car": "corvette",
+    "slot": 1,
+    "asset": "assets/feature-real-v30/corvette-1.webp",
+    "title": "2016 Chevrolet Corvette Stingray coupe, front left, 06-06-2026.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2016_Chevrolet_Corvette_Stingray_coupe,_front_left,_06-06-2026.jpg",
+    "author": "MercurySable99",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      841
+    ],
+    "sha256": "c577f13ae7ef2391ccd8e1eface797ff96157848286291c730bf2577f34b7bf1"
+  },
+  {
+    "car": "corvette",
+    "slot": 2,
+    "asset": "assets/feature-real-v30/corvette-2.webp",
+    "title": "2017 Chevrolet Corvette Stingray, front left, 06-01-2024.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2017_Chevrolet_Corvette_Stingray,_front_left,_06-01-2024.jpg",
+    "author": "MercurySable99",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      703
+    ],
+    "sha256": "c9fe9e3844b2322b456e148c5eae67e81566645c063e11a68237ac6104a14328"
+  },
+  {
+    "car": "corvette",
+    "slot": 3,
+    "asset": "assets/feature-real-v30/corvette-3.webp",
+    "title": "2016 Chevrolet Corvette Stingray, rear left, 06-01-2024.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2016_Chevrolet_Corvette_Stingray,_rear_left,_06-01-2024.jpg",
+    "author": "MercurySable99",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      820
+    ],
+    "sha256": "95fab5aeed28878ee93ca02fd9d44cfb7fea7b66d39bc184f852e062c7917154"
+  },
+  {
+    "car": "corvette",
+    "slot": 4,
+    "asset": "assets/feature-real-v30/corvette-4.webp",
+    "title": "Chevrolet Corvette C7 01 China 2016-04-14.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Chevrolet_Corvette_C7_01_China_2016-04-14.jpg",
+    "author": "Navigator84",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      649
+    ],
+    "sha256": "1a252890a052d6e48038ad0d2f17ef434c387ea4a5f63a6a8c478c45fd198d69"
+  },
+  {
+    "car": "bmw",
+    "slot": 1,
+    "asset": "assets/feature-real-v30/bmw-1.webp",
+    "title": "BMW M4 (G82) 1X7A0155.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:BMW_M4_(G82)_1X7A0155.jpg",
+    "author": "Alexander Migl",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      666
+    ],
+    "sha256": "0a6cddd44bbd22decad2317ff064cb625f6e78b1964bcb346fb412cdd52f9603"
+  },
+  {
+    "car": "bmw",
+    "slot": 2,
+    "asset": "assets/feature-real-v30/bmw-2.webp",
+    "title": "BMW M4 (G82) IMG 4054.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:BMW_M4_(G82)_IMG_4054.jpg",
+    "author": "Alexander Migl",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      730
+    ],
+    "sha256": "86e53f6bf4697434597308aee8249b237a7ff659ce91f2b6314f249d2f70dd5d"
+  },
+  {
+    "car": "bmw",
+    "slot": 3,
+    "asset": "assets/feature-real-v30/bmw-3.webp",
+    "title": "2021 BMW M4 Comp G82 FOS22.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_BMW_M4_Comp_G82_FOS22.jpg",
+    "author": "MrWalkr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      758
+    ],
+    "sha256": "83a7dd78e6ec8fdd9e1a71887d4de5b2260f4263c9d6d9e68d1eec57e00ec50b"
+  },
+  {
+    "car": "bmw",
+    "slot": 4,
+    "asset": "assets/feature-real-v30/bmw-4.webp",
+    "title": "G82 M4 Front Brake.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:G82_M4_Front_Brake.jpg",
+    "author": "ランフラット",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      720,
+      960
+    ],
+    "sha256": "765f26e4cdfcb3ff250e555513171fc5b131116c75604ebfb376cc99a98b2e6b"
+  },
+  {
+    "car": "porsche",
+    "slot": 1,
+    "asset": "assets/feature-real-v30/porsche-1.webp",
+    "title": "2022 Porsche 911 992 GT3 SCD 24.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_Porsche_911_992_GT3_SCD_24.jpg",
+    "author": "MrWalkr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      657
+    ],
+    "sha256": "8ab50a9d9c2f599ee4b83670ef6dca2e626d22975539b2b13f347b77349b72b6"
+  },
+  {
+    "car": "porsche",
+    "slot": 2,
+    "asset": "assets/feature-real-v30/porsche-2.webp",
+    "title": "2021 Porsche 911 GT3 3.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_Porsche_911_GT3_3.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      856
+    ],
+    "sha256": "0cf5e3335e9c358fce2d89dc524e26fbb6df8fdfb8c5ba918f6b84fd23f8f93b"
+  },
+  {
+    "car": "porsche",
+    "slot": 3,
+    "asset": "assets/feature-real-v30/porsche-3.webp",
+    "title": "2021 Porsche 911 GT3 5.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_Porsche_911_GT3_5.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      775
+    ],
+    "sha256": "6ac7b8cc2687930842e4302719201b1a81d8fe2a21bc80822b759110d5923de3"
+  },
+  {
+    "car": "porsche",
+    "slot": 4,
+    "asset": "assets/feature-real-v30/porsche-4.webp",
+    "title": "2021 Porsche 911 GT3 6.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2021_Porsche_911_GT3_6.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1275,
+      960
+    ],
+    "sha256": "c51893aa1082214446103e670aed1e54c90d1516acdc8c407a0a02d197e331c5"
+  },
+  {
+    "car": "mercedes",
+    "slot": 1,
+    "asset": "assets/feature-real-v30/mercedes-1.webp",
+    "title": "2022 Mercedes SL63.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_Mercedes_SL63.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      846
+    ],
+    "sha256": "513be5e5f13e7d8bf016952564913a99b0937ddda14d0ed37689fff81942747b"
+  },
+  {
+    "car": "mercedes",
+    "slot": 2,
+    "asset": "assets/feature-real-v30/mercedes-2.webp",
+    "title": "2022 Mercedes SL63 (31643).jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_Mercedes_SL63_(31643).jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      799
+    ],
+    "sha256": "03734ae4b5449af3a165038dd2c49ccb3b268bf3292d1fd30ec8ee6debf84adc"
+  },
+  {
+    "car": "mercedes",
+    "slot": 3,
+    "asset": "assets/feature-real-v30/mercedes-3.webp",
+    "title": "Mercedes-AMG R232 63 IMG 6439.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Mercedes-AMG_R232_63_IMG_6439.jpg",
+    "author": "Alexander Migl",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      852
+    ],
+    "sha256": "1c899416ddaa0b2142282acb9ef7ade5634ea8ac407514310e6611d9ef5caac2"
+  },
+  {
+    "car": "mercedes",
+    "slot": 4,
+    "asset": "assets/feature-real-v30/mercedes-4.webp",
+    "title": "2022 Mercedes-AMG SL63.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:2022_Mercedes-AMG_SL63.jpg",
+    "author": "MrWalkr",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      775
+    ],
+    "sha256": "556e73565a7b5d6ec1a57f912899b49e8419e456e7a6cb56599dbcf06757d5c0"
+  },
+  {
+    "car": "lamborghini",
+    "slot": 1,
+    "asset": "assets/feature-real-v30/lamborghini-1.webp",
+    "title": "Lamborghini Revuelto 2024.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Revuelto_2024.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      874
+    ],
+    "sha256": "0ae476ee6835b19c0103a64cf11db08d828259ccd1172c5a08528992c94d40fc"
+  },
+  {
+    "car": "lamborghini",
+    "slot": 2,
+    "asset": "assets/feature-real-v30/lamborghini-2.webp",
+    "title": "Lamborghini Revuelto 2025 1.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Revuelto_2025_1.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      960
+    ],
+    "sha256": "fa6d4976136f0133bbb70638157550fb844be1f2d3d29719d61f55995852c011"
+  },
+  {
+    "car": "lamborghini",
+    "slot": 3,
+    "asset": "assets/feature-real-v30/lamborghini-3.webp",
+    "title": "Lamborghini Revuelto 2025 5.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Revuelto_2025_5.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      768
+    ],
+    "sha256": "2bb955b009e721bd102cd1e342fd1665b9d3d0a024f4e04d7de54da9c3f0f5dd"
+  },
+  {
+    "car": "lamborghini",
+    "slot": 4,
+    "asset": "assets/feature-real-v30/lamborghini-4.webp",
+    "title": "Lamborghini Revuelto 2025 3.jpg",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File:Lamborghini_Revuelto_2025_3.jpg",
+    "author": "Calreyn88",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "changes": "Resized and converted to WebP",
+    "size": [
+      1280,
+      745
+    ],
+    "sha256": "7cf65d166589bc85250a70206922018a29d78e0bdd3da0376fbd8f1b44d54ffc"
+  }
+]

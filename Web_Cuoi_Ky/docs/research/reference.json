@@ -1,0 +1,229 @@
+﻿{
+    "title":  "VANTA â€” Model 03 Nocturne",
+    "text":  "VANTA MOTORWERKE â€” EST. 1968 / RESTORED 2026\nSCROLL TO UNVEIL\nVANTA\nSPEC\nDRIVE\nDETAIL\nFINISH\nRESERVE\nMOTOR IDLE ON\n\nSTUDIO 07 â€” SHEET LIFT 00:00:04\n\nREDISCOVER\nthe CLASSICS\n\nNine hundred kilos of hand-formed aluminium. One engine we refuse to explain. The Model 03 does not ask to be liked.\n\n30X\nSTIFFER MONOCOQUE\n001/150\nALLOCATION\nÃ˜\nDRIVER AIDS\nUNBREAKABLE\nUNSTOPPABLE\nUNRIVALED\nSCROLL\n\n02 â€” HOMOLOGATION\n\nNUMBERS WE\nnever ROUNDED.\n\nMeasured at Bonneville, 14Â Â°C, tyres at 2.1Â bar. No launch mode. No excuses.\n\n01\n0\nBHP\nTwin-charged 4.4 flat-crank\n02\n0\ns\n0â€“60 MPH\nRolling start, one occupant\n03\n0\nMPH V-MAX\nDerestricted, salt-verified\n04\n0\nLB-FT\nPlateaued from 2 100 rpm\nVANTA\nVANTA on the salt flats\n\nACCELERATION\n\n0â€“60\n\n2.6 seconds. Repeatably. On a surface that gives nothing back.\n\nRANGE\n\n500\n\nMiles between fills. Hydrogen, compressed to 700 bar.\n\nREDLINE\n\n+10K\n\nRPM. Titanium rods. A noise you will feel in your sternum.\n\nBONNEVILLE â€” 03:14 â€” AMBIENT 9Â Â°C\n\n04 â€” DETAIL\n\nEVERY PART\nyou WILL TOUCH.\n01\nFORGED BRONZE 20â€³\nCarbon-ceramic, 410 mm. Cross-drilled by hand, then measured twice.\n02\nSADDLE-TAN CABIN\nFour analogue dials, amber-lit. One switch you are told never to use.\n03\nOBSIDIAN BODY\nAluminium over a bonded tub. Seven coats, none of them glossy.\n04\nNOCTURNE SIGNATURE\nThe only part of it most people will ever see.\n\n05 â€” FINISH\n\nCHOOSE THE\none YOU KEEP.\n\nFour finishes leave the shop. Two of them are matte. None of them are optional extras.\n\nVNT-03 / OBS-MT\n\nOBSIDIAN MATTE\nEMBER FLARE\nBRONZE FORGE\nNOCTURNE BLACKOUT\nOBSIDIAN MATTE\n\nSeven coats of un-lacquered black. It eats the light in the room and gives nothing back.\n\nPAINT MASS\n18 kg\nPREMIUM\nStandard\nLEAD TIME\n11 months\n\nSO FAR â€” NOTHING HAS\n\nUnbreakable\nU\nN\nB\nR\nE\nA\nK\nA\nB\nL\nE\n\nTwo hundred thousand test miles. Salt, gravel, one volcano.\nWe have not yet found the end of it.\n\n07 â€” ALLOCATION\n\nONE HUNDRED AND FIFTY.\nthen THE TOOLING BURNS.\n\nA refundable deposit of Â£25 000 holds a build slot and a colour. Deliveries open Q3 2027 from the Nevada shop.\n\nRESERVEÂ YOURS\nREMAINING\n112 of 150\nDEPOSIT\nÂ£25 000, refundable\nBUILD\nNevada, 11 months\nUNBREAKABLE\nâ—†\nUNSTOPPABLE\nâ—†\nUNRIVALED\nâ—†\nVANTA MODEL 03 NOCTURNE\nâ—†\nUNBREAKABLE\nâ—†\nUNSTOPPABLE\nâ—†\nUNRIVALED\nâ—†\nVANTA MODEL 03 NOCTURNE\nâ—†\n\nVANTA\n\nMotorwerke, Building 07, Wendover NV. Hand-built to order since 1968.\n\nMODEL\n\nHomologation\nSalt programme\nFinishes\n\nCONTACT\n\nallocation@vanta.example\n+1 775 000 0003\n\nLEGAL\n\nFigures are manufacturer estimates for a car that does not have a warranty. Fictional brand, built for a scroll-craft showcase.\n\nÂ© 2026 VANTA MOTORWERKE",
+    "scripts":  [
+                    "",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/gsap.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/ScrollTrigger.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/ScrollToPlugin.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/CustomEase.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/lenis.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/assets/vendor/split-type.min.js",
+                    "https://www.draftly.space/preset-sites/vanta/script.js"
+                ],
+    "images":  [
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg",
+                       "alt":  "Matte black VANTA fastback revealed in a blacked-out studio, red tail lights lit.",
+                       "width":  1440,
+                       "height":  1000
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-veiled.jpg",
+                       "alt":  "The car beneath a silk dust sheet, lit by two crossing light bars.",
+                       "width":  1440,
+                       "height":  1000
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-desert.jpg",
+                       "alt":  "The VANTA tearing across a moonlit salt flat, throwing a wall of dust.",
+                       "width":  1440,
+                       "height":  1000
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-wheel.jpg",
+                       "alt":  "Macro of a forged bronze wheel over a carbon-ceramic brake disc.",
+                       "width":  618,
+                       "height":  386
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-cabin.jpg",
+                       "alt":  "Night interior with tan leather and glowing amber gauges, rain on the glass.",
+                       "width":  618,
+                       "height":  386
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg",
+                       "alt":  "Three-quarter rear of the matte black fastback under raking studio light.",
+                       "width":  618,
+                       "height":  386
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-silhouette.jpg",
+                       "alt":  "Rear silhouette cresting a ridge at night with only the tail lights lit.",
+                       "width":  618,
+                       "height":  386
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg",
+                       "alt":  "VANTA Model 03 in Obsidian Matte.",
+                       "width":  1323,
+                       "height":  743
+                   },
+                   {
+                       "src":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-silhouette.jpg",
+                       "alt":  "",
+                       "width":  1440,
+                       "height":  1000
+                   }
+               ],
+    "sections":  [
+                     {
+                         "id":  "reveal",
+                         "class":  "reveal",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  0,
+                                      "width":  1440,
+                                      "height":  3600
+                                  },
+                         "html":  "\u003csection class=\"reveal\" id=\"reveal\" aria-labelledby=\"revealTitle\"\u003e\n    \u003cdiv class=\"pin-spacer\" style=\"order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: block; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1440px; height: 3600px; padding: 0px 0px 2600px;\"\u003e\u003cdiv class=\"reveal-stage\" id=\"revealStage\" style=\"translate: none; rotate: none; scale: none; opacity: 1; left: 0px; top: 0.001px; margin: 0px; max-width: 1440px; width: 1440px; max-height: 1000px; height: 1000px; padding: 0px; box-sizing: border-box; position: fixed; transform: translate(0px, 0px);\"\u003e\n      \u003cdiv class=\"stage-media\" data-media=\"reveal\"\u003e\n        \u003cimg data-draftly-asset-id=\"hero-image\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg\" class=\"stage-plate stage-plate--under\" src=\"/preset-sites/vanta/assets/img/vanta-hero.jpg\" alt=\"Matte black VANTA fastback revealed in a blacked-out studio, red tail lights lit.\" style=\"translate: none; rotate: none; scale: none; transform: translate3d(0px, 0px, 0px) scale(1.06, 1.06);\"\u003e\n        \u003cimg data-draftly-asset-id=\"img-1\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-veiled.jpg\" class=\"stage-plate stage-plate--veil\" id=\"veilPlate\" src=\"/preset-sites/vanta/assets/img/vanta-veiled.jpg\" alt=\"The car beneath a silk dust sheet, lit by two crossing light bars.\" style=\"translate: none; rotate: none; scale: none; filter: blur(0px) brightness(1); opacity: 1; transform: translate(0px, 0px);\"\u003e\n        \u003cvideo data-draftly-asset-id=\"hero-video\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/video/vanta-reveal.mp4\" class=\"stage-video is-live\" id=\"revealVideo\" playsinline=\"\" muted=\"\" preload=\"metadata\" data-src=\"/preset-sites/vanta/assets/video/vanta-reveal.mp4\" poster=\"/preset-sites/vanta/assets/img/vanta-veiled.jpg\" tabindex=\"-1\" aria-hidden=\"true\" src=\"/preset-sites/vanta/assets/video/vanta-reveal.mp4\"\u003e\u003c/video\u003e\n        \u003cdiv class=\"stage-bars\" aria-hidden=\"true\" style=\"opacity: 0.55;\"\u003e\u003ci style=\"translate: none; rotate: none; scale: none; opa"
+                     },
+                     {
+                         "id":  "specs",
+                         "class":  "specs",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  3600,
+                                      "width":  1440,
+                                      "height":  867.515625
+                                  },
+                         "html":  "\u003csection class=\"specs\" id=\"specs\" aria-labelledby=\"specsTitle\"\u003e\n    \u003cdiv class=\"wrap\"\u003e\n      \u003cdiv class=\"sec-head\"\u003e\n        \u003cp class=\"kicker\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\u003ci class=\"dot\"\u003e\u003c/i\u003e02 â€” HOMOLOGATION\u003c/p\u003e\n        \u003ch2 class=\"sec-title\" id=\"specsTitle\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eNumbers we\u003cbr\u003e\u003cem\u003enever\u003c/em\u003e rounded.\u003c/h2\u003e\n        \u003cp class=\"sec-note\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eMeasured at Bonneville, 14\u0026nbsp;Â°C, tyres at 2.1\u0026nbsp;bar. No launch mode. No excuses.\u003c/p\u003e\n      \u003c/div\u003e\n      \u003col class=\"spec-row\"\u003e\n        \u003cli class=\"spec\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0;\"\u003e\n          \u003cspan class=\"spec-idx\"\u003e01\u003c/span\u003e\n          \u003cb class=\"spec-fig\"\u003e\u003cspan class=\"count\" data-count=\"1020\" data-dec=\"0\"\u003e0\u003c/span\u003e\u003c/b\u003e\n          \u003cspan class=\"spec-unit\"\u003eBHP\u003c/span\u003e\n          \u003cspan class=\"spec-label\"\u003eTwin-charged 4.4 flat-crank\u003c/span\u003e\n        \u003c/li\u003e\n        \u003cli class=\"spec\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0;\"\u003e\n          \u003cspan class=\"spec-idx\"\u003e02\u003c/span\u003e\n          \u003cb class=\"spec-fig\"\u003e\u003cspan class=\"count\" data-count=\"/preset-sites/vanta/2.6\" data-dec=\"1\"\u003e0\u003c/span\u003e\u003ci\u003es\u003c/i\u003e\u003c/b\u003e\n          \u003cspan class=\"spec-unit\"\u003e0â€“60 MPH\u003c/span\u003e\n          \u003cspan class=\"spec-label\"\u003eRolling start, one occupant\u003c/span\u003e\n        \u003c/li\u003e\n        \u003cli class=\"spec\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0;\"\u003e\n          \u003cspan class=\"spec-idx\"\u003e03\u003c/span\u003e\n          \u003cb class=\"spec-fig\"\u003e\u003cspan class=\"count\" data-count=\"214\" data-dec=\"0\"\u003e0\u003c/span\u003e\u003c/b\u003e\n          \u003cspan class=\"spec-unit\"\u003eMPH V-MAX\u003c/span\u003e\n          \u003cspan class=\"spec-label\"\u003eDerestricted, salt-verified\u003c/span\u003e\n        \u003c/li\u003e\n        \u003cli class=\"spec\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 40px); opacity: 0;\"\u003e\n          \u003cspan class=\"spec-idx\"\u003e04\u003c/span\u003e\n          \u003cb class=\"spec-fig\"\u003e\u003cspan class=\"count\" data-count=\"996\" data-dec=\"0\"\u003e0\u003c/span\u003e\u003c/b\u003e\n          \u003cspa"
+                     },
+                     {
+                         "id":  "drive",
+                         "class":  "drive",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  4467.515625,
+                                      "width":  1440,
+                                      "height":  4200
+                                  },
+                         "html":  "\u003csection class=\"drive\" id=\"drive\" aria-labelledby=\"driveTitle\"\u003e\n    \u003cdiv class=\"pin-spacer\" style=\"order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: block; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1440px; height: 4200px; padding: 0px 0px 3200px;\"\u003e\u003cdiv class=\"drive-stage\" id=\"driveStage\" style=\"translate: none; rotate: none; scale: none; inset: 0px auto auto 0px; margin: 0px; max-width: 1440px; width: 1440px; max-height: 1000px; height: 1000px; padding: 0px; transform: translate(0px, 0px);\"\u003e\n      \u003cdiv class=\"stage-media\" data-media=\"drive\"\u003e\n        \u003cimg data-draftly-asset-id=\"img-2\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-desert.jpg\" class=\"stage-plate\" id=\"drivePlate\" src=\"/preset-sites/vanta/assets/img/vanta-desert.jpg\" alt=\"The VANTA tearing across a moonlit salt flat, throwing a wall of dust.\" style=\"translate: none; rotate: none; scale: none; transform: scale(1.16, 1.16);\"\u003e\n        \u003cvideo data-draftly-asset-id=\"video-1\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/video/vanta-drive.mp4\" class=\"stage-video is-live\" id=\"driveVideo\" playsinline=\"\" muted=\"\" preload=\"metadata\" data-src=\"/preset-sites/vanta/assets/video/vanta-drive.mp4\" poster=\"/preset-sites/vanta/assets/img/vanta-desert.jpg\" tabindex=\"-1\" aria-hidden=\"true\" src=\"/preset-sites/vanta/assets/video/vanta-drive.mp4\" style=\"translate: none; rotate: none; scale: none; transform: scale(1.16, 1.16);\"\u003e\u003c/video\u003e\n      \u003c/div\u003e\n\n      \u003c!-- giant wordmark, occluded by the car plate above it --\u003e\n      \u003ch2 class=\"drive-word\" id=\"driveWord\" aria-hidden=\"true\" style=\"translate: none; rotate: none; scale: none; opacity: 0; transform: translate(22%, 0%) scale(1.22, 1.22);\"\u003e\u003cspan\u003eVANTA\u003c/span\u003e\u003c/h2\u003e\n      \u003ccanvas class=\"drive-occluder\" id=\"driveOccluder\" aria-hidden=\"true\" width=\"1440\" height=\"1000\" style=\"translate: none; rotate: none; scale: none; transform: scale(1.16, 1.16);\"\u003e\u003c/canvas\u003e\n      \u003ch2 class=\"sr-only\" id=\"driveTitle\"\u003eVANTA on the salt flats\u003c/h2\u003e\n      \u003cdiv class=\"stage-vig stage-vig--soft\" aria-hidden=\"true\"\u003e"
+                     },
+                     {
+                         "id":  "gallery",
+                         "class":  "gallery",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  8667.515625,
+                                      "width":  1440,
+                                      "height":  2826
+                                  },
+                         "html":  "\u003csection class=\"gallery\" id=\"gallery\" aria-labelledby=\"galleryTitle\"\u003e\n    \u003cdiv class=\"pin-spacer\" style=\"order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: flex; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1440px; height: 2825px; padding: 0px 0px 1825px;\"\u003e\u003cdiv class=\"gallery-pin\" id=\"galleryPin\" style=\"translate: none; rotate: none; scale: none; inset: 0px auto auto 0px; margin: 0px; max-width: 1440px; width: 1440px; max-height: 1000px; height: 1000px; padding: 0px; transform: translate(0px, 0px);\"\u003e\n      \u003cdiv class=\"gallery-head\"\u003e\n        \u003cp class=\"kicker\"\u003e\u003ci class=\"dot\"\u003e\u003c/i\u003e04 â€” DETAIL\u003c/p\u003e\n        \u003ch2 class=\"sec-title sec-title--sm\" id=\"galleryTitle\"\u003eEvery part\u003cbr\u003e\u003cem\u003eyou\u003c/em\u003e will touch.\u003c/h2\u003e\n      \u003c/div\u003e\n      \u003cdiv class=\"gallery-track\" id=\"galleryTrack\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 0px);\"\u003e\n        \u003cfigure class=\"slab\"\u003e\n          \u003cspan class=\"slab-idx\"\u003e01\u003c/span\u003e\n          \u003cdiv class=\"slab-img\"\u003e\u003cimg data-draftly-asset-id=\"img-3\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-wheel.jpg\" src=\"/preset-sites/vanta/assets/img/vanta-wheel.jpg\" alt=\"Macro of a forged bronze wheel over a carbon-ceramic brake disc.\" loading=\"lazy\"\u003e\u003c/div\u003e\n          \u003cfigcaption\u003e\u003cb\u003eFORGED BRONZE 20â€³\u003c/b\u003e\u003cspan\u003eCarbon-ceramic, 410 mm. Cross-drilled by hand, then measured twice.\u003c/span\u003e\u003c/figcaption\u003e\n        \u003c/figure\u003e\n        \u003cfigure class=\"slab\"\u003e\n          \u003cspan class=\"slab-idx\"\u003e02\u003c/span\u003e\n          \u003cdiv class=\"slab-img\"\u003e\u003cimg data-draftly-asset-id=\"img-4\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-cabin.jpg\" src=\"/preset-sites/vanta/assets/img/vanta-cabin.jpg\" alt=\"Night interior with tan leather and glowing amber gauges, rain on the glass.\" loading=\"lazy\"\u003e\u003c/div\u003e\n          \u003cfigcaption\u003e\u003cb\u003eSADDLE-TAN CABIN\u003c/b\u003e\u003cspan\u003eFour analogue dials, amber-lit. One switch you are told never to use.\u003c/span\u003e\u003c/figcaption\u003e\n        \u003c/figure\u003e\n        \u003cfigure class=\"slab\"\u003e\n          \u003cspan class=\"slab-idx\"\u003e03\u003c/span\u003e\n          \u003cdiv class=\"slab-img\"\u003e\u003cimg data-draftly-asset-id"
+                     },
+                     {
+                         "id":  "config",
+                         "class":  "config",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  11493.515625,
+                                      "width":  1440,
+                                      "height":  1523.6875
+                                  },
+                         "html":  "\u003csection class=\"config\" id=\"config\" aria-labelledby=\"configTitle\"\u003e\n    \u003cdiv class=\"wrap config-wrap\"\u003e\n      \u003cdiv class=\"config-head\"\u003e\n        \u003cp class=\"kicker\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\u003ci class=\"dot\"\u003e\u003c/i\u003e05 â€” FINISH\u003c/p\u003e\n        \u003ch2 class=\"sec-title sec-title--sm\" id=\"configTitle\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eChoose the\u003cbr\u003e\u003cem\u003eone\u003c/em\u003e you keep.\u003c/h2\u003e\n        \u003cp class=\"sec-note\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eFour finishes leave the shop. Two of them are matte. None of them are optional extras.\u003c/p\u003e\n      \u003c/div\u003e\n\n      \u003cdiv class=\"config-stage\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\n        \u003cdiv class=\"config-view\" id=\"configView\" aria-live=\"polite\"\u003e\n          \u003cimg data-draftly-asset-id=\"img-7\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg\" class=\"config-img is-live\" src=\"/preset-sites/vanta/assets/img/vanta-hero.jpg\" alt=\"VANTA Model 03 in Obsidian Matte.\" id=\"configBase\"\u003e\n        \u003c/div\u003e\n        \u003cdiv class=\"config-frame\" aria-hidden=\"true\"\u003e\u003ci\u003e\u003c/i\u003e\u003ci\u003e\u003c/i\u003e\u003ci\u003e\u003c/i\u003e\u003ci\u003e\u003c/i\u003e\u003c/div\u003e\n        \u003cp class=\"config-code\" id=\"configCode\"\u003eVNT-03 / OBS-MT\u003c/p\u003e\n      \u003c/div\u003e\n\n      \u003cdiv class=\"config-panel\"\u003e\n        \u003cdiv class=\"swatches\" role=\"group\" aria-label=\"Choose a finish\"\u003e\n          \u003cbutton class=\"sw is-active\" type=\"button\" data-cursor=\"APPLY\" data-img=\"/preset-sites/vanta/assets/img/vanta-hero.jpg\" data-grade=\"saturate(.72) contrast(1.08) brightness(1)\" data-accent=\"#FF4D14\" data-code=\"VNT-03 / OBS-MT\" data-name=\"Obsidian Matte\" data-desc=\"Seven coats of un-lacquered black. It eats the light in the room and gives nothing back.\" data-stat-a=\"18 kg\" data-stat-b=\"Standard\" data-alt=\"VANTA Model 03 in Obsidian Matte, three-quarter rear.\" aria-current=\"true\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\n            \u003cspan class=\"sw-chip\" style=\"--chip:linear-gradient(140deg,#26262a,#050506)\"\u003e\u003c/span\u003e\n            \u003cspan class"
+                     },
+                     {
+                         "id":  "outro",
+                         "class":  "outro",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  13017.203125,
+                                      "width":  1440,
+                                      "height":  3200
+                                  },
+                         "html":  "\u003csection class=\"outro\" id=\"outro\" aria-labelledby=\"outroTitle\"\u003e\n    \u003cdiv class=\"pin-spacer\" style=\"order: 0; place-self: auto; grid-area: auto; z-index: auto; float: none; flex-shrink: 1; display: grid; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1440px; height: 3200px; padding: 0px 0px 2200px;\"\u003e\u003cdiv class=\"outro-pin\" id=\"outroPin\" style=\"translate: none; rotate: none; scale: none; inset: 0px auto auto 0px; margin: 0px; max-width: 1440px; width: 1440px; max-height: 1000px; height: 1000px; padding: 0px 57.6px; transform: translate(0px, 0px);\"\u003e\n      \u003cdiv class=\"outro-bg\" id=\"outroBg\" style=\"translate: none; rotate: none; scale: none; transform: translate(0%, 12%) scale(1.1, 1.1);\"\u003e\n        \u003cimg data-draftly-asset-id=\"img-8\" data-draftly-default-src=\"https://www.draftly.space/preset-sites/vanta/assets/img/vanta-silhouette.jpg\" src=\"/preset-sites/vanta/assets/img/vanta-silhouette.jpg\" alt=\"\" aria-hidden=\"true\"\u003e\n      \u003c/div\u003e\n      \u003cdiv class=\"stage-vig\" aria-hidden=\"true\"\u003e\u003c/div\u003e\n      \u003cp class=\"outro-kicker\" aria-hidden=\"true\" style=\"letter-spacing: 0px; opacity: 0;\"\u003eSO FAR â€” NOTHING HAS\u003c/p\u003e\n      \u003ch2 class=\"outro-word\" id=\"outroTitle\"\u003e\u003cspan class=\"sr-only\"\u003eUnbreakable\u003c/span\u003e\u003cspan class=\"outro-letters\" id=\"outroLetters\" aria-hidden=\"true\"\u003e\u003cspan style=\"overflow: hidden; display: inline-block; padding-bottom: 0.06em;\"\u003e\u003cspan class=\"ch\" style=\"translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0%, 108%);\"\u003eU\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"overflow: hidden; display: inline-block; padding-bottom: 0.06em;\"\u003e\u003cspan class=\"ch\" style=\"translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0%, 108%);\"\u003eN\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"overflow: hidden; display: inline-block; padding-bottom: 0.06em;\"\u003e\u003cspan class=\"ch\" style=\"translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0%, 108%);\"\u003eB\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"overflow: hidden; display: inline-block; padding-bottom: 0.06em;\"\u003e\u003cspan class=\"ch\" style=\"translate: none; rotate: none; scale: none; opacity: 0; transform: translate(0%, 108%);\"\u003eR\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"overflow: hidden; display: inline-b"
+                     },
+                     {
+                         "id":  "reserve",
+                         "class":  "reserve",
+                         "rect":  {
+                                      "x":  0,
+                                      "y":  16217.203125,
+                                      "width":  1440,
+                                      "height":  840.9375
+                                  },
+                         "html":  "\u003csection class=\"reserve\" id=\"reserve\" aria-labelledby=\"reserveTitle\"\u003e\n    \u003cdiv class=\"wrap reserve-wrap\"\u003e\n      \u003cp class=\"kicker\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\u003ci class=\"dot\"\u003e\u003c/i\u003e07 â€” ALLOCATION\u003c/p\u003e\n      \u003ch2 class=\"sec-title\" id=\"reserveTitle\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eOne hundred and fifty.\u003cbr\u003e\u003cem\u003eThen\u003c/em\u003e the tooling burns.\u003c/h2\u003e\n      \u003cp class=\"sec-note\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003eA refundable deposit of Â£25 000 holds a build slot and a colour. Deliveries open Q3 2027 from the Nevada shop.\u003c/p\u003e\n      \u003ca class=\"bigcta\" href=\"#reserve\" data-cursor=\"HOLD\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\n        \u003cspan class=\"bigcta-l\"\u003eRESERVE\u0026nbsp;YOURS\u003c/span\u003e\n        \u003cspan class=\"bigcta-a\" aria-hidden=\"true\"\u003e\n          \u003csvg viewBox=\"0 0 24 24\" focusable=\"false\"\u003e\u003cpath d=\"M4 12h15M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\"\u003e\u003c/path\u003e\u003c/svg\u003e\n        \u003c/span\u003e\n      \u003c/a\u003e\n      \u003cul class=\"reserve-meta\" style=\"translate: none; rotate: none; scale: none; transform: translate(0px, 34px); opacity: 0;\"\u003e\n        \u003cli\u003e\u003cb\u003eREMAINING\u003c/b\u003e\u003cspan\u003e112 of 150\u003c/span\u003e\u003c/li\u003e\n        \u003cli\u003e\u003cb\u003eDEPOSIT\u003c/b\u003e\u003cspan\u003eÂ£25 000, refundable\u003c/span\u003e\u003c/li\u003e\n        \u003cli\u003e\u003cb\u003eBUILD\u003c/b\u003e\u003cspan\u003eNevada, 11 months\u003c/span\u003e\u003c/li\u003e\n      \u003c/ul\u003e\n    \u003c/div\u003e\n  \u003c/section\u003e"
+                     }
+                 ],
+    "fonts":  [
+                  "Archivo, \"Helvetica Neue\", Arial, sans-serif",
+                  "Inter, \"Helvetica Neue\", Arial, sans-serif",
+                  "Anton, Archivo, Impact, \"Arial Narrow\", sans-serif"
+              ],
+    "styles":  [
+                   "https://fonts.googleapis.com/css2?family=Anton\u0026family=Archivo:wght@300;400;500;600;700\u0026family=Inter:wght@300;400;500\u0026family=Instrument+Serif:ital@1\u0026display=swap",
+                   "https://www.draftly.space/preset-sites/vanta/assets/vendor/lenis.css",
+                   "https://www.draftly.space/preset-sites/vanta/style.css"
+               ],
+    "height":  17435,
+    "assets":  [
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-veiled.jpg",
+                       "type":  "image",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-silhouette.jpg",
+                       "type":  "image",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-hero.jpg",
+                       "type":  "image",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7M.woff2",
+                       "type":  "font",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://fonts.gstatic.com/s/anton/v27/1Ptgg87LROyAm3Kz-C8.woff2",
+                       "type":  "font",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://fonts.gstatic.com/s/archivo/v25/k3kPo8UDI-1M0wlSV9XAw6lQkqWY8Q82sLydOxI.woff2",
+                       "type":  "font",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2",
+                       "type":  "font",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-desert.jpg",
+                       "type":  "image",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-wheel.jpg",
+                       "type":  "image",
+                       "status":  200
+                   },
+                   {
+                       "url":  "https://www.draftly.space/preset-sites/vanta/assets/img/vanta-cabin.jpg",
+                       "type":  "image",
+                       "status":  200
+                   }
+               ],
+    "videoUrls":  [
+                      "https://www.draftly.space/preset-sites/vanta/assets/video/vanta-reveal.mp4",
+                      "https://www.draftly.space/preset-sites/vanta/assets/video/vanta-drive.mp4"
+                  ],
+    "colorTokens":  {
+                        "accent":  "#FF4D14",
+                        "background":  "#000000",
+                        "surface":  "#0A0A0B",
+                        "foreground":  "#F4F4F2"
+                    },
+    "verifiedMotion":  {
+                           "mobileBreakpoint":  900,
+                           "desktopPinScrollViewportPercent":  260,
+                           "fallback":  "translated-scaled-fading-veiled-image",
+                           "timeInterpolation":  0.18,
+                           "technique":  "paused-video-currentTime-scroll-scrubbing"
+                       }
+}

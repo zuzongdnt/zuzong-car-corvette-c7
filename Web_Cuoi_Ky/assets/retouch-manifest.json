@@ -1,0 +1,207 @@
+{
+  "date": "2026-10-08",
+  "method": "Built-in imagegen photographic retouch, followed by WebP encoding only.",
+  "note": "Near-duplicate studio frames share the reviewed retouch for their matching camera-angle group. The original 18 files remain in the backup.",
+  "assets": [
+    {
+      "asset": "assets/view-01.webp",
+      "reviewedMaster": "output/image-retouch/generated/view-01.png",
+      "original": "output/image-retouch/originals/assets/view-01.webp",
+      "width": 1510,
+      "height": 1042,
+      "bytes": 321860
+    },
+    {
+      "asset": "assets/view-02.webp",
+      "reviewedMaster": "output/image-retouch/generated/view-01.png",
+      "original": "output/image-retouch/originals/assets/view-02.webp",
+      "width": 1510,
+      "height": 1042,
+      "bytes": 321860
+    },
+    {
+      "asset": "assets/view-03.webp",
+      "reviewedMaster": "output/image-retouch/generated/view-01.png",
+      "original": "output/image-retouch/originals/assets/view-03.webp",
+      "width": 1510,
+      "height": 1042,
+      "bytes": 321860
+    },
+    {
+      "asset": "assets/hero.webp",
+      "reviewedMaster": "output/image-retouch/generated/hero.png",
+      "original": "output/image-retouch/originals/assets/hero.webp",
+      "width": 1807,
+      "height": 870,
+      "bytes": 346604
+    },
+    {
+      "asset": "assets/view-04.webp",
+      "reviewedMaster": "output/image-retouch/generated/hero.png",
+      "original": "output/image-retouch/originals/assets/view-04.webp",
+      "width": 1807,
+      "height": 870,
+      "bytes": 346604
+    },
+    {
+      "asset": "assets/view-05.webp",
+      "reviewedMaster": "output/image-retouch/generated/hero.png",
+      "original": "output/image-retouch/originals/assets/view-05.webp",
+      "width": 1807,
+      "height": 870,
+      "bytes": 346604
+    },
+    {
+      "asset": "assets/view-06.webp",
+      "reviewedMaster": "output/image-retouch/generated/hero.png",
+      "original": "output/image-retouch/originals/assets/view-06.webp",
+      "width": 1807,
+      "height": 870,
+      "bytes": 346604
+    },
+    {
+      "asset": "assets/front.webp",
+      "reviewedMaster": "output/image-retouch/generated/front.png",
+      "original": "output/image-retouch/originals/assets/front.webp",
+      "width": 1438,
+      "height": 1094,
+      "bytes": 358438
+    },
+    {
+      "asset": "assets/view-07.webp",
+      "reviewedMaster": "output/image-retouch/generated/front.png",
+      "original": "output/image-retouch/originals/assets/view-07.webp",
+      "width": 1438,
+      "height": 1094,
+      "bytes": 358438
+    },
+    {
+      "asset": "assets/view-08.webp",
+      "reviewedMaster": "output/image-retouch/generated/front.png",
+      "original": "output/image-retouch/originals/assets/view-08.webp",
+      "width": 1438,
+      "height": 1094,
+      "bytes": 358438
+    },
+    {
+      "asset": "assets/view-09.webp",
+      "reviewedMaster": "output/image-retouch/generated/view-09.png",
+      "original": "output/image-retouch/originals/assets/view-09.webp",
+      "width": 1000,
+      "height": 1573,
+      "bytes": 352498
+    },
+    {
+      "asset": "assets/rear.webp",
+      "reviewedMaster": "output/image-retouch/generated/rear.png",
+      "original": "output/image-retouch/originals/assets/rear.webp",
+      "width": 1729,
+      "height": 910,
+      "bytes": 250982
+    },
+    {
+      "asset": "assets/view-10.webp",
+      "reviewedMaster": "output/image-retouch/generated/rear.png",
+      "original": "output/image-retouch/originals/assets/view-10.webp",
+      "width": 1729,
+      "height": 910,
+      "bytes": 250982
+    },
+    {
+      "asset": "assets/view-11.webp",
+      "reviewedMaster": "output/image-retouch/generated/rear.png",
+      "original": "output/image-retouch/originals/assets/view-11.webp",
+      "width": 1729,
+      "height": 910,
+      "bytes": 250982
+    },
+    {
+      "asset": "assets/view-12.webp",
+      "reviewedMaster": "output/image-retouch/generated/rear.png",
+      "original": "output/image-retouch/originals/assets/view-12.webp",
+      "width": 1729,
+      "height": 910,
+      "bytes": 250982
+    },
+    {
+      "asset": "assets/detail-tail.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-tail.png",
+      "original": "output/image-retouch/originals/assets/detail-tail.webp",
+      "width": 1004,
+      "height": 1567,
+      "bytes": 309628
+    },
+    {
+      "asset": "assets/view-13.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-tail.png",
+      "original": "output/image-retouch/originals/assets/view-13.webp",
+      "width": 1004,
+      "height": 1567,
+      "bytes": 309628
+    },
+    {
+      "asset": "assets/view-14.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-tail.png",
+      "original": "output/image-retouch/originals/assets/view-14.webp",
+      "width": 1004,
+      "height": 1567,
+      "bytes": 309628
+    },
+    {
+      "asset": "assets/side.webp",
+      "reviewedMaster": "output/image-retouch/generated/side.png",
+      "original": "output/image-retouch/originals/assets/side.webp",
+      "width": 1395,
+      "height": 1127,
+      "bytes": 221060
+    },
+    {
+      "asset": "assets/view-15.webp",
+      "reviewedMaster": "output/image-retouch/generated/side.png",
+      "original": "output/image-retouch/originals/assets/view-15.webp",
+      "width": 1395,
+      "height": 1127,
+      "bytes": 221060
+    },
+    {
+      "asset": "assets/view-16.webp",
+      "reviewedMaster": "output/image-retouch/generated/side.png",
+      "original": "output/image-retouch/originals/assets/view-16.webp",
+      "width": 1395,
+      "height": 1127,
+      "bytes": 221060
+    },
+    {
+      "asset": "assets/detail-wheel.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-wheel.png",
+      "original": "output/image-retouch/originals/assets/detail-wheel.webp",
+      "width": 1201,
+      "height": 1309,
+      "bytes": 307510
+    },
+    {
+      "asset": "assets/view-17.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-wheel.png",
+      "original": "output/image-retouch/originals/assets/view-17.webp",
+      "width": 1201,
+      "height": 1309,
+      "bytes": 307510
+    },
+    {
+      "asset": "assets/view-18.webp",
+      "reviewedMaster": "output/image-retouch/generated/detail-wheel.png",
+      "original": "output/image-retouch/originals/assets/view-18.webp",
+      "width": 1201,
+      "height": 1309,
+      "bytes": 307510
+    },
+    {
+      "asset": "assets/editorial/hangar.webp",
+      "reviewedMaster": "output/image-retouch/generated/hangar.png",
+      "original": "output/image-retouch/originals/assets/editorial/hangar.webp",
+      "width": 941,
+      "height": 1672,
+      "bytes": 383748
+    }
+  ]
+}

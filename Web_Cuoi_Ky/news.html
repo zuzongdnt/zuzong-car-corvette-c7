@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Tin tức, bài đánh giá và góc nhìn kỹ thuật về năm mẫu xe hiệu năng cao của ZEPHYRON.">
+  <title>Tin Tức &amp; Bài Viết — ZEPHYRON</title>
+  <link rel="icon" href="assets/brand-monochrome/zephyron-symbol.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="studio.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="monochrome.css">
+  <link rel="stylesheet" href="news.css">
+  <script type="module" src="site.js"></script>
+  <script defer src="editorial-data.js"></script><script defer src="news.js"></script>
+</head>
+<body class="z-page news-page">
+  <a class="skip-link sr-only" href="#main-content">Đến nội dung chính</a>
+  <div data-site-header></div>
+  <main class="news-shell" id="main-content" tabindex="-1">
+    <header class="news-intro news-wrap">
+      <p class="news-kicker">ZEPHYRON / Tạp chí</p>
+      <h1>Tin Tức <span>&amp; Bài Viết.</span></h1>
+      <p>Những lựa chọn kỹ thuật định hình cá tính của năm mẫu xe. Từ bàn thiết kế đến vị trí sau tay lái.</p>
+      <a class="news-cta" href="#bai-viet" data-news-all>Xem tất cả tin tức <span aria-hidden="true">↓</span></a>
+    </header>
+    <section class="news-feature news-wrap grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-14" aria-labelledby="news-feature-title" data-news-feature></section>
+    <section class="news-wrap news-library" id="bai-viet" aria-labelledby="news-list-title">
+      <p class="news-kicker">Hồ sơ biên tập / 01–05</p>
+      <h2 id="news-list-title">Khám phá theo chủ đề.</h2>
+      <div class="news-filter flex gap-2 overflow-x-auto" role="group" aria-label="Lọc bài viết theo chuyên mục" data-news-filters></div>
+      <p class="sr-only" role="status" data-news-status></p>
+      <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-3" data-news-cards></div>
+      <details class="news-archive">
+        <summary>Bài viết từ studio</summary>
+        <ul>
+          <li><a href="article.html?id=dau-an-mau-sac">Một màu sơn. Một cá tính.</a></li>
+          <li><a href="article.html?id=nam-ngon-ngu-thiet-ke">Năm hãng xe, năm ngôn ngữ thiết kế.</a></li>
+          <li><a href="article.html?id=trai-nghiem-studio-3d">Khám phá chiếc xe bằng chính góc nhìn của bạn.</a></li>
+        </ul>
+      </details>
+    </section>
+    <noscript><p class="news-wrap">Bật JavaScript để xem các bài viết và bộ lọc chuyên mục.</p></noscript>
+  </main>
+  <div data-site-footer></div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# Generated builds, backups, exports and local QA output
+/dist/
+/output/
+/tmp/
+/node_modules/
+/coverage/
+/playwright-report/
+/test-results/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+*.log
+
+# Editor and operating system files
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+Desktop.ini

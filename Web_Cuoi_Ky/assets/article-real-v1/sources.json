@@ -1,0 +1,56 @@
+[
+  {
+    "car": "corvette",
+    "angle": "front",
+    "asset": "assets/article-real-v1/corvette-front-real-v1.webp",
+    "sourcePage": "https://www.pinterest.com/pin/black-corvette-race-car--140806230519852/",
+    "sourceImage": "https://i.pinimg.com/originals/49/71/a1/4971a19d90904a5085f3f26037c9b9cc.jpg",
+    "title": "Pin by Paul on My Saves | Corvette race car, Chevrolet corvette z06 ...",
+    "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "bmw",
+    "angle": "front",
+    "asset": "assets/article-real-v1/bmw-front-real-v1.webp",
+    "sourcePage": "https://www.pinterest.com/pin/39125090506887404/",
+    "sourceImage": "https://i.pinimg.com/736x/c9/8b/96/c98b9629548e337ccf84ca336826e7c3.jpg",
+    "title": "2024 BMW M4 Competition in Black | Luxury Sports Car | Auto fotografie ...",
+    "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "porsche",
+    "angle": "front",
+    "asset": "assets/article-real-v1/porsche-front-real-v1.webp",
+    "sourcePage": "https://www.pinterest.com/pin/porsche-992-gt3-wallpaper--202239839512432613/",
+    "sourceImage": "https://i.pinimg.com/736x/1f/83/ce/1f83ce55a06cbc64dc76c2f94d63a96e.jpg",
+    "title": "Pinterest",
+    "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "mercedes",
+    "angle": "front",
+    "asset": "assets/article-real-v1/mercedes-front-real-v1.webp",
+    "sourcePage": "https://commons.wikimedia.org/wiki/File%3AMercedes-AMG_SL_63_(R232)_1X7A7444.jpg",
+    "sourceImage": "https://upload.wikimedia.org/wikipedia/commons/6/62/Mercedes-AMG_SL_63_%28R232%29_1X7A7444.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "title": "File:Mercedes-AMG SL 63 (R232) 1X7A7444.jpg",
+    "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "lamborghini",
+    "angle": "front",
+    "asset": "assets/article-real-v1/lamborghini-front-real-v1.webp",
+    "sourcePage": "https://mx.pinterest.com/pin/979251512747582001/",
+    "sourceImage": "https://i.pinimg.com/736x/07/f0/4b/07f04b408b9e8b3fe2eb5f99963409b3.jpg",
+    "title": "Lamborghini Revuelto | Cool black sports cars, Black car lamborghini ...",
+    "note": "Ảnh thật góc đầu xe hoặc góc trước 3/4; giữ trọn thân xe và không tạo chi tiết bằng AI."
+  },
+  {
+    "car": "bmw",
+    "angle": "track",
+    "asset": "assets/article-real-v1/bmw-m4-track.webp",
+    "sourcePage": "https://www.press.bmwgroup.com/global/photo/detail/P90466521/The-BMW-M4-Competition-Coupe-06-2022",
+    "sourceImage": "https://mediapool.bmwgroup.com/cache/P9/202206/P90466521/P90466521-the-bmw-m4-competition-coupe-06-2022-2250px.jpg",
+    "title": "The BMW M4 Competition Coupe (06/2022).",
+    "credit": "BMW Group PressClub"
+  }
+]

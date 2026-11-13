@@ -1,0 +1,14 @@
+{
+  "source": "E:/bmw/ZUZONG_Earth_5Cars_Intro/Garage_V6/FullHD_1080p/output/ZUZONG_Garage_V6_5Xe_BatVatLy_1080p.mp4",
+  "output": "intro-5-cars-blender-1080p.mp4",
+  "poster": "intro-5-cars-poster.webp",
+  "poster_time_seconds": 4.5,
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "frames": 1168,
+  "duration_seconds": 48.666666666666664,
+  "audio": false,
+  "renderer": "Blender Cycles",
+  "changes": "Original Full HD video reused without re-encoding; web poster extracted; intro copy updated for five brands."
+}

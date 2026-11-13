@@ -1,0 +1,46 @@
+{
+  "source": "Zuzong_Corvette_Cloth_Reveal_2K.mp4",
+  "sourceSha256": "d48dec99755d8c10871d90bf6ec1e2b7de16b9696afec6d7a631fe4623375307",
+  "sourceResolution": [
+    2560,
+    1440
+  ],
+  "sourceFps": 24,
+  "frameCount": 160,
+  "durationSeconds": 6.666666666666667,
+  "desktop": [
+    1920,
+    1080
+  ],
+  "mobile": [
+    960,
+    540
+  ],
+  "preview": [
+    384,
+    216
+  ],
+  "mobilePreview": [
+    256,
+    144
+  ],
+  "playback": "All original frames, scroll-driven with adjacent-frame blending; no skipped or generated frames",
+  "variants": {
+    "desktop": {
+      "frameCount": 160,
+      "bytes": 8981042
+    },
+    "mobile": {
+      "frameCount": 160,
+      "bytes": 3449916
+    },
+    "preview": {
+      "frameCount": 160,
+      "bytes": 809786
+    },
+    "mobile/preview": {
+      "frameCount": 160,
+      "bytes": 458720
+    }
+  }
+}

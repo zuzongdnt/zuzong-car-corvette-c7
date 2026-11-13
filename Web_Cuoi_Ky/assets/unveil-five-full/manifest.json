@@ -1,0 +1,15 @@
+{
+  "source": "E:\\bmw\\ZUZONG_Earth_5Cars_Intro\\Garage_V6\\FullHD_1080p\\work\\clip_intro.mp4",
+  "fps": 24,
+  "frameCount": 144,
+  "durationSeconds": 6,
+  "desktop": [
+    1920,
+    1080
+  ],
+  "mobile": [
+    960,
+    540
+  ],
+  "composition": "Original full 16:9 frame, no crop. Portrait uses a blurred ambient fill behind the complete foreground frame."
+}

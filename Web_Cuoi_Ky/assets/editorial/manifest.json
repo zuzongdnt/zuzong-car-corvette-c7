@@ -1,0 +1,71 @@
+{
+  "photos": [
+    {
+      "source": "E:\\c7\\ca08fdaf59c8794765ca0d7b72626678.jpg",
+      "file": "road.webp",
+      "width": 735,
+      "height": 898,
+      "bytes": 70004
+    },
+    {
+      "source": "E:\\c7\\5376b537c8de41906543db4aff165c45.jpg",
+      "file": "dusk.webp",
+      "width": 736,
+      "height": 917,
+      "bytes": 43770
+    },
+    {
+      "source": "E:\\c7\\263fc06811833bd27a3847a4f3abe3ac.jpg",
+      "file": "hangar.webp",
+      "width": 736,
+      "height": 1308,
+      "bytes": 91554
+    }
+  ],
+  "films": [
+    {
+      "source": "D:\\tải xuống\\snaptik.vn_7648734332181400862.mp4",
+      "file": "film-road.mp4",
+      "sourceWidth": 1280,
+      "sourceHeight": 720,
+      "width": 720,
+      "height": 406,
+      "fps": 30.0,
+      "duration": 11.3,
+      "bytes": 1489475,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sampleRate": 44100,
+        "channels": 2,
+        "channelLayout": "stereo",
+        "targetBitrate": 96000
+      },
+      "poster": "film-road-poster.webp",
+      "posterSecond": 1.81,
+      "description": "Nighttime gas-station edit with a gray Corvette C7 and a blue Corvette C8; exterior and badge details."
+    },
+    {
+      "source": "D:\\tải xuống\\snaptik.vn_7634777261874498830.mp4",
+      "file": "film-night.mp4",
+      "sourceWidth": 1280,
+      "sourceHeight": 720,
+      "width": 720,
+      "height": 406,
+      "fps": 30.0,
+      "duration": 8.933,
+      "bytes": 605377,
+      "audio": {
+        "codec": "aac",
+        "profile": "LC",
+        "sampleRate": 44100,
+        "channels": 2,
+        "channelLayout": "stereo",
+        "targetBitrate": 96000
+      },
+      "poster": "film-night-poster.webp",
+      "posterSecond": 1.43,
+      "description": "Gray Corvette C7 parked at dusk/night; front, side, interior, and rear views."
+    }
+  ]
+}

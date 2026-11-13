@@ -1,0 +1,37 @@
+{
+  "url": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
+  "assets": [
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B4873z3nWuZEC.woff2",
+      "local": "barlow-condensed-600-vietnamese.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B4873z3bWuQ.woff2",
+      "local": "barlow-condensed-600-latin.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3nWuZEC.woff2",
+      "local": "barlow-condensed-700-vietnamese.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B46r2z3bWuQ.woff2",
+      "local": "barlow-condensed-700-latin.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B47b1z3nWuZEC.woff2",
+      "local": "barlow-condensed-800-vietnamese.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/barlowcondensed/v13/HTxwL3I-JCGChYJ8VI-L6OO_au7B47b1z3bWuQ.woff2",
+      "local": "barlow-condensed-800-latin.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggixSuXd.woff2",
+      "local": "manrope-400-vietnamese.woff2"
+    },
+    {
+      "remote": "https://fonts.gstatic.com/s/manrope/v20/xn7gYHE41ni1AdIRggexSg.woff2",
+      "local": "manrope-400-latin.woff2"
+    }
+  ]
+}

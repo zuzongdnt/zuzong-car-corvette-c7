@@ -1,0 +1,38 @@
+{
+  "source": "D:/tải xuống/snaptik.vn_7529176592883469599_0001",
+  "frameCount": 11,
+  "desktop": [
+    1920,
+    1080
+  ],
+  "mobile": [
+    960,
+    540
+  ],
+  "aspectRatio": "16:9",
+  "processing": "Built-in imagegen reframing and AI-assisted detail restoration; final dimensions standardized with sharp. Original photos preserved.",
+  "playback": "Five matching daylight photos, car center/width/baseline stabilized. Underpass and inconsistent views omitted from playback, all original exports retained.",
+  "sourceFiles": [
+    "snaptik.vn_7529176592883469599_0001.jpg",
+    "snaptik.vn_7529176592883469599_0002.jpg",
+    "snaptik.vn_7529176592883469599_0003.jpg",
+    "snaptik.vn_7529176592883469599_0004.jpg",
+    "snaptik.vn_7529176592883469599_0005.jpg",
+    "snaptik.vn_7529176592883469599_0006.jpg",
+    "snaptik.vn_7529176592883469599_0007.jpg",
+    "snaptik.vn_7529176592883469599_0008.jpg",
+    "snaptik.vn_7529176592883469599_0009.jpg",
+    "snaptik.vn_7529176592883469599_0010.jpg",
+    "snaptik.vn_7529176592883469599_0011.jpg"
+  ],
+  "exports": "output/image-retouch/snaptik-drive",
+  "prompt": "Restore and reframe PHOTO 1 from portrait to a high-resolution 16:9 landscape photograph. PHOTO 2 is ONLY the framing and clarity reference for this same-car sequence. Preserve PHOTO 1's exact black Corvette C7, viewpoint, angle, wheels, spoiler, direction to the left, highway scene, background vehicles and original lighting. Crop away the excessive sky and empty foreground; extend the sides naturally only if necessary. Place the full car near the horizontal center, occupying about 55 percent of the landscape image width, roof around 43 percent of image height and wheels at about 72 percent of height, matching the framing reference. Deliver 1920x1080 if possible, natural photographic sharpness and clear edges without oversharpening halos. Preserve the natural daylight grey-blue palette. No invented smoke, no text, no graphic overlays, no changed car model or body kit, no artistic restyling. This is photo enhancement for a scroll image sequence; visual consistency matters.",
+  "playbackFrames": [
+    0,
+    2,
+    4,
+    7,
+    8
+  ],
+  "alignment": "alignment.json"
+}

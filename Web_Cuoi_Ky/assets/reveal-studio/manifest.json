@@ -1,0 +1,25 @@
+{
+  "source": "Corvette_C7_mo_bat_studio_10s_0001",
+  "frameCount": 10,
+  "sourceFrames": [
+    "Corvette_C7_mo_bat_studio_10s_0001.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0002.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0003.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0004.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0005.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0006.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0007.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0008.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0009.jpg",
+    "Corvette_C7_mo_bat_studio_10s_0010.jpg"
+  ],
+  "desktop": [
+    1600,
+    902
+  ],
+  "mobile": [
+    800,
+    451
+  ],
+  "playback": "Scroll-driven crossfade between supplied still frames"
+}

@@ -1,0 +1,85 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Zuzong C7 — deterministic cloth frame renderer</title>
+<style>html,body{margin:0;background:#08090b}canvas{width:1600px;height:720px;display:block}</style>
+<canvas id="stage" width="1600" height="720"></canvas>
+<script>
+// Authoring renderer only. The public site loads the baked WebP sequence.
+// The car/camera never move. A textured cloth mesh carries the actual motion.
+const canvas=document.querySelector('canvas');
+const W=1600,TOP_PADDING=new URLSearchParams(location.search).has('mobile')?1200:0,H=720+TOP_PADDING,COLS=72,ROWS=36,LEFT_PADDING=320;
+canvas.width=W;canvas.height=H;canvas.style.height=H+'px';
+const gl=canvas.getContext('webgl',{alpha:true,antialias:true,preserveDrawingBuffer:true,premultipliedAlpha:false});
+if(!gl)throw new Error('WebGL is required to bake the cloth sequence');
+const CAR={x:140+LEFT_PADDING,y:210+TOP_PADDING,width:1000,height:1000*771/1600};
+const COVER={x:91+LEFT_PADDING,y:158+TOP_PADDING,width:1100,height:550};
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const smooth=x=>{x=clamp(x);return x*x*(3-2*x)};
+const shader=(type,source)=>{const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s};
+const program=gl.createProgram();
+gl.attachShader(program,shader(gl.VERTEX_SHADER,`
+attribute vec3 position;
+attribute vec2 uv;
+attribute float shade;
+varying vec2 tex;
+varying float light;
+void main(){gl_Position=vec4(position,1.0);tex=uv;light=shade;}`));
+gl.attachShader(program,shader(gl.FRAGMENT_SHADER,`
+precision mediump float;
+uniform sampler2D photo;
+varying vec2 tex;
+varying float light;
+void main(){vec4 c=texture2D(photo,tex);if(c.a<0.004)discard;gl_FragColor=vec4(c.rgb*light,c.a);}`));
+gl.linkProgram(program);if(!gl.getProgramParameter(program,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(program));
+gl.useProgram(program);
+const buffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+const bytes=6*4;
+for(const [name,size,offset] of [['position',3,0],['uv',2,12],['shade',1,20]]){const loc=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,bytes,offset)}
+gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+gl.viewport(0,0,W,H);gl.clearColor(0,0,0,0);
+function imageTexture(url){return new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>{const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);resolve(t)};img.onerror=()=>reject(new Error(url));img.src=url})}
+function point(x,y,z,u,v,shade){return [(x/W)*2-1,1-(y/H)*2,z,u,v,shade]}
+function draw(texture,vertices){gl.bindTexture(gl.TEXTURE_2D,texture);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(vertices),gl.DYNAMIC_DRAW);gl.drawArrays(gl.TRIANGLES,0,vertices.length/6)}
+function clothPoint(u,v,p){
+ const x0=COVER.x+u*COVER.width,y0=COVER.y+v*COVER.height;
+ // The front hem peels first; tension reaches the roof and rear a little later.
+ const delay=(1-u)*0.22+v*0.035;
+ const release=smooth((p-delay)/(1-delay));
+ const billow=Math.sin(Math.PI*release);
+ const travelling=(u*13.6+v*8.4-p*13.0);
+ const fold=(Math.sin(travelling)+0.4*Math.sin(u*29-v*7+p*5));
+ const gather=smooth((release-.18)/.78);
+ // Fabric is gathered toward an off-camera hand above the rear quarter.
+ const anchorX=170+LEFT_PADDING;
+ const x=anchorX+(x0-anchorX)*(1-.49*gather)-900*Math.pow(release,1.12)
+   +billow*(24+v*20)*fold;
+ const anchorY=320+TOP_PADDING;
+ const y=anchorY+(y0-anchorY)*(1-.46*gather)-690*Math.pow(release,.98)
+   +billow*(20+v*21)*Math.sin(u*8.3-v*9.2-p*10.1)
+   -billow*83*(.3+.7*u)*(1-v*.25);
+ // Depth separates the moving folds instead of crossfading the photo.
+ const z=-(.1+release*.24+billow*(.10+.07*Math.sin(travelling)));
+ const shade=.68+billow*(.10*Math.cos(travelling)+.045*Math.sin(u*29-v*7+p*5));
+ return point(x,y,z,u,v,shade);
+}
+let carTex,coverTex;
+window.ready=Promise.all([imageTexture('../assets/hero.webp'),imageTexture('../assets/cover.webp')]).then(([a,b])=>{carTex=a;coverTex=b;window.renderFrame(0);return true});
+window.motionEnd=1;
+window.renderFrame=(p,raw=false)=>{
+ p=clamp(p);if(!raw)p=clamp(p/.88)*window.motionEnd;
+ gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.disable(gl.DEPTH_TEST);
+ const a=point(CAR.x,CAR.y,.8,0,0,.84),b=point(CAR.x+CAR.width,CAR.y,.8,1,0,.84),c=point(CAR.x+CAR.width,CAR.y+CAR.height,.8,1,1,.84),d=point(CAR.x,CAR.y+CAR.height,.8,0,1,.84);
+ draw(carTex,[...a,...b,...c,...a,...c,...d]);
+ {
+  const verts=[];gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);
+  for(let y=0;y<ROWS;y++)for(let x=0;x<COLS;x++){
+   const u=x/COLS,v=y/ROWS,uu=(x+1)/COLS,vv=(y+1)/ROWS;
+   const a=clothPoint(u,v,p),b=clothPoint(uu,v,p),c=clothPoint(uu,vv,p),d=clothPoint(u,vv,p);
+   verts.push(...a,...b,...c,...a,...c,...d);
+  }
+  draw(coverTex,verts);
+ }
+ gl.finish();return canvas.toDataURL('image/png');
+};
+window.sequenceInfo={width:W,height:H,leftPadding:LEFT_PADDING,topPadding:TOP_PADDING,carBounds:CAR,clothBounds:COVER,mesh:[COLS,ROWS],camera:'locked',frameCount:144};
+</script>

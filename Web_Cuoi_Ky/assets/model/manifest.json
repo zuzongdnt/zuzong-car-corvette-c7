@@ -1,0 +1,23 @@
+{
+  "source": "chevrolet-corvette-c7.zip / source/CorvetteC7.fbx",
+  "author": "Martin Trafas",
+  "url": "https://sketchfab.com/3d-models/chevrolet-corvette-c7-2b509d1bce104224b147c81757f6f43a",
+  "license": "CC BY 4.0",
+  "paintMaterials": [
+    "Car Paint"
+  ],
+  "changes": [
+    "FBX to GLB",
+    "Relink supplied textures",
+    "Rebuild glass and light materials lost in FBX",
+    "Default black paint, dark rims",
+    "Full source geometry retained"
+  ],
+  "missingSourceTextures": [
+    "CorvetteWingEmblemMetallic2.png",
+    "Exhaust_Metalness.png",
+    "WipersColor.png",
+    "WipersRoughness.png"
+  ],
+  "bytes": 37445928
+}

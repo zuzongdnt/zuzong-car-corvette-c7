@@ -1,0 +1,30 @@
+{
+  "key": "mercedes",
+  "groups": {
+    "body": [
+      "ZUZONG_body | SL63_paint.002",
+      "ZUZONG_body | SL63_paint.003"
+    ],
+    "rims": [
+      "ZUZONG_rims | WEB_RIM | SL63_silver.002",
+      "ZUZONG_rims | WEB_RIM | SL63_black.003"
+    ],
+    "calipers": [
+      "ZUZONG_calipers | amdb11_caliper.001"
+    ]
+  },
+  "sourceBounds": [
+    [
+      -2.3525002002716064,
+      -1.0142273902893066,
+      -0.005000115837901831
+    ],
+    [
+      2.3524999618530273,
+      1.014227271080017,
+      1.3244996070861816
+    ]
+  ],
+  "bytes": 31442976,
+  "polygons": 434548
+}

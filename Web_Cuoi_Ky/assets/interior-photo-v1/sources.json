@@ -1,0 +1,39 @@
+[
+  {
+    "car": "Chevrolet Corvette C7",
+    "asset": "corvette-c7-cabin-alt-web.webp",
+    "sourcePage": "https://www.hendrickatlanta.com/chevrolet-models-research/2019-chevrolet-corvette-stingray/",
+    "image": "https://di-uploads-pod25.dealerinspire.com/rickhendrickchevyduluth/uploads/2019/10/2019-Chevy-Corvette-Stingray-Interior-Gallery-5.jpg"
+  },
+  {
+    "car": "BMW M4 G82",
+    "asset": "bmw-m4-g82-cabin-web.webp",
+    "sourcePage": "https://www.caranddriver.com/reviews/a40368599/2022-bmw-m4-competition-awd-by-the-numbers/",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/2022-bmw-m4-competition-xdrive-108-1655890728.jpg"
+  },
+  {
+    "car": "Porsche 911 GT3 (992)",
+    "asset": "porsche-911-gt3-992-cabin-web.webp",
+    "sourcePage": "https://911andco.fr/nouvelle-porsche-911-gt3-992-510ch-et-un-nouveau-record/",
+    "image": "https://911andco.fr/wp-content/uploads/2021/02/Porsche-911-GT3-Type-992-modele-2021-08.jpg"
+  },
+  {
+    "car": "Mercedes-AMG SL 63",
+    "asset": "mercedes-amg-sl63-cabin-alt-web.webp",
+    "sourcePage": "https://www.caranddriver.com/photos/g38572340/2022-mercedes-amg-sl-drive-gallery/",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/2022-mercedes-amg-sl63-19-1640036753.jpg?crop=1xw%3A1xh%3Bcenter%2Ctop&resize=980%3A%2A"
+  },
+  {
+    "car": "Lamborghini Revuelto",
+    "asset": "lamborghini-revuelto-cabin-web.webp",
+    "sourcePage": "https://www.carexpert.com.au/car-news/lamborghini-revuelto-hybrid-v12-flagship-revealed",
+    "image": "https://images.carexpert.com.au/crop/1600/1067/app/uploads/2023/03/2024-Lamborghini-Revuelto-28.jpg"
+  },
+  {
+    "car": "Chevrolet Corvette C7 Stingray (2015)",
+    "asset": "corvette-c7-cabin-front-web.webp",
+    "sourcePage": "https://www.hagerty.com/valuation-tools/chevrolet/corvette/2015/2015-chevrolet-corvette-stingray",
+    "image": "https://hagerty-vid-images.imgix.net/Vehicle%20Reference%20Data/VRD-15612/2015_Chevrolet_Corvette_Stingray_10.jpg",
+    "credit": "Hagerty"
+  }
+]
