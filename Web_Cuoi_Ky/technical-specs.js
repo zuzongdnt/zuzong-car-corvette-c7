@@ -35,32 +35,34 @@ const formatChartValue=(car,id,metricId,decimals)=>metricId==='speed'&&id==='lam
 export function mountTechnicalSpecs(host,studio){
   if(!host||host.dataset.mounted)return;
   host.dataset.mounted='true';
-  let carId=ORDER.includes(studio?.dataset.car)?studio.dataset.car:'lamborghini';
+  let studioCarId = studio?.dataset.car;
+  try { studioCarId = JSON.parse(studio?.dataset.config || '{}').car || studioCarId; } catch {}
+  let carId = ORDER.includes(studioCarId) ? studioCarId : 'lamborghini';
   let metricId='kw';
   host.innerHTML=`<div class="z-ts-shell">
     <header class="z-ts-head">
-      <div><p>Technical Specs</p><h2>Nhìn sức mạnh<br>bằng dữ liệu.</h2></div>
-      <div><p>Chọn xe và chỉ số để xem thông số thật theo đúng phiên bản tham khảo, kèm so sánh trực quan trong bộ sưu tập.</p><span>Giá trị chính hãng · Có ghi rõ phiên bản</span></div>
+      <h2>Thông số kỹ thuật</h2>
+      <p>Chọn mẫu xe để xem thông số theo phiên bản. Đổi chỉ số trên biểu đồ để so sánh cả 5 mẫu.</p>
     </header>
-    <div class="z-ts-car-tabs" role="tablist" aria-label="Chọn xe để xem thông số">${ORDER.map(id=>{const car=TECH_SPECS[id];return `<button type="button" role="tab" data-ts-car="${id}"><strong>${esc(car.brand)}</strong><span>${esc(car.model)}</span></button>`;}).join('')}</div>
+    <div class="z-ts-car-tabs" role="tablist" aria-label="Chọn xe để xem thông số">${ORDER.map(id=>{const car=TECH_SPECS[id];return `<button type="button" role="tab" id="z-ts-tab-${id}" aria-controls="z-ts-profile" data-ts-car="${id}"><strong>${esc(car.brand)}</strong><span>${esc(car.model)}</span></button>`;}).join('')}</div>
     <div class="z-ts-board">
-      <section class="z-ts-profile" aria-live="polite">
+      <section class="z-ts-profile" id="z-ts-profile" role="tabpanel" tabindex="0">
         <p class="z-ts-variant" data-ts-variant></p>
         <h3 data-ts-model></h3>
         <p class="z-ts-engine" data-ts-engine></p>
         <dl class="z-ts-primary">
           <div><dt>Dung tích</dt><dd><b data-ts-litres></b><small>L</small></dd></div>
-          <div data-ts-chart-value="kw"><dt>Công suất</dt><dd data-ts-power></dd></div>
-          <div data-ts-chart-value="torque"><dt>Mô-men</dt><dd data-ts-torque></dd></div>
-          <div data-ts-chart-value="accel"><dt>0–100 km/h</dt><dd><b data-ts-accel></b><small>giây</small></dd></div>
-          <div data-ts-chart-value="speed"><dt>Tốc độ tối đa</dt><dd data-ts-speed></dd></div>
+          <div><dt>Công suất</dt><dd data-ts-power></dd></div>
+          <div><dt>Mô-men xoắn</dt><dd data-ts-torque></dd></div>
+          <div><dt>0–100 km/h</dt><dd><b data-ts-accel></b><small>giây</small></dd></div>
+          <div><dt>Tốc độ tối đa</dt><dd data-ts-speed></dd></div>
         </dl>
         <div class="z-ts-drivetrain"><div><span>Hộp số</span><strong data-ts-transmission></strong></div><div><span>Dẫn động</span><strong data-ts-drive></strong></div></div>
         <a class="z-ts-source" data-ts-source target="_blank" rel="noopener noreferrer external">Mở tài liệu chính hãng <b aria-hidden="true">↗</b></a>
       </section>
       <section class="z-ts-chart" aria-labelledby="z-ts-chart-title">
         <header><div><p>So sánh 5 mẫu xe</p><h3 id="z-ts-chart-title" data-ts-chart-title></h3></div><div class="z-ts-metric-tabs" role="group" aria-label="Chọn chỉ số biểu đồ">${Object.entries(METRICS).map(([id,metric])=>`<button type="button" data-ts-metric="${id}">${esc(metric.label)}</button>`).join('')}</div></header>
-        <div class="z-ts-axis" aria-hidden="true"><span>0</span><i></i><span data-ts-axis-max></span></div>
+        <div class="z-ts-axis" aria-hidden="true"><div><span>0</span><i></i><span data-ts-axis-max></span></div></div>
         <div class="z-ts-bars" data-ts-bars role="img"></div>
         <p class="z-ts-chart-note" data-ts-chart-note></p>
       </section>
@@ -74,8 +76,7 @@ export function mountTechnicalSpecs(host,studio){
     host.querySelectorAll('[data-ts-metric]').forEach(button=>{const active=button.dataset.tsMetric===metricId;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});
     host.querySelector('[data-ts-chart-title]').textContent=metric.label;
     host.querySelector('[data-ts-axis-max]').textContent=`${format(axisMax)} ${metric.unit}`;
-    host.querySelector('[data-ts-chart-note]').textContent=`${metric.note} Giá trị xe đang chọn nằm trong biểu đồ.`;
-    host.querySelectorAll('[data-ts-chart-value]').forEach(card=>{card.hidden=card.dataset.tsChartValue===metricId;});
+    host.querySelector('[data-ts-chart-note]').textContent=metric.note;
     const summary=ORDER.map(id=>{const car=TECH_SPECS[id];return `${car.model}: ${formatChartValue(car,id,metricId,metric.decimals)} ${metric.unit}`;}).join('; ');
     bars.setAttribute('aria-label',`${metric.label}. ${summary}`);
     bars.innerHTML=ORDER.map(id=>{const car=TECH_SPECS[id],value=car[metricId],width=Math.max(4,Math.min(100,value/axisMax*100));return `<div class="z-ts-bar-row${id===carId?' is-selected':''}" data-ts-bar-car="${id}"><div class="z-ts-bar-label"><strong>${esc(car.brand)}</strong><span>${esc(car.model)}</span></div><div class="z-ts-bar-track"><i style="--ts-width:${width}%"></i></div><b>${formatChartValue(car,id,metricId,metric.decimals)} <small>${metric.unit}</small></b></div>`;}).join('');
@@ -84,6 +85,7 @@ export function mountTechnicalSpecs(host,studio){
   function renderCar(){
     const car=TECH_SPECS[carId];
     host.querySelectorAll('[data-ts-car]').forEach(button=>{const active=button.dataset.tsCar===carId;button.classList.toggle('is-active',active);button.setAttribute('aria-selected',String(active));button.tabIndex=active?0:-1;});
+    host.querySelector('#z-ts-profile').setAttribute('aria-labelledby',`z-ts-tab-${carId}`);
     host.querySelector('[data-ts-variant]').textContent=`${car.brand} / ${car.variant}`;
     host.querySelector('[data-ts-model]').textContent=car.model;
     host.querySelector('[data-ts-engine]').textContent=car.engine;
@@ -106,7 +108,14 @@ export function mountTechnicalSpecs(host,studio){
     event.preventDefault();const current=ORDER.indexOf(button.dataset.tsCar);const next=event.key==='Home'?0:event.key==='End'?ORDER.length-1:(current+(event.key==='ArrowRight'?1:-1)+ORDER.length)%ORDER.length;carId=ORDER[next];renderCar();host.querySelector(`[data-ts-car="${carId}"]`).focus();
   });
   bars.addEventListener('animationend',()=>bars.classList.remove('is-changing'));
-  studio?.addEventListener('studio-change',event=>{const next=event.detail?.car;if(TECH_SPECS[next]&&next!==carId){carId=next;renderCar();}});
+  studio?.addEventListener('studio-change', event => {
+    const next = event.detail?.car;
+    if (!ORDER.includes(next) || next === studioCarId) return;
+    studioCarId = next;
+    if (next === carId) return;
+    carId = next;
+    renderCar();
+  });
   renderCar();
   if(location.hash==='#technical-specs'){
     const reveal=()=>host.scrollIntoView({block:'start'});

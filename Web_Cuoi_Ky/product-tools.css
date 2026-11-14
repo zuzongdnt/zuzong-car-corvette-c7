@@ -1,0 +1,100 @@
+main[data-page="products"] {
+  --zp-ink: #151515;
+  --zp-muted: #555;
+  --zp-line: #d6d6d6;
+  --zp-surface: #f5f5f5;
+}
+.z-camera-buttons :is([data-spin], [data-fullscreen]) svg {
+  display: block;
+  margin-inline: auto;
+}
+
+main[data-page="products"] :is(.z-ts-head, .z-advisor-head) {
+  grid-template-columns: minmax(0, 1fr) minmax(0, .7fr);
+  gap: clamp(12px, 4vw, 48px);
+  align-items: end;
+  margin-bottom: 28px;
+}
+main[data-page="products"] :is(.z-ts-head, .z-advisor-head) h2 {
+  font-size: clamp(30px, 4.4vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -.045em;
+}
+main[data-page="products"] :is(.z-ts-head, .z-advisor-head) > p {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--zp-muted);
+  font-size: .9375rem;
+  line-height: 1.65;
+}
+main[data-page="products"] .z-ts-car-tabs { background: var(--zp-surface); }
+main[data-page="products"] .z-ts-car-tabs button { min-height: 64px; padding: 12px 16px; }
+main[data-page="products"] .z-ts-car-tabs button::after { background: var(--zp-ink); }
+main[data-page="products"] :is(.z-ts-car-tabs, .z-ts-bar-label) :is(strong, span) {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+}
+main[data-page="products"] :is(.z-ts-car-tabs, .z-ts-bar-label) strong { font-size: .875rem; }
+main[data-page="products"] :is(.z-ts-car-tabs, .z-ts-bar-label) span { color: var(--zp-muted); font-size: .75rem; }
+main[data-page="products"] .z-ts-board { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); min-height: 0; }
+main[data-page="products"] :is(.z-ts-profile, .z-ts-chart) { min-height: 0; padding: clamp(18px, 3vw, 38px); }
+main[data-page="products"] .z-ts-profile { background: #fff; }
+main[data-page="products"] .z-ts-profile h3 { font-size: clamp(26px, 3vw, 40px); line-height: 1.13; }
+main[data-page="products"] .z-ts-variant { margin-bottom: 8px; color: var(--zp-muted); font-size: .875rem; }
+main[data-page="products"] .z-ts-engine { margin-top: 10px; font-size: .9375rem; }
+main[data-page="products"] .z-ts-primary { margin-top: 20px; border-left: 0; }
+main[data-page="products"] .z-ts-primary > div { align-content: start; min-height: 0; gap: 5px; padding: 12px 8px 12px 0; border-right: 0; }
+main[data-page="products"] .z-ts-primary dd { font-size: clamp(16px, 1.5vw, 22px); line-height: 1.3; letter-spacing: -.02em; }
+main[data-page="products"] .z-ts-drivetrain { margin-top: 0; border-top: 0; }
+main[data-page="products"] :is(.z-ts-primary dt, .z-ts-primary small, .z-ts-drivetrain span) { color: var(--zp-muted); font-size: .8125rem; }
+main[data-page="products"] :is(.z-ts-drivetrain strong, .z-ts-source) { font-size: .875rem; }
+main[data-page="products"] .z-ts-source { justify-content: flex-start; gap: 8px; padding-top: 18px; text-decoration: underline; text-underline-offset: 3px; }
+main[data-page="products"] .z-ts-source b { color: currentColor; }
+main[data-page="products"] .z-ts-chart > header { display: grid; gap: 16px; }
+main[data-page="products"] .z-ts-chart > header p { font-size: .875rem; }
+main[data-page="products"] .z-ts-chart > header h3 { font-size: clamp(24px, 2.6vw, 34px); }
+main[data-page="products"] .z-ts-metric-tabs { justify-content: flex-start; }
+main[data-page="products"] .z-ts-metric-tabs button { min-height: 44px; font-size: .8125rem; }
+main[data-page="products"] #technical-specs .z-ts-metric-tabs button.is-active { color: #fff !important; background: var(--zp-ink) !important; border-color: var(--zp-ink) !important; }
+main[data-page="products"] .z-ts-axis { margin-top: 22px; font-size: .75rem; }
+main[data-page="products"] .z-ts-axis > div { grid-column: 2; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+main[data-page="products"] .z-ts-axis i { flex: 1; }
+main[data-page="products"] .z-ts-bars { gap: 12px; margin: 12px 0 20px; }
+main[data-page="products"] :is(.z-ts-bar-row, .z-ts-axis) { grid-template-columns: minmax(104px, .6fr) minmax(0, 1fr) 88px; gap: 12px; }
+main[data-page="products"] .z-ts-bar-track { height: 8px; }
+main[data-page="products"] #technical-specs .z-ts-bar-row.is-selected .z-ts-bar-track i { background: var(--zp-ink) !important; box-shadow: none; }
+main[data-page="products"] .z-ts-bar-row > b { font-size: .9375rem; font-variant-numeric: tabular-nums; }
+main[data-page="products"] .z-ts-bar-row > b small { font-size: .75rem; }
+main[data-page="products"] .z-ts-chart-note { font-size: .8125rem; padding-top: 14px; }
+
+main[data-page="products"] .z-advisor-workspace { grid-template-columns: minmax(0, .68fr) minmax(0, 1fr); }
+main[data-page="products"] :is(.z-advisor-controls, .z-advisor-answer) { min-width: 0; padding: clamp(18px, 3vw, 38px); }
+main[data-page="products"] .z-advisor-controls { background: var(--zp-surface); }
+main[data-page="products"] :is(.z-advisor-controls > label, .z-advisor-controls form label) { color: var(--zp-ink); font-size: .875rem; font-weight: 650; }
+main[data-page="products"] .z-advisor-controls form { gap: 8px; }
+main[data-page="products"] .z-advisor-controls form label { grid-column: 1 / -1; }
+main[data-page="products"] .z-advisor-controls :is(select, input) { min-width: 0; font-size: 1rem; }
+main[data-page="products"] .z-advisor-controls form button { min-height: 44px; font-size: .875rem; }
+main[data-page="products"] .z-advisor-prompts { margin: 0 0 8px; }
+main[data-page="products"] .z-advisor-prompts button { min-height: 44px; font-size: .8125rem; }
+main[data-page="products"] .z-advisor-prompts button[aria-pressed=true] { color: #fff; background: var(--zp-ink); border-color: var(--zp-ink); }
+main[data-page="products"] .z-advisor-answer h3 { margin: 0 0 10px; line-height: 1.18; }
+main[data-page="products"] .z-advisor-answer :is(p, li, dd, h4, a) { font-size: .9375rem; }
+main[data-page="products"] .z-advisor-answer :is(dt, small) { font-size: .8125rem; }
+main[data-page="products"] .z-advisor-feature { border-color: var(--zp-ink); }
+main[data-page="products"] :is(#technical-specs, #car-advisor) :is(button, a, input, select, [role=tabpanel]):focus-visible {
+  outline: 2px solid var(--zp-ink);
+  outline-offset: -2px;
+}
+
+@media (max-width: 900px) {
+  main[data-page="products"] :is(.z-ts-head, .z-advisor-head, .z-ts-board, .z-advisor-workspace) { grid-template-columns: minmax(0, 1fr); }
+  main[data-page="products"] :is(.z-ts-profile, .z-advisor-controls) { border-right: 0; border-bottom: 1px solid var(--zp-line); }
+}
+@media (max-width: 600px) {
+  main[data-page="products"] :is(.z-ts-car-tabs, .z-ts-board) { margin-inline: 0; border-inline: 1px solid var(--zp-line); }
+  main[data-page="products"] .z-ts-car-tabs { grid-template-columns: repeat(5, minmax(126px, 1fr)); scrollbar-width: thin; }
+  main[data-page="products"] .z-ts-car-tabs::-webkit-scrollbar { display: block; }
+  main[data-page="products"] :is(.z-ts-bar-row, .z-ts-axis) { grid-template-columns: minmax(80px, .68fr) minmax(0, 1fr) 78px; gap: 8px; }
+}

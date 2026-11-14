@@ -11,7 +11,7 @@ export function mountCarAdvisor(host,studio){
   host.dataset.mounted='true';
   let carId='lamborghini';
   try{carId=JSON.parse(studio?.dataset.config||'{}').car||studio?.dataset.car||carId;}catch{}
-  host.innerHTML=`<div class="z-advisor-shell"><header class="z-advisor-head"><div><p class="z-experience-kicker">AI CAR ADVISOR · TRA CỨU THEO NGUỒN</p><h2>Hỏi về chiếc xe<br><em>bạn đang quan tâm.</em></h2></div><p>Tra thông số, công nghệ, phiên bản và giá minh họa. Mỗi câu trả lời đều kèm liên kết nguồn hoặc ghi rõ phần nào chỉ là mô phỏng.</p></header><div class="z-advisor-workspace"><div class="z-advisor-controls"><label for="z-advisor-car">Chọn mẫu xe</label><select id="z-advisor-car" data-advisor-car>${cars.map(car=>`<option value="${car.id}">${esc(car.brand)} ${esc(car.name)}</option>`).join('')}</select><div class="z-advisor-prompts" aria-label="Câu hỏi gợi ý"><button type="button" data-question="Động cơ và công suất của mẫu này là bao nhiêu?">Động cơ & công suất</button><button type="button" data-question="Các phiên bản của mẫu này khác nhau thế nào?">So sánh phiên bản</button><button type="button" data-question="Giá và chi phí sử dụng được tính ra sao?">Giá & chi phí</button><button type="button" data-question="Công nghệ nổi bật của xe là gì?">Công nghệ nổi bật</button></div><form data-advisor-form><label class="sr-only" for="z-advisor-question">Nhập câu hỏi về xe</label><input id="z-advisor-question" name="question" maxlength="180" placeholder="Ví dụ: Bản nào tăng tốc nhanh nhất?" required><button type="submit" aria-label="Tra cứu câu hỏi">Tra cứu ↗</button></form><p class="z-advisor-disclaimer">Bản demo chạy ngay trên trình duyệt, tra cứu bộ dữ liệu đã ghi nguồn, chưa kết nối mô hình AI trực tuyến. Không tự suy đoán thông số còn thiếu.</p></div><article class="z-advisor-answer" data-advisor-answer aria-live="polite"><span>TRẢ LỜI THEO DỮ LIỆU XE</span><h3 data-advisor-title></h3><div data-advisor-body></div><a data-advisor-source target="_blank" rel="noopener noreferrer external">Mở nguồn hãng ↗</a></article></div></div>`;
+  host.innerHTML=`<div class="z-advisor-shell"><header class="z-advisor-head"><h2>Tra cứu thông tin xe</h2><p>Chọn xe rồi tra thông số, phiên bản, công nghệ hoặc chi phí sử dụng.</p></header><div class="z-advisor-workspace"><div class="z-advisor-controls"><label for="z-advisor-car">Chọn mẫu xe</label><select id="z-advisor-car" data-advisor-car>${cars.map(car=>`<option value="${car.id}">${esc(car.brand)} ${esc(car.name)}</option>`).join('')}</select><div class="z-advisor-prompts" aria-label="Câu hỏi gợi ý"><button type="button" aria-pressed="false" data-question="Động cơ và công suất của mẫu này là bao nhiêu?">Động cơ & công suất</button><button type="button" aria-pressed="false" data-question="Các phiên bản của mẫu này khác nhau thế nào?">So sánh phiên bản</button><button type="button" aria-pressed="false" data-question="Giá và chi phí sử dụng được tính ra sao?">Giá & chi phí</button><button type="button" aria-pressed="false" data-question="Công nghệ nổi bật của xe là gì?">Công nghệ nổi bật</button></div><form data-advisor-form><label for="z-advisor-question">Câu hỏi của bạn</label><input id="z-advisor-question" name="question" maxlength="180" placeholder="Ví dụ: Xe dùng động cơ gì?" required><button type="submit">Tra cứu</button></form></div><article class="z-advisor-answer" data-advisor-answer aria-live="polite"><h3 data-advisor-title></h3><div data-advisor-body></div><a data-advisor-source target="_blank" rel="noopener noreferrer external">Tài liệu hãng ↗</a></article></div></div>`;
   const select=host.querySelector('[data-advisor-car]');
   const form=host.querySelector('[data-advisor-form]');
   const input=form.elements.question;
@@ -58,7 +58,7 @@ export function mountCarAdvisor(host,studio){
       body=`<p>Các mục dưới đây lấy từ nội dung tính năng đã ghi nguồn cho mẫu xe. Trang bị thực tế có thể phụ thuộc năm xe, phiên bản và thị trường.</p>${matches.map(feature=>`<section class="z-advisor-feature"><h4>${esc(feature.title)}</h4><p>${esc(feature.how)}</p><p><strong>Lợi ích mô tả:</strong> ${esc(feature.benefit)}</p><small>Phạm vi: ${esc(feature.availability)}</small></section>`).join('')}`;
       source=knowledge.source;sourceLabel=`Tài liệu hãng về ${knowledge.model}`;
     }else{
-      title=`Thông số tham khảo · ${spec.model}`;
+      title=`Thông số ${spec.model}`;
       body=`<p><strong>${esc(spec.variant)}</strong></p><dl class="z-advisor-spec-grid"><div><dt>Động cơ</dt><dd>${esc(spec.engine)}</dd></div><div><dt>Công suất</dt><dd>${esc(spec.powerLabel)}</dd></div><div><dt>Mô-men xoắn</dt><dd>${esc(spec.torqueLabel)}</dd></div><div><dt>0–100 km/h</dt><dd>${esc(String(spec.accel).replace('.',','))} giây</dd></div><div><dt>Tốc độ tối đa</dt><dd>${esc(spec.speedLabel)}</dd></div><div><dt>Dẫn động</dt><dd>${esc(spec.drive)}</dd></div></dl><p>Đây là số liệu theo đúng phiên bản tham khảo, không đại diện mọi cấu hình của cùng dòng xe.</p>`;
     }
     host.querySelector('[data-advisor-title]').textContent=title;
@@ -66,6 +66,9 @@ export function mountCarAdvisor(host,studio){
     const link=host.querySelector('[data-advisor-source]');link.hidden=!source;if(source){link.href=source;link.textContent=`${sourceLabel} ↗`;}
   }
   function answerQuestion(question) {
+    host.querySelectorAll('[data-question]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.question === question));
+    });
     activeQuestion = question;
     render(activeQuestion);
   }
